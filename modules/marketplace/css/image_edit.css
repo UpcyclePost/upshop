@@ -1,0 +1,35 @@
+	.middle_container 
+	{
+		float:left;
+		width:100%;
+	}	
+	.table 
+	{
+		border: 0 none;
+		border-spacing: 0;
+		empty-cells: show;
+		font-size: 100%;
+		width:100%;
+	}
+	.table tr 
+	{
+		padding:5px;
+	}
+	.table tr th 
+	{
+		background: -moz-linear-gradient(center top , #F9F9F9, #ECECEC) repeat-x scroll left top #ECECEC;
+		color: #333333;
+		font-size: 13px;
+		padding: 4px 6px;
+		text-align: left;
+		text-shadow: 0 1px 0 #FFFFFF;
+		text-align:center;
+	}
+	.table tr td 
+	{
+		border-bottom: 1px solid #CCCCCC;
+		color: #333333;
+		font-size: 12px;
+		padding: 4px 4px 4px 6px;
+		text-align:center;
+	}

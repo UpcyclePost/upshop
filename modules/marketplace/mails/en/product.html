@@ -1,0 +1,45 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/1999/REC-html401-19991224/strict.dtd">
+<html>
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+	<title>Activation Mail</title>
+</head>
+<body>
+
+Hello <strong style="color: {color};">{seller_name}</strong>,</td>
+Your request for <b> {product_name} </b> for your shop <b> {mp_shop_name} </b> has been {mail_reason} by admin<br /><br />
+
+Your Product detail as bellow<br /><br />
+
+<table style='width:100%;margin-bottom:10px' border='1' cellspacing='2' cellpadding='0'>
+					<tr>
+						<th>Product name</th>
+						<th>Category name</th>
+						<th>Quantity</th>
+						<th>Main shop name</th>
+						<th>Your shop name</th>
+					</tr>
+					<tr>
+						<td>
+						{product_name}
+						</td>
+						<td>
+						{category_name}
+						</td>
+						<td>
+						{quantity}
+						</td>
+						<td>
+						{ps_shop_name}
+						</td>
+						<td>
+						{mp_shop_name}
+						</td>
+					</tr>
+					</table>
+Go to your shop by clicking on link below<br /><br />		
+		{shop_url}		
+<br/><br />Thanks<br/>
+
+</body>
+</html>

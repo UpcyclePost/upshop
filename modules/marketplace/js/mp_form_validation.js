@@ -1,0 +1,205 @@
+$(document).ready(function()
+{
+	//Add product and update product form validation
+	$('#SubmitProduct,#SubmitCreate').click(function()
+	{
+		var product_name = $('#product_name').val().trim();
+		var short_description = $('#short_description').val().length;
+		var product_description = $('#product_description').val();
+		var product_price = $('#product_price').val().trim();
+		var product_quantity = $('#product_quantity').val().trim();
+		var checkbox_length = $('.product_category:checked').length;
+		
+		var special_char = /^[^<>;=#{}]*$/;
+		if(product_name == '')
+		{
+			alert(req_prod_name);
+			$('#product_name').focus();
+			return false;
+		}
+		else if(!isNaN(product_name) || !special_char.test(product_name))
+		{
+			alert(char_prod_name);
+			$('#product_name').focus();
+			return false;
+		}
+		else if(product_price == '')
+		{
+			alert(req_price);
+			$('#product_price').focus();
+			return false;
+		}
+		else if(isNaN(product_price))
+		{
+			alert(num_price);
+			$('#product_price').focus();
+			return false;
+		}
+		else if(product_quantity == '')
+		{
+			alert(req_qty);
+			$('#product_quantity').focus();
+			return false;
+		}
+		else if(isNaN(product_quantity))
+		{
+			alert(num_qty);
+			$('#product_quantity').focus();
+			return false;
+		}
+		else if(checkbox_length == 0)
+		{
+			alert(req_catg);
+			$('#check').focus();
+			return false;
+		}
+
+
+	});
+
+	//Seller registration form validation
+	$('#seller_save').click(function()
+	{
+		var shop_name = $('#shop_name1').val().trim();
+		var person_name = $('#person_name1').val().trim();
+		var phone = $('#phone1').val().trim();
+		var fax = $('#fax1').val().trim();
+		var business_email = $('#business_email_id1').val().trim();
+		var fb_id = $('#fb_id1').val().trim();
+		var tw_id = $('#tw_id1').val().trim();
+		var reg = /^([a-zA-Z0-9_.-])+@([a-zA-Z0-9_.-])+\.([a-zA-Z])+([a-zA-Z])+/;
+		var special_char = /^[^<>;=#{}]*$/;
+		if(shop_name == '')
+		{
+			alert(req_shop_name);
+			$('#shop_name1').focus();
+			return false;
+		}
+		else if(!isNaN(shop_name) || !special_char.test(shop_name))
+		{
+			alert(inv_shop_name);
+			$('#shop_name1').focus();
+			return false;
+		}
+		else if(person_name == '')
+		{
+			alert(req_seller_name);
+			$('#person_name1').focus();
+			return false;
+		}
+		else if(!isNaN(person_name) || !special_char.test(person_name))
+		{
+			alert(inv_seller_name);
+			$('#person_name1').focus();
+			return false;
+		}
+		else if(phone == '')
+		{
+			alert(req_phone);
+			$('#phone1').focus();
+			return false;
+		}
+		else if(isNaN(phone))
+		{
+			alert(inv_phone);
+			$('#phone1').focus();
+			return false;
+		}
+		else if(phone.length != phone_digit)
+		{
+			alert(inv_phone);
+			$('#update_phone').focus();
+			return false;
+		}
+		else if(business_email == '')
+		{
+			alert(req_email);
+			$('#business_email_id1').focus();
+			return false;
+		}
+		else if(!reg.test(business_email))
+		{
+			alert(inv_email);
+			$('#business_email_id1').focus();
+			return false;
+		}
+	});
+
+	//Seller Profile form validation
+	$('#update_profile').click(function()
+	{
+		var update_seller_name = $('#update_seller_name').val().trim();
+		var update_shop_name = $('#update_shop_name').val().trim();
+		var update_business_email = $('#update_business_email').val().trim();
+		var update_phone = $('#update_phone').val().trim();
+		var update_fax = $('#update_fax').val().trim();
+		var update_facbook_id = $('#update_facbook_id').val().trim();
+		var update_twitter_id = $('#update_twitter_id').val().trim();
+		var reg = /^([a-zA-Z0-9_.-])+@([a-zA-Z0-9_.-])+\.([a-zA-Z])+([a-zA-Z])+/;
+		var special_char = /^[^<>;=#{}]*$/;
+		if(update_seller_name == '')
+		{
+			alert(req_seller_name);
+			$('#update_seller_name').focus();
+			return false;
+		}
+		else if(!isNaN(update_seller_name) || !special_char.test(update_seller_name))
+		{
+			alert(inv_seller_name);
+			$('#update_seller_name').focus();
+			return false;
+		}
+		else if(update_shop_name == '')
+		{
+			alert(req_shop_name);
+			$('#update_shop_name').focus();
+			return false;
+		}
+		else if(!isNaN(update_shop_name) || !special_char.test(update_shop_name))
+		{
+			alert(inv_shop_name);
+			$('#update_seller_name').focus();
+			return false;
+		}
+		else if(update_business_email == '')
+		{
+			alert(req_email);
+			$('#update_business_email').focus();
+			return false;
+		}
+		else if(!reg.test(update_business_email))
+		{
+			alert(inv_email);
+			$('#update_business_email').focus();
+			return false;
+		}
+		else if(update_phone == '')
+		{
+			alert(req_phone);
+			$('#update_phone').focus();
+			return false;
+		}
+		else if(isNaN(update_phone))
+		{
+			alert(inv_phone);
+			$('#update_phone').focus();
+			return false;
+		}
+		else if(update_phone.length != phone_digit)
+		{
+			alert(inv_phone);
+			$('#update_phone').focus();
+			return false;
+		}
+	});
+
+	$('#submit_payment_details').click(function(){
+		var payment_mode = $('#payment_mode').val();
+		if(payment_mode == "")
+		{
+			alert(req_payment_mode)
+			$('#payment_mode').focus();
+			return false;
+		}
+	});
+});
