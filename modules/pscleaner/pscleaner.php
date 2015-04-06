@@ -34,7 +34,7 @@ class PSCleaner extends Module
 	{
 		$this->name = 'pscleaner';
 		$this->tab = 'administration';
-		$this->version = '1.8.3';
+		$this->version = '1.8.4';
 		$this->author = 'PrestaShop';
 		$this->need_instance = 0;
 		if (version_compare(_PS_VERSION_, '1.5.0.0 ', '>='))
@@ -529,6 +529,8 @@ class PSCleaner extends Module
 					'order_invoice',
 					'order_invoice_payment',
 					'order_invoice_tax',
+					'order_message',
+					'order_message_lang',
 					'order_payment',
 					'order_return',
 					'order_return_detail',

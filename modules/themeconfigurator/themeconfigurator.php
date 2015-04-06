@@ -37,7 +37,7 @@ class ThemeConfigurator extends Module
 	{
 		$this->name = 'themeconfigurator';
 		$this->tab = 'front_office_features';
-		$this->version = '1.2.0';
+		$this->version = '1.2.1';
 		$this->bootstrap = true;
 		$this->secure_key = Tools::encrypt($this->name);
 		$this->default_language = Language::getLanguage(Configuration::get('PS_LANG_DEFAULT'));
@@ -748,10 +748,10 @@ class ThemeConfigurator extends Module
 
 			$desc = '<a class="btn btn-default" href="'.$url.'" onclick="return !window.open($(this).attr(\'href\'));" id="live_conf_button">'
 				.$this->l('View').' <i class="icon-external-link"></i></a><br />'
-				.$this->l('Only you can see this on your Front-Office - your visitors will not see this tool.');
+				.$this->l('Only you can see this on your front office - your visitors will not see this tool.');
 		}
 		else
-			$desc = $this->l('Only you can see this on your Front-Office - your visitors will not see this tool.');
+			$desc = $this->l('Only you can see this on your front office - your visitors will not see this tool.');
 
 		return array(
 			array(

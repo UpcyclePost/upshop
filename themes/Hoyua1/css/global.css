@@ -271,7 +271,8 @@ img {
 .img-responsive {
   display: block;
   max-width: 100%;
-  height: auto; }
+  height: auto;
+  margin-left: auto; }
 
 .img-rounded {
   border-radius: 6px; }

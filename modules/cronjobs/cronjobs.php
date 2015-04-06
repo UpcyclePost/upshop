@@ -32,7 +32,7 @@ if (defined('_PS_ADMIN_DIR_') === false)
 
 require_once(dirname(__FILE__).'/classes/CronJobsForms.php');
 
-class CronJobs extends PaymentModule
+class CronJobs extends Module
 {
 	const EACH = -1;
 
@@ -45,13 +45,11 @@ class CronJobs extends PaymentModule
 	{
 		$this->name = 'cronjobs';
 		$this->tab = 'administration';
-		$this->version = '1.2.5';
+		$this->version = '1.2.6';
 		$this->module_key = '';
 
 		$this->controllers = array('callback');
 
-		$this->currencies = true;
-		$this->currencies_mode = 'checkbox';
 		$this->author = 'PrestaShop';
 		$this->need_instance = true;
 

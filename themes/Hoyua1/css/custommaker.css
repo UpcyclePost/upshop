@@ -11,6 +11,8 @@
 
 .footer-container{
     background-color: #ffffff;
+    border-top:solid 1px;
+    border-color:#0187d0;
 }
 
 .footer-container #footer h4, .footer-container #footer h4, .footer-container #footer #social_block h4, .footer-container #footer h4 a, .footer-container #footer #block_contact_infos > div ul li > span, .footer-container #footer #block_contact_infos > div ul li > span a, .footer-container #footer #block_contact_infos > div ul li i::before, .footer-container #footer #block_contact_infos > div ul li i{
@@ -102,7 +104,7 @@ header .nav, #languages-block-top ul, #currencies-block-top ul, #currencies-bloc
 }
 
 #header .cart_block, #header .cart_block .cart-prices, #header .cart_block .cart-buttons{
-    background-color: #ffffff;
+    background-color: #e6f3f7;
 }
 
 .cart_block .cart-info .quantity-formated, #header .cart_block .product-atributes a, #header .cart_block a, #header .cart_block .cart_block_list .remove_link a, #header .cart_block .cart_block_list .ajax_cart_block_remove_link, #header .cart_block a, #header .cart_block .cart-prices .cart-prices-line span{
