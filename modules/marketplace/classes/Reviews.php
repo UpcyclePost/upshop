@@ -34,4 +34,15 @@ class Reviews extends ObjectModel
 
 		return false;
 	}
+
+	public function getReviewById($id_review)
+	{
+		$reviews = Db::getInstance()->getRow("SELECT * FROM `"._DB_PREFIX_."seller_reviews`
+								WHERE `id_review`=".$id_review);
+
+		if ($reviews)
+			return $reviews;
+
+		return false;
+	}
 }

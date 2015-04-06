@@ -165,16 +165,26 @@ class marketplaceshopcollectionModuleFrontController extends ModuleFrontControll
 					
 					
 				$ids = $product_id[$i].'-'.$image_id['id_image'];
-				$product_obj = new Product($product_id[$i]);
+				$product_obj = new Product($product_id[$i], false, $id_lang);
 				$cover_image_id = Product::getCover($product_obj->id);	
-				if($cover_image_id) {
-					$ids = $product_obj->id.'-'.$cover_image_id['id_image'];
+				if($cover_image_id)
+                {
+					/*$ids = $product_obj->id.'-'.$cover_image_id['id_image'];
 					$prduct_img_link = "http://".$link->getImageLink($product_obj->link_rewrite,$ids);
-					$image_link[] = $prduct_img_link;
-				} else {
-					$image_link[] = _MODULE_DIR_.'marketplace/img/defaultproduct.jpg';
+					$image_link[] = $prduct_img_link;*/
+
+                    $image_link[$i][0] = $product_obj->link_rewrite;
+                    $image_link[$i][1] = $product_obj->id.'-'.$cover_image_id['id_image'];
+                    $image_link[$i][3] = $this->context->language->id;
 				}
-				
+                else
+                {
+                    /*$image_link[] = _MODULE_DIR_.'marketplace/img/defaultproduct.jpg';*/
+                    $image_link[$i][0] = $product_obj->link_rewrite;
+                    $image_link[$i][1] = "";
+                    $image_link[$i][2] = $this->context->language->iso_code;
+                    $image_link[$i][3] = $this->context->language->id;
+				}
             }
 			
 			

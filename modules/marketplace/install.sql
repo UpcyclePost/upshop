@@ -248,3 +248,16 @@ CREATE TABLE IF NOT EXISTS `PREFIX_seller_reviews` (
   `date_add` datetime NOT NULL,
 PRIMARY KEY  (`id_review`)
 )ENGINE=ENGINE_TYPE DEFAULT CHARSET=utf8;
+
+CREATE TABLE IF NOT EXISTS `PREFIX_marketplace_order_commision` (
+
+  `id` int(10) unsigned NOT NULL auto_increment,
+  `id_order` int(10) unsigned NOT NULL,
+  `id_customer` int(10),
+  `tax` varchar(100),
+  `shipping` varchar(100),
+  `shipping_amt` decimal(20,2) NOT NULL DEFAULT '0.00',
+  `admin_commission` decimal(20,2) NOT NULL DEFAULT '0.00',
+
+  PRIMARY KEY  (`id`)
+)ENGINE=ENGINE_TYPE DEFAULT CHARSET=utf8;

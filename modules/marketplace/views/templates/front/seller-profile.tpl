@@ -65,25 +65,33 @@
 				<div class="wk_border_line"></div>
 			</div>
 			<div class="box-content wk_slider_padding">
-				<div class="wk-product-slider">
-					<ul>
-						{assign var=j value=0}
-						{while $j != $count_latest_pro}
-							<a href="{$base_dir|escape:'html':'UTF-8'}index.php?id_product={$all_product_id[$j]|escape:'html':'UTF-8'}&controller=product" class="product_img_link" title="{$all_product_name[$j]|escape:'html':'UTF-8'}">
-								<li>
-									<div class="wk-slider-product-img">
-										<img src="http://{$product_link[$j]|escape:'html':'UTF-8'}" alt="{$all_product_name[$j]|escape:'html':'UTF-8'}" width="130" height="150">
-									</div>
-									<div class="wk-slider-product-info">
-										<div style="margin-bottom:5px;">{$all_product_name[$j]|escape:'html':'UTF-8'}</div>
-										<div style="font-weight:bold;">{$currency->prefix|escape:'html':'UTF-8'}{$all_product_price[$j]|escape:'html':'UTF-8'}{$currency->suffix|escape:'html':'UTF-8'}</div>
-									</div>
-								</li>
-							</a>
-							{assign var=j value=$j+1}
-						{/while}
-					</ul> 
-				</div>
+				{if $count_latest_pro}
+					<div id="product-slider_block_center" class="wk-product-slider">
+						<ul class="mp-prod-slider">
+							{assign var=j value=0}
+							{while $j != $count_latest_pro}
+								<a href="{$base_dir|escape:'html':'UTF-8'}index.php?id_product={$all_product_id[$j]|escape:'html':'UTF-8'}&controller=product&id_lang={$product_image_link[$j][3]}" class="product_img_link" title="{$all_product_name[$j]|escape:'html':'UTF-8'}">
+									<li>
+										<div class="wk-slider-product-img">
+											{if $product_image_link[$j][1] != ""}
+												<img class="replace-2x img-responsive" src="{$link->getImageLink($product_image_link[$j][0], $product_image_link[$j][1], 'home_default')|escape:'html':'UTF-8'}" />
+											{else}
+												<img class="replace-2x img-responsive" src="{$link->getImageLink($product_image_link[$j][0], $product_image_link[$j][2]|cat : '-default', 'home_default')|escape:'html':'UTF-8'}"/>
+											{/if}
+										</div>
+										<div class="wk-slider-product-info">
+											<div style="margin-bottom:5px;">{$all_product_name[$j]|truncate:45:'...'|escape:'html':'UTF-8'}</div>
+											<div style="font-weight:bold;">{convertPrice price=$all_product_price[$j]}</div>
+										</div>
+									</li>
+								</a>
+								{assign var=j value=$j+1}
+							{/while}
+						</ul> 
+					</div>
+				{else}
+					<p class="alert alert-info">{l s='No item found'}</p>
+				{/if}
 			</div>
 		</div>
 		<div class="box-account">
@@ -131,11 +139,11 @@
 				</div>
 				<div class="wk_border_line"></div>
 				{/foreach}
-				<a class="btn btn-default button button-small forloginuser" href="{$all_reviews_links|escape:'html':'UTF-8'}&seller_id={$seller_id|escape:'html':'UTF-8'}">
+					<a class="btn btn-default button button-small forloginuser" href="{$all_reviews_links|escape:'html':'UTF-8'}&seller_id={$seller_id|escape:'html':'UTF-8'}">
 						<span>{l s='View all reviews' mod='marketplace'}</span>
 					</a>
 				{/if}
-			</div>	
+			</div>
 		</div>
 		{hook h='DisplayMpspcontentbottomhook'}
 	</div>
@@ -146,7 +154,7 @@
 <!-- Fancybox -->
 <div style="display: none;">
 	<div id="wk_review_form">
-		<form id="review_submit" method="post" action="#">
+		<form id="review_submit" method="post" action="{$link->getModuleLink('marketplace', 'sellerprofile', ['shop' => {$id_shop}])}">
 			<h2 class="page-subheading">
 				{l s='Write a review' mod='marketplace'}
 			</h2>
@@ -161,7 +169,6 @@
 					</label>
 					<textarea name="feedback"></textarea>
 					<input type="hidden" name="seller_id" value="{$seller_id|escape:'html':'UTF-8'}">
-					<input type="hidden" name="id_shop" value="{$id_shop|escape:'html':'UTF-8'}">
 					<div id="wk_review_form_footer">
 						<p class="fl required"><sup>*</sup> {l s='Required fields' mod='marketplace'}</p>
 						<p class="fr">
@@ -183,15 +190,6 @@
 <script type="text/javascript">
 $(function()
 {
-	/*$('.forloginuser').click(function(){
-		var checklogin = $('#checklogin').val();
-		if(checklogin == 0)
-		{
-			alert("Please login to view this page");
-			return false;
-		}
-	});*/
-
 	if($('.best-sell .best-sell-product').length==0)
 		$('.best-sell-box').hide();
 	
@@ -238,9 +236,6 @@ $('#'+id).raty({
 	scoreName: id,
 								
 });
-
-//Product slider 
-$('.wk-product-slider').microfiche();
 </script>
 
 {if $avg_rating>0}

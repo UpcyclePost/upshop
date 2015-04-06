@@ -84,7 +84,8 @@
 									<tr class="even">
 										<td>{$dashboard[$i]['id_order']|escape:'html':'UTF-8'}</td>
 										<td><span class="nobr">{$dashboard[$i]['date_add']|escape:'html':'UTF-8'}</span></td>
-										<td>{$dashboard[$i]['name']|escape:'html':'UTF-8'}</td>
+										<!-- <td>{$dashboard[$i]['name']|escape:'html':'UTF-8'}</td> -->
+										<td>{$order_by_cus[$i]['firstname']|escape:'html':'UTF-8'}</td>
 										<td><span class="price">{$currency->prefix}{$dashboard[$i]['total_price']|string_format:"%.2f"}{$currency->suffix}</span></td>
 										<td><em>{$dashboard[$i]['order_status']|escape:'html':'UTF-8'}</em></td>
 									</tr>
@@ -130,8 +131,8 @@
 									});
 						
 						google.setOnLoadCallback(drawChart);  
-						function drawChart() {
-							
+						function drawChart()
+						{
 							{assign var=i value={$loop_exe}}
 							var data = google.visualization.arrayToDataTable([
 							['date_add', order, order_value],
@@ -155,6 +156,10 @@
 							var chart = new google.visualization.LineChart(document.getElementById('chart_div'));
 							chart.draw(data, options);
 						}
+						//for reqponsiveness
+						$(window).resize(function(){
+						  	drawChart();
+						});
 					</script>
 				</div>
 				</div>	
@@ -177,6 +182,15 @@
 	{else if $logic==2}
 	{capture name=path}{l s='Edit Profile' mod='marketplace'}{/capture}
 	<div class="dashboard_content">
+		{if $is_profile_updated == 1}
+			<p class="alert alert-success">{l s='Profile information successfully updated.' mod='marketplace'}</p>
+		{/if}
+		{if $shop_img_size_error == 1}
+			<p class="alert alert-danger">{l s='Shop logo image minimum size must be 200 x 200px' mod='marketplace'}</p>
+		{/if}
+		{if $seller_img_size_error==1}
+			<p class="alert alert-danger">{l s='Seller image minumum size must be 200 x 200px' mod='marketplace'}</p>
+		{/if}
 		<div class="dashboard">
 			<div class="page-title">
 				<span>{l s='Edit Profile' mod='marketplace'}</span>
@@ -277,12 +291,13 @@
 								<fieldset>
 								<div class="form-group">
 									<div class="update_error">
-									  {if $shop_img_size_error == 1}
+									  <!-- {if $shop_img_size_error == 1}
 										{l s='Shop logo image minimum size must be 200 x 200px' mod='marketplace'}
 									  {/if}
 									  {if $seller_img_size_error==1}
 										{l s='Seller image minumum size must be 200 x 200px' mod='marketplace'}
-									  {/if}
+									  {/if} -->
+									  {hook h='displayMpUpdateSellerProfileHeaderhook'}
 									</div>
 								</div>
 								<div class="required form-group">	
@@ -290,6 +305,7 @@
 									<input class="required form-control" type="text" value="{$marketplace_seller_info['seller_name']|escape:'html':'UTF-8'}" name="update_seller_name" id="update_seller_name"/>
 								</div>
 								<div class="required form-group">
+									<img src="{$old_seller_logo_path}" width="100" height="100"><br />
 									<label class="control-label">{l s='Seller Profile Image' mod='marketplace'}</label>
 									<input class="required form-control" type="file" name="update_seller_logo" id="update_seller_logo"/>
 									<div class="info_description">{l s='Image minimum size must be 200 x 200px' mod='marketplace'}</div>
@@ -327,6 +343,7 @@
 									<textarea name="update_about_shop" id="update_about_shop" class="update_about_shop_detail wk_tinymce form-control">{$market_place_shop['about_us']|escape:'html':'UTF-8'}</textarea>
 								</div>
 								<div class="form-group">
+									<img src="{$old_shop_logo_path}" width="100" height="100"><br />
 									<label for="update_shop_logo" class="control-label">{l s='Shop Logo' mod='marketplace'}</label>
 									<input class="required form control" type="file" name="update_shop_logo" id="update_shop_logo"/>
 									<div class="info_description">{l s='Image minimum size must be 200 x 200px' mod='marketplace'}</div>
@@ -446,6 +463,7 @@
 									<td>
 										<img id="{$product['id']|escape:'html':'UTF-8'}" class="edit_img" src="{$img_ps_dir|escape:'html':'UTF-8'}admin/edit.gif"/>
 										<img id="{$product['id']|escape:'html':'UTF-8'}" class="delete_img" src="{$img_ps_dir|escape:'html':'UTF-8'}admin/delete.gif"/>
+										{hook h="PriceDisplay" id_product=$product['id']|escape:'html':'UTF-8'}
 									</td>
 									<td>
 										<a href="" class="edit_seq"  alt="1"  product-id="{$product['id']|escape:'intval'}" id="">
@@ -780,17 +798,8 @@
 						</div>
 					</div>
 				</div>
-
-				<div class="box-account box-recent">
-					<div class="box-head">
-						<h2>{l s='Shipping Details' mod='marketplace'}</h2>
-						<div class="wk_border_line"></div>
-					</div>
-					<div class="box-content">
-						{hook h='DisplayMpordershippingrighthook'}
-						{hook h='DisplayMpordershippinghook'}
-					</div>
-				</div>
+				{hook h='DisplayMpordershippingrighthook'}
+				{hook h='DisplayMpordershippinghook'}
 			</div>
 		</div>
 	</div>

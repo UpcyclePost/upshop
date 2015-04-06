@@ -114,7 +114,7 @@ class marketplaceAddproductModuleFrontController extends ModuleFrontController
 			
 			//Recursive Category Tree Closed		
 			$tree = "<ul id='tree1'>";
-			$tree .= "<li><input type='checkbox' class='product_category' name='product_category[]' value='".$root->id."'><label>".$root->name."</label>";
+			$tree .= "<li><input type='checkbox' checked='checked' class='product_category' name='product_category[]' value='".$root->id."'><label>".$root->name."</label>";
 			//$depth = 1;
 			$exclude = array();
 			array_push($exclude, 0);
@@ -142,6 +142,9 @@ class marketplaceAddproductModuleFrontController extends ModuleFrontController
 
 			$this->context->smarty->assign("categoryTree",$tree);
 			//Recursive Category Tree Closed
+			$obj_currency = new Currency(Configuration::get('PS_CURRENCY_DEFAULT'));
+			$currency_sign = $obj_currency->sign;
+			$this->context->smarty->assign("currency_sign",$currency_sign);
 			$this->setTemplate('addproduct.tpl');
 		} 
 		else 
@@ -171,6 +174,8 @@ class marketplaceAddproductModuleFrontController extends ModuleFrontController
 			$this->addJS(array(
 	                _MODULE_DIR_ .'marketplace/js/mp_form_validation.js'
 	            ));
+
+		Media::addJsDef(array('iso' => $this->context->language->iso_code));
 		
 		//Category tree
 		$this->addJS(_MODULE_DIR_.'marketplace/views/js/categorytree/jquery-ui-1.8.12.custom/js/jquery-ui-1.8.12.custom.min.js');

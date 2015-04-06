@@ -28,7 +28,7 @@
 		<div class="alert alert-danger">{l s='Invalid Email ID.' mod='marketplace'}</div>
 	{/if}
 {/if}
-
+{hook h='displayMpAddSellerHeaderHook'}
 {if isset($is_seller)}
 	{if $login == 0}
 		<div class="alert alert-info">
@@ -41,7 +41,12 @@
 			</div>
 		{else}
 			<div class="alert alert-info">
-				<p>{l s='You have already made a Seller Request and request has been approved by admin. ' mod='marketplace'}<a href="{$link->getModuleLink('marketplace','addproduct')|escape:'html':'UTF-8'}">{l s='Add Product' mod='marketplace'}</a></p>
+				<p>
+					{l s='You have already made a Seller Request and request has been approved by admin. ' mod='marketplace'}
+					<a class="btn btn-primary" href="{$link->getModuleLink('marketplace','addproduct')|escape:'html':'UTF-8'}">
+						{l s='Add your first product' mod='marketplace'}
+					</a>
+				</p>
 			</div>
 		{/if}
 	{/if}

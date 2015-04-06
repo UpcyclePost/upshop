@@ -36,6 +36,7 @@ class marketplaceMarketplaceaccountModuleFrontController extends ModuleFrontCont
 		}
 		 $id_lang     = $this->context->cookie->id_lang;
 		 
+		$this->context->smarty->assign("phone_digit", Configuration::get('MP_PHONE_DIGIT'));
 		if(strpos($_SERVER['HTTP_USER_AGENT'], 'MSIE') !== false) 
 			$this->context->smarty->assign("browser", "ie");
 		else
@@ -130,6 +131,21 @@ class marketplaceMarketplaceaccountModuleFrontController extends ModuleFrontCont
                             
                             $count = count($dashboard);
 							
+                            $order_by_cus = array();
+
+							foreach($dashboard as $dashboard1)
+							{
+								$order_by_cus[]= Db::getInstance(_PS_USE_SQL_SLAVE_)->getRow("SELECT * from `"._DB_PREFIX_."customer` where id_customer=".$dashboard1['order_by_cus']);
+							}
+							if (isset($order_by_cus))
+							{
+								if (is_array($order_by_cus))
+								{
+									$this->context->smarty->assign("order_by_cus", $order_by_cus);
+								}
+							}
+
+							
 							//// for statics - Asia/Kolkata - Time Zone Information - Daylight ...
 							date_default_timezone_set('Asia/Calcutta');
 							if(Tools::getIsset('from_date') && Tools::getIsset('to_date'))
@@ -220,51 +236,60 @@ class marketplaceMarketplaceaccountModuleFrontController extends ModuleFrontCont
                         } 
 						elseif ($logic == 2) 
 						{
-							$this->context->smarty->assign("phone_digit", Configuration::get('MP_PHONE_DIGIT'));
-                            if (Tools::getIsset('edit-profile')) 
-							{
+                            /*if (Tools::getIsset('edit-profile')) 
+							{*/
                                 $this->context->smarty->assign("edit", 1);
-                                $editprofile       = $link->getModuleLink('marketplace', 'editProfile',$param);
+                                $editprofile = $link->getModuleLink('marketplace', 'editProfile', $param);
                                
 								if(Tools::getIsset('img_shop'))
-								{
 									$this->context->smarty->assign("shop_img_size_error",1);
-								}
 								else
-								{
 									$this->context->smarty->assign("shop_img_size_error",0);
-								}
+
 								if(Tools::getIsset('img_seller'))
-								{
 									$this->context->smarty->assign("seller_img_size_error",1);
-								}
 								else
-								{
 									$this->context->smarty->assign("seller_img_size_error",0);
-								}
+
 								$this->context->smarty->assign("editprofile", $editprofile);
-                            } 
+                            /*} 
 							else
 							{
-                            	$this->context->smarty->assign("edit", 0);
+                            	$this->context->smarty->assign("edit", 0);*/
                                 if (Tools::getIsset('update'))
                                 {
                                 	if( Tools::getValue('update') != '' && Tools::getValue('update') != 0 )
-                                    	$this->context->smarty->assign("update", Tools::getValue('update'));
+                                    	$this->context->smarty->assign('is_profile_updated', 1);
                                 }
                                 else
-                                {
-									$this->context->smarty->assign("update",3);
-								}
-							}
+									$this->context->smarty->assign('is_profile_updated', 0);
+							//}
                            
                             $logo_path = _MODULE_DIR_ . 'marketplace/img/shop_img/'.$marketplace_seller_id . '-' . $marketplace_seller_info['shop_name'] . '.jpg';
                             $this->context->smarty->assign("logo_path", $logo_path);
                             $this->context->smarty->assign("marketplace_address", trim($marketplace_seller_info['address']));
                             $this->context->smarty->assign("marketplace_seller_info", $marketplace_seller_info);
                             $this->context->smarty->assign("market_place_shop", $market_place_shop);
+
+                            $old_seller_logo_path = _PS_MODULE_DIR_.'marketplace/img/seller_img/'.$marketplace_seller_id.'.jpg';
+                            if (file_exists($old_seller_logo_path))
+                            	$old_seller_logo_path = _MODULE_DIR_.'marketplace/img/seller_img/'.$marketplace_seller_id.'.jpg';
+                            else
+                            	$old_seller_logo_path = _MODULE_DIR_.'marketplace/img/seller_img/defaultimage.jpg';
+
+                            $shop_name = $marketplace_seller_info['shop_name'];
+                            $old_shop_logo_path = _PS_MODULE_DIR_.'marketplace/img/shop_img/'.$marketplace_seller_id.'-'.$shop_name.'.jpg';
+                            if (file_exists($old_shop_logo_path))
+                            	$old_shop_logo_path = _MODULE_DIR_.'marketplace/img/shop_img/'.$marketplace_seller_id.'-'.$shop_name.'.jpg';
+                            else
+                            	$old_shop_logo_path = _MODULE_DIR_.'marketplace/img/shop_img/defaultshopimage.jpg';
+					  		$this->context->smarty->assign('old_seller_logo_path', $old_seller_logo_path);
+					  		$this->context->smarty->assign('old_shop_logo_path', $old_shop_logo_path);
+
                             $this->setTemplate('marketplace_account1.tpl');
-                        } elseif ($logic == 3) {
+                        }
+                        elseif ($logic == 3)
+                        {
 							if(Tools::getIsset('del'))
 							{
 								$is_deleted   = Tools::getValue('del');
@@ -495,7 +520,9 @@ class marketplaceMarketplaceaccountModuleFrontController extends ModuleFrontCont
         
 		$this->addJqueryUI(array('ui.datepicker'));
 		$this->addJqueryPlugin(array('fancybox','tablednd'));
-		
+
+		Media::addJsDef(array('iso' => $this->context->language->iso_code));
+
 		//datepicker
 		$this->addJS(array(
 					_MODULE_DIR_.'marketplace/js/jquerydatepicker/jquery-ui.js',
@@ -503,9 +530,8 @@ class marketplaceMarketplaceaccountModuleFrontController extends ModuleFrontCont
 					_MODULE_DIR_.'marketplace/js/jquerydatepicker/jquery-ui-timepicker-addon.js',
 				));
 		$this->addCSS(_MODULE_DIR_.'marketplace/js/jquerydatepicker/jquery-ui-timepicker-addon.css');
-		$this->addJS(_MODULE_DIR_.'marketplace/views/js/imageedit.js');
-		
 
+		$this->addJS(_MODULE_DIR_.'marketplace/views/js/imageedit.js');
     }
 }
 ?>

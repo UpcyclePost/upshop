@@ -54,7 +54,7 @@ class marketplaceRegistrationprocessModuleFrontController extends ModuleFrontCon
 				$url = $link->getModuleLink('marketplace','sellerrequest', array('mp_error' => 5));
 				Tools::redirect($url);
 			}
-
+			Hook::exec('actionBeforeAddSeller');
 			/**
 			*Saving seller details
 			**/

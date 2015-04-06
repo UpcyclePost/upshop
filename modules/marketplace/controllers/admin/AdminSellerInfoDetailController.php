@@ -116,8 +116,11 @@
 			if (!$this->loadObject(true))
 				return;
 				
-			$this->addJS(_PS_JS_DIR_ . 'tiny_mce/tiny_mce.js');
-			$this->addJS(_PS_JS_DIR_ . 'tinymce.inc.js');
+			$this->addJS(_PS_JS_DIR_.'tiny_mce/tiny_mce.js');
+			if (version_compare(_PS_VERSION_, '1.6.0.11', '>'))
+				$this->addJS(_PS_JS_DIR_.'admin/tinymce.inc.js');
+			else
+				$this->addJS(_PS_JS_DIR_.'tinymce.inc.js');
 			
 			if (Tools::isSubmit('statusmarketplace_seller_info')) 
 			{
@@ -208,6 +211,7 @@
 			$this->context->smarty->assign('ad',__PS_BASE_URI__.basename(_PS_ADMIN_DIR_));//__PS_BASE_URI__.basename(_PS_ADMIN_DIR_)
 			$this->context->smarty->assign('autoload_rte',true);
             $this->context->smarty->assign('lang',true);	
+            $this->context->smarty->assign('iso', $this->context->language->iso_code);
 				
 			if($this->display == 'add')	
 			{
@@ -515,9 +519,6 @@
 
 					if($is_update) 
 					{
-						$shop_name = $market_place_seller_info['shop_name'];
-						$shop_rewrite = Tools::link_rewrite($shop_name);
-
 						$is_shop_created = Db::getInstance(_PS_USE_SQL_SLAVE_)->getRow("SELECT * from`"._DB_PREFIX_."marketplace_shop` where `id_customer`=".$market_place_cutomer_id);
 
 						if($is_shop_created) 
@@ -537,14 +538,18 @@
 									$is_product_present = Db::getInstance(_PS_USE_SQL_SLAVE_)->getRow("SELECT * from`"._DB_PREFIX_."product` where `id_product`=".$total_product_detail1['id_product']);
 									if($is_product_present) 
 									{
-										$is_inserted_shop_name = Db::getInstance()->update('product', array('active' =>1),'id_product='.$total_product_detail1['id_product']);
+										//$is_inserted_shop_name = Db::getInstance()->update('product', array('active' =>1),'id_product='.$total_product_detail1['id_product']);
+										$product = new Product($total_product_detail1['id_product']);
+										$product->active = 1;
+										$product->save();
+										Hook::exec('actionToogleProductStatusNew', array('main_product_id' => $total_product_detail1['id_product'],'active' => '1'));
 									}
 
 								}
 
 							}
 							$obj_seller_info = new SellerInfoDetail();
-							$obj_seller_info->callMailFunction(Tools::getValue('id'),'Approve seller request',1);
+							$obj_seller_info->callMailFunction($id,'Approve seller request',1);
 							
 							if(!$come_from) {
 								$redirect = self::$currentIndex.'&conf=5&token='.$this->token;
@@ -554,6 +559,8 @@
 						}
 						else 
 						{
+							$shop_name = $market_place_seller_info['shop_name'];
+							$shop_rewrite = Tools::link_rewrite($shop_name);
 							$obj_mp_shop->shop_name = $shop_name;
 							$obj_mp_shop->link_rewrite = $shop_rewrite;
 							$obj_mp_shop->id_customer = $market_place_cutomer_id;
@@ -566,7 +573,7 @@
 							{
 								Hook::exec('actionActiveSellerPlan', array('mp_id_seller' => Tools::getValue('id')));
 								$obj_seller_info = new SellerInfoDetail();
-								$obj_seller_info->callMailFunction(Tools::getValue('id'),'Approve seller request',1);
+								$obj_seller_info->callMailFunction($id,'Approve seller request',1);
 								if(!$come_from) {
 									$redirect = self::$currentIndex.'&conf=5&token='.$this->token;
 									$this->redirect_after = $redirect;
@@ -588,7 +595,7 @@
 
 					if($is_update) {
 						$obj_seller_info = new SellerInfoDetail();
-						$obj_seller_info->callMailFunction(Tools::getValue('id'),'Approve seller request',2);
+						$obj_seller_info->callMailFunction($id,'Approve seller request',2);
 						
 						Db::getInstance()->update('marketplace_shop', array('is_active' =>0),'id_customer='.$market_place_cutomer_id);
 
@@ -612,10 +619,12 @@
 
 								if($is_product_present) {
 
-									$is_inserted_shop_name = Db::getInstance()->update('product', array('active' =>0),'id_product='.$total_product_detail1['id_product']);
-
-								} 
-
+									//$is_inserted_shop_name = Db::getInstance()->update('product', array('active' =>0),'id_product='.$total_product_detail1['id_product']);
+									$product = new Product($total_product_detail1['id_product']);
+									$product->active = 0;
+									$product->save();
+									Hook::exec('actionToogleProductStatusNew', array('main_product_id' => $total_product_detail1['id_product'],'active' => '0'));
+								}
 							}
 							if(!$come_from) {
 								$redirect = self::$currentIndex.'&conf=5&token='.$this->token;
@@ -642,7 +651,7 @@
 
 						Tools::displayError($this->l('Some error occurs'));
 				}
-
+				Hook::exec('actionSellerProfileStatus', array('mp_id_seller' => $id,'is_seller' => $is_seller));
 			} else {
 
 				Tools::displayError($this->l('Some error occurs'));
@@ -653,104 +662,8 @@
 
 		public function delete_seller_info($id) 
 		{
-			Db::getInstance()->delete('marketplace_seller_info','id='.$id);
-			//find id_customer 
-			$id_customer_value = Db::getInstance(_PS_USE_SQL_SLAVE_)->getRow("SELECT * from`"._DB_PREFIX_."marketplace_customer` where `marketplace_seller_id`=".$id);
-			//real customer id present in customer table
-			$market_place_cutomer_id = $id_customer_value['id_customer'];
-
-			//delete data form marketplace customer
-
-			Db::getInstance()->delete('marketplace_customer','marketplace_seller_id='.$id);
-
-			//find shop id for that seller
-
-			$id_shop_value = Db::getInstance(_PS_USE_SQL_SLAVE_)->getRow("SELECT * from`"._DB_PREFIX_."marketplace_shop` where `id_customer`=".$market_place_cutomer_id);
-
-			if($id_shop_value) {
-
-				$market_place_shop_id = $id_shop_value['id'];
-
-				Db::getInstance()->delete('marketplace_shop','id_customer='.$market_place_cutomer_id);
-
-			
-
-				//find product id for that seller
-
-				$total_product_detail = Db::getInstance()->executeS("select `id_product` from `"._DB_PREFIX_."marketplace_shop_product` where `id_shop`=$market_place_shop_id");
-
-				if($total_product_detail) {
-
-					//delete all entry from main table provided by prestashop
-
-					foreach($total_product_detail as $total_product_detail1) {
-
-						$is_product_present = Db::getInstance(_PS_USE_SQL_SLAVE_)->getRow("SELECT * from`"._DB_PREFIX_."product` where `id_product`=".$total_product_detail1['id_product']);
-
-						if($is_product_present) {
-
-							Db::getInstance()->delete('product','id_product='.$total_product_detail1['id_product']);
-
-							Db::getInstance()->delete('product_attachment','id_product='.$total_product_detail1['id_product']);
-
-							Db::getInstance()->delete('product_attribute','id_product='.$total_product_detail1['id_product']);
-
-							Db::getInstance()->delete('product_carrier','id_product='.$total_product_detail1['id_product']);
-
-							Db::getInstance()->delete('product_country_tax','id_product='.$total_product_detail1['id_product']);
-
-							Db::getInstance()->delete('product_download','id_product='.$total_product_detail1['id_product']);
-
-							Db::getInstance()->delete('product_group_reduction_cache','id_product='.$total_product_detail1['id_product']);
-
-							Db::getInstance()->delete('product_lang','id_product='.$total_product_detail1['id_product']);
-
-							Db::getInstance()->delete('product_sale','id_product='.$total_product_detail1['id_product']);
-
-							Db::getInstance()->delete('product_shop','id_product='.$total_product_detail1['id_product']);
-
-							Db::getInstance()->delete('product_supplier','id_product='.$total_product_detail1['id_product']);
-
-							Db::getInstance()->delete('product_tag','id_product='.$total_product_detail1['id_product']);
-
-							Db::getInstance()->delete('category_product','id_product='.$total_product_detail1['id_product']);
-
-							Db::getInstance()->delete('stock_available','id_product='.$total_product_detail1['id_product']);
-
-							$delete_row_from_image_lang = "DELETE FROM t2 USING `"._DB_PREFIX_."image`  t1 INNER JOIN `"._DB_PREFIX_."image_lang` t2 WHERE t1.`id_product`=".$total_product_detail1['id_product']." AND t1.`id_image`=t2.`id_image`";
-
-							Db::getInstance()->Execute($delete_row_from_image_lang);	
-
-						
-
-							Db::getInstance()->delete('image','id_product='.$total_product_detail1['id_product']);
-
-						} 
-
-					}
-
-				}
-
-				//delete data from market place shop product
-
-				Db::getInstance()->delete('marketplace_shop_product','id_shop='.$market_place_shop_id);
-
-			
-
-				//delete row from market place seller product
-
-				$delete_row_from_marketplace_product_image = "DELETE FROM t2 USING `"._DB_PREFIX_."marketplace_seller_product`  t1 INNER JOIN `"._DB_PREFIX_."marketplace_product_image` t2 WHERE t1.`id_seller`=$id AND t1.`id`=t2.`seller_product_id`";
-
-				Db::getInstance()->Execute($delete_row_from_marketplace_product_image);	
-
-				Db::getInstance()->delete('marketplace_seller_product','id_shop='.$market_place_shop_id);
-
-			}
-
+			SellerInfoDetail::deleteAllProductOfSellerBySellerId($id);
 			Tools::redirectAdmin(self::$currentIndex.'&conf=1&token='.$this->token);
-
-			
-
 		}
 
 		public function deleteSelection($data) 

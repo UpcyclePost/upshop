@@ -12,13 +12,12 @@ class MarketPlace extends Module
         $this->name = 'marketplace';
         $this->tab = 'front_office_features';
         $this->version = '1.6';
-        $this->author = $this->l('webkul');
-		$this->module_key    = '92e753c36c07c56867a9169292c239e5';
+        $this->author = $this->l('Webkul');
         $this->need_instance = 0;
         parent::__construct();
         $this->displayName = $this->l('Marketplace');
         $this->description = $this->l('Add customers as a seller');
-        $this->confirmUninstall = $this->l('Are you sure you want to uninstall this module?');
+        $this->confirmUninstall = $this->l('Are you sure you want to uninstall this module? All marketplace data will be lost.');
     }
 
 
@@ -129,37 +128,6 @@ class MarketPlace extends Module
 
         $this->context->smarty->assign($smarty_vars);
         return $this->display(__FILE__, './views/templates/admin/admin.tpl');
-    }
-    
-    public function add_profile()
-    {
-        $profile = new Profile();
-        $profile->name = array();
-        foreach (Language::getLanguages(true) as $lang)
-            $profile->name[$lang['id_lang']] = 'marketplaceseller';
-        $profile->name = $profile->name;
-        $isprofileadd = $profile->add();
-        if($isprofileadd) {
-            $id = $this->setGlobalvariableForProfile('marketplaceseller');
-            Configuration::updateValue('market_place_seller_profile_id', $id);
-            return true;
-        } else {
-            return false;
-        }
-    }
-    
-    public function setGlobalvariableForProfile($name)
-    {
-        $id_lang = Configuration::get('PS_LANG_DEFAULT');
-        $id_profile_detail = Db::getInstance(_PS_USE_SQL_SLAVE_)->getRow("select `id_profile` from "._DB_PREFIX_."profile_lang where `id_lang`=".$id_lang." and `name`='".$name."'"); 
-        return $id_profile_detail['id_profile'];
-    }
-    
-    
-    //hook detail
-    public function hookDisplayMenuhook() {
-        //return true;
-         //
     }
     
     public function hookDisplayMpmenuhook() {
@@ -350,11 +318,16 @@ class MarketPlace extends Module
 
     public function hookDisplayOrderConfirmation($params)
     {
+        $obj_mpsellerorder = new MarketplaceSellerOrders();
+        $obj_order_com = new MarketplaceOrderCommission();
+        $obj_mpcommission = new MarketplaceCommision();
+
         $id_lang = Context::getContext()->cookie->id_lang;
         $reference = $params['objOrder']->reference;
         $order_detail = Db::getInstance()->executeS("SELECT * from `" . _DB_PREFIX_ . "orders` where `reference`='".$reference."'");
         foreach($order_detail as $data)
         {
+            $id_buyer = $data['id_customer'];
             $id_order = $data['id_order'];
             $is_allready_calc = Db::getInstance()->executeS("SELECT *  from `" . _DB_PREFIX_ . "marketplace_commision_calc` where `id_order`=" . $id_order);
             
@@ -370,25 +343,56 @@ class MarketPlace extends Module
                 foreach ($customer as $customer2)
                 {
                     $cust_com = Db::getInstance()->getRow('SELECT `commision` from ' . _DB_PREFIX_ . 'marketplace_commision where customer_id=' . $customer2['id_customer']);
-                    if (!$cust_com) {
+                    if (!$cust_com) 
+                    {
                         $cust_com1 = Db::getInstance()->getRow('SELECT `commision` from ' . _DB_PREFIX_ . 'marketplace_commision where customer_id=0');
-                        if (!$cust_com1) {
+                        if (!$cust_com1) 
+                        {
                             $cust_com11    = Db::getInstance()->getRow('SELECT `value` from ' . _DB_PREFIX_ . 'configuration where name="PS_CP_GLOBAL_COMMISION"');
                             $global_com    = $cust_com11['value'];
                             $customer_comm = $global_com;
-                        } else {
+                        } 
+                        else 
+                        {
                             $customer_comm = $cust_com1['commision'];
                         }
-                    } else {
+                    } 
+                    else 
+                    {
                         $customer_comm = $cust_com['commision'];
                     }
                     $commision_array[] = $customer_comm;
                     $d++;
                 }
                 $count = count($customer);
+                $admin_total_commision = 0.00;
                 for ($i = 0; $i < $count; $i++)
                 {
+                    //seller commision
+                    $seller_comm = 100 - $commision_array[$i];
+                    $id_customer = $customer[$i]['id_customer'];
+                    
                     $commision = (($customer[$i]['product_price'] * $customer[$i]['product_quantity']) * $commision_array[$i]) / 100;
+                    $seller_commission = ((($customer[$i]['product_price'] * $customer[$i]['product_quantity']) * $seller_comm) / 100);
+
+                    //Total tax by id_order_detail from order_detail_payment table
+                    $total_tax = $obj_mpcommission->getTaxByIdOrderDetail($customer[$i]['id_order_detail']);
+
+                    if (Configuration::get('MP_TAX_COMMISSION') == 'admin')
+                        $commision = $commision + $total_tax;
+                    else if (Configuration::get('MP_TAX_COMMISSION') == 'commission')
+                    {
+                        $tax_to_admin = ($total_tax * $commision_array[$i]) / 100;
+                        $tax_to_seller = $total_tax - $tax_to_admin;
+                        
+                        $commision = $commision + $tax_to_admin;
+                        $seller_commission = $seller_commission + $tax_to_seller;
+                    }
+                    else if (Configuration::get('MP_TAX_COMMISSION') == 'seller')
+                        $seller_commission = $seller_commission + $total_tax;
+
+                    $admin_total_commision = $admin_total_commision +  $commision;
+
                     Db::getInstance()->insert('marketplace_commision_calc', array(
                         'product_id' => $customer[$i]['id_product'],
                         'customer_id' => $customer[$i]['id_customer'],
@@ -399,13 +403,34 @@ class MarketPlace extends Module
                         'commision' => $commision,
                         'id_order' => $id_order
                     ));
+
+                    $commision_calc_latest_id = Db::getInstance()->Insert_ID();
                     
                     $mp_product_id = $customer[$i]['marketplace_seller_id_product'];
                     $obj_seller_product = new SellerProductDetail($mp_product_id);
-                    
                     $obj_seller_product->quantity = $obj_seller_product->quantity-$customer[$i]['product_quantity'];
                     $obj_seller_product->save();
-                    Hook::exec('actionSellerPaymentTransaction', array('commision' => $commision,'id_seller'=>$customer[$i]['id_customer'],'id_currency'=>$currency['id_currency']));
+
+                    Hook::exec('actionSellerPaymentTransaction',
+                        array('commision' => $seller_commission,
+                            'id_seller'=>$customer[$i]['id_customer'],
+                            'id_currency'=>$currency['id_currency'],
+                            'commision_calc_latest_id'=>$commision_calc_latest_id,
+                            'product_price'=>$customer[$i]['product_price'],
+                            'product_quantity'=>$customer[$i]['product_quantity']
+                        ));
+                }
+                if ($count > 0)
+                {
+                    $shipping_amt = $obj_mpsellerorder->getOrderShipping($id_order);
+                    $obj_order_com->id_order = $id_order;
+                    $obj_order_com->shipping_amt = $shipping_amt;
+                    $obj_order_com->tax = Configuration::get('MP_TAX_COMMISSION');
+                    $obj_order_com->shipping = 'admin';
+                    $obj_order_com->id_customer = $id_buyer;
+                    $obj_order_com->admin_commission = $admin_total_commision + $shipping_amt;
+
+                    $obj_order_com->add();
                 }
            }
             
@@ -509,13 +534,17 @@ class MarketPlace extends Module
     
     public function hookDisplayProductTabContent()
     {
-        $link               = new link();
-        $id_product         = Tools::getValue('id_product');
+        $link = new link();
+        $id_product = Tools::getValue('id_product');
         $obj_marketplace_product = new SellerProductDetail();
         $seller_shop_detail = $obj_marketplace_product->getMarketPlaceShopProductDetail($id_product);
         
         if ($seller_shop_detail)
         {
+            $this->context->controller->addCSS($this->_path.'views/css/productsellerdetails.css');
+            $this->context->controller->addJS($this->_path.'views/js/productsellerdetails.js');
+            $this->context->controller->addJS(_PS_JS_DIR_.'validate.js');
+
             $id_shop         = $seller_shop_detail['id_shop'];
             $mkt_seller_pro  = $obj_marketplace_product->getMarketPlaceProductInfo($seller_shop_detail['marketplace_seller_id_product']);
            
@@ -535,8 +564,6 @@ class MarketPlace extends Module
             $facebook_id     = $mkt_seller_info['facebook_id'];
             $twitter_id      = $mkt_seller_info['twitter_id'];
             
-            $cust_id = $this->context->cookie->id_customer;
-            
             $param = array('shop'=>$id_shop);
             $obj_ps_shop = new MarketplaceShop($id_shop);
             $name_shop = $obj_ps_shop->link_rewrite;
@@ -544,10 +571,15 @@ class MarketPlace extends Module
             $link_collection   = $link->getModuleLink('marketplace', 'shopcollection',array('shop'=>$id_shop,'shop_name'=>$name_shop));
             $link_profile       = $link->getModuleLink('marketplace', 'sellerprofile',$param);
             $link_ask_que       = $link->getModuleLink('marketplace', 'shopaskque',$param);
+
+            if (isset($this->context->cookie->id_customer))
+            {
+                $id_customer = $this->context->cookie->id_customer;
+                $this->context->smarty->assign("id_customer", $id_customer);
+            }
             
             
             $this->context->smarty->assign("mkt_seller_info", $mkt_seller_info);
-            $this->context->smarty->assign("cust_id", $cust_id);
             $this->context->smarty->assign("product_name", $product_name);
             $this->context->smarty->assign("id_shop", $id_shop);
             $this->context->smarty->assign("id_product", $id_product);
@@ -558,7 +590,7 @@ class MarketPlace extends Module
             $this->context->smarty->assign("facebook_id", $facebook_id);
             $this->context->smarty->assign("twitter_id", $twitter_id);
             $this->context->smarty->assign("link_profile", $link_profile);
-            $this->context->smarty->assign("link_ask_que", $link_ask_que);  
+            $this->context->smarty->assign("link_ask_que", $link_ask_que);
             return $this->display(__FILE__, 'seller_details_content.tpl');
         }    
     }
@@ -570,7 +602,7 @@ class MarketPlace extends Module
         $this->installTab('AdminSellerProductDetail', 'Manage Seller Product', 'AdminMarketplaceManagement');
         $this->installTab('AdminCommisionSetting', 'Manage Commission Setting', 'AdminMarketplaceManagement');
         $this->installTab('AdminCustomerCommision', 'Manage Seller Commission', 'AdminMarketplaceManagement');
-        $this->installTab('AdminCommisionCalc', 'Manage Seller Orders', 'AdminMarketplaceManagement');
+        $this->installTab('AdminSellerOrders', 'Manage Seller Orders', 'AdminMarketplaceManagement');
         $this->installTab('AdminPaymentMode', 'Manage Payment Mode', 'AdminMarketplaceManagement');
         $this->installTab('AdminReviews', 'Manage Seller Reviews', 'AdminMarketplaceManagement');
         return true;
@@ -584,11 +616,11 @@ class MarketPlace extends Module
         $tab->name = array();
         foreach (Language::getLanguages(true) as $lang)
             $tab->name[$lang['id_lang']] = $tab_name;
-        if($tab_parent_name) {
+
+        if($tab_parent_name)
             $tab->id_parent = (int)Tab::getIdFromClassName($tab_parent_name);
-        } else {
+        else
             $tab->id_parent = 0;
-        }
         
         $tab->module = $this->name;
         return $tab->add();
@@ -599,12 +631,6 @@ class MarketPlace extends Module
         Configuration::updateValue('PS_CP_GLOBAL_COMMISION', 10);
         return true;
     }
-
-    public function hookLeftColumn()
-    {
-       //return true;
-    }
-  
     
     public function install()
     {
@@ -622,18 +648,17 @@ class MarketPlace extends Module
         ), $sql);
         $sql = preg_split("/;\s*[\r\n]+/", $sql);
 
-        foreach ($sql AS $query)
+        foreach ($sql as $query)
             if ($query)
                 if (!Db::getInstance()->execute(trim($query)))
                     return false;
 
          if (!parent::install()
-            || !$this->registerHook('leftColumn')
+            || !$this->registerHook('displayleftColumn')
             || !$this->registerHook('displaycustomerAccount')
             || !$this->registerHook('orderConfirmation')
             || !$this->registerHook('displayProductTab')
             || !$this->registerHook('displayProductTabContent')
-            || !$this->add_profile()
             || !$this->callInstallTab()
             || !$this->insertConfg()
             || !$this->registerHook('displayMenuhook')
@@ -673,6 +698,7 @@ class MarketPlace extends Module
          )
             return false;
 
+        Configuration::updateValue('MP_TAX_COMMISSION', 'admin');
         Configuration::updateValue('PRODUCT_APPROVE', 'admin');
         Configuration::updateValue('SELLER_APPROVE', 'admin');
 
@@ -683,27 +709,23 @@ class MarketPlace extends Module
         return true;
     }
     
-    public function dropTable()
+    public function deleteTables()
     {
-        $table_name = array('marketplace_seller_product', 'marketplace_seller_product_category',
-                            'marketplace_seller_info', 'marketplace_shop',
-                            'marketplace_shop_product', 'marketplace_customer',
-                            'marketplace_product_image', 'marketplace_commision_calc',
-                            'marketplace_commision', 'marketplace_payment_mode',
-                            'marketplace_customer_payment_detail', 'seller_reviews');
-
-        foreach($table_name as $name)
-            if (!Db::getInstance()->execute('DROP TABLE '._DB_PREFIX_.$name))
-                return false;
-
-        return true;
-    }
-
-    public function deleteProfile()
-    {
-        $profile = new Profile();
-        $profile->id = Configuration::get('market_place_seller_profile_id');
-        return $profile->delete();
+        return Db::getInstance()->execute('
+            DROP TABLE IF EXISTS
+            `'._DB_PREFIX_.'marketplace_seller_product`,
+            `'._DB_PREFIX_.'marketplace_seller_product_category`,
+            `'._DB_PREFIX_.'marketplace_seller_info`,
+            `'._DB_PREFIX_.'marketplace_shop`,
+            `'._DB_PREFIX_.'marketplace_shop_product`,
+            `'._DB_PREFIX_.'marketplace_customer`,
+            `'._DB_PREFIX_.'marketplace_product_image`,
+            `'._DB_PREFIX_.'marketplace_commision_calc`,
+            `'._DB_PREFIX_.'marketplace_commision`,
+            `'._DB_PREFIX_.'marketplace_payment_mode`,
+            `'._DB_PREFIX_.'marketplace_order_commision`,
+            `'._DB_PREFIX_.'marketplace_customer_payment_detail`,
+            `'._DB_PREFIX_.'seller_reviews`');
     }
     
     public function deleteConfig()
@@ -727,6 +749,7 @@ class MarketPlace extends Module
         $this->uninstallTab('AdminCustomerCommision');
         $this->uninstallTab('AdminCommisionCalc');
         $this->uninstallTab('AdminCommisionSetting');
+        $this->uninstallTab('AdminSellerOrders');
         $this->uninstallTab('AdminSellerProductDetail');
         $this->uninstallTab('AdminSellerInfoDetail');
         $this->uninstallTab('AdminMarketplaceManagement');
@@ -744,23 +767,21 @@ class MarketPlace extends Module
         else
             return false;
     }
-
-    public function deleteOverrideFile()
+    
+    public function reset()
     {
-        $override_dispather_file = _PS_ROOT_DIR_.'/override/classes/Dispatcher.php';
-        $responce = @unlink($override_dispather_file);
-        return $responce;
+        if (!$this->uninstall(false))
+            return false;
+        if (!$this->install(false))
+            return false;
+        return true;
     }
-        
    
-    public function uninstall()
+    public function uninstall($keep = true)
     {
-        if(!parent::uninstall() 
-            || !$this->dropTable() 
-            || !$this->callUninstallTab() 
-            || !$this->deleteProfile() 
-            || !$this->deleteConfig() 
-            || !$this->deleteOverrideFile()
+        if(!parent::uninstall() || ($keep && !$this->deleteTables())
+            || !$this->callUninstallTab()
+            || !$this->deleteConfig()
             || !Configuration::deleteByName('MP_SUPERADMIN_EMAIL'))
             return false;
         return true;

@@ -99,10 +99,11 @@
 			$this->addCSS(_MODULE_DIR_.'marketplace/css/add_product.css');	
 
 			//tinymce
-			$this->addJS(array(
-					_PS_JS_DIR_ . 'tiny_mce/tiny_mce.js',
-					_PS_JS_DIR_ . 'tinymce.inc.js'
-				));
+			$this->addJS(_PS_JS_DIR_.'tiny_mce/tiny_mce.js');
+			if (version_compare(_PS_VERSION_, '1.6.0.11', '>'))
+				$this->addJS(_PS_JS_DIR_.'admin/tinymce.inc.js');
+			else
+				$this->addJS(_PS_JS_DIR_.'tinymce.inc.js');
 
 			//For Category tree
 			$this->addJS(_MODULE_DIR_.'marketplace/views/js/categorytree/jquery-ui-1.8.12.custom/js/jquery-ui-1.8.12.custom.min.js');
@@ -204,6 +205,7 @@
 			$this->context->smarty->assign('ad',__PS_BASE_URI__.basename(_PS_ADMIN_DIR_));//__PS_BASE_URI__.basename(_PS_ADMIN_DIR_)
 			$this->context->smarty->assign('autoload_rte',true);
             $this->context->smarty->assign('lang',true);
+            $this->context->smarty->assign('iso', $this->context->language->iso_code);
 
 			$link = new Link();
 			$selfcontrollerlink = $link->getAdminLink('AdminSellerProductDetail');
@@ -221,7 +223,7 @@
 				$category =  Db::getInstance()->ExecuteS("SELECT a.`id_category`,l.`name` from `"._DB_PREFIX_."category` a LEFT  JOIN `"._DB_PREFIX_."category_lang` l  ON (a.`id_category`=l.`id_category`) where a.id_parent=".$root->id." and l.id_lang=".$id_lang." and l.`id_shop`=1 order by a.`id_category`");
 					
 				$tree = "<ul id='tree1'>";
-				$tree .= "<li><input type='checkbox' class='product_category' name='product_category[]' value='".$root->id."'><label>".$root->name."</label>";
+				$tree .= "<li><input type='checkbox' checked='checked' class='product_category' name='product_category[]' value='".$root->id."'><label>".$root->name."</label>";
 				//$depth = 1;
 				$exclude = array();
 				array_push($exclude, 0);
@@ -722,72 +724,23 @@
 			if(!$mp_product_id)
 				$mp_product_id = Tools::getValue('id');
 			
-			$obj_sellerproduct_detail = new SellerProductDetail($mp_product_id);
-			$mp_id_shop = $obj_sellerproduct_detail->id_shop;
-			if($obj_sellerproduct_detail->active==0) {
-				$obj_sellerproduct_detail->active=1;
-					$obj_sellerproduct_detail->save();
-				$obj_mpshop_produt = new MarketplaceShopProduct();
-				$main_product_info = $obj_mpshop_produt->findMainProductIdByMppId($mp_product_id);
-				$image_dir = '../modules/marketplace/img/product_img';
-				if($main_product_info) {
-					//product created but dactivated right now need to active 
-					$main_product_id = $main_product_info['id_product'];
-					$obj_sellerproduct_detail->updatePsProductByMarketplaceProduct($mp_product_id, $image_dir,1,$main_product_id);
-				} else {
-					//not yet product created
-					
-					$main_product_id = $obj_sellerproduct_detail->createPsProductByMarketplaceProduct($mp_product_id, $image_dir,1);
-					
-					if($main_product_id){
-						$mps_product_obj = new MarketplaceShopProduct();
-						$mps_product_obj->id_shop = $mp_id_shop;
-						$mps_product_obj->marketplace_seller_id_product = $mp_product_id;
-						$mps_product_obj->id_product = $main_product_id;
-						$mps_product_obj->add();
-					}
-					Hook::exec('actionToogleProductStatus', array('main_product_id' => $main_product_id,'active'=>1));
-					$obj_sellerproduct_detail->callMailFunction($mp_product_id,'Activation detail',1);
-				}
-			} 
-			else {
-				//product created but deactive now
-				$obj_sellerproduct_detail->active = 0;
-				$obj_sellerproduct_detail->save();
-				
-				$obj_mpshop_produt = new MarketplaceShopProduct();
-				$main_product_info = $obj_mpshop_produt->findMainProductIdByMppId($mp_product_id);
-				if($main_product_info) {
-					$main_product_id = $main_product_info['id_product'];
-					$product = new Product($main_product_id);
-					$product->active = 0;
-					$product->save();
-				}
-				$obj_sellerproduct_detail->callMailFunction($mp_product_id,'Deactivate Product',2);
-			}
+			SellerProductDetail::toggle_seller_product($mp_product_id);
+
 			if(!$come_from)
 				Tools::redirectAdmin(self::$currentIndex.'&conf=4&token='.$this->token);
 		}
 
 		public function processDelete($id=true) 
 		{
-			if($id==true) {
+			if($id==true)
+			{
 				$marketplace_seller_product_id = (int)Tools::getValue('id');
-			} else {
+			}
+			else
+			{
 				$marketplace_seller_product_id = $id;
 			}
-			$marketplace_shop_product = 	Db::getInstance(_PS_USE_SQL_SLAVE_)->getRow("SELECT * from`"._DB_PREFIX_."marketplace_shop_product` where `marketplace_seller_id_product`=".$marketplace_seller_product_id);
-			//$marketplace_seller_product_detail = 	Db::getInstance(_PS_USE_SQL_SLAVE_)->getRow("SELECT * from`"._DB_PREFIX_."marketplace_seller_product` where `id`=".$marketplace_seller_product_id);		
-			$delete_row_from_marketplace_seller_product = Db::getInstance()->delete('marketplace_seller_product','id='.$marketplace_seller_product_id);
-			Db::getInstance()->delete('marketplace_shop_product','marketplace_seller_id_product='.$marketplace_seller_product_id);
-			
-					
-
-			$main_id_product = $marketplace_shop_product['id_product'];
-
-			$obj_product = new Product($main_id_product);
-			$obj_product->delete();
-
+			$delete_row_from_marketplace_seller_product = SellerProductDetail::delete_seller_product($marketplace_seller_product_id);
 			if($delete_row_from_marketplace_seller_product)
 				$redirect = self::$currentIndex.'&conf=1&token='.$this->token;
 				

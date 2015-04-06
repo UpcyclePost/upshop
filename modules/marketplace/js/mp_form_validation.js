@@ -185,7 +185,7 @@ $(document).ready(function()
 			$('#update_phone').focus();
 			return false;
 		}
-		else if(update_phone.length != phone_digit)
+		else if(update_phone.length > phone_digit)
 		{
 			alert(inv_phone);
 			$('#update_phone').focus();
@@ -201,5 +201,12 @@ $(document).ready(function()
 			$('#payment_mode').focus();
 			return false;
 		}
+	});
+
+	$(document).on('click', '[href="#information"]', function(){
+		$('#update_product_submit_div').show();
+	});
+	$(document).on('click', '[href="#information"]', function(){
+		$('#SubmitProduct_div_id').show();
 	});
 });

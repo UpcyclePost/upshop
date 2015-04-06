@@ -66,18 +66,22 @@
 			</div>
 			<div class="box-content">
 				{if $count_product != 0}
-					<div class="wk-product-slider">
-						<ul>
+					<div id="product-slider_block_center" class="wk-product-slider">
+						<ul class="mp-prod-slider">
 							{assign var=j value=0}
 							{while $j != $count_product}
-								<a href="{$base_dir|escape:'html':'UTF-8'}index.php?id_product={$product_id[$j]|escape:'html':'UTF-8'}&controller=product" class="product_img_link" title="{$product_name[$j]|escape:'html':'UTF-8'}">
+								<a href="{$base_dir|escape:'html':'UTF-8'}index.php?id_product={$product_id[$j]|escape:'html':'UTF-8'}&controller=product&id_lang={$image_link[$j][3]}" class="product_img_link" title="{$product_name[$j]|escape:'html':'UTF-8'}">
 									<li>
 										<div class="wk-slider-product-img">
-											<img src="{$image_link[$j]|escape:'html':'UTF-8'}" alt="{$product_name[$j]|escape:'html':'UTF-8'}" width="130" height="150">
+											{if $image_link[$j][1] != ""}
+												<img class="replace-2x img-responsive" src="{$link->getImageLink($image_link[$j][0], $image_link[$j][1], 'home_default')|escape:'html':'UTF-8'}" />
+											{else}
+												<img class="replace-2x img-responsive" src="{$link->getImageLink($image_link[$j][0], $image_link[$j][2]|cat : '-default', 'home_default')|escape:'html':'UTF-8'}" />
+											{/if}
 										</div>
 										<div class="wk-slider-product-info">
-											<div style="margin-bottom:5px;">{$product_name[$j]|escape:'html':'UTF-8'}</div>
-											<div style="font-weight:bold;">{$currency->prefix|escape:'html':'UTF-8'}{$product_price[$j]|escape:'html':'UTF-8'}{$currency->suffix|escape:'html':'UTF-8'}</div>
+											<div style="margin-bottom:5px;">{$product_name[$j]|truncate:45:'...'|escape:'html':'UTF-8'}</div>
+											<div style="font-weight:bold;">{convertPrice price=$product_price[$j]}</div>
 										</div>
 									</li>
 								</a>
@@ -100,11 +104,10 @@
 $(document).ready(function()
 {
 	$('.avg_rating').raty(
-	{								
+	{							
 		path: '{$modules_dir|escape:'html':'UTF-8'}marketplace/rateit/lib/img',
 		score: {$avg_rating|escape:'html':'UTF-8'},
 		readOnly: true,
-	});		
-	$('.wk-product-slider').microfiche();
+	});
 });			
 </script>

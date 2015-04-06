@@ -80,9 +80,12 @@
 	background:none !important;
 	border: none !important;
 }
+.wk_add_other{
+	cursor: pointer;
+}
 </style>
 <script language="javascript" type="text/javascript">
-	var iso = 'en';
+	var iso = '{$iso}';
 	var pathCSS = '{$smarty.const._THEME_CSS_DIR_|addslashes}';
 	var ad = '{$ad|addslashes}';
 	$(document).ready(function(){
@@ -97,7 +100,10 @@
 	});
 
 	$(document).ready(function() {
-		$('#tree1').checkboxTree();
+		$('#tree1').checkboxTree({
+			initializeChecked: 'expanded',
+			initializeUnchecked: 'collapsed'
+		});
 	});
 </script>
 
@@ -172,7 +178,7 @@
 			</div>
 			{if {$set}==1}
 				<div class="form-group">
-					<a onclick="showOtherImage(); return false;">
+					<a onclick="showOtherImage(); return false;" class="wk_add_other">
 						<span>{l s='Add Other Image' mod='marketplace'}</span>
 					</a>
 					<div id="otherimages"></div>
@@ -199,7 +205,7 @@
 									<tr class="imageinforow{$id_image1|escape:'html':'UTF-8'}">
 										<td>
 											<a class="fancybox" href="http://{$image_link[$j]|escape:'html':'UTF-8'}">
-												<img width="45" height="45" alt="15" src="http://{$image_link[$j]|escape:'html':'UTF-8'}">
+												<img width="45" height="45" alt="{l s='No Image' mod='marketplace'}" src="http://{$image_link[$j]|escape:'html':'UTF-8'}">
 											</a>
 										</td>
 										<td>{$position[$j]|escape:'html':'UTF-8'}</td>
@@ -249,7 +255,7 @@
 								<tr class="unactiveimageinforow{$unactive_image1['id']|escape:'html':'UTF-8'}">
 									<td>
 										<a class="fancybox" href="../modules/marketplace/img/product_img/{$unactive_image1['seller_product_image_id']|escape:'html':'UTF-8'}.jpg">
-											<img title="15" width="45" height="45" alt="15" src="../modules/marketplace/img/product_img/{$unactive_image1['seller_product_image_id']|escape:'html':'UTF-8'}.jpg" />
+											<img width="45" height="45" alt="{l s='No Image' mod='marketplace'}" src="../modules/marketplace/img/product_img/{$unactive_image1['seller_product_image_id']|escape:'html':'UTF-8'}.jpg" />
 										</a>
 									</td>
 									<td>

@@ -38,16 +38,19 @@ class SellerInfoDetail extends ObjectModel
 			return false;
 		return Db::getInstance()->Insert_ID();
 	}
+
+	public function delete()
+	{
+		if (!SellerInfoDetail::deleteAllProductOfSellerBySellerId($this->id) || !parent::delete())
+			return false;
+		return true;
+	}
 	
 	public function update($null_values = false)
 	{
 		Cache::clean('getContextualValue_'.$this->id.'_*');
 		$success = parent::update($null_values);
 		return $success;
-	}
-	public function delete()
-	{
-		return parent::delete();
 	}
 	
 	public function insertSellerDetail($date_add,$bussiness_email,$shop_name,$seller_name,$phone,$address,$about_business,$fax,$fb_id,$tw_id) {
@@ -219,7 +222,7 @@ class SellerInfoDetail extends ObjectModel
 
 			}
 			$obj_seller_info = new SellerInfoDetail();
-			$obj_seller_info->callMailFunction(Tools::getValue('id'),'Approve seller request',1);
+			$obj_seller_info->callMailFunction($id,'Approve seller request',1);
 		}
 		else
 		{
@@ -256,5 +259,51 @@ class SellerInfoDetail extends ObjectModel
 		}
 
 		return '';
+	}
+	public static function deleteAllProductOfSellerBySellerId($id)
+	{
+		Hook::exec('actionDeleteSellerProfile', array('marketplace_seller_id' => $id));
+		Hook::exec('actionBulkDeleteProductBySellerId', array('mp_seller_id' => $id));
+		Db::getInstance()->delete('marketplace_seller_info','id='.$id);
+		//find id_customer 
+		$id_customer_value = Db::getInstance(_PS_USE_SQL_SLAVE_)->getRow("SELECT * from`"._DB_PREFIX_."marketplace_customer` where `marketplace_seller_id`=".$id);
+		//real customer id present in customer table
+		$market_place_cutomer_id = $id_customer_value['id_customer'];
+
+		//delete data form marketplace customer
+
+		Db::getInstance()->delete('marketplace_customer','marketplace_seller_id='.$id);
+
+		//find shop id for that seller
+
+		$id_shop_value = Db::getInstance(_PS_USE_SQL_SLAVE_)->getRow("SELECT * from`"._DB_PREFIX_."marketplace_shop` where `id_customer`=".$market_place_cutomer_id);
+
+		if($id_shop_value)
+		{
+			$market_place_shop_id = $id_shop_value['id'];
+			Db::getInstance()->delete('marketplace_shop','id_customer='.$market_place_cutomer_id);
+			//find product id for that seller
+			$total_product_detail = Db::getInstance()->executeS("select `id_product` from `"._DB_PREFIX_."marketplace_shop_product` where `id_shop`=$market_place_shop_id");
+
+			if($total_product_detail)
+			{
+				//delete all entry from main table provided by prestashop
+				foreach($total_product_detail as $total_product_detail1)
+				{
+					$obj_product = new Product($total_product_detail1['id_product']);
+					$is_deleted = $obj_product->delete();
+				}
+			}
+
+			//delete data from market place shop product
+			Db::getInstance()->delete('marketplace_shop_product','id_shop='.$market_place_shop_id);
+
+			//delete row from market place seller product
+			$delete_row_from_marketplace_product_image = "DELETE FROM t2 USING `"._DB_PREFIX_."marketplace_seller_product`  t1 INNER JOIN `"._DB_PREFIX_."marketplace_product_image` t2 WHERE t1.`id_seller`=$id AND t1.`id`=t2.`seller_product_id`";
+
+			Db::getInstance()->Execute($delete_row_from_marketplace_product_image);	
+			Db::getInstance()->delete('marketplace_seller_product','id_shop='.$market_place_shop_id);
+		}
+		return true;
 	}
 }

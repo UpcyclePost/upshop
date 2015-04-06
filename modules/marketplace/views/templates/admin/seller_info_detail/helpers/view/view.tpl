@@ -121,7 +121,8 @@
 					
 				</div>
 			</div>
-		{/if}	
+		{/if}
+		{hook h="DisplaySellerBadges"}
 	</form>
 </div>
 {/block}

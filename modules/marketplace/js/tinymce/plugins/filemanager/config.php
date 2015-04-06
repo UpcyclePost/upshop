@@ -1,9 +1,12 @@
 <?php 
 if($_SESSION["verify"] != "FileManager4TinyMCE") die('forbidden');
 
-$root = rtrim($_SERVER['DOCUMENT_ROOT'],'/'); // don't touch this configuration
+//$root = rtrim($_SERVER['DOCUMENT_ROOT'],'/'); // don't touch this configuration
 
 require_once('../../../../../../config/config.inc.php');
+
+//$root = _PS_ROOT_DIR_; //Override because prev is not giving us correct path  tinymce/plugins/filemanager
+$root = "http://192.168.1.223/~apsingh/prestashop10";
 
 //**********************
 //Path configuration
@@ -18,8 +21,10 @@ require_once('../../../../../../config/config.inc.php');
 //   |    |   |    |-   |- filemanager
 //   |    |   |    |-   |-      |- thumbs <- folder of thumbs [must have the write permission]
 
-$base_url = "http://".$_SERVER['HTTP_HOST']; //url base of site if you want only relative url leave empty
-$upload_dir = __PS_BASE_URI__.'/modules/marketplace/js/tinymce/source'; // path from base_url to upload base dir
+$base_url = "http://".$_SERVER['HTTP_HOST']."/~apsingh/prestashop10"; 
+//var_dump($base_url);die;
+//url base of site if you want only relative url leave empty
+$upload_dir = '/modules/marketplace/js/tinymce/source'; // path from base_url to upload base dir
 $current_path = '../../source/'; // relative path from filemanager folder to upload files folder
 
 $MaxSizeUpload=100; //Mb

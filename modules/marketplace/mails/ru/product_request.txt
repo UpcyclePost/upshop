@@ -1,0 +1,7 @@
+Hello Admin,
+A seller request for approving product on your shop. Product name is {product_name} and shop name is {mp_shop_name}
+
+
+Go to your shop by clicking on link below:		
+		{shop_url}
+Thanks

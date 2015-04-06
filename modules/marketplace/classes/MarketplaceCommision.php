@@ -45,4 +45,15 @@ class MarketplaceCommision extends ObjectModel
 			return $mp_selle_info;
 		}
 	}
+
+	public function getTaxByIdOrderDetail($id_order_detail)
+	{
+		$tax_amt = Db::getInstance(_PS_USE_SQL_SLAVE_)->getValue('SELECT `total_amount` FROM `'._DB_PREFIX_.'order_detail_tax`
+																	WHERE `id_order_detail` = '.(int)$id_order_detail);
+
+		if ($tax_amt)
+			return $tax_amt;
+		else
+			return 0;
+	}
 }

@@ -14,5 +14,7 @@
 	include_once 'SellerInfoDetail.php';
 	include_once 'SellerProductDetail.php';
 	include_once 'SellerProductCategory.php';
+	include_once 'MarketplaceSellerOrders.php';
+	include_once 'MarketplaceOrderCommission.php';
 	include_once 'PaymentDetails.php';
 ?>

@@ -24,23 +24,24 @@
 .wk_collection_data .wk_img_block{
 	float: left;
 	width: 100%;
-	height: 60%;
+	/*height: 60%;*/
 	background-color: #F6F6F6;
-	padding-top: 30px;
+	/*padding-top: 30px;*/
 }
 .wk_collection_data .wk_img_block img{
-	width: 135px;
-	height: 135px;
+	/*width: 135px;
+	height: 135px;*/
+	padding-top: 5px;
 }
 .wk_collection_data .wk_collecion_details{
 	float: left;
 	width: 100%;
-	padding: 5%;
+	/*padding: 5%;*/
 }
 .wk_collection_data .wk_collecion_details div{
 	float: left;
 	width: 100%;
-	margin-bottom:2%; 
+	/*margin-bottom:2%; */
 }
 }
 
@@ -68,24 +69,25 @@
 .wk_collection_data .wk_img_block{
 	float: left;
 	width: 45%;
-	height: 100%;
+	/*height: 100%;*/
 	background-color: #F6F6F6;
 	padding: 4%;
 	margin-right: 5%;
 }
 .wk_collection_data .wk_img_block img{
-	width: 100px;
-	height: 100px;
+	/*width: 100px;
+	height: 100px;*/
+	padding-top: 5px;
 }
 .wk_collection_data .wk_collecion_details{
 	float: left;
 	width: 45%;
-	margin-top: 5%;
+	/*margin-top: 5%;*/
 }
 .wk_collection_data .wk_collecion_details div{
 	float: left;
 	width: 100%;
-	margin-bottom:2%;
+	/*margin-bottom:2%;*/
 }
 }
 /*Global CSS*/
@@ -144,5 +146,8 @@
 .wk_product_collection{
 	float: left;
 	width: 100%;
+}
+.wk_img_block .img-responsive{
+	margin: 0 auto !important;
 }
 /*Global CSS Close*/

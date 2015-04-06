@@ -104,7 +104,7 @@ if(!isset($_GET['field_id'])) $_GET['field_id']='';
 		<input type="hidden" id="base_url" value="<?php echo $base_url?>"/>
 		
 <?php if($upload_files){ ?>
-<!----- uploader div start ------->
+<!-- uploader div start -->
 <div class="uploader">    
 	<form action="dialog.php" method="post" enctype="multipart/form-data" id="myAwesomeDropzone" class="dropzone">
 		<input type="hidden" name="path" value="<?php echo $cur_path?>"/>
@@ -125,13 +125,13 @@ if(!isset($_GET['field_id'])) $_GET['field_id']='';
 	<center><button class="btn btn-large btn-inverse close-uploader"><i class="icon-backward icon-white"></i> <?php echo lang_Return_Files_List?></button></center>
 	<div class="space10"></div><div class="space10"></div>
 </div>
-<!----- uploader div start ------->
+<!-- uploader div start -->
 
 <?php } ?>		
           <div class="container-fluid">
           
           
-<!----- header div start ------->
+<!-- header div start -->
 			<div class="filters">
 			    <div class="row-fluid">
 				<div class="span4">
@@ -165,11 +165,11 @@ if(!isset($_GET['field_id'])) $_GET['field_id']='';
 
 </div>
 
-<!----- header div end ------->
+<!-- header div end -->
 
 
 
-    <!----- breadcrumb div start ------->
+    <!--- breadcrumb div start -->
     <div class="row-fluid">
 	<?php 
 	$link="dialog.php?type=".$_GET['type']."&editor=";
@@ -199,7 +199,7 @@ if(!isset($_GET['field_id'])) $_GET['field_id']='';
 	<li class="pull-right"><a id="refresh" href="dialog.php?type=<?php echo $_GET['type']?>&editor=<?php echo $_GET['editor'] ? $_GET['editor'] : 'mce_0'; ?>&subfolder=<?php echo $subfolder ?>&popup=<?php echo $popup;?>&field_id=<?php echo $_GET['field_id'] ? $_GET['field_id'] : '';?>&lang=<?php echo $_GET['lang'] ? $_GET['lang'] : 'en_EN'; ?>&fldr=<?php echo $subdir ?>&<?php echo uniqid() ?>"><i class="icon-refresh"></i></a></li>
 	</ul>
     </div>
-    <!----- breadcrumb div end ------->
+    <!-- breadcrumb div end -->
 
 
     <div class="row-fluid ff-container">
@@ -210,7 +210,7 @@ if(!isset($_GET['field_id'])) $_GET['field_id']='';
 	    <?php }else{ ?>
 	    <h4 id="help">Swipe the name of file/folder to show options</h4>
 		    
-	    <!--ul class="thumbnails ff-items"-->
+	    <!-- ul class="thumbnails ff-items" -->
 	    <ul class="grid cs-style-2">
 		<?php
 		$class_ext = '';

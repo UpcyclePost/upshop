@@ -31,6 +31,10 @@
                 }
             }
 
+            $tax = array(array('id' => 'admin','name' => 'Admin'),
+                        array('id' => 'seller','name' => 'Seller'),
+                        array('id' => 'commission','name' => 'Distribute between seller and admin'));
+
             $this->fields_options = array(
                 'general' => array(
     			
@@ -50,7 +54,7 @@
                 ),
                 'general1' => array(
                     'title' => $this->l('Customer Commission '),
-    				'image' => _MODULE_DIR_.'marketplace/img/commision_setting.gif',
+                    'image' => _MODULE_DIR_.'marketplace/img/commision_setting.gif',
                     'fields' => array(
                         'PS_COMMISION_CUSTOMER_BOX' => array(
                             'title' => $this->l('Select Customer'),
@@ -66,12 +70,25 @@
                             'name' => 'PS_COMMISION_CUST_BOX',
                             'suffix' => $this->l('%')
                         )
+                    )
+                    
+                ),
+                'general2' => array(
+                    'title' => $this->l('Tax Distribution'),
+                    'image' => _MODULE_DIR_.'marketplace/img/commision_setting.gif',
+                    'fields' => array(
+                        'MP_TAX_COMMISSION' => array(
+                            'title' => $this->l('Product Tax'),
+                            'type' => 'select',
+                            'list' => $tax,
+                            'identifier' => 'id'
+                        )
                     ),
                     'submit' => array(
                         'title' => $this->l('Save'),
                         'name' => 'submit_commision'
                     )
-                )
+                ),
             );
 
             if (!$customer_info)
@@ -92,10 +109,16 @@
             $global_com = Tools::getValue('PS_CP_GLOBAL_COMMISION');
             $cust_id    = Tools::getValue('PS_COMMISION_CUSTOMER_BOX');
             $cust_com   = Tools::getValue('PS_ENTER_CUSTOMER_BOX');
+            $tax        = Tools::getValue('MP_TAX_COMMISSION');
+
     		$obj_comm = new MarketplaceCommision();
     		$obj_comm->customer_id = $cust_id;
     		//$cust_name = $obj_comm->findAllCustomerInfo();
     		$obj_customer =  new Customer($cust_id);
+
+
+            if ($tax)
+                Configuration::updateValue('MP_TAX_COMMISSION',$tax);
 
             $cust_name1 = $obj_customer->firstname;
             if (($cust_com != "") && ($global_com == "")) 

@@ -154,11 +154,16 @@ class marketplaceProductupdateModuleFrontController extends ModuleFrontControlle
 				$this->context->smarty->assign("my_order", $my_order);
 				$this->context->smarty->assign("payment_details", $payment_details);
 				//Left Menu Links Close
+
+				Hook::exec('actionBeforeShowUpdatedProduct', array('marketplace_product_details' =>$pro_info));
 				
 
 				$this->context->smarty->assign("pro_info",$pro_info);
 				$this->context->smarty->assign("is_seller",1);			
-				$this->context->smarty->assign("logic","update_product");			
+				$this->context->smarty->assign("logic","update_product");
+				$obj_currency = new Currency(Configuration::get('PS_CURRENCY_DEFAULT'));
+				$currency_sign = $obj_currency->sign;
+				$this->context->smarty->assign("currency_sign",$currency_sign);
 				$this->setTemplate('product_update.tpl');
 
 			}
@@ -359,6 +364,9 @@ class marketplaceProductupdateModuleFrontController extends ModuleFrontControlle
 			$this->addJS(array(
 	                _MODULE_DIR_ .'marketplace/js/mp_form_validation.js'
 	            ));
+
+		//for tiny mce lang
+		Media::addJsDef(array('iso' => $this->context->language->iso_code));
 		
 		//Category tree
 		$this->addJS(_MODULE_DIR_.'marketplace/views/js/categorytree/jquery-ui-1.8.12.custom/js/jquery-ui-1.8.12.custom.min.js');

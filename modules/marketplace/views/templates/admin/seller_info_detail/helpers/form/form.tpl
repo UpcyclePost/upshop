@@ -1,5 +1,5 @@
 <script language="javascript" type="text/javascript">
-	var iso = 'en';
+	var iso = '{$iso}';
 	var pathCSS = '{$smarty.const._THEME_CSS_DIR_|addslashes}';
 	var ad = '{$ad|addslashes}';
 	$(document).ready(function(){
@@ -122,6 +122,9 @@
 					<div class="col-lg-5"><input class="reg_sel_input form-control-static" type="file"  name="upload_seller_logo" /></div>
 			</div> 
 		</div>
+		{if $set==0}
+			{hook h="DisplayAddBadgeToSeller"}
+		{/if}
 		<div class="panel-footer">
 			<a href="{$link->getAdminLink('AdminSellerInfoDetail')|escape:'html':'UTF-8'}" class="btn btn-default"><i class="process-icon-cancel"></i> {l s='Cancel' mod='marketplace'}</a>
 			<button type="submit" name="submitAddmarketplace_seller_info" class="btn btn-default pull-right"><i class="process-icon-save"></i> {l s='Save' mod='marketplace'}</button>

@@ -42,6 +42,13 @@ class SellerProductDetail extends ObjectModel
 			return false;
 		return Db::getInstance()->Insert_ID();
 	}
+	public function delete()
+	{
+		if (!SellerProductDetail::delete_seller_product($this->id) || !parent::delete())
+			return false;
+		return true;
+	}
+
 	
 		//@id_product is the id_product from ps_product table
 		public function getMarketPlaceIdShopByIdProduct($id_product) {
@@ -201,10 +208,10 @@ class SellerProductDetail extends ObjectModel
 				if($image_list){
 					foreach($image_list as $image){
 						$old_path = $image_dir.'/'.$image['seller_product_image_id'].'.jpg';
-						$position = $count + 1;
+						//$position = $count + 1;
 						$image_obj = new Image();
 						$image_obj->id_product = $ps_product_id;
-						$image_obj->position = $position;
+						$image_obj->position = Image::getHighestPosition($main_product_id) + 1;
 						if($count == 0)
 							$image_obj->cover = false;
 						else
@@ -505,6 +512,76 @@ class SellerProductDetail extends ObjectModel
 		   else
              return false;
 		}
+		public static function toggle_seller_product($mp_product_id)
+	{
+		$obj_sellerproduct_detail = new SellerProductDetail($mp_product_id);
+		$mp_id_shop = $obj_sellerproduct_detail->id_shop;
+		if($obj_sellerproduct_detail->active==0)
+		{
+			$obj_sellerproduct_detail->active=1;
+				$obj_sellerproduct_detail->save();
+			$obj_mpshop_produt = new MarketplaceShopProduct();
+			$main_product_info = $obj_mpshop_produt->findMainProductIdByMppId($mp_product_id);
+			$image_dir = '../modules/marketplace/img/product_img';
+			if($main_product_info)
+			{
+				//product created but dactivated right now need to active 
+				$main_product_id = $main_product_info['id_product'];
+				$obj_sellerproduct_detail->updatePsProductByMarketplaceProduct($mp_product_id, $image_dir,1,$main_product_id);
+			}
+			else
+			{
+				//not yet product created
+				
+				$main_product_id = $obj_sellerproduct_detail->createPsProductByMarketplaceProduct($mp_product_id, $image_dir,1);
+				
+				if($main_product_id)
+				{
+					$mps_product_obj = new MarketplaceShopProduct();
+					$mps_product_obj->id_shop = $mp_id_shop;
+					$mps_product_obj->marketplace_seller_id_product = $mp_product_id;
+					$mps_product_obj->id_product = $main_product_id;
+					$mps_product_obj->add();
+				}
+				Hook::exec('actionToogleProductStatus', array('main_product_id' => $main_product_id,'active'=>1));
+				$obj_sellerproduct_detail->callMailFunction($mp_product_id,'Activation detail',1);
+			}
+		} 
+		else
+		{
+			//product created but deactive now
+			$obj_sellerproduct_detail->active = 0;
+			$obj_sellerproduct_detail->save();
+			
+			$obj_mpshop_produt = new MarketplaceShopProduct();
+			$main_product_info = $obj_mpshop_produt->findMainProductIdByMppId($mp_product_id);
+			if($main_product_info)
+			{
+				$main_product_id = $main_product_info['id_product'];
+				$product = new Product($main_product_id);
+				$product->active = 0;
+				$product->save();
+			}
+			$obj_sellerproduct_detail->callMailFunction($mp_product_id,'Deactivate Product',2);
+		}
+		Hook::exec('actionToogleProductStatusNew', array('main_product_id' => $main_product_id,'active'=>$obj_sellerproduct_detail->active));
+	}
+	public static function delete_seller_product($marketplace_seller_product_id)
+	{
+		Hook::exec('actionDeleteProduct', array('mp_seller_product_id' => $marketplace_seller_product_id));
+		$marketplace_shop_product = Db::getInstance(_PS_USE_SQL_SLAVE_)->getRow("SELECT * from`"._DB_PREFIX_."marketplace_shop_product` where `marketplace_seller_id_product`=".$marketplace_seller_product_id);
+		$delete_row_from_marketplace_seller_product = Db::getInstance()->delete('marketplace_seller_product','id='.$marketplace_seller_product_id);
+		Db::getInstance()->delete('marketplace_shop_product','marketplace_seller_id_product='.$marketplace_seller_product_id);
+
+		$main_id_product = $marketplace_shop_product['id_product'];
+		$obj_product = new Product($main_id_product);
+		$obj_product->delete();
+		if($delete_row_from_marketplace_seller_product)
+			return $delete_row_from_marketplace_seller_product;
+		else
+			return false;
+	}
+
 
 }
 ?>

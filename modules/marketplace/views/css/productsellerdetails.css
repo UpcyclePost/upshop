@@ -150,3 +150,8 @@
 		padding-left: 25px;
 	}
 }
+
+.page-product-box{
+	float: left !important;
+	width: 100% !important;
+}

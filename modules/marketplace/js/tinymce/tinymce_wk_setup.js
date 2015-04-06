@@ -9,6 +9,7 @@ tinymce.init({
    	toolbar : "code,|,bold,italic,underline,strikethrough,|,justifyleft,justifycenter,justifyright,justifyfull,formatselect,|,blockquote,colorpicker,pasteword,|,bullist,numlist,|,outdent,indent,|,link,unlink,|,cleanup,|,media,image",
 	statusbar: false,
 	relative_urls : false,
+	language: iso,
 	extended_valid_elements : "em[class|name|id]",
   	menu: {
 		edit: {title: 'Edit', items: 'undo redo | cut copy paste | selectall'},

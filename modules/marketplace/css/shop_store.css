@@ -802,3 +802,7 @@ font-weight:bold;
 	float:left;
 	width:30%;
 }
+
+.wk-slider-product-img .img-responsive{
+    margin: 0 auto !important;
+}

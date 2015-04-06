@@ -50,6 +50,7 @@ class marketplaceSellerrequestModuleFrontController extends ModuleFrontControlle
                         _MODULE_DIR_ .'marketplace/js/tinymce/tinymce.min.js',
                         _MODULE_DIR_ .'marketplace/js/tinymce/tinymce_wk_setup.js'
                 ));
+        Media::addJsDef(array('iso' => $this->context->language->iso_code));
     }
 }
 ?>

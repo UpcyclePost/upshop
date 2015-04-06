@@ -171,27 +171,43 @@ class marketplaceAddproductprocessModuleFrontController extends ModuleFrontContr
 			} else {
 				$count = 0;
 			}
+			/*echo "<pre>";
+			print_r($other_images);
+			print_r($other_images_name);die();
+			list($image_width, $image_height) = getimagesize($other_images[0]);*/
+/*			$image_info = getimagesize($_FILES["images"]["tmp_name"]);*/
+			//$image_width = $image_info[0];
+			//$image_height = $image_info[1];
+			/*print_r($image_width);echo "<br />";
+			print_r($image_height);*/
+			/*print_r($type);
+			print_r($attr);*/
+			//die;
 			
-			
-			for ($i = 0; $i < $count; $i++) {
-				if($other_images[$i]!='') {
+			for ($i = 0; $i < $count; $i++)
+			{
+				if($other_images[$i]!='')
+				{
 					$fileExtension   = strrchr($other_images_name[$i], ".");
 					if(in_array($fileExtension, $validExtensions)) 
 					{
+						list($image_width, $image_height) = getimagesize($other_images[$i]);
+						if($image_width >= 200 && $image_width  <= 2000 && $image_height >= 200 &&  $image_height <= 2000)
+						{
 						$length     = 6;
 						$characters = "0123456789abcdefghijklmnopqrstuvwxyz";
 						$u_other_id = "";
-						for ($p = 0; $p < $length; $p++) {
+						for ($p = 0; $p < $length; $p++)
 							$u_other_id .= $characters[mt_rand(0, Tools::strlen($characters))];
-						}
+
 						Db::getInstance()->insert('marketplace_product_image', array(
 							'seller_product_id' => (int) $seller_product_id,
 							'seller_product_image_id' => pSQL($u_other_id)
 						));
 						$image_name = $u_other_id . ".jpg";
 						$address    = "modules/marketplace/img/product_img/";
-						//move_uploaded_file($other_images[$i], $address . $image_name);
 						ImageManager::resize($other_images[$i],$address . $image_name);
+						}
 					}					
 				}
 			}

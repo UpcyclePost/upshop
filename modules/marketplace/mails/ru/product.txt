@@ -1,0 +1,9 @@
+
+
+Hello {seller_name}
+Your request for {product_name} for your shop {mp_shop_name} has been {mail_reason} by admin
+
+
+Go to your shop by clicking on link below:		
+		{shop_url}
+Thanks

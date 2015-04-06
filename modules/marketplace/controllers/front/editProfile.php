@@ -7,7 +7,7 @@ class marketplaceEditProfileModuleFrontController extends ModuleFrontController
     public function initContent()
     {
         $customer_id  = $this->context->cookie->id_customer;
-        $link = new link();
+        $link = new Link();
         $id_shop = Tools::getValue('update_id_shop');
         $market_seller_id = Db::getInstance(_PS_USE_SQL_SLAVE_)->getRow("select `marketplace_seller_id` from `" . _DB_PREFIX_ . "marketplace_customer` where id_customer =" . $customer_id . "");
 
@@ -45,9 +45,9 @@ class marketplaceEditProfileModuleFrontController extends ModuleFrontController
             list($shop_width, $shop_height) = getimagesize($_FILES['update_shop_logo']["tmp_name"]);
             if($shop_width < 200 || $shop_height < 200 )
             {
-                $param = array('shop'=>$id_shop);
+                $param = array('shop' => $id_shop, 'l' => 2, 'edit-profile' => 0, 'img_shop' => 1);
                 $redirect_link = $link->getModuleLink('marketplace', 'marketplaceaccount',$param);
-                Tools::redirect($redirect_link.'&l=2&edit-profile&img_shop=1');
+                Tools::redirect($redirect_link);
             }
         }
 
@@ -56,9 +56,9 @@ class marketplaceEditProfileModuleFrontController extends ModuleFrontController
             list($seller_width, $seller_height) = getimagesize($_FILES['update_seller_logo']['tmp_name']);
             if($seller_width < 200 || $seller_height < 200)
             {
-              $param = array('shop'=>$id_shop);
+              $param = array('shop' => $id_shop, 'l' => 2, 'edit-profile' => 0, 'img_seller' => 1);
               $redirect_link = $link->getModuleLink('marketplace', 'marketplaceaccount',$param);
-              Tools::redirect($redirect_link.'&l=2&edit-profile&img_seller=1');
+              Tools::redirect($redirect_link);
             }
             else 
             { 
@@ -76,10 +76,7 @@ class marketplaceEditProfileModuleFrontController extends ModuleFrontController
                 }
             }           
         }
-        
-        
-        
-        
+
         $market_place_shop_name   = $market_place_seller_info['shop_name'];
         if ($_FILES['update_shop_logo']["size"] == 0) 
         {
@@ -104,7 +101,7 @@ class marketplaceEditProfileModuleFrontController extends ModuleFrontController
             $is_shop_image_exist  = $shop_prev_logo_name1[0];
             if (file_exists($is_shop_image_exist))
                 unlink($shop_prev_logo_name1[0]);
-            
+
             if ($_FILES['update_shop_logo']['error'] == 0)
             {
                 $validExtensions = array('.jpg','.jpeg','.gif','.png','.JPG','.JPEG','.GIF','.PNG');
@@ -120,9 +117,7 @@ class marketplaceEditProfileModuleFrontController extends ModuleFrontController
         }
 
         $shop_rewrite = Tools::link_rewrite($shop_name);
-
         $obj_seller = new SellerInfoDetail($market_seller_id['marketplace_seller_id']);
-
         $obj_seller->business_email = $business_email;
         $obj_seller->seller_name = $seller_name;
         $obj_seller->shop_name = $shop_name;
