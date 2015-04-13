@@ -85,7 +85,7 @@
 }
 </style>
 <script language="javascript" type="text/javascript">
-	var iso = '{$iso}';
+	var iso = '{$iso|escape:'html':'UTF-8'}';
 	var pathCSS = '{$smarty.const._THEME_CSS_DIR_|addslashes}';
 	var ad = '{$ad|addslashes}';
 	$(document).ready(function(){

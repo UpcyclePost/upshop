@@ -6,7 +6,7 @@ class marketplaceSellerprofileModuleFrontController extends ModuleFrontControlle
 		$link = new Link();
 		$id_lang = $this->context->language->id;
 		// review submit process 
-		if(Tools::isSubmit('submit_feedback'))
+		if (Tools::isSubmit('submit_feedback'))
 		{
 			$id_customer = $this->context->cookie->id_customer;
 			$seller_id = Tools::getValue('seller_id');
@@ -45,39 +45,39 @@ class marketplaceSellerprofileModuleFrontController extends ModuleFrontControlle
 		{
 			if (Tools::getIsset('all_reviews'))  //if click on all reviews
 			{
-			  $seller_id = Tools::getValue('seller_id');
-              $link = new link();
-              $obj_reviews = new Reviews();
-              $reviews_info = $obj_reviews->getSellerReviews($seller_id);
-              if ($reviews_info)
-              {
-                $reviews_details1 = array();
-                $i = 0;
-                foreach($reviews_info as $reviews)
-                {
-					$obj_customer = new Customer($reviews['id_customer']);
-					if($customer_info)
-					{
-						$reviews_details1[$i]['customer_name'] = $obj_customer->firstname." ".$obj_customer->lastname;
-						$reviews_details1[$i]['customer_email'] = $obj_customer->email;
-					}
-					else
-					{
-						$reviews_details1[$i]['customer_name'] = "Not Available";
-						$reviews_details1[$i]['customer_email'] = "Not Available";
-					}
+				$seller_id = Tools::getValue('seller_id');
+	            $link = new link();
+	            $obj_reviews = new Reviews();
+	            $reviews_info = $obj_reviews->getSellerReviews($seller_id);
+	            if ($reviews_info)
+	            {
+		            $reviews_details1 = array();
+		            $i = 0;
+		            foreach($reviews_info as $reviews)
+	            	{
+						$obj_customer = new Customer($reviews['id_customer']);
+						if ($reviews['id_customer'])
+						{
+							$reviews_details1[$i]['customer_name'] = $obj_customer->firstname." ".$obj_customer->lastname;
+							$reviews_details1[$i]['customer_email'] = $obj_customer->email;
+						}
+						else
+						{
+							$reviews_details1[$i]['customer_name'] = "Not Available";
+							$reviews_details1[$i]['customer_email'] = "Not Available";
+						}
 
-					$reviews_details1[$i]['rating'] = $reviews['rating'];
-					$reviews_details1[$i]['review'] = $reviews['review'];
-					$reviews_details1[$i]['time'] = $reviews['date_add'];
+						$reviews_details1[$i]['rating'] = $reviews['rating'];
+						$reviews_details1[$i]['review'] = $reviews['review'];
+						$reviews_details1[$i]['time'] = $reviews['date_add'];
 
-					$i++;
-               }
-               $reviews_count = count($reviews_info);
-               $this->context->smarty->assign("reviews_count", $reviews_count);
-               $this->context->smarty->assign("reviews_details1", $reviews_details1);
-			   $this->context->smarty->assign("all_reviews",1);
-             }
+						$i++;
+	            	}
+					$reviews_count = count($reviews_info);
+					$this->context->smarty->assign("reviews_count", $reviews_count);
+					$this->context->smarty->assign("reviews_details1", $reviews_details1);
+					$this->context->smarty->assign("all_reviews",1);
+				}
 			}
 			else
 				$this->context->smarty->assign("reviews_count", 0);
@@ -91,17 +91,14 @@ class marketplaceSellerprofileModuleFrontController extends ModuleFrontControlle
 
 				$marketplace_seller_id_info = Db::getInstance(_PS_USE_SQL_SLAVE_)->getRow("select `marketplace_seller_id`,`is_seller` from `"._DB_PREFIX_."marketplace_customer` where `id_customer` =".$id_customer." ");
 
-				if($marketplace_seller_id_info)
+				if ($marketplace_seller_id_info)
 				{
-
 					$is_seller_active = $marketplace_seller_id_info['is_seller'];
 					$marketplace_seller_id = $marketplace_seller_id_info['marketplace_seller_id'];
-
-					if($is_seller_active == 1)
+					if ($is_seller_active == 1)
 					{
 						$market_place_seller_info = Db::getInstance(_PS_USE_SQL_SLAVE_)->getRow("select * from `"._DB_PREFIX_."marketplace_seller_info` where `id` =".$marketplace_seller_id." ");
-
-						if($market_place_seller_info)
+						if ($market_place_seller_info)
 						{
 							$business_email = $market_place_seller_info['business_email'];
 							$phone = $market_place_seller_info['phone'];
@@ -111,29 +108,25 @@ class marketplaceSellerprofileModuleFrontController extends ModuleFrontControlle
 							$product_detail = Db::getInstance()->executeS("select * from `"._DB_PREFIX_."marketplace_shop_product` mpsp join `"._DB_PREFIX_."product` p on (p.`id_product`=mpsp.`id_product`) join `"._DB_PREFIX_."product_lang` pl on (p.`id_product`=pl.`id_product`) where mpsp.`id_shop`=$id_shop and pl.`id_shop`=".$this->context->shop->id." and pl.`id_lang`=".$this->context->cookie->id_lang." order by p.`date_add` limit 10");
 
 							$i = 0;
-							
+							$all_product_id = array();
+							$all_product_price = array();
+							$all_product_name = array();
+							$product_image_link = array();
 							foreach($product_detail as $product_detail1) 
 							{
-
 								$all_product_id[$i] = $product_detail1['id_product'];
 								$all_product_price[$i] = number_format($product_detail1['price'],2,'.','');
 								$all_product_name[$i] = $product_detail1['name'];
 								$product_obj = new Product($product_detail1['id_product'], false, $id_lang);
 								$cover_image_id = Product::getCover($product_obj->id);
-
-								if($cover_image_id)
-								{
-									$product_image_link[$i][0] = $product_obj->link_rewrite;
+								$product_image_link[$i][0] = $product_obj->link_rewrite;
+								$product_image_link[$i][3] = $this->context->language->id;
+								if ($cover_image_id)
 									$product_image_link[$i][1] = $product_obj->id.'-'.$cover_image_id['id_image'];
-									$product_image_link[$i][3] = $this->context->language->id;
-								}
 								else
 				                {
-				                    /*$image_link[] = _MODULE_DIR_.'marketplace/img/defaultproduct.jpg';*/
-				                    $product_image_link[$i][0] = $product_obj->link_rewrite;
 				                    $product_image_link[$i][1] = "";
 				                    $product_image_link[$i][2] = $this->context->language->iso_code;
-				                    $product_image_link[$i][3] = $this->context->language->id;
 								}
 								$i++;
 							}
@@ -164,7 +157,7 @@ class marketplaceSellerprofileModuleFrontController extends ModuleFrontControlle
 							    	if($i < 2)
 									{
 							   			$obj_customer = new Customer($reviews['id_customer']);
-							   			if($customer_info)
+							   			if($reviews['id_customer'])
 							   			{
 											$reviews_details[$i]['customer_name'] = $obj_customer->firstname." ".$obj_customer->lastname;
 											$reviews_details[$i]['customer_email'] = $obj_customer->email;

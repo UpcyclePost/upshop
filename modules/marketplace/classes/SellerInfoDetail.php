@@ -291,7 +291,7 @@ class SellerInfoDetail extends ObjectModel
 				foreach($total_product_detail as $total_product_detail1)
 				{
 					$obj_product = new Product($total_product_detail1['id_product']);
-					$is_deleted = $obj_product->delete();
+					$obj_product->delete();
 				}
 			}
 

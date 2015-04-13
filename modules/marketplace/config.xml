@@ -2,7 +2,7 @@
 <module>
 	<name>marketplace</name>
 	<displayName><![CDATA[Marketplace]]></displayName>
-	<version><![CDATA[1.6]]></version>
+	<version><![CDATA[1.6.1]]></version>
 	<description><![CDATA[Add customers as a seller]]></description>
 	<author><![CDATA[Webkul]]></author>
 	<tab><![CDATA[front_office_features]]></tab>

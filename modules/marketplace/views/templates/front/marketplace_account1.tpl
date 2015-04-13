@@ -305,7 +305,7 @@
 									<input class="required form-control" type="text" value="{$marketplace_seller_info['seller_name']|escape:'html':'UTF-8'}" name="update_seller_name" id="update_seller_name"/>
 								</div>
 								<div class="required form-group">
-									<img src="{$old_seller_logo_path}" width="100" height="100"><br />
+									<img src="{$old_seller_logo_path|escape:'html':'UTF-8'}" width="100" height="100"><br />
 									<label class="control-label">{l s='Seller Profile Image' mod='marketplace'}</label>
 									<input class="required form-control" type="file" name="update_seller_logo" id="update_seller_logo"/>
 									<div class="info_description">{l s='Image minimum size must be 200 x 200px' mod='marketplace'}</div>
@@ -343,7 +343,7 @@
 									<textarea name="update_about_shop" id="update_about_shop" class="update_about_shop_detail wk_tinymce form-control">{$market_place_shop['about_us']|escape:'html':'UTF-8'}</textarea>
 								</div>
 								<div class="form-group">
-									<img src="{$old_shop_logo_path}" width="100" height="100"><br />
+									<img src="{$old_shop_logo_path|escape:'html':'UTF-8'}" width="100" height="100"><br />
 									<label for="update_shop_logo" class="control-label">{l s='Shop Logo' mod='marketplace'}</label>
 									<input class="required form control" type="file" name="update_shop_logo" id="update_shop_logo"/>
 									<div class="info_description">{l s='Image minimum size must be 200 x 200px' mod='marketplace'}</div>

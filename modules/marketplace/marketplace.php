@@ -11,9 +11,10 @@ class MarketPlace extends Module
     {
         $this->name = 'marketplace';
         $this->tab = 'front_office_features';
-        $this->version = '1.6';
+        $this->version = '1.6.1';
         $this->author = $this->l('Webkul');
         $this->need_instance = 0;
+		$this->module_key    = '92e753c36c07c56867a9169292c239e5';
         parent::__construct();
         $this->displayName = $this->l('Marketplace');
         $this->description = $this->l('Add customers as a seller');
@@ -370,7 +371,6 @@ class MarketPlace extends Module
                 {
                     //seller commision
                     $seller_comm = 100 - $commision_array[$i];
-                    $id_customer = $customer[$i]['id_customer'];
                     
                     $commision = (($customer[$i]['product_price'] * $customer[$i]['product_quantity']) * $commision_array[$i]) / 100;
                     $seller_commission = ((($customer[$i]['product_price'] * $customer[$i]['product_quantity']) * $seller_comm) / 100);
@@ -597,7 +597,7 @@ class MarketPlace extends Module
     
     public function callInstallTab()
     {
-        $this->installTab('AdminMarketplaceManagement', 'MarketPlace Management');
+        $this->installTab('AdminMarketplaceManagement', 'Marketplace Management');
         $this->installTab('AdminSellerInfoDetail', 'Manage Seller Profile', 'AdminMarketplaceManagement');
         $this->installTab('AdminSellerProductDetail', 'Manage Seller Product', 'AdminMarketplaceManagement');
         $this->installTab('AdminCommisionSetting', 'Manage Commission Setting', 'AdminMarketplaceManagement');

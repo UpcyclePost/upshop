@@ -90,7 +90,7 @@
 						</ul> 
 					</div>
 				{else}
-					<p class="alert alert-info">{l s='No item found'}</p>
+					<p class="alert alert-info">{l s='No item found' mod='marketplace'}</p>
 				{/if}
 			</div>
 		</div>
@@ -154,7 +154,7 @@
 <!-- Fancybox -->
 <div style="display: none;">
 	<div id="wk_review_form">
-		<form id="review_submit" method="post" action="{$link->getModuleLink('marketplace', 'sellerprofile', ['shop' => {$id_shop}])}">
+		<form id="review_submit" method="post" action="{$link->getModuleLink('marketplace', 'sellerprofile', ['shop' => {$id_shop}])|addslashes}">
 			<h2 class="page-subheading">
 				{l s='Write a review' mod='marketplace'}
 			</h2>

@@ -117,7 +117,7 @@ class marketplaceShopstoreModuleFrontController extends ModuleFrontController
 				$marketplace_seller_id    = $marketplace_shop_product1['id_seller'];
 				$a++;
 			}
-			
+
 			$count = count($marketplace_product_id);
 			$product = array();
 			for ($i = 0; $i < $count; $i++) 
@@ -137,31 +137,22 @@ class marketplaceShopstoreModuleFrontController extends ModuleFrontController
 			}
 
 			$count_product = count($product_id);
-			$image = array();
 			$product_lang = array();
 			$image_link = array();
 			for ($i = 0; $i < $count_product; $i++) 
 			{
-				$image[] = Db::getInstance(_PS_USE_SQL_SLAVE_)->getRow("select * from `" . _DB_PREFIX_ . "image` where id_product =" . $product_id[$i] . " and cover = 1");
-				$image_id = Db::getInstance(_PS_USE_SQL_SLAVE_)->getRow("select * from `" . _DB_PREFIX_ . "image` where id_product =" . $product_id[$i] . " and cover = 1");
-				
 				$product_lang[] = Db::getInstance(_PS_USE_SQL_SLAVE_)->getRow("select * from `" . _DB_PREFIX_ . "product_lang` where id_product =" . $product_id[$i] . " and id_lang=".$id_lang);
 				
-				$ids = $product_id[$i].'-'.$image_id['id_image'];
 				$product_obj = new Product($product_id[$i], false, $id_lang);
-				$cover_image_id = Product::getCover($product_obj->id);	
-				if($cover_image_id) 
-				{
-					$image_link[$i][0] = $product_obj->link_rewrite;
+				$cover_image_id = Product::getCover($product_obj->id);
+				$image_link[$i][0] = $product_obj->link_rewrite;
+				$image_link[$i][3] = $this->context->language->id;
+				if($cover_image_id)
 					$image_link[$i][1] = $product_obj->id.'-'.$cover_image_id['id_image'];
-					$image_link[$i][3] = $this->context->language->id;
-				} 
-				else 
+				else
 				{
-					$image_link[$i][0] = $product_obj->link_rewrite;
                 	$image_link[$i][1] = "";
                 	$image_link[$i][2] = $this->context->language->iso_code;
-                	$image_link[$i][3] = $this->context->language->id;
 				}
 			}
 

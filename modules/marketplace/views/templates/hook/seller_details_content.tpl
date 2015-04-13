@@ -91,9 +91,9 @@
 </section>
 
 {strip}
-{addJsDefL name=success_msg}{l s='Mail has been successfully sent to this seller.' ja=1 mod='marketplace'}{/addJsDefL}
-{addJsDefL name=error_msg}{l s='There is some error.' ja=1 mod='marketplace'}{/addJsDefL}
-{addJsDefL name=inv_name}{l s='Invalid Name.' ja=1 mod='marketplace'}{/addJsDefL}
-{addJsDefL name=inv_email}{l s='Invalid email address.' ja=1 mod='marketplace'}{/addJsDefL}
-{addJsDefL name=inv_subject}{l s='Invalid subject or question.' ja=1 mod='marketplace'}{/addJsDefL}
+{addJsDefL name=success_msg}{l s='Mail has been successfully sent to this seller.' js=1 mod='marketplace'}{/addJsDefL}
+{addJsDefL name=error_msg}{l s='There is some error.' js=1 mod='marketplace'}{/addJsDefL}
+{addJsDefL name=inv_name}{l s='Invalid Name.' js=1 mod='marketplace'}{/addJsDefL}
+{addJsDefL name=inv_email}{l s='Invalid email address.' js=1 mod='marketplace'}{/addJsDefL}
+{addJsDefL name=inv_subject}{l s='Invalid subject or question.' js=1 mod='marketplace'}{/addJsDefL}
 {/strip}

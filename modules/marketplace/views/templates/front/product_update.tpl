@@ -105,7 +105,7 @@
 						<label for="prod_price">{l s='Price :' mod='marketplace'}<sup>*</sup></label>
 						<div class="input-group">
 							<input type="text" id="product_price" name="product_price" value="{$pro_info['price']|escape:'html':'UTF-8'}"  class="form-control" />
-							<span class="input-group-addon">{$currency_sign}</span>
+							<span class="input-group-addon">{$currency_sign|escape:'html':'UTF-8'}</span>
 						</div>
 					</div>
 

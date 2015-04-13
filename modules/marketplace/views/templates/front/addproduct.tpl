@@ -101,7 +101,7 @@ $(document).ready(function() {
 							<label for="product_price" class="control-label required">{l s='Price :' mod='marketplace'}</label>
 							<div class="input-group">
 						  		<input type="text" id="product_price" name="product_price" value="{$c_mp_product_price|escape:'html':'UTF-8'}"  class="account_input form-control"/>
-						  		<span class="input-group-addon">{$currency_sign}</span>
+						  		<span class="input-group-addon">{$currency_sign|escape:'html':'UTF-8'}</span>
 						  	</div>
 						</div>
 

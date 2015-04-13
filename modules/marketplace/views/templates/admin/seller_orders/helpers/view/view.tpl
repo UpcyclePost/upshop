@@ -17,10 +17,10 @@
         {if isset($mp_order_details) && !empty($mp_order_details)}
           {foreach $mp_order_details as $order}
             <tr>
-              <td>{$order.customer_name}</td>
-              <td>{$order.product_name}</td>
+              <td>{$order.customer_name|escape:'html':'UTF-8'}</td>
+              <td>{$order.product_name|escape:'html':'UTF-8'}</td>
               <td>{convertPrice price=$order.price}</td>
-              <td>{$order.quantity}</td>
+              <td>{$order.quantity|escape:'html':'UTF-8'}</td>
               <td>{convertPrice price=$order.commision}</td>
             </tr>
           {/foreach}
