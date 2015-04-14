@@ -104,7 +104,7 @@ header .nav, #languages-block-top ul, #currencies-block-top ul, #currencies-bloc
 }
 
 #header .cart_block, #header .cart_block .cart-prices, #header .cart_block .cart-buttons{
-    background-color: #e6f3f7;
+    background-color: #F0F0F0;
 }
 
 .cart_block .cart-info .quantity-formated, #header .cart_block .product-atributes a, #header .cart_block a, #header .cart_block .cart_block_list .remove_link a, #header .cart_block .cart_block_list .ajax_cart_block_remove_link, #header .cart_block a, #header .cart_block .cart-prices .cart-prices-line span{
