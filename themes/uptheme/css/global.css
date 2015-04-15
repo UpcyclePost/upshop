@@ -5724,9 +5724,9 @@ span.exclusive {
   /*font: bold 13px/17px Arial, Helvetica, sans-serif;*/
   font: inherit;
   color: #fff;
-  background: #6f6f6f;
+  background: #0187d0;
   border: 1px solid;
-  border-color: #666666 #5f5f5f #292929 #5f5f5f;
+  border-color: #89c226;
   padding: 0;
   text-shadow: 1px 1px rgba(0, 0, 0, 0.24);
   -moz-border-radius: 0;
@@ -5744,8 +5744,8 @@ span.exclusive {
         margin-right: 0;
         margin-left: 5px; }
     .button.button-small span:hover {
-      background: #575757;
-      border-color: #303030 #303030 #666666 #444444; }
+      background: #89c226;
+      border-color: #0187d0; }
 
 .button.button-medium {
   font-size: 17px;

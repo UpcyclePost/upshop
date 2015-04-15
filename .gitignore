@@ -24,6 +24,13 @@ tools/smarty*/compile/*.php
 themes/default/cache/*.js
 themes/default/cache/*.css
 
+themes/uptheme/cache/*.js
+themes/uptheme/cache/*.css
+
+_login/
+admin533wc9uzv/backups/*
+
 # Ignore files on root directory
 robots.txt
 sitemap.xml
+.htaccess
