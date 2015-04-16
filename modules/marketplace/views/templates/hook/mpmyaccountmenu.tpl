@@ -1,10 +1,5 @@
-﻿<style type="text/css">
-.col-lg-4{
-	clear:both !important;
-}
-</style>	
-<h1 class="page-heading">{l s='Marketplace Account' mod='marketplace'}</h1>
-<p class="info-account">{l s='Here you can manage marktplace shop.' mod='marketplace'}</p>
+﻿<h1 class="page-heading">{l s='Marketplace Account' mod='marketplace'}</h1>
+<p class="info-account">{l s='Manage your shop.' mod='marketplace'}</p>
 {if $is_seller==1}
 	<li class="lnk_wishlist">
 		<a title="Account Dashboard" href="{$account_dashboard|addslashes}">
@@ -51,7 +46,7 @@
 	<li class="lnk_wishlist">
 		<a title="My order" href="{$my_order|addslashes}">
 			<i class="icon-gift"></i>
-			<span>{l s='My order' mod='marketplace'}</span>
+			<span>{l s='My orders' mod='marketplace'}</span>
 		</a>
 	</li>
 	<li class="lnk_wishlist">
