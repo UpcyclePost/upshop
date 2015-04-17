@@ -1,0 +1,8 @@
+.mplink {
+	float:left;
+	width:100%;
+	text-align:right;
+}
+.mplink h1 a {
+	color:#0088CC !important;
+}

@@ -1,0 +1,176 @@
+#left_column {
+	display:none !important;
+}
+#right_column {
+	display:none !important;
+}
+.mplink {
+	display:none !important;
+}
+#center_column {
+	width:94%;
+	padding:3%;
+	padding-top:5px;
+	padding-bottom:5px;
+}
+.left {
+	float:left;
+}
+.right {
+	float:right;
+}
+.full {
+	width:100%;
+}
+.half {
+	width:45%;
+}
+#wk_mp_header {
+    border-bottom: 1px solid #D7D7D4;
+    color: #666666;
+    margin: 18px -10px 0;
+    padding: 18px 0;
+    text-align: center;
+}
+
+#wk_mp_header h1 {
+    color: #666666;
+    font-family: "Guardian-EgypTT",Georgia,serif;
+    font-size: 32px;
+    line-height: 42px;
+    margin-bottom: 9px;
+}
+#wk_mp_header p {
+    margin-bottom: 0;
+}
+
+.wk_profiledata {
+    color: #333333;
+    font-size: 13px;
+    line-height: 1.7;
+    margin-top: 10px;
+}
+
+.list_seller_product {
+    border: 1px solid #CCCCCC;
+    display: inline-block;
+    float: left;
+    margin-top: 10px;
+    padding: 10px;
+    width: 98%;
+}
+
+.list_seller_product .label {
+    color: #666666;
+    font-family: "Guardian-EgypTT",Georgia,serif;
+    font-size: 16px;
+    letter-spacing: 0.5px;
+}
+.list_seller_product a {
+    position: relative;
+    text-decoration: none;
+}
+
+.list_seller_product a img {
+    border: 1px solid #CCCCCC;
+    height: 93px;
+    margin: 3px;
+    width: 99px;
+}
+
+.mp_landing_hover {
+    background: url("../../img/background.png") repeat scroll 0 0 rgba(0, 0, 0, 0);
+    color: #FFFFFF;
+    display: none;
+    font-weight: bold;
+    height: 51px;
+    left: 4px;
+    opacity: 1;
+    padding-top: 43px;
+    position: absolute;
+    text-align: center;
+    text-transform: uppercase;
+    top: -88px;
+    width: 99px;
+}
+.list_seller_product a:hover .mp_landing_hover {
+    display: block;
+}
+.sellelistcontainer {
+	margin-bottom:30px;
+}
+.fullsellerlist {
+	margin-bottom:30px;
+}
+.list_seller_header {
+    border-bottom: 1px solid #CCCCCC;
+    display: inline-block;
+    float: left;
+    margin-top: 10px;
+    padding: 10px 10px 0;
+    width: 98%;
+}
+
+.list_seller_header .label {
+    color: #666666;
+    font-family: "Guardian-EgypTT",Georgia,serif;
+    font-size: 16px;
+    letter-spacing: 0.5px;
+	float:left;
+	width:20%;
+}
+.search_seller_block {
+	float:right;
+	width:80%;
+}
+#search_seller_block_input {
+   
+    border-bottom: 1px solid #666666;
+    border-image: none;
+    border-left: 1px solid #666666;
+    border-right: 0 none !important;
+    border-top: 1px solid #666666;
+    color: #666666;
+   float: right;
+    height: 23px;
+    padding: 0 5px;
+    width: 130px;
+}
+
+.search_seller_block .button {
+    background: url("../../img/bg_search_submit.png") repeat-x scroll 0 0 #101010;
+    border: medium none;
+    border-radius: 0;
+    color: #FFFFFF;
+    float: right;
+    height: 25px;
+    text-transform: uppercase;
+}
+
+
+.brand_search {
+    background-color: #808080;
+    border: 1px solid #CCCCCC;
+    border-radius: 5px;
+    clear: both;
+    float: left;
+    margin-bottom: 20px;
+	margin-top: 5px;
+	text-align:center;
+	width:100%;
+}
+
+
+.brand_search .content {
+    display: inline-block;
+    padding: 15px 5px;
+    width: 99%;
+}
+
+.brand_search a {
+    color: #FFFFFF;
+    cursor: pointer;
+    padding: 2px;
+	 margin-left: 10px;
+	 font-size: 13px;
+}
