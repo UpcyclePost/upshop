@@ -35,7 +35,7 @@ class BlockBestSellers extends Module
 	{
 		$this->name = 'blockbestsellers';
 		$this->tab = 'front_office_features';
-		$this->version = '1.6.1';
+		$this->version = '1.6.2';
 		$this->author = 'PrestaShop';
 		$this->need_instance = 0;
 		$this->bootstrap = true;
@@ -98,9 +98,9 @@ class BlockBestSellers extends Module
 
 	public function _clearCache($template, $cache_id = null, $compile_id = null)
 	{
-		parent::_clearCache('blockbestsellers.tpl', $this->getCacheId('blockbestsellers-col'));
-		parent::_clearCache('blockbestsellers-home.tpl', $this->getCacheId('blockbestsellers-home'));
-		parent::_clearCache('tab.tpl', $this->getCacheId('blockbestsellers-tab'));
+		parent::_clearCache('blockbestsellers.tpl', 'blockbestsellers-col');
+		parent::_clearCache('blockbestsellers-home.tpl', 'blockbestsellers-home');
+		parent::_clearCache('tab.tpl', 'blockbestsellers-tab');
 	}
 
 	/**

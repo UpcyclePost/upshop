@@ -39,7 +39,7 @@ class BlockWishList extends Module
 	{
 		$this->name = 'blockwishlist';
 		$this->tab = 'front_office_features';
-		$this->version = '1.2.2';
+		$this->version = '1.2.3';
 		$this->author = 'PrestaShop';
 		$this->need_instance = 0;
 
@@ -141,6 +141,9 @@ class BlockWishList extends Module
 	public function hookDisplayProductListFunctionalButtons($params)
 	{
 		//TODO : Add cache
+		if ($this->context->customer->isLogged())
+			$this->smarty->assign('wishlists', Wishlist::getByIdCustomer($this->context->customer->id));
+
 		$this->smarty->assign('product', $params['product']);
 		return $this->display(__FILE__, 'blockwishlist_button.tpl');
 	}

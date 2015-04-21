@@ -38,7 +38,7 @@ class BlockSpecials extends Module
 	{
 		$this->name = 'blockspecials';
 		$this->tab = 'pricing_promotion';
-		$this->version = '1.1.5';
+		$this->version = '1.1.6';
 		$this->author = 'PrestaShop';
 		$this->need_instance = 0;
 
@@ -260,7 +260,7 @@ class BlockSpecials extends Module
 	public function _clearCache($template, $cache_id = null, $compile_id = null)
 	{
 		parent::_clearCache('blockspecials.tpl');
-		parent::_clearCache('blockspecials-home.tpl', $this->getCacheId('blockspecials-home'));
-		parent::_clearCache('tab.tpl', $this->getCacheId('blockspecials-tab'));
+		parent::_clearCache('blockspecials-home.tpl', 'blockspecials-home');
+		parent::_clearCache('tab.tpl', 'blockspecials-tab');
 	}
 }

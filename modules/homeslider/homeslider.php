@@ -45,7 +45,7 @@ class HomeSlider extends Module
 	{
 		$this->name = 'homeslider';
 		$this->tab = 'front_office_features';
-		$this->version = '1.4.8';
+		$this->version = '1.4.9';
 		$this->author = 'PrestaShop';
 		$this->need_instance = 0;
 		$this->secure_key = Tools::encrypt($this->name);
@@ -589,11 +589,12 @@ class HomeSlider extends Module
 		$this->context->controller->addJS($this->_path.'js/homeslider.js');
 		$this->context->controller->addJqueryPlugin(array('bxslider'));
 
+		$config = $this->getConfigFieldsValues();
 		$slider = array(
-			'width' => Configuration::get('HOMESLIDER_WIDTH'),
-			'speed' => Configuration::get('HOMESLIDER_SPEED'),
-			'pause' => Configuration::get('HOMESLIDER_PAUSE'),
-			'loop' => (bool)Configuration::get('HOMESLIDER_LOOP'),
+			'width' => $config['HOMESLIDER_WIDTH'],
+			'speed' => $config['HOMESLIDER_SPEED'],
+			'pause' => $config['HOMESLIDER_PAUSE'],
+			'loop' => (bool)$config['HOMESLIDER_LOOP'],
 		);
 
 		$this->smarty->assign('homeslider', $slider);

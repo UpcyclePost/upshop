@@ -1,1 +1,62 @@
-<div class="left header_link">	<h1>Banner Collection</h1></div><div class="back_link">	<div class="home_link">		<a href="{$dash_board_link}"><img src="{$img_dir}icon/home.gif" style="margin-top:11px;"></a> 	</div></div><div class="main_banner_div">	<input type="hidden" id="banner_front_link" value="{$banner_front_link}"/>	<div class="banner_header_div">		<a style="float:right; margin-right: 10px; color:blue;" href="{$link_add_new}">Add New Banner</a>	</div>	<div class="banner_list_div">		<div class="list_header_div">			<span class="td" style="width:30%;">Banner Name</span>			<span class="td" style="width:30%;">Image</span>			<span class="td" style="width:12%;">Action</span>			<span class="td" style="width:11%;">Active</span>		</div>	{if $banner == 1}		{foreach $banner_list as $list}		<div class="all_banner_div" id="mp_banner_{$list['id']}">			<span class="td" style="width:30%;">{$list['name']}</span>			<span class="td" style="width:30%;">				<a class="fancybox" href="{$modules_dir}/mpshopbanner/img/banner_image/{$list['id']}.jpg">					<img width="50" height="50" src="{$modules_dir}/mpshopbanner/img/banner_image/{$list['id']}.jpg">				</a>			</span>			<span class="td" style="width:12%;">				{if !$list['is_active']}					<img alt="Delete" title="Delete" style="cursor:pointer;" class="mp_delete_banner" mp_banner_id="{$list['id']}" src="{$img_ps_dir}admin/delete.gif">				{/if}			</span>			<span class="td" style="width:11%;">				{if $list['is_active']}					<img alt="Enabled" title="Enabled" class="mp_banner_status" src="{$img_ps_dir}admin/enabled-2.gif">									{else}					<a href="{$banner_front_link}&mp_banner_id={$list['id']}&fun=change_status">						<img alt="Disabled" title="Disabled" class="mp_banner_status"  src="{$img_ps_dir}admin/disabled.gif">					</a>				{/if}			</span>		</div>		{/foreach}	{/if}	</div></div><script type="text/javascript">	   $('.fancybox').fancybox();   </script>
+<div class="main_block">
+	{hook h="DisplayMpmenuhook"}
+	<div class="dashboard_content">
+		<div class="page-title">
+			<span>{l s='Banner Collection' mod='mpshopbanner'}</span>
+		</div>
+		<div class="wk_right_col">
+			<div class="wk_banner_head">
+				<a class="btn btn-default button button-small" href="{$link_add_new}">
+					<span>{l s='Add New' mod='mpshopbanner'}</span>
+				</a>
+			</div>
+		<div class="wk_banner_list">
+			<table class="data-table" style="width:100%;">
+		  	<input type="hidden" id="banner_front_link" value="{$banner_front_link}"/>
+		    <thead>
+		    	<tr class="first last">
+			      <th>{l s='Banner Name' mod='mpshopbanner'}</th>
+			      <th>{l s='Image' mod='mpshopbanner'}</th>
+			      <th>{l s='Action' mod='mpshopbanner'}</th>
+			      <th>{l s='Status' mod='mpshopbanner'}</th>
+		      	</tr>
+		    </thead>
+		    <tbody>
+			{if $banner == 1}	
+			{foreach $banner_list as $list}		
+				<tr class="even" id="mp_banner_{$list['id']}">
+				<td>{$list['name']}</td>
+				<td>
+					<a class="fancybox" href="{$modules_dir}/mpshopbanner/img/banner_image/{$list['id']}.jpg">
+						<img width="100" height="50" src="{$modules_dir}/mpshopbanner/img/banner_image/{$list['id']}.jpg">
+					</a>
+				</td>
+				<td>
+					{if !$list['is_active']}					
+						<img alt="Delete" title="Delete" style="cursor:pointer;" class="mp_delete_banner" mp_banner_id="{$list['id']}" src="{$img_ps_dir}admin/delete.gif">
+					{/if}			
+				</td>
+				<td>
+					{if $list['is_active']}					
+						<img alt="Enabled" title="Enabled" class="mp_banner_status" src="{$img_ps_dir}admin/enabled-2.gif">
+					{else}					
+						<a href="{$link->getModuleLink('mpshopbanner', 'bannerfrontaction', ['shop' => {$id_shop}, 'mp_banner_id' => {$list['id']}, 'fun' => 'change_status'])}">
+							<img alt="Disabled" title="Disabled" class="mp_banner_status"  src="{$img_ps_dir}admin/disabled.gif">
+						</a>
+					{/if}			
+				</td>
+				</tr>
+			{/foreach}	
+			{/if}
+			</tbody>
+		</table>
+		{if $banner == 0}
+			<p style="text-align:center;font-weight:bold;">{l s='No data found' mod='mpshopbanner'}</p>
+		{/if}	
+		</div>
+</div>
+</div>
+</div>
+<script type="text/javascript">
+  $('.fancybox').fancybox();
+</script>

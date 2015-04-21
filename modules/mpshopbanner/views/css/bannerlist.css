@@ -22,6 +22,19 @@
 .full {
 	width:100%;
 }
+.banner_error,.banner_img_error{
+    float: left;
+    width: 100%;
+    display: none;
+    text-align: center;
+    color: #C1373C;
+    margin-bottom: 10px;
+    font-weight: bold;
+}
+.banner_form{
+    float: left;
+    width: 100%;
+}
 .halfleft {
 	margin-left:5%;
 	color: #F69415;
@@ -42,11 +55,6 @@
 }
 .header_link {
 	width:70%;
-}
-.save_button{
-	font-family: Arial;
-    font-size: small;
-    width: 100px;
 }
 #back_button {
 	float: right;
@@ -156,8 +164,12 @@
 	cursor:pointer;
 }
 .reg_sel_input{
-	width:280px;
+	width:75%;
 }
 .post_message_info{
 	color:green;
+}
+.uploader
+{
+    width: 75% !important;
 }

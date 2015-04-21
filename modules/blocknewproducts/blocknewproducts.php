@@ -35,7 +35,7 @@ class BlockNewProducts extends Module
 	{
 		$this->name = 'blocknewproducts';
 		$this->tab = 'front_office_features';
-		$this->version = '1.9.5';
+		$this->version = '1.9.6';
 		$this->author = 'PrestaShop';
 		$this->need_instance = 0;
 
@@ -192,8 +192,8 @@ class BlockNewProducts extends Module
 	public function _clearCache($template, $cache_id = NULL, $compile_id = NULL)
 	{
 		parent::_clearCache('blocknewproducts.tpl');
-		parent::_clearCache('blocknewproducts_home.tpl', $this->getCacheId('blocknewproducts-home'));
-		parent::_clearCache('tab.tpl', $this->getCacheId('blocknewproducts-tab'));
+		parent::_clearCache('blocknewproducts_home.tpl', 'blocknewproducts-home');
+		parent::_clearCache('tab.tpl', 'blocknewproducts-tab');
 	}
 
 	public function renderForm()

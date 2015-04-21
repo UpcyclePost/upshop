@@ -4,5 +4,5 @@
 			display:none !important;						
 		}
 	</style>
-	<img src="{$modules_dir}mpshopbanner/img/banner_image/{$banner_id}.jpg" height="100" width="980">
+	<img src="{$modules_dir}mpshopbanner/img/banner_image/{$banner_id}.jpg" height="100%" width="100%">
 {/if}

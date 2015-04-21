@@ -10,6 +10,22 @@
 .left {
 	float:left;
 }
+
+@media only screen and (max-width:768px){
+    .wk_banner_list{
+        overflow: scroll;
+    }
+}
+.wk_banner_list{
+    float: left;
+    width: 100%;
+}
+.wk_banner_head{
+    float: left;
+    margin-bottom: 20px;
+    text-align: right;
+    width: 100%;
+}
 .header_link {
 	width:70%;
 }

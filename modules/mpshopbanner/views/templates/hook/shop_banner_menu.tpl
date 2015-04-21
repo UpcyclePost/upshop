@@ -1,15 +1,15 @@
 <link media="all" type="text/css" rel="stylesheet" href="{$module_dir}views/css/bannermenu.css" />
 {if $mpmenu==0}
-	<li class="lnk_wishlist blog_view" style="width: 105px;">
-		<img class="icon" alt="plan detail" src="{$module_dir}/img/banner.gif">
-		<a title="Shop Banner" href="{$viewbannerlist}" target="_blank">
-			{l s='Banner' mod='mpshopbanner'}			
+	<li class="lnk_wishlist">
+		<a title="Shop Banner" href="{$viewbannerlist}">
+			<i class="icon-flag"></i>
+			<span>{l s='Banner' mod='mpshopbanner'}</span>
 		</a>
 	</li>
 {else}
-	<li class="blog_view">
+	<li {if $logic=='banner'}class="menu_active"{/if}>
 		<span>
-			<a title="Shop Banner" href="{$viewbannerlist}" target="_blank">
+			<a title="Shop Banner" href="{$viewbannerlist}">
 				{l s='Banner' mod='mpshopbanner'}
 			</a>
 		</span>
