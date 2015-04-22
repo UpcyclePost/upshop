@@ -14,6 +14,7 @@ menu, nav, output, ruby, section, summary,
 time, mark, audio, video {
   margin: 0;
   padding: 0;
+  //border: solid 1px;
   border: 0;
   font: inherit;
   font-size: 100%;
@@ -988,7 +989,7 @@ header .row #header_logo,
     margin-left: 91.66667%; } }
 @media (min-width: 1200px) {
   .container {
-    max-width: 1170px; }
+    max-width: 1280px; }
 
   .col-lg-1,
   .col-lg-2,
@@ -5482,7 +5483,7 @@ textarea {
 #columns {
   position: relative;
   padding-bottom: 50px;
-  padding-top: 160px; }
+  padding-top: 130px; }
 
 #index .tab-content {
   margin-top: 35px;
@@ -5510,7 +5511,7 @@ header {
     header .row > .container {
       position: relative; }
     header .row #header_logo {
-      padding-top: 15px; }
+      padding-top: 25px; }
       @media (max-width: 992px) {
         header .row #header_logo {
           padding-top: 40px; } }
@@ -5752,7 +5753,7 @@ span.exclusive {
   line-height: 21px;
   color: #fff;
   padding: 0;
-  font-weight: bold;
+  font-weight: normal;
   background: #89c226;
   border: 1px solid;
   border-color: #0187d0;

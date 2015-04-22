@@ -1,3 +1,11 @@
-<div class="mplink">
-	<h1><a href="{$seller_listlink}">{l s="Marketplace Shop" mod='mpsellelist'}</a></h1>
+<!--
+<div class="mplink btn btn-default button-medium">
+<a href="{$seller_listlink}">{l s="Visit Shops" mod='mpsellerlist'}</a>
 </div>
+-->
+
+
+<a href="{$seller_listlink}" class="mplink button btn btn-default button-medium" title="{l s='Visit Shops'}">
+<span>{l s='Visit Shops'}<i class="icon-chevron-right right"></i></span>
+</a>
+

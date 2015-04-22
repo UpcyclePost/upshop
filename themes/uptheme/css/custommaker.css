@@ -55,14 +55,6 @@
 }
 
 
-
-
-#search_block_top .btn.button-search{
-    background: #89c226;
-}
-
-
-
 header .nav, #languages-block-top ul, #currencies-block-top ul, #currencies-block-top div.current:hover, #currencies-block-top div.current.active{
     background: #0187d0;
 }
