@@ -1,11 +1,7 @@
-<!--
-<div class="mplink btn btn-default button-medium">
-<a href="{$seller_listlink}">{l s="Visit Shops" mod='mpsellerlist'}</a>
-</div>
--->
-
-
-<a href="{$seller_listlink}" class="mplink button btn btn-default button-medium" title="{l s='Visit Shops'}">
+<div class="col-sm-2 clearfix" style="padding-top:15px">
+<a href="{$seller_listlink}" class="button btn-default btn button-small" title="{l s='Visit Shops'}" style="float:right; white-space:nowrap;">
 <span>{l s='Visit Shops'}<i class="icon-chevron-right right"></i></span>
 </a>
+</div>
+
 
