@@ -340,10 +340,12 @@ class LinkCore
 	 */
 	public function getModuleLink($module, $controller = 'default', array $params = array(), $ssl = null, $id_lang = null, $id_shop = null, $relative_protocol = false)
 	{
+		// Override if going to store to go to members profile page
 		if ($controller == 'shopstore')
 			{
+			// customer profile is stored in the website field of up_customer table
 			$wsid = Context::getContext()->customer->website;
-			return '../profile/view/'.$wsid;
+			return $this->getBaseLink($id_shop, $ssl, $relative_protocol).'../profile/view/'.$wsid;
 			}
 		else
 		{
