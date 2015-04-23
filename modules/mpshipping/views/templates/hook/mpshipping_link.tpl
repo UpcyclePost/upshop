@@ -2,14 +2,14 @@
 	<li class="lnk_wishlist">
 		<a title="Shipping" href="{$sellershippinglist}">
 			<i class="icon-truck"></i>
-			<span>{l s='Shipping Method' mod='mpshipping'}</span>
+			<span>{l s='Shipping Methods' mod='mpshipping'}</span>
 		</a>
 	</li>
 {else}
 	<li>
 		<span>
-			<a title="Mp Shipping" href="{$sellershippinglist}" target="_blank">
-				{l s='Shipping Method' mod='mpshipping'}
+			<a title="Mp Shipping" href="{$sellershippinglist}">
+				{l s='Shipping Methods' mod='mpshipping'}
 			</a>
 		</span>
 	</li>

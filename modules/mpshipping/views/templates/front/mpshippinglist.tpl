@@ -1,8 +1,15 @@
+{capture name=path}
+        <a href="{$link->getPageLink('my-account', true)|escape:'html':'UTF-8'}">
+                {l s='My account'}
+        </a>
+        <span class="navigation-pipe">{$navigationPipe}</span>
+        <span class="navigation_page">{l s='Shipping Methods'}</span>
+{/capture}
 <div class="shipping_list_container left">
 <div class="box-account box-recent">
 	<div class="box-head">
 		<div class="box-head-left">
-			<h2>{l s='Shipping Plan' mod='mpshipping'}</h2>
+			<h2>{l s='Shipping Methods' mod='mpshipping'}</h2>
 		</div>
 		<div class="box-head-right">
 			<a href="{$dash_board_link}">

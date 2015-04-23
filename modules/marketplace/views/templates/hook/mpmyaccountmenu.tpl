@@ -1,6 +1,33 @@
 ﻿<h1 class="page-heading">{l s='Marketplace Account' mod='marketplace'}</h1>
-<p class="info-account">{l s='Manage your shop.' mod='marketplace'}</p>
+<p class="info-account">{l s='View your shop.' mod='marketplace'}</p>
 {if $is_seller==1}
+        <li class="lnk_wishlist">
+                <a title="Seller Profile" href="{$seller_profile|addslashes}">
+                        <i class="icon-file"></i>
+                        <span>{l s='View Seller Profile' mod='marketplace'}</span>
+                </a>
+        </li>
+        <li class="lnk_wishlist">
+                <a title="View Shop" href="{$link_store|addslashes}">
+                        <i class="icon-shopping-cart"></i>
+                        <span>{l s='View Shop' mod='marketplace'}</span>
+                </a>
+        </li>
+        <li class="lnk_wishlist">
+                <a title="View Collection" href="{$link_collection|addslashes}">
+                        <i class="icon-tags"></i>
+                        <span>{l s='View Collection' mod='marketplace'}</span>
+                </a>
+        </li>
+</div>
+{/if}
+
+{if $is_seller==1}
+<div class="col-xs-12 col-sm-6 col-lg-4">
+<ul class="myaccount-link-list">
+<br>
+<h1 class="page-heading">{l s='Marketplace Account' mod='marketplace'}</h1>
+<p class="info-account">{l s='Manage your shop.' mod='marketplace'}</p>
 	<li class="lnk_wishlist">
 		<a title="Account Dashboard" href="{$account_dashboard|addslashes}">
 			<i class="icon-dashboard"></i>
@@ -11,24 +38,6 @@
 		<a title="Edit Profile" href="{$edit_profile|addslashes}">
 			<i class="icon-pencil"></i>
 			<span>{l s='Edit Profile' mod='marketplace'}</span>
-		</a>
-	</li>
-	<li class="lnk_wishlist">
-		<a title="Seller Profile" href="{$seller_profile|addslashes}" target="_blank">
-			<i class="icon-file"></i>
-			<span>{l s='Seller Profile' mod='marketplace'}</span>
-		</a>
-	</li>
-	<li class="lnk_wishlist">
-		<a title="View Shop" href="{$link_store|addslashes}" target="_blank">
-			<i class="icon-shopping-cart"></i>
-			<span>{l s='Shop' mod='marketplace'}</span>
-		</a>
-	</li>
-	<li class="lnk_wishlist">
-		<a title="View Collection" href="{$link_collection|addslashes}" target="_blank">
-			<i class="icon-tags"></i>
-			<span>{l s='Collection' mod='marketplace'}</span>
 		</a>
 	</li>
 	<li class="lnk_wishlist">

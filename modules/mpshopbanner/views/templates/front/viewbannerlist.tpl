@@ -1,3 +1,11 @@
+        {capture name=path}
+        <a href="{$link->getPageLink('my-account', true)|escape:'html':'UTF-8'}">
+                {l s='Marketplace account'}
+        </a>
+        <span class="navigation-pipe">{$navigationPipe}</span>
+        <span class="navigation_page">{l s='Banner Collection' mod='marketplace'}</span>
+        {/capture}
+
 <div class="main_block">
 	{hook h="DisplayMpmenuhook"}
 	<div class="dashboard_content">

@@ -1406,10 +1406,9 @@ input[type="number"]::-webkit-outer-spin-button, input[type="number"]::-webkit-i
   -webkit-transition: border-color ease-in-out 0.15s, box-shadow ease-in-out 0.15s;
   transition: border-color ease-in-out 0.15s, box-shadow ease-in-out 0.15s; }
   .form-control:focus {
-    border-color: #66afe9;
     outline: 0;
-    -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 8px rgba(102, 175, 233, 0.6);
-    box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 8px rgba(102, 175, 233, 0.6); }
+    -webkit-box-shadow: 0 0 8px rgba(103, 174, 233, 0.6);
+    box-shadow: 0 0 8px rgba(103, 174, 233, 0.6); }
   .form-control[disabled], .form-control[readonly], fieldset[disabled] .form-control {
     cursor: not-allowed;
     background-color: #eeeeee; }
@@ -5493,7 +5492,7 @@ header {
   z-index: 1;
   position: fixed;
   background: #fff;
-  padding-bottom: 15px;
+  padding-bottom: 5px;
   width: 100%; }
   header .banner {
     background: black;

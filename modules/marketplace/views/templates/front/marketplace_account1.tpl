@@ -41,7 +41,14 @@
 <div class="main_block" >
 	{hook h="DisplayMpmenuhook"}
 	{if $logic==1}
-	{capture name=path}{l s='Dashboard' mod='marketplace'}{/capture}
+	{capture name=path}
+        <a href="{$link->getPageLink('my-account', true)|escape:'html':'UTF-8'}">
+                {l s='Marketplace account'}
+        </a>
+        <span class="navigation-pipe">{$navigationPipe}</span>
+        <span class="navigation_page">{l s='Dashboard' mod='marketplace'}</span>
+	{/capture}
+
 	<div class="dashboard_content">
 			<div class="dashboard">
 				<div class="page-title">
@@ -180,7 +187,13 @@
 			</script>
 	</div>
 	{else if $logic==2}
-	{capture name=path}{l s='Edit Profile' mod='marketplace'}{/capture}
+	{capture name=path}
+        <a href="{$link->getPageLink('my-account', true)|escape:'html':'UTF-8'}">
+                {l s='Marketplace account'}
+        </a>
+        <span class="navigation-pipe">{$navigationPipe}</span>
+        <span class="navigation_page">{l s='Edit Profile' mod='marketplace'}</span>
+	{/capture}
 	<div class="dashboard_content">
 		{if $is_profile_updated == 1}
 			<p class="alert alert-success">{l s='Profile information successfully updated.' mod='marketplace'}</p>
@@ -363,7 +376,13 @@
 		</div>
 	</div>
 	{else if $logic==3}
-	{capture name=path}{l s='Product List' mod='marketplace'}{/capture}
+        {capture name=path}
+        <a href="{$link->getPageLink('my-account', true)|escape:'html':'UTF-8'}">
+                {l s='Marketplace account'}
+        </a>
+        <span class="navigation-pipe">{$navigationPipe}</span>
+        <span class="navigation_page">{l s='Product List' mod='marketplace'}</span>
+        {/capture}
 			<div class="dashboard_content">
 				{if $is_deleted == 1}
 					<p class="alert alert-success">{l s='Deleted Successful' mod='marketplace'}</p>
@@ -595,7 +614,14 @@
 				{hook h="DisplayMpproductdetailfooterhook"}
 			</div>
 	{else if $logic==4}
-	{capture name=path}{l s='Orders' mod='marketplace'}{/capture}
+        {capture name=path}
+        <a href="{$link->getPageLink('my-account', true)|escape:'html':'UTF-8'}">
+                {l s='Marketplace account'}
+        </a>
+        <span class="navigation-pipe">{$navigationPipe}</span>
+        <span class="navigation_page">{l s='My Orders' mod='marketplace'}</span>
+        {/capture}
+
 		<div class="dashboard_content">
 		<div class="dashboard">
 			<div class="page-title">
@@ -692,7 +718,14 @@
 				});
 		</script>
 	{else if $logic==5}
-	{capture name=path}{l s='Payment Details' mod='marketplace'}{/capture}
+        {capture name=path}
+        <a href="{$link->getPageLink('my-account', true)|escape:'html':'UTF-8'}">
+                {l s='Marketplace account'}
+        </a>
+        <span class="navigation-pipe">{$navigationPipe}</span>
+        <span class="navigation_page">{l s='Payment Details' mod='marketplace'}</span>
+        {/capture}
+
 	<div class="dashboard_content">
 		<div class="dashboard">
 			<div class="page-title">

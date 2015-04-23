@@ -25,26 +25,6 @@
 					</span>
 				</li>
 
-				<li>
-					<span>
-						<a href="{$seller_profile|escape:'html':'UTF-8'}" title="Seller Profile" target="_blank">{l s='Seller Profile' mod='marketplace'}</a>
-					</span>
-				</li>
-				
-
-				<li>
-					<span>
-						<a href="{$link_store|escape:'html':'UTF-8'}" title="View Shop" target="_blank">{l s='Shop' mod='marketplace'}</a>
-					</span>
-				</li>
-				
-
-				<li>
-					<span>
-						<a href="{$link_collection|escape:'html':'UTF-8'}" title="View Collection" target="_blank">{l s='Collection' mod='marketplace'}</a>
-					</span>
-				</li>
-				
 
 				<li {if $logic=='add_product'}class="menu_active"{/if}>
 					<span>
@@ -62,7 +42,7 @@
 
 				<li {if $logic==4}class="menu_active"{/if}>
 					<span>
-						<a href="{$my_order|escape:'html':'UTF-8'}" title="My order">{l s='My Order' mod='marketplace'}</a>
+						<a href="{$my_order|escape:'html':'UTF-8'}" title="My order">{l s='My Orders' mod='marketplace'}</a>
 					</span>
 				</li>
 				
@@ -72,6 +52,29 @@
 					</span>
 				</li>					
 				{hook h="DisplayMpmenuhookext"}
+                                <li style="border-top: solid 2px #0187d0">
+                                </li>
+
+                                <li>
+                                        <span>
+                                                <a href="{$seller_profile|escape:'html':'UTF-8'}" title="Seller Profile">{l s='View Seller Profile' mod='marketplace'}</a>
+                                        </span>
+                                </li>
+
+
+                                <li>
+                                        <span>
+                                                <a href="{$link_store|escape:'html':'UTF-8'}" title="View Shop">{l s='View Shop' mod='marketplace'}</a>
+                                        </span>
+                                </li>
+
+
+                                <li>
+                                        <span>
+                                                <a href="{$link_collection|escape:'html':'UTF-8'}" title="View Collection">{l s='View Collection' mod='marketplace'}</a>
+                                        </span>
+                                </li>
+
 			</ul>
 		</div>
 	{/if}
