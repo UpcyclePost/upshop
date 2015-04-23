@@ -340,6 +340,13 @@ class LinkCore
 	 */
 	public function getModuleLink($module, $controller = 'default', array $params = array(), $ssl = null, $id_lang = null, $id_shop = null, $relative_protocol = false)
 	{
+		if ($controller == 'shopstore')
+			{
+			$wsid = Context::getContext()->customer->website;
+			return '../profile/view/'.$wsid;
+			}
+		else
+		{
 		if (!$id_lang)
 			$id_lang = Context::getContext()->language->id;
 
@@ -354,6 +361,7 @@ class LinkCore
 			return $this->getPageLink('module-'.$module.'-'.$controller, $ssl, $id_lang, $params);
 		else
 			return $url.Dispatcher::getInstance()->createUrl('module', $id_lang, $params, $this->allow, '', $id_shop);
+		}
 	}
 
 	/**

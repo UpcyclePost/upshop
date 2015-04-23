@@ -28,7 +28,7 @@
 
 				<li {if $logic=='add_product'}class="menu_active"{/if}>
 					<span>
-						<a href="{$add_product|escape:'html':'UTF-8'}" title="Add product" target="_blank">{l s='Add Product' mod='marketplace'}</a>
+						<a href="{$add_product|escape:'html':'UTF-8'}" title="Add Product">{l s='Add Product' mod='marketplace'}</a>
 					</span>
 				</li>
 				
@@ -42,7 +42,7 @@
 
 				<li {if $logic==4}class="menu_active"{/if}>
 					<span>
-						<a href="{$my_order|escape:'html':'UTF-8'}" title="My order">{l s='My Orders' mod='marketplace'}</a>
+						<a href="{$my_order|escape:'html':'UTF-8'}" title="My Orders">{l s='My Orders' mod='marketplace'}</a>
 					</span>
 				</li>
 				
@@ -57,7 +57,7 @@
 
                                 <li>
                                         <span>
-                                                <a href="{$seller_profile|escape:'html':'UTF-8'}" title="Seller Profile">{l s='View Seller Profile' mod='marketplace'}</a>
+                                                <a href="{$seller_profile|escape:'html':'UTF-8'}" title="View Seller Profile">{l s='View Seller Profile' mod='marketplace'}</a>
                                         </span>
                                 </li>
 

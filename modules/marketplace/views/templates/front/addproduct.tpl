@@ -52,7 +52,14 @@ $(document).ready(function() {
 		</div>
 	{/if}
 
-{capture name=path}{l s='Add Product' mod='marketplace'}{/capture}
+        {capture name=path}
+        <a href="{$link->getPageLink('my-account', true)|escape:'html':'UTF-8'}">
+                {l s='Marketplace account'}
+        </a>
+        <span class="navigation-pipe">{$navigationPipe}</span>
+        <span class="navigation_page">{l s='Add Product' mod='marketplace'}</span>
+        {/capture}
+
 {if $product_upload}
 	{if $product_upload==1}
 		<p class="alert alert-success">{l s='Your product uploaded successfully' mod='marketplace'}</p>
