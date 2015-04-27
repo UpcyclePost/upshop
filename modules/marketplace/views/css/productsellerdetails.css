@@ -2,9 +2,12 @@
 	float: left;
 	width: 100%;
     background-color:#F6F6F6;
-    border-bottom: 3px solid #D5D3D4;
-    font-family: open sans;
+    border-bottom: 1px solid #D5D3D4;
+    border-left: 1px solid #D5D3D4;
+    border-right: 1px solid #D5D3D4;
+    font-family: inherit;
     padding:10px;
+    margin-top: -20px;
 }
 .sellerinfo{
 	float: left;

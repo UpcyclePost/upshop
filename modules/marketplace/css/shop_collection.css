@@ -99,7 +99,7 @@
 }
 .main_block{
     float: left;
-    font-family: open sans;
+    font-family: inherit;
     font-size: 13px;
     width: 100%;
 }
@@ -113,7 +113,7 @@
 .wk_catg_list {
     border-top: 4px solid #333333;
     float: left;
-    font-family: "Arial";
+    font-family: inherit;
     font-size: 13px;
     width: 100%;
 }

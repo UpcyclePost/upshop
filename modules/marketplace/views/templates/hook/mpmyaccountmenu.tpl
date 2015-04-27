@@ -2,23 +2,26 @@
 <p class="info-account">{l s='View your shop.' mod='marketplace'}</p>
 {if $is_seller==1}
         <li class="lnk_wishlist">
-                <a title="Seller Profile" href="{$seller_profile|addslashes}">
-                        <i class="icon-file"></i>
-                        <span>{l s='View Seller Profile' mod='marketplace'}</span>
-                </a>
-        </li>
-        <li class="lnk_wishlist">
                 <a title="View Shop" href="{$link_store|addslashes}">
                         <i class="icon-shopping-cart"></i>
                         <span>{l s='View Shop' mod='marketplace'}</span>
                 </a>
         </li>
         <li class="lnk_wishlist">
+                <a title="Seller Profile" href="{$seller_profile|addslashes}">
+                        <i class="icon-file"></i>
+                        <span>{l s='View Seller Profile' mod='marketplace'}</span>
+                </a>
+        </li>
+        <li class="lnk_wishlist">
+        <!--
+	<li class="lnk_wishlist">
                 <a title="View Collection" href="{$link_collection|addslashes}">
                         <i class="icon-tags"></i>
                         <span>{l s='View Collection' mod='marketplace'}</span>
                 </a>
         </li>
+	-->
 </div>
 {/if}
 

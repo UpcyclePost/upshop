@@ -155,6 +155,7 @@
 				<label>{l s='Reference:'} </label>
 				<span class="editable" itemprop="sku">{if !isset($groups)}{$product->reference|escape:'html':'UTF-8'}{/if}</span>
 			</p>
+			<!--
 			{if !$product->is_virtual && $product->condition}
 			<p id="product_condition">
 				<label>{l s='Condition:'} </label>
@@ -170,6 +171,7 @@
 				{/if}
 			</p>
 			{/if}
+			-->
 			{if $product->description_short || $packItems|@count > 0}
 				<div id="short_description_block">
 					{if $product->description_short}

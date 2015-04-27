@@ -14,10 +14,13 @@
 				<label class="wk-mail-icon">{l s='Seller email' mod='marketplace'} - </label>
 				<span>{$seller_email|escape:'html':'UTF-8'}</span>
 			</div>
+			{if $mkt_seller_info['phone']}
 			<div class="wk_row">
 				<label class="wk-phone-icon">{l s='Phone' mod='marketplace'} - </label>
 				<span>{$mkt_seller_info['phone']|escape:'html':'UTF-8'}</span>
 			</div>
+			{/if}
+			{if $facebook_id || $twitter_id}
 			<div class="wk_row">
 				<label class="wk-share-icon">{l s='Social Profile' mod='marketplace'} - </label>
 				<span class="wk-social-icon">
@@ -29,16 +32,19 @@
 					{/if}
 				</span>
 			</div>
+			{/if}
 			{hook h='displayMpSellerDetailTabLeft'}
 		</div>	
 		<div class="sellerlink">
 			<ul>
+				<!--
 				<li><a id="profileconnect" title="Visit Profile" target="_blank" href="{$link_profile|addslashes}">{l s='View Profile' mod='marketplace'}</a></li> 
 				<li>
 					<a id="siteconnect" title="Visit Collection" target="_blank" href="{$link_collection|addslashes}">{l s='View Collection' mod='marketplace'}</a>
 				</li>
+				-->
 				<li>
-					<a id="storeconnect" title="Visit Store" target="_blank" href="{$link_store|addslashes}">{l s='View Store' mod='marketplace'}</a>
+					<a id="storeconnect" title="Visit Shop" target="_blank" href="{$link_store|addslashes}">{l s='View Shop' mod='marketplace'}</a>
 				</li>
 				<li>
 					<a href="#wk_question_form" class="open-question-form" title="{l s='Contact Seller' mod='marketplace'}">{l s='Contact Seller' mod='marketplace'}</a>
