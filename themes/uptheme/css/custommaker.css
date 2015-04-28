@@ -127,30 +127,14 @@ header .nav, #languages-block-top ul, #currencies-block-top ul, #currencies-bloc
     background-color: #0187d0 !important;
 }
 
-.columns-container .block .title_block, .columns-container .block h4, .content_scene_cat{
-    border-top-color: #0187d0;
-}
 .top-hr{
     background: #0187d0;
 }
 
 
-.columns-container .block .title_block, .columns-container .block h4, #home-page-tabs > li a, .block .title_block a, .block h4 a, .block .title_block a:hover, .block h4 a:hover, #categories_block_left li a:hover, #categories_block_left li li a.selected{
-    color: #0187d0;
-}
-#categories_block_left li span.grower, #home-page-tabs > li.active a, #home-page-tabs > li a:hover{
-    background-color: #0187d0;
-}
 #home-page-tabs > li{
     border-left-color: #0187d0;
 }
-
-
-
-
-
-
-
 
 
 
