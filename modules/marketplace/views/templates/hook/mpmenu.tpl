@@ -69,11 +69,13 @@
                                 </li>
 
 
+				<!--
                                 <li>
                                         <span>
                                                 <a href="{$link_collection|escape:'html':'UTF-8'}" title="View Collection">{l s='View Collection' mod='marketplace'}</a>
                                         </span>
                                 </li>
+				-->
 
 			</ul>
 		</div>

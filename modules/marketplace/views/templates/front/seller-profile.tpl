@@ -9,11 +9,13 @@
 	<div style="margin-bottom:10px;">
 		<img class="left_img" src="{$seller_img_path|escape:'html':'UTF-8'}" alt="Seller Image"/>
 	</div>
+	<!--
 	<div style="float:left;width:100%;">
 	<a class="button btn btn-default button-medium" href="{$link->getModuleLink('marketplace','shopcollection',['shop'=>{$id_shop|escape:'html':'UTF-8'}])|escape:'html':'UTF-8'}">
 		<span>{l s='View Collection' mod='marketplace'}</span>
 	</a>
 	</div>
+	-->
 	{hook h='DisplayMpsplefthook'}
 </div>
 <div class="dashboard_content">
