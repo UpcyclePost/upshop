@@ -58,6 +58,14 @@
                 <link href="{$css_dir}customuser.css" rel="stylesheet" type="text/css" media="screen" />
 		{$HOOK_HEADER}
 		<link rel="stylesheet" href="http{if Tools::usingSecureMode()}s{/if}://fonts.googleapis.com/css?family=Source+Sans+Pro:400,300,700,600" type="text/css" media="all" />
+		{if $page_name!='product'}
+		<meta property="og:title" content="{$meta_title|escape:'htmlall':'UTF-8'}"/>
+		<meta property="og:url" content="http://{$smarty.server.HTTP_HOST}{$smarty.server.REQUEST_URI}"/>
+		<meta property="og:site_name" content="http://www.upcyclepost.com"/>
+		<meta property="og:type" content="website">
+		<meta property="og:description" content="{$meta_description|escape:html:'UTF-8'}">
+		<meta property="og:image" content="{$img_ps_dir}logo.jpg" />
+		{/if}
 		<!--[if IE 8]>
 		<script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
 		<script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
