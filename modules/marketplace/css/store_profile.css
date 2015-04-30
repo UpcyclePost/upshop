@@ -3,7 +3,6 @@
 
 .dashboard_content {
     float: left;
-    width: 78%;
 }
 .wk_left_sidebar{
     float:left;
@@ -227,7 +226,7 @@
 .page-title {
     float: left;
     width:100%;
-    background-color: #333333;
+    background-color: #0187d0;
     overflow:hidden;
     padding: 20px;
     text-transform: uppercase;
@@ -254,12 +253,13 @@
     float:left;
     width:100%;
     text-transform: uppercase;
+    padding:20px 0 0 20px;
 }
 .box-account .box-head h2 {
     margin:0px !important;
     font-size: 14px !important;
     color: #555555;
-    font-family: Arial,Helvetica,sans-serif !important;
+    font-family: inherit;
     line-height: 1.1 !important;
     font-weight: bold !important;
 }

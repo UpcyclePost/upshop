@@ -192,7 +192,7 @@
                 {l s='Marketplace account'}
         </a>
         <span class="navigation-pipe">{$navigationPipe}</span>
-        <span class="navigation_page">{l s='Edit Profile' mod='marketplace'}</span>
+        <span class="navigation_page">{l s='Edit Seller Profile' mod='marketplace'}</span>
 	{/capture}
 	<div class="dashboard_content">
 		{if $is_profile_updated == 1}
@@ -206,7 +206,7 @@
 		{/if}
 		<div class="dashboard">
 			<div class="page-title">
-				<span>{l s='Edit Profile' mod='marketplace'}</span>
+				<span>{l s='Edit Seller Profile' mod='marketplace'}</span>
 			</div>
 			<div class="wk_right_col">
 				<div class="profile_content">
@@ -232,7 +232,7 @@
 								{else $update==0}
 									<div class="row-info">
 										<div class="update_error">
-											{l s='some error occurs while updating your profile.' mod='marketplace'}
+											{l s='an error occured while updating your profile.' mod='marketplace'}
 										</div>
 									</div>
 								{/if}
@@ -317,12 +317,14 @@
 									<label for="update_seller_name" class="control-label required">{l s='Seller Name' mod='marketplace'}</label>
 									<input class="required form-control" type="text" value="{$marketplace_seller_info['seller_name']|escape:'html':'UTF-8'}" name="update_seller_name" id="update_seller_name"/>
 								</div>
+								<!--
 								<div class="required form-group">
 									<img src="{$old_seller_logo_path|escape:'html':'UTF-8'}" width="100" height="100"><br />
 									<label class="control-label">{l s='Seller Profile Image' mod='marketplace'}</label>
 									<input class="required form-control" type="file" name="update_seller_logo" id="update_seller_logo"/>
 									<div class="info_description">{l s='Image minimum size must be 200 x 200px' mod='marketplace'}</div>
 								</div>
+								-->
 								<div class="required form-group">
 									<label for="update_shop_name" class="control-label required">{l s='Shop Name' mod='marketplace'}</label>
 									<input class="required form-control" type="text" value="{$marketplace_seller_info['shop_name']|escape:'html':'UTF-8'}" name="update_shop_name" id="update_shop_name"/>
@@ -355,12 +357,14 @@
 									<label for="update_about_shop" class="control-label">{l s='About Shop' mod='marketplace'}</label>
 									<textarea name="update_about_shop" id="update_about_shop" class="update_about_shop_detail wk_tinymce form-control">{$market_place_shop['about_us']|escape:'html':'UTF-8'}</textarea>
 								</div>
+								<!--
 								<div class="form-group">
 									<img src="{$old_shop_logo_path|escape:'html':'UTF-8'}" width="100" height="100"><br />
 									<label for="update_shop_logo" class="control-label">{l s='Shop Logo' mod='marketplace'}</label>
 									<input class="required form control" type="file" name="update_shop_logo" id="update_shop_logo"/>
 									<div class="info_description">{l s='Image minimum size must be 200 x 200px' mod='marketplace'}</div>
 								</div>
+								-->
 								{hook h="DisplayMpshopaddfooterhook"}
 								<div class="submit-button">
 									<button type="submit" id="update_profile" class="btn btn-default button button-medium">

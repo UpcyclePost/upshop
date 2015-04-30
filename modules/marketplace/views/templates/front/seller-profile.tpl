@@ -4,20 +4,30 @@
 	</p>
 {/if}
 {capture name=path}{l s='Seller Profile' mod='marketplace'}{/capture}
+        {capture name=path}
+        <a href="{$link->getPageLink('my-account', true)|escape:'html':'UTF-8'}">
+                {l s='Marketplace account'}
+        </a>
+        <span class="navigation-pipe">{$navigationPipe}</span>
+        <span class="navigation_page">{l s='Seller Profile' mod='marketplace'}</span>
+        {/capture}
+
+
+
 <div class="main_block">
+<!--
 <div class="wk_left_sidebar">
 	<div style="margin-bottom:10px;">
 		<img class="left_img" src="{$seller_img_path|escape:'html':'UTF-8'}" alt="Seller Image"/>
 	</div>
-	<!--
 	<div style="float:left;width:100%;">
 	<a class="button btn btn-default button-medium" href="{$link->getModuleLink('marketplace','shopcollection',['shop'=>{$id_shop|escape:'html':'UTF-8'}])|escape:'html':'UTF-8'}">
 		<span>{l s='View Collection' mod='marketplace'}</span>
 	</a>
 	</div>
-	-->
 	{hook h='DisplayMpsplefthook'}
 </div>
+-->
 <div class="dashboard_content">
 	<div class="page-title">
 		<span>{l s='Seller Profile' mod='marketplace'}</span>
@@ -28,8 +38,10 @@
 				<h2>{l s='About Seller' mod='marketplace'}</h2>
 				<div class="wk_border_line"></div>
 			</div>
-			<div class="box-content" style="background-color:#F6F6F6;border-bottom: 3px solid #D5D3D4;">
-				<div class="seller_name">{$market_place_seller_info['seller_name']|escape:'html':'UTF-8'}</div>
+			<div class="box-content" style="border-bottom: 3px solid #D5D3D4;">
+				<div class="seller_name">{$market_place_seller_info['seller_name']|escape:'html':'UTF-8'} 
+				<a href="{$link->getModuleLink('marketplace','shopstore',['shop'=>{$id_shop|escape:'html':'UTF-8'}])|escape:'html':'UTF-8'}" title="{l s='Visit Shop' mod='marketplace'}" class="button btn-default btn button-small"><span>{l s='Visit Shop' mod='marketplace'}<i class="icon-chevron-right right"></i></a> 
+				</div>
 				<div class="wk-left-label">
 					<div class="wk_row">
 						<label class="wk-mail-icon">{l s='Business Email -' mod='marketplace'}</label>
@@ -61,6 +73,7 @@
 				</div>
 			</div>
 		</div>	
+		<!--
 		<div class="box-account">
 			<div class="box-head">
 				<h2>{l s='Recent Products' mod='marketplace'}</h2>
@@ -96,6 +109,7 @@
 				{/if}
 			</div>
 		</div>
+		-->
 		<div class="box-account">
 			<div class="box-head">
 				<div class="wk_review_head">

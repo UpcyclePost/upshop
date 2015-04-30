@@ -7,7 +7,7 @@
 		</div>
 	{else if $is_seller==0}
 		<div class="block_content">
-			<h3>{l s='Your request for seller has been send to admin approval' mod='marketplace'}</h3>
+			<h3>{l s='Your request to create a shop has been send tfor approval' mod='marketplace'}</h3>
 		</div>
 	{else if $is_seller==1}
 		<div class="list_content">
@@ -21,7 +21,7 @@
 
 				<li {if $logic==2}class="menu_active"{/if}>
 					<span>
-						<a href="{$edit_profile|escape:'html':'UTF-8'}" title="Edit Profile">{l s='Edit Profile' mod='marketplace'}</a>
+						<a href="{$edit_profile|escape:'html':'UTF-8'}" title="Edit Seller Profile">{l s='Edit Seller Profile' mod='marketplace'}</a>
 					</span>
 				</li>
 

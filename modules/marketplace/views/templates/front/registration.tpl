@@ -8,7 +8,14 @@
 .fcevrt{}
 </style>
 
-{capture name=path}{l s='Seller Registration' mod='marketplace'}{/capture}
+        {capture name=path}
+        <a href="{$link->getPageLink('my-account', true)|escape:'html':'UTF-8'}">
+                {l s='Marketplace account'}
+        </a>
+        <span class="navigation-pipe">{$navigationPipe}</span>
+        <span class="navigation_page">{l s='Seller Registration' mod='marketplace'}</span>
+        {/capture}
+
 {if isset($img_size_error)}
 	<div class="alert alert-danger">
 		{l s='Invalid image size. Minimum image size must be 200X200.' mod='marketplace'}
@@ -42,8 +49,8 @@
 		{else}
 			<div class="alert alert-info">
 				<p>
-					{l s='You have already made a Seller Request and request has been approved by admin. ' mod='marketplace'}
-					<a class="btn btn-primary" href="{$link->getModuleLink('marketplace','addproduct')|escape:'html':'UTF-8'}">
+					{l s='Your request to create a shop has been approved.    ' mod='marketplace'}
+					<a class="btn btn-default button button-medium" style="float:right;padding:3px 8px 3px 8px;" href="{$link->getModuleLink('marketplace','addproduct')|escape:'html':'UTF-8'}">
 						{l s='Add your first product' mod='marketplace'}
 					</a>
 				</p>
@@ -54,7 +61,7 @@
 <div class="seller_registration_form">
 	<div class="container">
 		<div class="page-title">
-			<span>{l s='Seller Request' mod='marketplace'}</span>
+			<span>{l s='Open a Shop' mod='marketplace'}</span>
 		</div>
 		<div class="wk_right_col">
 		<p><sup>*</sup> {l s='Required field' mod='marketplace'}</p>
@@ -70,11 +77,13 @@
 					<textarea name="about_business"  class="about_business wk_tinymce form-control"></textarea>
 				</div>
 					 
+				<!--
 				<div class="form-group">  
 					<label for="upload_logo">{l s='Shop Logo' mod='marketplace'}</label>
 					<input class="form-control" id="upload_logo1" type="file"  name="upload_logo" />
 					<div class="info_description">{l s='Image minimum size must be 200 x 200px' mod='marketplace'}</div>
 				</div>
+				-->
 		
 				<div id="person_name" class="required form-group" >
 					<label for="person_name">{l s='Seller Name' mod='marketplace'}<sup>*</sup></label>
@@ -86,11 +95,13 @@
 					<input class="form-control" type="text" name="phone" id="phone1" maxlength="{$phone_digit|escape:'html':'UTF-8'}" />
 				</div>		 
 					
+				<!--
 				<div class="form-group">
 					<label for="phone1">{l s='Fax' mod='marketplace'}</label>
 					<input class="form-control" type="text" name="fax" id="fax1" maxlength="10" />
 					<label class="errors" id="fax_error"></label>
 				</div>
+				-->
 				
 				<div class="form-group">	
 					<label for="business_email_id1">{l s='Business Email' mod='marketplace'}<sup>*</sup></label>

@@ -1,6 +1,6 @@
 {capture name=path}
-        <a href="{$link->getPageLink('my-account', true)|escape:'html':'UTF-8'}">
-                {l s='My account'}
+        <a href="{$dash_board_link}">
+                {l s='Marketplace Dashboard'}
         </a>
         <span class="navigation-pipe">{$navigationPipe}</span>
         <span class="navigation_page">{l s='Shipping Methods'}</span>
@@ -12,9 +12,11 @@
 			<h2>{l s='Shipping Methods' mod='mpshipping'}</h2>
 		</div>
 		<div class="box-head-right">
+			<!--
 			<a href="{$dash_board_link}">
 				<img src="{$modules_dir}mpshipping/img/home.gif">
 			</a>
+			-->
 			<a class="btn btn-default button button-small" id="add_new_shipping" href="{$addnew_shipping_link}"><span>{l s='Add New' mod='mpshipping'}</span></a>
 		</div>
 	</div>

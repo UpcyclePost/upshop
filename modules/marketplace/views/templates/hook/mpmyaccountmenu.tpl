@@ -40,7 +40,7 @@
 	<li class="lnk_wishlist">
 		<a title="Edit Profile" href="{$edit_profile|addslashes}">
 			<i class="icon-pencil"></i>
-			<span>{l s='Edit Profile' mod='marketplace'}</span>
+			<span>{l s='Edit Seller Profile' mod='marketplace'}</span>
 		</a>
 	</li>
 	<li class="lnk_wishlist">
