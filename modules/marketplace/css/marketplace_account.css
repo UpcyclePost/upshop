@@ -560,7 +560,7 @@ h1
 .page-title {
   float: left;
   width:100%;
-  background-color: #333333;
+  background-color: #0187d0;
   overflow:hidden;
   padding: 20px;
   text-transform: uppercase;
@@ -569,7 +569,7 @@ h1
    font-size:20px;
 
   font-weight:normal;
-  color:#FFFFFF;
+  color:#fff;
 
 }
 h1 {
@@ -578,7 +578,7 @@ h1 {
 
   font-weight:normal;
   
-   font-family: "Arial";
+  font-family: "Inherit";
 
 }
 
