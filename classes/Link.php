@@ -345,7 +345,7 @@ class LinkCore
 			{
 			if (_PS_MODE_DEV_) 
 				{
-				print_r($params); 
+				print_r($params);
 				print_r("<br>shop ". $params['shop']);
 				}
 			// shop link may not always be to logged in users store, so let's look up the up Id for the current shop
@@ -358,7 +358,7 @@ class LinkCore
 					if ($seller_up_shopid) 
 					{
 						$up_shop_id = $seller_up_shopid['website'];
-						return $this->getBaseLink($id_shop, $ssl, $relative_protocol).'../profile/view/'.$up_shop_id;
+						return $this->getBaseLink($id_shop, $ssl, $relative_protocol).'../shops/'.$up_shop_id;
 					}
 				}
 			}
