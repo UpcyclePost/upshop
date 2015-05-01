@@ -166,30 +166,7 @@ ul.step li.step_current{
 }
 
 
-
- 
-
-
-.label-success, ul.product_list .availability span.available-now{
-    background-color: #89c226;
-}
- 
-.label-success, ul.product_list .availability span.available-now{
-    border-color: #0187d0;
-}
- 
- 
-
-
-
-
-
-
-
-
-    
-
-        
+       
         
         header{
         -webkit-box-shadow: 0px 0px 10px 0px rgba(50, 50, 50, 0.75);
