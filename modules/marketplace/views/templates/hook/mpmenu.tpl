@@ -71,7 +71,7 @@
 
                                 <li>
                                         <span>
-                                                <a href="../../profile/edit/" title="Edit Shop">{l s='Edit Shop' mod='marketplace'}</a>
+                                                <a href="../../../profile/edit/" title="Edit Shop">{l s='Edit Shop' mod='marketplace'}</a>
                                         </span>
                                 </li>
 								<!--
