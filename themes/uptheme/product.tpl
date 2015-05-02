@@ -151,6 +151,17 @@
 				<p class="online_only">{l s='Online only'}</p>
 			{/if}
 			<h1 itemprop="name">{$product->name|escape:'html':'UTF-8'}</h1>
+
+
+			<label>{l s='Seller Name' mod='marketplace'} - </label>
+			<span>{$mkt_seller_info['seller_name']|escape:'html':'UTF-8'}</span>
+			
+			<a class="btn btn-default button button-medium" id="storeconnect" title="Visit Shop" target="_blank" href="{$link_store|addslashes}">
+			<i class="fa fa-angle-double-right"></i>
+			{l s='View Shop' mod='marketplace'}
+			</a>
+			
+			
 			<p id="product_reference"{if empty($product->reference) || !$product->reference} style="display: none;"{/if}>
 				<label>{l s='Reference:'} </label>
 				<span class="editable" itemprop="sku">{if !isset($groups)}{$product->reference|escape:'html':'UTF-8'}{/if}</span>
@@ -214,7 +225,7 @@
 			</p>
 			{if $PS_STOCK_MANAGEMENT}
 				{hook h="displayProductDeliveryTime" product=$product}
-				<p class="warning_inline" id="last_quantities"{if ($product->quantity > $last_qties || $product->quantity <= 0) || $allow_oosp || !$product->available_for_order || $PS_CATALOG_MODE} style="display: none"{/if} >{l s='Warning: Last items in stock!'}</p>
+				<!--<p class="warning_inline" id="last_quantities"{if ($product->quantity > $last_qties || $product->quantity <= 0) || $allow_oosp || !$product->available_for_order || $PS_CATALOG_MODE} style="display: none"{/if} >{l s='Warning: Last items in stock!'}</p>-->
 			{/if}
 			<p id="availability_date"{if ($product->quantity > 0) || !$product->available_for_order || $PS_CATALOG_MODE || !isset($product->available_date) || $product->available_date < $smarty.now|date_format:'%Y-%m-%d'} style="display: none;"{/if}>
 				<span id="availability_date_label">{l s='Availability date:'}</span>
