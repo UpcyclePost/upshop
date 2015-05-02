@@ -5771,9 +5771,9 @@ span.exclusive {
   }
   .button.button-medium span {
     display: block;
-    padding: 10px 10px 10px 14px;
-    border: 1px solid;
-    border-color: #74d578; }
+    padding: 4px 10px 4px 14px;
+    // border: 1px solid;
+    // border-color: #74d578; }
     @media (max-width: 480px) {
       .button.button-medium span {
         font-size: 15px;
