@@ -55,8 +55,8 @@
 </div>
 <!-- /center the logo -->
 <div class="col-sm-2 clearfix" style="padding-top:10px">
-<a href="../shops" class="btn btn-default button button-medium" title="{l s='Visit Shops'}" style="float:right; white-space:nowrap;">
-<i class="fa fa-users"></i>{l s='Visit Shops'}
+<a href="../../shops" class="btn btn-default button button-medium" title="{l s='Shop Gallery'}" style="float:right; white-space:nowrap;">
+<i class="fa fa-shopping-cart icon-only"></i>{l s='Shop Gallery'}
 </a>
 </div>
 
