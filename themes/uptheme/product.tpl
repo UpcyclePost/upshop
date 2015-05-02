@@ -151,17 +151,15 @@
 				<p class="online_only">{l s='Online only'}</p>
 			{/if}
 			<h1 itemprop="name">{$product->name|escape:'html':'UTF-8'}</h1>
-
-
+			<a style="float:right" class="btn btn-default button button-medium" id="storeconnect" title="Go To Shop" href="{$link_store|addslashes}">
+			<i class="fa fa-angle-double-right"></i>
+			{l s='Go To Shop' mod='marketplace'}
+			</a>
+			<h4>
 			<label>{l s='Seller Name' mod='marketplace'} - </label>
 			<span>{$mkt_seller_info['seller_name']|escape:'html':'UTF-8'}</span>
-			
-			<a class="btn btn-default button button-medium" id="storeconnect" title="Visit Shop" target="_blank" href="{$link_store|addslashes}">
-			<i class="fa fa-angle-double-right"></i>
-			{l s='View Shop' mod='marketplace'}
-			</a>
-			
-			
+			</h4>
+			<br>
 			<p id="product_reference"{if empty($product->reference) || !$product->reference} style="display: none;"{/if}>
 				<label>{l s='Reference:'} </label>
 				<span class="editable" itemprop="sku">{if !isset($groups)}{$product->reference|escape:'html':'UTF-8'}{/if}</span>

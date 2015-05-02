@@ -82,13 +82,6 @@
 		<div id="page">
 			<div class="header-container">
 				<header id="header">
-					<div class="banner">
-						<div class="container">
-							<div class="row">
-								{hook h="displayBanner"}
-							</div>
-						</div>
-					</div>
 					<div class="nav">
 						<div class="container">
 							<div class="row">
