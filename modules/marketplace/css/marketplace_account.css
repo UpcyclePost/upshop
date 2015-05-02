@@ -1,3 +1,8 @@
+a:hover {
+  color: #000;
+  text-decoration: underline;
+}
+
 @media only screen and (min-width: 768px) {
   .menu_item {
     float:left;
@@ -13,6 +18,7 @@
     width: 100%;
     border: 1px solid #D5D5D5;
     padding: 15px;
+    background: #fff;
   }
   .wk_from_to{
     float: left;

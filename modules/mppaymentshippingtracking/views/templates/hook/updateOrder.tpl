@@ -95,7 +95,9 @@
 						<div class="col-lg-9 form-group" id="select_ele_id">
 							<select id="id_order_state" class="chosen form-control" name="id_order_state">
 							{foreach from=$states item=state}
+								{if !$state['hidden']}
 								<option value="{$state['id_order_state']|intval}"{if $state['id_order_state'] == $currentState->id} selected="selected" disabled="disabled"{/if}>{$state['name']|escape}</option>
+								{/if}
 							{/foreach}
 							</select>
 							<input type="hidden" name="id_order_state_checked" class="id_order_state_checked" value="{$currentState->id}" />

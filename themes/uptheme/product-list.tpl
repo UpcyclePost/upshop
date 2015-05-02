@@ -116,11 +116,9 @@
 						<a class="product-name" href="{$product.link|escape:'html':'UTF-8'}" title="{$product.name|escape:'html':'UTF-8'}" itemprop="url" >{$product.name|truncate:45:'...'|escape:'html':'UTF-8'}</a>
 					</h5>
 					{hook h='displayProductListReviews' product=$product}
-					<!--
 					<p class="product-desc" itemprop="description">
 						{$product.description_short|strip_tags:'UTF-8'|truncate:360:'...'}
 					</p>
-					-->
 					{if (!$PS_CATALOG_MODE AND ((isset($product.show_price) && $product.show_price) || (isset($product.available_for_order) && $product.available_for_order)))}
 					<div class="content_price">
 						{if isset($product.show_price) && $product.show_price && !isset($restricted_country_mode)}

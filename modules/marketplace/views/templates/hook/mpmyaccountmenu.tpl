@@ -13,15 +13,21 @@
                         <span>{l s='View Seller Profile' mod='marketplace'}</span>
                 </a>
         </li>
-        <li class="lnk_wishlist">
-        <!--
-	<li class="lnk_wishlist">
+       	<li class="lnk_wishlist">
+				<a title="Edit Shop" href="../profile/edit/">
+					<i class="icon-shopping-cart"></i>
+					<span>{l s='Edit Shop' mod='marketplace'}</span>
+				</a>
+		</li>
+
+		<!--
+    	<li class="lnk_wishlist">
                 <a title="View Collection" href="{$link_collection|addslashes}">
                         <i class="icon-tags"></i>
                         <span>{l s='View Collection' mod='marketplace'}</span>
                 </a>
         </li>
-	-->
+		-->
 </div>
 {/if}
 
@@ -61,12 +67,14 @@
 			<span>{l s='My orders' mod='marketplace'}</span>
 		</a>
 	</li>
+	<!--
 	<li class="lnk_wishlist">
 		<a title="Payment Detail" href="{$payment_details|addslashes}">
 			<i class="icon-money"></i>
 			<span>{l s='Payment Detail' mod='marketplace'}</span>
 		</a>
 	</li>
+	-->
 {else if $is_seller==0}
 	<li class="lnk_wishlist">
 		<a href="">

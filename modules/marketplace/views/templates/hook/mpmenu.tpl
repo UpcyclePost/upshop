@@ -45,12 +45,13 @@
 						<a href="{$my_order|escape:'html':'UTF-8'}" title="My Orders">{l s='My Orders' mod='marketplace'}</a>
 					</span>
 				</li>
-				
+				<!--
 				<li {if $logic==5}class="menu_active"{/if}>
 					<span>
 						<a href="{$payment_details|escape:'html':'UTF-8'}" title="Payment Detail">{l s='Payment Detail' mod='marketplace'}</a>
 					</span>
-				</li>					
+				</li>
+				-->					
 				{hook h="DisplayMpmenuhookext"}
                                 <li style="border-top: solid 2px #0187d0">
                                 </li>
@@ -68,15 +69,18 @@
                                         </span>
                                 </li>
 
-
-				<!--
+                                <li>
+                                        <span>
+                                                <a href="../profile/edit/" title="Edit Shop">{l s='Edit Shop' mod='marketplace'}</a>
+                                        </span>
+                                </li>
+								<!--
                                 <li>
                                         <span>
                                                 <a href="{$link_collection|escape:'html':'UTF-8'}" title="View Collection">{l s='View Collection' mod='marketplace'}</a>
                                         </span>
                                 </li>
-				-->
-
+								-->
 			</ul>
 		</div>
 	{/if}

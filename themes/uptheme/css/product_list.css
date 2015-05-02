@@ -12,8 +12,8 @@ ul.product_list .availability span {
   padding: 3px 8px 4px 8px;
   margin-bottom: 20px; }
   ul.product_list .availability span.available-now {
-    background: #55c65e;
-    border: 1px solid #36943e; }
+    background: #89c226;
+    border: 1px solid #89c226; }
   ul.product_list .availability span.out-of-stock {
     background: #fe9126;
     border: 1px solid #e4752b; }
