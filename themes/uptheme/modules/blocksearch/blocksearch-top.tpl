@@ -47,6 +47,7 @@
 </div>
 <!-- /Block search module TOP -->
 {/if}
+
 <!-- center the logo by moving this code from header.tpl -->
 <div id="header_logo" class="col-sm-3 clearfix">
        <a href="http://test.upcyclepost.com" title="{$shop_name|escape:'html':'UTF-8'}">
@@ -55,7 +56,7 @@
 </div>
 <!-- /center the logo -->
 <div class="col-sm-2 clearfix" style="padding-top:10px">
-<a href="../../shops" class="btn btn-default button button-medium" title="{l s='Shop Gallery'}" style="float:right; white-space:nowrap;">
+<a href="http://www.test.upcyclepost.com/shops" class="btn btn-default button button-medium" title="{l s='Shop Gallery'}" style="float:right; white-space:nowrap;">
 <i class="fa fa-shopping-cart icon-only"></i>{l s='Shop Gallery'}
 </a>
 </div>
