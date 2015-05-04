@@ -7,6 +7,7 @@ class marketplaceSellerrequestModuleFrontController extends ModuleFrontControlle
         $smarty_vars = array();
         if (isset($this->context->cookie->id_customer)) 
         {
+
             $customer_id = $this->context->cookie->id_customer;
             $obj_mp_cust = new MarketplaceCustomer();
             $mp_customer = $obj_mp_cust->findMarketPlaceCustomer($customer_id);

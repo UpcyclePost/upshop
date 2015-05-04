@@ -3,46 +3,29 @@
 		{l s='Thanks for the feedback. Review will be active after admin approval.' mod='marketplace'}
 	</p>
 {/if}
-{capture name=path}{l s='Seller Profile' mod='marketplace'}{/capture}
-        {capture name=path}
-        <a href="{$link->getPageLink('my-account', true)|escape:'html':'UTF-8'}">
-                {l s='Marketplace account'}
-        </a>
-        <span class="navigation-pipe">{$navigationPipe}</span>
-        <span class="navigation_page">{l s='Seller Profile' mod='marketplace'}</span>
-        {/capture}
-
-
-
+{capture name=path}
+<a href="{$link->getPageLink('my-account', true)|escape:'html':'UTF-8'}">
+        {l s='Marketplace account'}
+</a>
+<span class="navigation-pipe">{$navigationPipe}</span>
+<span class="navigation_page">{l s='Seller Profile' mod='marketplace'}</span>
+{/capture}
 <div class="main_block">
-<!--
-<div class="wk_left_sidebar">
-	<div style="margin-bottom:10px;">
-		<img class="left_img" src="{$seller_img_path|escape:'html':'UTF-8'}" alt="Seller Image"/>
-	</div>
-	<div style="float:left;width:100%;">
-	<a class="button btn btn-default button-medium" href="{$link->getModuleLink('marketplace','shopcollection',['shop'=>{$id_shop|escape:'html':'UTF-8'}])|escape:'html':'UTF-8'}">
-		<span>{l s='View Collection' mod='marketplace'}</span>
-	</a>
-	</div>
-	{hook h='DisplayMpsplefthook'}
-</div>
--->
 <div class="dashboard_content">
 	<div class="page-title">
 		<span>{l s='Seller Profile' mod='marketplace'}</span>
 	</div>
-	<div class="wk_right_col">
 		<div class="box-account">
 			<div class="box-head">
 				<h2>{l s='About Seller' mod='marketplace'}</h2>
 				<div class="wk_border_line"></div>
 			</div>
 			<div class="box-content" style="border-bottom: 3px solid #D5D3D4;">
-				<div class="seller_name">{$market_place_seller_info['seller_name']|escape:'html':'UTF-8'} 
-				<a href="{$link->getModuleLink('marketplace','shopstore',['shop'=>{$id_shop|escape:'html':'UTF-8'}])|escape:'html':'UTF-8'}" title="{l s='Visit Shop' mod='marketplace'}" class="button btn-default btn button-small"><span>{l s='Visit Shop' mod='marketplace'}<i class="icon-chevron-right right"></i></a> 
-				</div>
 				<div class="wk-left-label">
+					<div class="wk_row">
+						<label class="wk-person-icon">{$market_place_seller_info['seller_name']|escape:'html':'UTF-8'}</label>
+						<span><a href="{$link->getModuleLink('marketplace','shopstore',['shop'=>{$id_shop|escape:'html':'UTF-8'}])|escape:'html':'UTF-8'}" title="{l s='Go to Shop' mod='marketplace'}" class="product-name">{l s='Go to Shop' mod='marketplace'}</a></span>
+					</div>
 					<div class="wk_row">
 						<label class="wk-mail-icon">{l s='Business Email -' mod='marketplace'}</label>
 						<span>{$market_place_seller_info['business_email']|escape:'html':'UTF-8'}</span>
@@ -73,43 +56,6 @@
 				</div>
 			</div>
 		</div>	
-		<!--
-		<div class="box-account">
-			<div class="box-head">
-				<h2>{l s='Recent Products' mod='marketplace'}</h2>
-				<div class="wk_border_line"></div>
-			</div>
-			<div class="box-content wk_slider_padding">
-				{if $count_latest_pro}
-					<div id="product-slider_block_center" class="wk-product-slider">
-						<ul class="mp-prod-slider">
-							{assign var=j value=0}
-							{while $j != $count_latest_pro}
-								<a href="{$base_dir|escape:'html':'UTF-8'}index.php?id_product={$all_product_id[$j]|escape:'html':'UTF-8'}&controller=product&id_lang={$product_image_link[$j][3]}" class="product_img_link" title="{$all_product_name[$j]|escape:'html':'UTF-8'}">
-									<li>
-										<div class="wk-slider-product-img">
-											{if $product_image_link[$j][1] != ""}
-												<img class="replace-2x img-responsive" src="{$link->getImageLink($product_image_link[$j][0], $product_image_link[$j][1], 'home_default')|escape:'html':'UTF-8'}" />
-											{else}
-												<img class="replace-2x img-responsive" src="{$link->getImageLink($product_image_link[$j][0], $product_image_link[$j][2]|cat : '-default', 'home_default')|escape:'html':'UTF-8'}"/>
-											{/if}
-										</div>
-										<div class="wk-slider-product-info">
-											<div style="margin-bottom:5px;">{$all_product_name[$j]|truncate:45:'...'|escape:'html':'UTF-8'}</div>
-											<div style="font-weight:bold;">{convertPrice price=$all_product_price[$j]}</div>
-										</div>
-									</li>
-								</a>
-								{assign var=j value=$j+1}
-							{/while}
-						</ul> 
-					</div>
-				{else}
-					<p class="alert alert-info">{l s='No item found' mod='marketplace'}</p>
-				{/if}
-			</div>
-		</div>
-		-->
 		<div class="box-account">
 			<div class="box-head">
 				<div class="wk_review_head">
@@ -163,7 +109,6 @@
 		</div>
 		{hook h='DisplayMpspcontentbottomhook'}
 	</div>
-</div>
 </div>
 
 

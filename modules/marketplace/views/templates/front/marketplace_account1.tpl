@@ -23,7 +23,6 @@
 	var req_phone = '{l s='Phone number is required.' js=1 mod='marketplace'}';
 	var inv_phone = '{l s='Invalid phone number.' js=1 mod='marketplace'}';
 </script>
-
 {if $logic==3}
 <script type="text/javascript">
 	var space_error = '{l s='Space is not allowed.' js=1 mod='marketplace'}';
@@ -42,13 +41,12 @@
 	{hook h="DisplayMpmenuhook"}
 	{if $logic==1}
 	{capture name=path}
-        <a href="{$link->getPageLink('my-account', true)|escape:'html':'UTF-8'}">
-                {l s='Marketplace account'}
+        <a href="{$account_dashboard|addslashes}">
+                {l s='Account Dashboard'}
         </a>
         <span class="navigation-pipe">{$navigationPipe}</span>
         <span class="navigation_page">{l s='Dashboard' mod='marketplace'}</span>
 	{/capture}
-
 	<div class="dashboard_content">
 			<div class="dashboard">
 				<div class="page-title">
@@ -188,8 +186,8 @@
 	</div>
 	{else if $logic==2}
 	{capture name=path}
-        <a href="{$link->getPageLink('my-account', true)|escape:'html':'UTF-8'}">
-                {l s='Marketplace account'}
+        <a href="{$account_dashboard|addslashes}">
+                {l s='Account Dashboard'}
         </a>
         <span class="navigation-pipe">{$navigationPipe}</span>
         <span class="navigation_page">{l s='Edit Seller Profile' mod='marketplace'}</span>
@@ -381,8 +379,8 @@
 	</div>
 	{else if $logic==3}
         {capture name=path}
-        <a href="{$link->getPageLink('my-account', true)|escape:'html':'UTF-8'}">
-                {l s='Marketplace account'}
+        <a href="{$account_dashboard|addslashes}">
+                {l s='Account Dashboard'}
         </a>
         <span class="navigation-pipe">{$navigationPipe}</span>
         <span class="navigation_page">{l s='Product List' mod='marketplace'}</span>
@@ -619,8 +617,8 @@
 			</div>
 	{else if $logic==4}
         {capture name=path}
-        <a href="{$link->getPageLink('my-account', true)|escape:'html':'UTF-8'}">
-                {l s='Marketplace account'}
+        <a href="{$account_dashboard|addslashes}">
+                {l s='Account Dashboard'}
         </a>
         <span class="navigation-pipe">{$navigationPipe}</span>
         <span class="navigation_page">{l s='My Orders' mod='marketplace'}</span>
@@ -723,8 +721,8 @@
 		</script>
 	{else if $logic==5}
         {capture name=path}
-        <a href="{$link->getPageLink('my-account', true)|escape:'html':'UTF-8'}">
-                {l s='Marketplace account'}
+        <a href="{$account_dashboard|addslashes}">
+                {l s='Account Dashboard'}
         </a>
         <span class="navigation-pipe">{$navigationPipe}</span>
         <span class="navigation_page">{l s='Payment Details' mod='marketplace'}</span>
@@ -798,6 +796,17 @@
 		</div>
 	</div>
 	{else if $logic==6}
+        {capture name=path}
+        <a href="{$account_dashboard|addslashes}">
+                {l s='Account Dashboard'}
+        </a>
+        <span class="navigation-pipe">{$navigationPipe}</span>
+        <a href="{$my_order|escape:'html':'UTF-8'}">
+                {l s='My Orders'}
+        </a>
+        <span class="navigation-pipe">{$navigationPipe}</span>
+        <span class="navigation_page">{l s='Order Details' mod='marketplace'}</span>
+        {/capture}
 	<div class="dashboard_content">
 		<div class="dashboard">
 			<div class="page-title">

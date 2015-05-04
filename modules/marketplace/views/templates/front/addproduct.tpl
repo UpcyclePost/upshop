@@ -93,6 +93,18 @@ $(document).ready(function() {
 							<label for="product_name" class="control-label required">{l s='Product Name :' mod='marketplace'}</label>
 							<input type="text" id="product_name" name="product_name" value="{$c_mp_product_name|escape:'html':'UTF-8'}" class="form-control" />
 						</div>
+						<div class="form-group">   
+							<label for="product_image">{l s='Upload Image :' mod='marketplace'}</label>
+							<input type="file" id="product_image" name="product_image" value="" class="account_input form-control" size="chars"  />
+							<p class="help-block">{l s='Valid image extensions are jpg,jpeg and png.' mod='marketplace'}</p>
+						</div>
+
+						<div class="form-group">
+							<a onclick="showOtherImage(); return false;" class="btn btn-default button button-small">
+								<span>{l s='Add more image' mod='marketplace'}</span>
+							</a>
+							<div id="wk_prod_other_images"></div>
+				        </div>   
 
 				        <div class="form-group">	
 							<label for="short_description" class="control-label">{l s='Short Description :' mod='marketplace'}</label>
@@ -122,19 +134,6 @@ $(document).ready(function() {
 							<label for="product_category" class="control-label required" >{l s='Category :' mod='marketplace'}</label>
 							<div>{$categoryTree|escape:'intval'}</div>
 						</div>
-
-						<div class="form-group">   
-							<label for="product_image">{l s='Upload Image :' mod='marketplace'}</label>
-							<input type="file" id="product_image" name="product_image" value="" class="account_input form-control" size="chars"  />
-							<p class="help-block">{l s='Valid image extensions are jpg,jpeg and png.' mod='marketplace'}</p>
-						</div>
-
-						<div class="form-group">
-							<a onclick="showOtherImage(); return false;" class="btn btn-default button button-small">
-								<span>{l s='Add more image' mod='marketplace'}</span>
-							</a>
-							<div id="wk_prod_other_images"></div>
-				        </div>   
 				        {hook h="DisplayMpaddproductfooterhook"}
 				    </div>
 				</div>

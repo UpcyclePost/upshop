@@ -8,13 +8,13 @@
 .fcevrt{}
 </style>
 
-        {capture name=path}
-        <a href="{$link->getPageLink('my-account', true)|escape:'html':'UTF-8'}">
-                {l s='Marketplace account'}
-        </a>
-        <span class="navigation-pipe">{$navigationPipe}</span>
-        <span class="navigation_page">{l s='Seller Registration' mod='marketplace'}</span>
-        {/capture}
+{capture name=path}
+<a href="{$link->getPageLink('my-account', true)|escape:'html':'UTF-8'}">
+        {l s='Marketplace account'}
+</a>
+<span class="navigation-pipe">{$navigationPipe}</span>
+<span class="navigation_page">{l s='Seller Registration' mod='marketplace'}</span>
+{/capture}
 
 {if isset($img_size_error)}
 	<div class="alert alert-danger">
@@ -37,6 +37,12 @@
 {/if}
 {hook h='displayMpAddSellerHeaderHook'}
 {if isset($is_seller)}
+<div class="container">
+	<div class="page-title">
+		<span>{l s='Open a Shop' mod='marketplace'}</span>
+	</div>
+	<div class="wk_right_col">
+
 	{if $login == 0}
 		<div class="alert alert-info">
 			<p>{l s='You have to login to make a seller request.' mod='marketplace'}</p>
@@ -47,16 +53,16 @@
 				<p>{l s='Your request has been sent to admin. Please wait till the approval from admin' mod='marketplace'}</p>
 			</div>
 		{else}
-			<div class="alert alert-info">
-				<p>
-					{l s='Your request to create a shop has been approved.    ' mod='marketplace'}
-					<a class="btn btn-default button button-medium" style="float:right;padding:3px 8px 3px 8px;" href="{$link->getModuleLink('marketplace','addproduct')|escape:'html':'UTF-8'}">
-						{l s='Add your first product' mod='marketplace'}
-					</a>
-				</p>
-			</div>
+			<p>
+				<h3>{l s='Your request to create a shop has been approved.    ' mod='marketplace'}</h3>
+				<a class="btn btn-default button button-medium" style="padding:3px 8px 3px 8px;" href="{$link->getModuleLink('marketplace','addproduct')|escape:'html':'UTF-8'}">
+					{l s='Add your first product' mod='marketplace'}
+				</a>
+			</p>
 		{/if}
 	{/if}
+	</div>
+</div>
 {else}
 <div class="seller_registration_form">
 	<div class="container">

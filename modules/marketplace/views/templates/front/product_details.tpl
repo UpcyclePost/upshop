@@ -1,4 +1,14 @@
-{capture name=path}{l s='Product Details' mod='marketplace'}{/capture}
+{capture name=path}
+<a href="{$account_dashboard|addslashes}">
+        {l s='Account Dashboard'}
+</a>
+<span class="navigation-pipe">{$navigationPipe}</span>
+<a href="{$product_list|escape:'html':'UTF-8'}">
+        {l s='Product List'}
+</a>
+<span class="navigation-pipe">{$navigationPipe}</span>
+<span class="navigation_page">{l s='Product Details' mod='marketplace'}</span>
+{/capture}
 <div class="main_block">
 {hook h="DisplayMpmenuhook"}
 	<div class="dashboard_content">
