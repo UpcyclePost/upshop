@@ -1,5 +1,31 @@
-﻿{if $is_seller==1}
-<li class="lnk_wishlist">
+﻿<!-- leave this div alone to we get two columns -->
+</div>
+
+{if $is_seller==1}
+<div class="col-xs-12 col-sm-6 col-lg-4">
+<ul class="myaccount-link-list">
+<br>
+<h1 class="page-heading">{l s='My Shop Account' mod='marketplace'}</h1>
+<p class="info-account">{l s='Manage your shop.' mod='marketplace'}</p>
+	<li class="lnk_wishlist">
+		<a title="Product List" href="{$product_list|addslashes}">
+			<i class="icon-list"></i>
+			<span>{l s='Product List' mod='marketplace'}</span>
+		</a>
+	</li>
+	<li class="lnk_wishlist">
+		<a title="Add product" href="{$add_product|addslashes}">
+			<i class="icon-plus"></i>
+			<span>{l s='Add Product' mod='marketplace'}</span>
+		</a>
+	</li>
+	<li class="lnk_wishlist">
+		<a title="My order" href="{$my_order|addslashes}">
+			<i class="icon-gift"></i>
+			<span>{l s='My orders' mod='marketplace'}</span>
+		</a>
+	</li>
+	<li class="lnk_wishlist">
 		<a title="Account Dashboard" href="{$account_dashboard|addslashes}">
 			<i class="icon-dashboard"></i>
 			<span>{l s='Account Dashboard' mod='marketplace'}</span>
@@ -14,9 +40,9 @@
 	</li>	
 {else if $is_seller==-1}
 	<li class="lnk_wishlist">
-		<a title="{l s='Open a Shop' mod='marketplace'}" href="{$new_link1}">
+		<a title="{l s='Click Here for Seller Request' mod='marketplace'}" href="{$new_link1}">
 			<i class="icon-mail-reply-all"></i>
-			<span>{l s='Open a Shop' mod='marketplace'}</span>
+			<span>{l s='Click Here for Seller Request' mod='marketplace'}</span>
 		</a>
 	</li>
 {/if}

@@ -64,19 +64,6 @@
                                 <a href="{$link_store|escape:'html':'UTF-8'}" title="View Shop">{l s='View Shop' mod='marketplace'}</a>
                         </span>
                 </li>
-
-                <li>
-                        <span>
-                                <a href="../../../profile/edit/" title="Edit Shop">{l s='Edit Shop' mod='marketplace'}</a>
-                        </span>
-                </li>
-				<!--
-                <li>
-                        <span>
-                                <a href="{$link_collection|escape:'html':'UTF-8'}" title="View Collection">{l s='View Collection' mod='marketplace'}</a>
-                        </span>
-                </li>
-				-->
 			</ul>
 		</div>
 	{/if}
