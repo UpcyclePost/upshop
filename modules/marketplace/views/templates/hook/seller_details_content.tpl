@@ -1,3 +1,4 @@
+<!--
 <section class="page-product-box">
 	<h3 class="idTabHrefShort page-product-heading">{l s='Seller Detail' mod='marketplace'}</h3>
 	<div class="partnerdetails">
@@ -35,14 +36,14 @@
 			{/if}
 			{hook h='displayMpSellerDetailTabLeft'}
 		</div>	
+-->
+<!--
 		<div class="sellerlink">
 			<ul>
-				<!--
 				<li><a id="profileconnect" title="Visit Profile" target="_blank" href="{$link_profile|addslashes}">{l s='View Profile' mod='marketplace'}</a></li> 
 				<li>
 					<a id="siteconnect" title="Visit Collection" target="_blank" href="{$link_collection|addslashes}">{l s='View Collection' mod='marketplace'}</a>
 				</li>
-				-->
 				<li>
 					<a id="storeconnect" title="Visit Shop" target="_blank" href="{$link_store|addslashes}">{l s='View Shop' mod='marketplace'}</a>
 				</li>
@@ -54,8 +55,8 @@
 		</div>	
 	</div>
 	{hook h='DisplayMpSellerDetailTabBotttom'}
-
-		
+-->
+<!--		
 <div id="wk_question_form" style="display: none;">
 	<form id="ask-form" method="post" action="#">
 		<span class="ques_form_error">{l s='Fill all the fields' mod='marketplace'}</span>
@@ -94,6 +95,7 @@
 		</div>
 	</form>
 </div>
+-->
 </section>
 
 {strip}
