@@ -5,9 +5,11 @@
 <br>
 
 <h1 class="page-heading">{l s='My Shop Account' mod='marketplace'}</h1>
+{if $is_seller==1}
 <a href="{$link_store|escape:'html':'UTF-8'}" class="btn btn-default button button-medium" title="Visit Shop" style="float:right; white-space:nowrap;z-index:10;margin-top:-10px;">
 <i class="fa fa-shopping-cart icon-only"></i>Visit Shop
 </a>
+{/if}
 <p class="info-account">{l s='Manage your shop.' mod='marketplace'}</p>
 {if $is_seller==1}
 	<li class="lnk_wishlist">
