@@ -20,7 +20,7 @@
 		</a>
 	</li>
 	<li class="lnk_wishlist">
-		<a title="My order" href="{$my_order|addslashes}">
+		<a title="My orders received" href="{$my_order|addslashes}">
 			<i class="icon-gift"></i>
 			<span>{l s='My orders Received' mod='marketplace'}</span>
 		</a>
@@ -40,9 +40,9 @@
 	</li>	
 {else if $is_seller==-1}
 	<li class="lnk_wishlist">
-		<a title="{l s='Click Here for Seller Request' mod='marketplace'}" href="{$new_link1}">
+		<a title="{l s='Click Here to create a shop' mod='marketplace'}" href="{$new_link1}">
 			<i class="icon-mail-reply-all"></i>
-			<span>{l s='Click Here for Seller Request' mod='marketplace'}</span>
+			<span>{l s='Click Here to create a shop' mod='marketplace'}</span>
 		</a>
 	</li>
 {/if}
