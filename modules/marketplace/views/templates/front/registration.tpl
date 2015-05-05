@@ -39,7 +39,7 @@
 {if isset($is_seller)}
 <div class="container">
 	<div class="page-title">
-		<span>{l s='Open a Shop' mod='marketplace'}</span>
+		<span>{l s='Create a Shop' mod='marketplace'}</span>
 	</div>
 	<div class="wk_right_col">
 
@@ -67,7 +67,7 @@
 <div class="seller_registration_form">
 	<div class="container">
 		<div class="page-title">
-			<span>{l s='Open a Shop' mod='marketplace'}</span>
+			<span>{l s='Create a Shop' mod='marketplace'}</span>
 		</div>
 		<div class="wk_right_col">
 		<p><sup>*</sup> {l s='Required field' mod='marketplace'}</p>
@@ -118,7 +118,7 @@
 					<label for="address">{l s='Address' mod='marketplace'}</label>
 					<textarea name="address" class = "form-control"></textarea>
 				</div>
-				
+				<!--
 				<div id="facebook" class="form-group" >
 					<label for="fb_id1">{l s='Facebook Id' mod='marketplace'}</label>
 					<input class="reg_sel_input form-control"  type="text" name="fb_id" id="fb_id1" />
@@ -128,6 +128,7 @@
 					<label for="tw_id1">{l s='Twitter Id' mod='marketplace'}</label>
 					<input class="reg_sel_input form-control"  type="text" name="tw_id" id="tw_id1" />
 				</div>
+				-->
 				{hook h="DisplayMpshoprequestfooterhook"}
 			</fieldset>
 			<div class="form-group" style="text-align:center;">
