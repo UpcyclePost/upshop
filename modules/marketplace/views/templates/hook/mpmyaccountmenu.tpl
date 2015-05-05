@@ -1,6 +1,6 @@
 ﻿<!-- leave this div alone to we get two columns -->
 </div>
-<div class="col-xs-12 col-sm-6 col-lg-4">
+<div class="col-xs-12 col-sm-6 col-lg-4" style="border-left: solid #d6d4d4 2px;margin-left:20px;padding-left:20px;">
 <ul class="myaccount-link-list">
 <br>
 <h1 class="page-heading">{l s='My Shop Account' mod='marketplace'}</h1>
