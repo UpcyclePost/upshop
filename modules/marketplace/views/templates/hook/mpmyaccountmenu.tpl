@@ -1,12 +1,12 @@
 ﻿<!-- leave this div alone to we get two columns -->
 </div>
-
-{if $is_seller==1}
 <div class="col-xs-12 col-sm-6 col-lg-4">
 <ul class="myaccount-link-list">
 <br>
 <h1 class="page-heading">{l s='My Shop Account' mod='marketplace'}</h1>
 <p class="info-account">{l s='Manage your shop.' mod='marketplace'}</p>
+
+{if $is_seller==1}
 	<li class="lnk_wishlist">
 		<a title="Product List" href="{$product_list|addslashes}">
 			<i class="icon-list"></i>
@@ -22,7 +22,7 @@
 	<li class="lnk_wishlist">
 		<a title="My order" href="{$my_order|addslashes}">
 			<i class="icon-gift"></i>
-			<span>{l s='My orders' mod='marketplace'}</span>
+			<span>{l s='My orders Received' mod='marketplace'}</span>
 		</a>
 	</li>
 	<li class="lnk_wishlist">
