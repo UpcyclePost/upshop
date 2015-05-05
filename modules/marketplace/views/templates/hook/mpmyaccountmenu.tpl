@@ -3,9 +3,12 @@
 <div class="col-xs-12 col-sm-6 col-lg-4" style="border-left: solid #d6d4d4 2px;margin-left:20px;padding-left:20px;">
 <ul class="myaccount-link-list">
 <br>
-<h1 class="page-heading">{l s='My Shop Account' mod='marketplace'}</h1>
-<p class="info-account">{l s='Manage your shop.' mod='marketplace'}</p>
 
+<h1 class="page-heading">{l s='My Shop Account' mod='marketplace'}</h1>
+<a href="{$link_store|escape:'html':'UTF-8'}" class="btn btn-default button button-medium" title="Visit Shop" style="float:right; white-space:nowrap;z-index:10;margin-top:-10px;">
+<i class="fa fa-shopping-cart icon-only"></i>Visit Shop
+</a>
+<p class="info-account">{l s='Manage your shop.' mod='marketplace'}</p>
 {if $is_seller==1}
 	<li class="lnk_wishlist">
 		<a title="Product List" href="{$product_list|addslashes}">
