@@ -113,7 +113,7 @@
 					</li>
 				{/if}
 			{/foreach}
-			{if $show_sitemap}
+			{if $false}
 			<li>
 				<a href="{$link->getPageLink('sitemap')|escape:'html':'UTF-8'}" title="{l s='Sitemap' mod='blockcms'}">
 					{l s='Sitemap' mod='blockcms'}
