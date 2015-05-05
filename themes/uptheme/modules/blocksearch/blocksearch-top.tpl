@@ -47,16 +47,15 @@
 </div>
 <!-- /Block search module TOP -->
 {/if}
-
 <!-- center the logo by moving this code from header.tpl -->
 <div id="header_logo" class="col-sm-3 clearfix">
-       <a href="http://test.upcyclepost.com" title="{$shop_name|escape:'html':'UTF-8'}">
+       <a href="http://{$smarty.server.SERVER_NAME}" title="{$shop_name|escape:'html':'UTF-8'}">
               <img class="logo img-responsive" src="{$logo_url}" alt="{$shop_name|escape:'html':'UTF-8'}"{if isset($logo_image_width) && $logo_image_width} width="{$logo_image_width}"{/if}{if isset($logo_image_height) && $logo_image_height} height="{$logo_image_height}"{/if}/>
 </a>
 </div>
 <!-- /center the logo -->
 <div class="col-sm-2 clearfix" style="padding-top:10px">
-<a href="http://test.upcyclepost.com/shops" class="btn btn-default button button-medium" title="{l s='Shop Gallery'}" style="float:right; white-space:nowrap;">
+<a href="http://{$smarty.server.SERVER_NAME}/shops" class="btn btn-default button button-medium" title="{l s='Shop Gallery'}" style="float:right; white-space:nowrap;">
 <i class="fa fa-shopping-cart icon-only"></i>{l s='Shop Gallery'}
 </a>
 </div>
