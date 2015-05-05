@@ -139,7 +139,7 @@
     padding-left: 25px;
     color: #333333;
     font-size: 14px;
-    font-weight: bold;
+    font-weight: normal;
 }
 .box-account .box-content .wk-left-label span{
     float: left;
@@ -149,7 +149,7 @@
     padding-left: 25px;
     color: #333333;
     font-size: 14px;
-    font-weight: bold;
+    font-weight: normal;
 }
 .wk-writer-details{
     float:left;
