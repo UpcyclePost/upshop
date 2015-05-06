@@ -152,7 +152,7 @@
 			{/if}
 			<h4 itemprop="shop">
 			<label>{l s='Shop' mod='marketplace'} - </label>
-			<a class="product-name" title="Go To Shop" href="{$link_store|addslashes}">
+			<a class="product-name" title="Go to shop" href="{$link_store|addslashes}">
 				{$mkt_seller_info['shop_name']|escape:'html':'UTF-8'}
 			</a>
 			</h4>
@@ -243,6 +243,16 @@
 					{if $have_image && !$jqZoomEnabled}{/if}
 				</ul>
 			{/if}
+			{if $product->description}
+			<!-- More info -->
+			<section class="page-product-box">
+				<h4 class="page-product-heading" style="border-bottom:solid 1px #0187d0;padding-bottom: 5px;">{l s='More info'}</h4>{/if}
+				{if isset($product) && $product->description}
+					<!-- full description -->
+					<div>{$product->description}</div>
+			</section>
+			<!--end  More info -->
+		{/if}
 		</div>
 		<!-- end center infos-->
 		<!-- pb-right-column-->
@@ -471,16 +481,6 @@
 				</table>
 			</section>
 			<!--end Data sheet -->
-		{/if}
-		{if $product->description}
-			<!-- More info -->
-			<section class="page-product-box">
-				<h3 class="page-product-heading">{l s='More info'}</h3>{/if}
-				{if isset($product) && $product->description}
-					<!-- full description -->
-					<div  class="rte">{$product->description}</div>
-			</section>
-			<!--end  More info -->
 		{/if}
 		{if isset($packItems) && $packItems|@count > 0}
 		<section id="blockpack">
