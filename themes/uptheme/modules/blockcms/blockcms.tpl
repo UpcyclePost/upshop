@@ -113,6 +113,12 @@
 					</li>
 				{/if}
 			{/foreach}
+			<li class="item">
+				<a href="http{if Tools::usingSecureMode()}s{/if}://{$smarty.server.SERVER_NAME}/about" title="{l s='About us' mod='blockcms'}">
+					{l s='About us' mod='blockcms'}
+				</a>
+			</li>
+
 			{if $false}
 			<li>
 				<a href="{$link->getPageLink('sitemap')|escape:'html':'UTF-8'}" title="{l s='Sitemap' mod='blockcms'}">
