@@ -45,7 +45,7 @@
 
 	{if $login == 0}
 		<div class="alert alert-info">
-			<p>{l s='You have to login to make a seller request.' mod='marketplace'}</p>
+			<p>{l s='You have to login to Create a Shop.' mod='marketplace'}</p>
 		</div>
 	{else}
 		{if $is_seller == 0}

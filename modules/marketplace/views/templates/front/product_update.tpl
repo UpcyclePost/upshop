@@ -86,6 +86,14 @@
 						<input type="text" id="product_name" name="product_name" value="{$pro_info['product_name']|escape:'html':'UTF-8'}" class="form-control" />
 					</div>
 
+                                        <div class="form-group">
+                                                <label for="upload_image">
+                                                        {l s='Upload Image :' mod='marketplace'}
+                                                </label>
+                                                <input type="file" id="product_image" name="product_image" value="" class="account_input form-control" size="chars" />
+                                                <p class="img_validate">{l s='Valid image extensions are jpg,jpeg and png.' mod='marketplace'}</p>
+                                        </div>
+
 					<div class="form-group">
 						<label for="prod_short_desc">
 							{l s='Short Description :' mod='marketplace'}
@@ -122,13 +130,6 @@
 						<div>{$categoryTree|escape:'intval'}</div>
 					</div>
 
-					<div class="form-group">
-						<label for="upload_image">
-							{l s='Upload Image :' mod='marketplace'}
-						</label>
-						<input type="file" id="product_image" name="product_image" value="" class="account_input form-control" size="chars" />	
-						<p class="img_validate">{l s='Valid image extensions are jpg,jpeg and png.' mod='marketplace'}</p>		
-					</div>
 					{hook h="DisplayMpupdateproductfooterhook"}
 				</div>
 			</div>
