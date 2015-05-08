@@ -19,7 +19,13 @@ $(document).ready(function()
 		}
 		else if(!isNaN(product_name) || !special_char.test(product_name))
 		{
-			alert(char_prod_name);
+			alert(char_prod_name + ' : "' + special_char + '"');
+			$('#product_name').focus();
+			return false;
+		}
+		else if(product_name.length > 120)
+		{
+			alert(char_prod_name_length + ' : Currently ' + product_name.length + ' characters');
 			$('#product_name').focus();
 			return false;
 		}

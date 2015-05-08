@@ -155,7 +155,8 @@
 
 <script language="javascript" type="text/javascript">
 var req_prod_name = '{l s='Product name is required.' js=1 mod='marketplace'}';
-var char_prod_name = '{l s='Product name should be character.' js=1 mod='marketplace'}';
+var char_prod_name = '{l s='Product name cannot contain special characters.' js=1 mod='marketplace'}';
+var char_prod_name_length = '{l s='Product name should be less than 120 characters.' js=1 mod='marketplace'}';
 var req_price = '{l s='Product price is required.' js=1 mod='marketplace'}';
 var num_price = '{l s='Product price should be numeric.' js=1 mod='marketplace'}';
 var req_qty = '{l s='Product quantity is required.' js=1 mod='marketplace'}';
