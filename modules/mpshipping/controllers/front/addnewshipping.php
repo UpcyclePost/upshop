@@ -188,6 +188,7 @@
 						$currency = new Currency(Configuration::get('PS_CURRENCY_DEFAULT'));
 						$this->context->smarty->assign('currency_sign', $currency->sign);
 						$this->context->smarty->assign('PS_WEIGHT_UNIT', Configuration::get('PS_WEIGHT_UNIT'));
+						$this->context->smarty->assign('PS_DIMENSION_UNIT', Configuration::get('PS_DIMENSION_UNIT'));
 							
 						$this->setTemplate('addmpshipping.tpl');
 					}

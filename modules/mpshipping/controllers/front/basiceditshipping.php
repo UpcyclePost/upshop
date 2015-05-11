@@ -144,6 +144,7 @@ class mpshippingbasiceditshippingModuleFrontController extends ModuleFrontContro
 					
 					$this->context->smarty->assign('currency_sign', $currency->sign);
 					$this->context->smarty->assign('PS_WEIGHT_UNIT', Configuration::get('PS_WEIGHT_UNIT'));
+					$this->context->smarty->assign('PS_DIMENSION_UNIT', Configuration::get('PS_DIMENSION_UNIT'));
 					$this->setTemplate('basicupdateshipping.tpl');
 				}
 			}
