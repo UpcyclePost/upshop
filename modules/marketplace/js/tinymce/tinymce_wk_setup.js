@@ -6,11 +6,12 @@ tinymce.init({
          "searchreplace wordcount visualblocks visualchars code fullscreen insertdatetime media nonbreaking",
          "save table directionality emoticons template paste textcolor"
    	],
-   	toolbar : "code,|,bold,italic,underline,strikethrough,|,justifyleft,justifycenter,justifyright,justifyfull,formatselect,|,blockquote,colorpicker,pasteword,|,bullist,numlist,|,outdent,indent,|,link,unlink,|,cleanup,|,media,image",
+   	toolbar : "code,|,bold,italic,underline,strikethrough,|,justifyleft,justifycenter,justifyright,justifyfull,formatselect,|,blockquote,colorpicker,pasteword,|,bullist,numlist,|,outdent,indent,|,link,unlink,|,cleanup",
 	statusbar: false,
 	relative_urls : false,
 	language: iso,
 	extended_valid_elements : "em[class|name|id]",
+	browser_spellcheck : true,
   	menu: {
 		edit: {title: 'Edit', items: 'undo redo | cut copy paste | selectall'},
 		insert: {title: 'Insert', items: 'media image link | pagebreak'},
