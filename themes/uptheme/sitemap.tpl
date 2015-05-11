@@ -96,14 +96,6 @@
                     </li>
         			<li>
                         <a 
-                        href="{$link->getPageLink('identity', true)|escape:'html':'UTF-8'}" 
-                        rel="nofollow" 
-                        title="{l s='Manage your personal information'}">
-                            {l s='Personal information'}
-                        </a>
-                    </li>
-        			<li>
-                        <a 
                         href="{$link->getPageLink('addresses', true)|escape:'html':'UTF-8'}" 
                         rel="nofollow" 
                         title="{l s='View a list of my addresses'}">

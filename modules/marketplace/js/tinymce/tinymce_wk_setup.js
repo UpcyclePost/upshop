@@ -4,7 +4,7 @@ tinymce.init({
     plugins: [
          "advlist autolink link image lists charmap print preview hr anchor pagebreak spellchecker",
          "searchreplace wordcount visualblocks visualchars code fullscreen insertdatetime media nonbreaking",
-         "save table contextmenu directionality emoticons template paste textcolor"
+         "save table directionality emoticons template paste textcolor"
    	],
    	toolbar : "code,|,bold,italic,underline,strikethrough,|,justifyleft,justifycenter,justifyright,justifyfull,formatselect,|,blockquote,colorpicker,pasteword,|,bullist,numlist,|,outdent,indent,|,link,unlink,|,cleanup,|,media,image",
 	statusbar: false,

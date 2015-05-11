@@ -117,10 +117,8 @@
 					</div>
 					<div class="row">
 						{if isset($left_column_size) && !empty($left_column_size)}
-						{if $page_name != 'module-marketplace-sellerrequest'}
-						{if $page_name != 'history'}
+						{if $page_name != 'module-marketplace-sellerrequest' && $page_name != 'history' && $page_name != 'order-confirmation'} 
 						<div id="left_column" class="column col-xs-12 col-sm-{$left_column_size|intval}">{$HOOK_LEFT_COLUMN}</div>
-						{/if}
 						{/if}
 						{/if}
 						{if isset($left_column_size) && isset($right_column_size)}{assign var='cols' value=(12 - $left_column_size - $right_column_size)}{else}{assign var='cols' value=12}{/if}
