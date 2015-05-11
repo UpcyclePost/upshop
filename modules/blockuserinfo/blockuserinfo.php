@@ -79,6 +79,30 @@ class BlockUserInfo extends Module
 
 	public function hookDisplayNav($params)
 	{
+		// Add support for marketplace stuff
+		$link            = new link();
+		$customer_id     = $this->context->customer->id;
+
+		$obj_marketplace_seller = new SellerInfoDetail();
+		$already_request = $obj_marketplace_seller->getMarketPlaceSellerIdByCustomerId($customer_id);
+
+		if ($already_request) {
+			$is_seller = $already_request['is_seller'];
+			$this->context->smarty->assign("is_seller", $is_seller);
+			if ($is_seller == 1)
+			{
+				$obj_marketplace_shop = new MarketplaceShop();
+				$market_place_shop = $obj_marketplace_shop->getMarketPlaceShopInfoByCustomerId($customer_id);
+				$id_shop   = $market_place_shop['id'];
+				$param = array('shop' => $id_shop);
+				$account_dashboard = $link->getModuleLink('marketplace', 'marketplaceaccount',$param);
+
+				$this->context->smarty->assign("account_dashboard", $account_dashboard);
+			}
+		} else {
+			$this->context->smarty->assign("is_seller", -1);
+		}
+
 		return $this->display(__FILE__, 'nav.tpl');
 	}
 }
