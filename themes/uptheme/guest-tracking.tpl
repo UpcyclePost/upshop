@@ -60,6 +60,7 @@
 		</div>
 	{/foreach}
 
+<!--
 	<h2 id="guestToCustomer" class="page-heading">{l s='For more advantages...'}</h2>
 
 	{include file="$tpl_dir./errors.tpl"}
@@ -95,6 +96,7 @@
 			</fieldset>
 		</form>
 	{/if}
+	-->
 {else}
 	{include file="$tpl_dir./errors.tpl"}
 	{if isset($show_login_link) && $show_login_link}
