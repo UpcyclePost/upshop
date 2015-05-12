@@ -33,7 +33,7 @@
 
 				<li {if $logic==4}class="menu_active"{/if}>
 					<span>
-						<a href="{$my_order|escape:'html':'UTF-8'}" title="My Orders">{l s='My Orders' mod='marketplace'}</a>
+						<a href="{$my_order|escape:'html':'UTF-8'}" title="My Orders Received">{l s='My Orders Received' mod='marketplace'}</a>
 					</span>
 				</li>
 				<!--
