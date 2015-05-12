@@ -1,14 +1,17 @@
 <div id="opc_new_account" class="opc-main-block">
 	<div id="opc_new_account-overlay" class="opc-overlay" style="display: none;"></div>
 	<h1 class="page-heading step-num"><span>1</span> {l s='Account'}</h1>
+<!--
 	<form action="{$link->getPageLink('authentication', true, NULL, "back=order-opc")|escape:'html':'UTF-8'}" method="post" id="login_form" class="box">
 		<fieldset>
 			<h3 class="page-subheading">{l s='Already registered?'}</h3>
 			<p><a href="{$link->getPageLink('authentication', true)|escape:'html':'UTF-8'}" id="openLoginFormBlock">&raquo; {l s='Click here'}</a></p>
 			<div id="login_form_content" style="display:none;">
+-->
 				<!-- Error return block -->
-				<div id="opc_login_errors" class="alert alert-danger" style="display:none;"></div>
+<!--				<div id="opc_login_errors" class="alert alert-danger" style="display:none;"></div> -->
 				<!-- END Error return block -->
+<!--
 				<p class="form-group">
 					<label for="login_email">{l s='Email address'}</label>
 					<input type="text" class="form-control validate" id="login_email" name="email" data-validate="isEmail" />
@@ -25,6 +28,7 @@
 			</div>
 		</fieldset>
 	</form>
+-->
 	<form action="{$link->getPageLink('authentication', true)|escape:'html':'UTF-8'}" method="post" id="new_account_form" class="std" autocomplete="on" autofill="on">
 		<fieldset>
 			<div class="box">
@@ -36,6 +40,7 @@
 							<button type="submit" class="btn btn-default button button-medium exclusive" id="opc_guestCheckout"><span>{l s='Guest checkout'}</span></button>
 						</p>
 					</div>
+<!--
 					<div class="col-xs-12 col-md-6">
 						<p class="title_block">{l s='Create your account today and enjoy:'}</p>
 						<ul class="bullet">
@@ -47,6 +52,7 @@
 							<button type="submit" class="btn btn-default button button-medium exclusive" id="opc_createAccount"><span><i class="icon-user left"></i>{l s='Create an account'}</span></button>
 						</p>
 					</div>
+-->
 				</div>
 				<div id="opc_account_form" class="unvisible">
 					{$HOOK_CREATE_ACCOUNT_TOP}
@@ -84,6 +90,7 @@
 						<label for="lastname">{l s='Last name'} <sup>*</sup></label>
 						<input type="text" class="form-control validate" id="customer_lastname" name="customer_lastname" onblur="$('#lastname').val($(this).val());" data-validate="isName" value="{if isset($guestInformations) && isset($guestInformations.customer_lastname) && $guestInformations.customer_lastname}{$guestInformations.customer_lastname}{/if}" />
 					</div>
+<!--
 					<div class="select form-group date-select">
 						<label>{l s='Date of Birth'}</label>
 						<div class="row">
@@ -146,6 +153,7 @@
 							<sup> *</sup>
 						{/if}
 					</div>
+-->
 					{/if}
 					<h3 class="page-subheading top-indent">{l s='Delivery address'}</h3>
 					{$stateExist = false}
