@@ -102,6 +102,7 @@
                     </label>
                     <input class="is_required validate form-control" type="password" data-validate="isPasswd" name="confirmation" id="confirmation" />
                 </div>
+                <!--
                 {if isset($newsletter) && $newsletter}
                     <div class="checkbox">
                         <label for="newsletter">
@@ -124,6 +125,7 @@
                         </label>
                     </div>
                 {/if}
+                -->
 			{if $b2b_enable}
 				<h1 class="page-subheading">
 					{l s='Your company information'}
