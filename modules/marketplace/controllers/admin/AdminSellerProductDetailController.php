@@ -18,9 +18,9 @@
 			$this->addRowAction('delete');
 			$this->addRowAction('view');
 			
-			$this->_join .= 'LEFT JOIN `'._DB_PREFIX_.'marketplace_shop` mps ON (mps.`id` = a.`id_shop`)';
+			//$this->_join .= 'LEFT JOIN `'._DB_PREFIX_.'marketplace_shop` mps ON (mps.`id` = a.`id_shop`)';
 			$this->_join .= 'LEFT JOIN `'._DB_PREFIX_.'marketplace_seller_info` mpsin ON (mpsin.`id` = a.`id_seller`)';
-			$this->_select = 'mps.`shop_name`,mpsin.`seller_name`';
+			$this->_select = 'mpsin.`shop_name`,mpsin.`seller_name`';
 			
 			$this->fields_list = array();
 			$this->fields_list['id'] = array(
