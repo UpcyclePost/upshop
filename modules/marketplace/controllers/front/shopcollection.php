@@ -182,7 +182,7 @@ class marketplaceshopcollectionModuleFrontController extends ModuleFrontControll
             $product_quantity = array();
             foreach ($product as $product1)
             {
-                $product_price[] =  $product_obj->getPriceStatic($product1['id_product'],true);
+                $product_price[] =  $product_obj->getPriceStatic($product1['id_product'],true,null,Configuration::get('PS_PRICE_DISPLAY_PRECISION'));
                 $product_id[] = $product1['id_product'];
                 $product_quantity[] = $product1['quantity'];
                 $a++;

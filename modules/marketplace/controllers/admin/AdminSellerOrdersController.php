@@ -22,7 +22,8 @@ class AdminSellerOrdersController extends ModuleAdminController
             ),
             'customer' => array(
                 'title' => $this->l('Customer'),
-                'align' => 'center'
+                'align' => 'center',
+                'havingFilter' => true
             ),
             'shop_name' => array(
                 'title' => $this->l('Shop'),

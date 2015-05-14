@@ -13,7 +13,7 @@
 			'primary' => 'id',
 			'fields' => array(
 				'id_customer' => array('type' => self::TYPE_INT, 'validate' => 'isInt'),
-				'shop_name' => array('type' => self::TYPE_STRING, 'validate' => 'isGenericName'),
+				'shop_name' => array('type' => self::TYPE_STRING, 'lang' => true, 'validate' => 'isCatalogName', 'required' => true, 'size' => 128),
 				'link_rewrite' => array('type' => self::TYPE_STRING, 'validate' => 'isLinkRewrite', 'required' => true, 'size' => 128),
 				'about_us' => array('type' => self::TYPE_HTML, 'validate' => 'isCleanHtml'),
 				'is_active' => array('type' => self::TYPE_BOOL,'validate' => 'isBool')

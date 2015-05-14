@@ -13,6 +13,7 @@ class marketplaceProductupdateModuleFrontController extends ModuleFrontControlle
 			$mkt_acc_link = $link->getModuleLink('marketplace','marketplaceaccount');
 			$obj_marketplace_product = new SellerProductDetail();
 			$pro_info = $obj_marketplace_product->getMarketPlaceProductInfo($id);
+			$pro_info['price'] = Tools::ps_round($pro_info['price'],Configuration::get('PS_PRICE_DISPLAY_PRECISION'));
 			$checked_product_cat = $obj_marketplace_product->getMarketPlaceProductCategories($id);
 			$obj_seller_product_category = new SellerProductCategory();
 			$defaultcatid = $obj_seller_product_category->getMpDefaultCategory($id);
