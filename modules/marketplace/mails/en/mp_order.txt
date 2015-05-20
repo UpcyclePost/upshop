@@ -30,7 +30,3 @@ Phone: {phone}
 
 You can review order details in my order by log in to your
 seller account by clicking [{my_account_url}] "My account" on our shop.
-
-You can review order details by clicking on the You Menu 
-in the upper right corner and selecting My Shop.
-Click here to go to your shop [{shop_url}]

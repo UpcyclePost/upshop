@@ -15,5 +15,5 @@ ATTACHED FILE: {attached_file}
 
 We will answer as soon as possible. 
 
-{shop_name} [{shop_url}]
+{shop_name} [{shop_url}] 
 

@@ -19,4 +19,4 @@ Customer details
 Name: {from_name}
 Email: {from_email}
 
-[{product_link}] to view your product. Log in to your shop by clicking on the You Menu in the upper right corner and selecting My Shop. Click here to go to your shop [{shop_url}].
+[{product_link}] to view your product. Log in to your seller account by clicking [{my_account_url}] on our shop.

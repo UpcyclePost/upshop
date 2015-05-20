@@ -9,5 +9,5 @@ DISCUSSION HISTORY: {messages}
 
 {employee} added "{comment}" 		 
 
-{shop_name} [{shop_url}]
+{shop_name} [{shop_url}] 
 
