@@ -498,10 +498,10 @@ class SellerProductDetail extends ObjectModel
 	public static function getProductList($id_seller, $orderby=false,$orderway=false,$p, $n)
 	{	
 		if(!$orderby) {
-				$orderby = 'product_name';
+				$orderby = 'quantity';
 			}
 		if(!$orderway) {
-				$orderway = 'asc';
+				$orderway = 'desc';
 			}
 		
 		
@@ -512,7 +512,7 @@ class SellerProductDetail extends ObjectModel
 		   else
              return false;
 		}
-		public static function toggle_seller_product($mp_product_id)
+	public static function toggle_seller_product($mp_product_id)
 	{
 		$obj_sellerproduct_detail = new SellerProductDetail($mp_product_id);
 		$mp_id_shop = $obj_sellerproduct_detail->id_shop;

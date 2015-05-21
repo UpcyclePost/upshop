@@ -409,6 +409,8 @@
 										<option value="name:desc">{l s='Product Name: Z to A' mod='marketplace'}</option>
 										<option value="date_add:asc">{l s='Creation Date: asc' mod='marketplace'}</option>
 										<option value="date_add:desc">{l s='Creation Date: desc' mod='marketplace'}</option>
+										<option value="quantity:desc">{l s='Quantity: desc' mod='marketplace'}</option>
+										<option value="quantity:asc">{l s='Quantity: asc' mod='marketplace'}</option>
 									</select>
 								</form>
 
@@ -438,6 +440,8 @@
 						<table class="data-table" id="my-orders-table" style="width:100%;">
 							<thead>
 								<tr class="first last">
+									<th>{l s='Edit' mod='marketplace'}</th>
+									<th>{l s='Image' mod='marketplace'}</th>
 									<th>{l s='Name' mod='marketplace'}</th>
 									<th>{l s='Description' mod='marketplace'}</th>
 									<th>{l s='Price' mod='marketplace'}</th>
@@ -453,7 +457,17 @@
 							{foreach $product_lists as $product}
 								<tr class="even">
 									<td>
-										<a href="{$product_details_link|escape:'html':'UTF-8'}&id={$product['id']|escape:'html':'UTF-8'}">
+										<img id="{$product['id']|escape:'html':'UTF-8'}" class="edit_img" src="{$img_ps_dir|escape:'html':'UTF-8'}admin/edit.gif"/>
+									</td>
+									<td>
+										<!--
+										<img title="15" width="45" height="45" alt="15" src="http://192.168.1.15/upshop/12/chicken-wire-rabbit-by-kendra-haste.jpg">
+										<img src="{$link->getImageLink($product.link_rewrite, $product.id_image, 'small_default')|escape:'html':'UTF-8'}"></img>
+										-->
+											xx{$product.id_image}xx
+									</td>
+									<td>
+										<a href="{$product_details_link|escape:'html':'UTF-8'}&id={$product['id']|escape:'html':'UTF-8'}">									
 										{$product['product_name']|escape:'html':'UTF-8'}
 										</a>
 									</td>
@@ -482,7 +496,6 @@
 										</td>
 									{/if}
 									<td>
-										<img id="{$product['id']|escape:'html':'UTF-8'}" class="edit_img" src="{$img_ps_dir|escape:'html':'UTF-8'}admin/edit.gif"/>
 										<img id="{$product['id']|escape:'html':'UTF-8'}" class="delete_img" src="{$img_ps_dir|escape:'html':'UTF-8'}admin/delete.gif"/>
 										{hook h="PriceDisplay" id_product=$product['id']|escape:'html':'UTF-8'}
 									</td>
@@ -810,7 +823,7 @@
 	<div class="dashboard_content">
 		<div class="dashboard">
 			<div class="page-title">
-				<span>{l s='Order Details' mod='marketplace'}</span>
+				<span>{l s='Order Details' mod='marketplace'}</span>		
 			</div>
 			<div class="wk_right_col">
 				<div class="box-account box-recent">
@@ -833,6 +846,8 @@
 				<div class="box-account box-recent">
 					<div class="box-head">
 						<h2>{l s='Order Details' mod='marketplace'}</h2>
+							Order Reference - {$dashboard[0]['ref']}
+							<a target="_blank" class="btn btn-gray" style="float:right;margin:-15px 0 0 0" href="{$link->getPageLink('pdf-invoice', true)}?id_order={$dashboard[0]['id_order']|intval}"><i class="fa fa-file-pdf-o icon-only"></i> {l s='Download invoice as a PDF file.'}</a>
 						<div class="wk_border_line"></div>
 					</div>
 					<div class="box-content">
@@ -851,6 +866,7 @@
 	</div>
 	{/if}
 </div>
+
 {if $logic ==3}
 <script type="text/javascript">
 $(document).ready(function(){
