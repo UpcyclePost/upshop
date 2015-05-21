@@ -1670,6 +1670,28 @@ textarea.input-lg, .input-group-lg > textarea.form-control,
     background-color: #fff;
     border-color: #ccc; }
 
+.btn-gray {
+  -webkit-border-radius: 2px;
+  -webkit-background-clip: padding-box;
+  -moz-border-radius: 2px;
+  -moz-background-clip: padding;
+  border-radius: 2px;
+  background-clip: padding-box;
+  background-image: url(data:image/svg+xml;
+ base64, PD94bWwgdmVyc2lvbj0iMS4wIiA/PjxzdmcgeG1sbn…g9IjEiIGhlaWdodD0iMSIgZmlsbD0idXJsKCNsZXNzaGF0LWdlbmVyYXRlZCkiIC8+PC9zdmc+);
+  background-image: -webkit-linear-gradient(top, #fff 40%, #fbfbfb 100%);
+  background-image: -moz-linear-gradient(top, #fff 40%, #fbfbfb 100%);
+  background-image: -o-linear-gradient(top, #fff 40%, #fbfbfb 100%);
+  background-image: linear-gradient(to bottom, #fff 40%, #fbfbfb 100%);
+  color: #555;
+  border: 1px solid #ddd;
+}
+.btn-gray:hover, .btn-gray:active, .btn-gray:focus {
+    text-decoration: none;
+    background: #fff;
+    color: #333;
+}
+
 .btn-primary {
   color: #fff;
   background-color: #428bca;

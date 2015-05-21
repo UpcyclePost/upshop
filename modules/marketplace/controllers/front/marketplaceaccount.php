@@ -10,23 +10,23 @@ class marketplaceMarketplaceaccountModuleFrontController extends ModuleFrontCont
 			$orderby  = Tools::getValue('orderby');
         }
 		else {
-			$orderby  = 'product_name';
+			$orderby  = 'quantity';
 		}
 		
 		if(Tools::getIsset('orderway')) {
 			$orderway  = Tools::getValue('orderway');
         }
 		else {
-			$orderway  = 'asc';
+			$orderway  = 'desc';
 		}
 		
 		if ($orderby == 'name') {
             $orderby = 'product_name';
         } elseif ($orderby == '') {
-            $orderby = 'product_name';
+            $orderby = 'quantity';
         }
         if ($orderway == '') {
-            $orderway = 'asc';
+            $orderway = 'desc';
         }
 		$page_no = Tools::getValue('p');
 		if(isset($page_no)){
@@ -342,6 +342,7 @@ class marketplaceMarketplaceaccountModuleFrontController extends ModuleFrontCont
 							{
 								$productList = 0;
 							}
+							
 							$param = array('l'=>$logic);
 							$this->context->smarty->assign('param',$param);
 							$sortingLink = $link->getModuleLink('marketplace', 'marketplaceaccount',array('shop'=>$id_shop,'l'=>$logic,'p'=>$page_no));
@@ -439,17 +440,17 @@ class marketplaceMarketplaceaccountModuleFrontController extends ModuleFrontCont
 
 							$id_shop = Tools::getValue('shop');
 							//$id_order_detail = $_GET['id_order_detail'];
-							$dashboard   = Db::getInstance()->executeS("SELECT cntry.`name` as `country`,stat.`name` as `state`,ads.`postcode` as `postcode`,ads.`city` as `city`,ads.`phone` as `phone`,ads.`phone_mobile` as `mobile`,ordd.`id_order_detail` as `id_order_detail`,ordd.`product_name` as `ordered_product_name`,ordd.`product_price` as total_price,ordd.`product_quantity` as qty, ordd.`id_order` as id_order,ord.`id_customer` as order_by_cus,ord.`payment` as payment_mode,ord.`current_state` as current_state,cus.`firstname` as name,cus.`lastname` as lastname,cus.email as email,ord.`date_add` as `date`,ords.`name`as order_status,ads.`address1` as `address1`,ads.`address2` as `address2` from  `"._DB_PREFIX_."order_detail` ordd join `"._DB_PREFIX_."orders` ord ON (ord.`id_order` = ordd.`id_order`) join `"._DB_PREFIX_."customer` cus on (cus.`id_customer`= ord.`id_customer`) join `"._DB_PREFIX_."order_state_lang` ords on (ord.`current_state`= ords.`id_order_state`) join `"._DB_PREFIX_."address` ads on (ads.`id_customer`= cus.`id_customer`) join `"._DB_PREFIX_."state` stat on (stat.`id_state`= ads.`id_state`) join `"._DB_PREFIX_."country_lang` cntry on (cntry.`id_country`= ads.`id_country`) where ordd.`id_order`=".$id_order." and cntry.`id_lang`=".$id_lang);  
+							$dashboard   = Db::getInstance()->executeS("SELECT cntry.`name` as `country`,stat.`name` as `state`,ads.`postcode` as `postcode`,ads.`city` as `city`,ads.`phone` as `phone`,ads.`phone_mobile` as `mobile`,ordd.`id_order_detail` as `id_order_detail`,ordd.`product_name` as `ordered_product_name`,ordd.`product_price` as total_price,ordd.`product_quantity` as qty, ordd.`id_order` as id_order,ord.`id_customer` as order_by_cus,ord.`payment` as payment_mode,ord.`current_state` as current_state,cus.`firstname` as name,cus.`lastname` as lastname,cus.email as email, cus.`website` as ws, ord.`date_add` as `date`, ord.`reference` as `ref`, ords.`name`as order_status,ads.`address1` as `address1`,ads.`address2` as `address2` from  `"._DB_PREFIX_."order_detail` ordd join `"._DB_PREFIX_."orders` ord ON (ord.`id_order` = ordd.`id_order`) join `"._DB_PREFIX_."customer` cus on (cus.`id_customer`= ord.`id_customer`) join `"._DB_PREFIX_."order_state_lang` ords on (ord.`current_state`= ords.`id_order_state`) join `"._DB_PREFIX_."address` ads on (ads.`id_customer`= cus.`id_customer`) join `"._DB_PREFIX_."state` stat on (stat.`id_state`= ads.`id_state`) join `"._DB_PREFIX_."country_lang` cntry on (cntry.`id_country`= ads.`id_country`) where ordd.`id_order`=".$id_order." and cntry.`id_lang`=".$id_lang);  
 						
 							if(empty($dashboard))
 							{
-								$dashboard   = Db::getInstance()->executeS("SELECT cntry.`name` as `country`,ads.`postcode` as `postcode`,ads.`city` as `city`,ads.`phone` as `phone`,ads.`phone_mobile` as `mobile`,ordd.`id_order_detail` as `id_order_detail`,ordd.`product_name` as `ordered_product_name`,ordd.`product_price` as total_price,ordd.`product_quantity` as qty, ordd.`id_order` as id_order,ord.`id_customer` as order_by_cus,ord.`payment` as payment_mode,ord.`current_state` as current_state,cus.`firstname` as name,cus.`lastname` as lastname,cus.email as email,ord.`date_add` as `date`,ords.`name`as order_status,ads.`address1` as `address1`,ads.`address2` as `address2` from  `"._DB_PREFIX_."order_detail` ordd join `"._DB_PREFIX_."orders` ord ON (ord.`id_order` = ordd.`id_order`) join `"._DB_PREFIX_."customer` cus on (cus.`id_customer`= ord.`id_customer`) join `"._DB_PREFIX_."order_state_lang` ords on (ord.`current_state`= ords.`id_order_state`) join `"._DB_PREFIX_."address` ads on (ads.`id_customer`= cus.`id_customer`) join `"._DB_PREFIX_."country_lang` cntry on (cntry.`id_country`= ads.`id_country`) where ordd.`id_order`=".$id_order." and cntry.`id_lang`=".$id_lang);  
+								$dashboard   = Db::getInstance()->executeS("SELECT cntry.`name` as `country`,ads.`postcode` as `postcode`,ads.`city` as `city`,ads.`phone` as `phone`,ads.`phone_mobile` as `mobile`,ordd.`id_order_detail` as `id_order_detail`,ordd.`product_name` as `ordered_product_name`,ordd.`product_price` as total_price,ordd.`product_quantity` as qty, ordd.`id_order` as id_order,ord.`id_customer` as order_by_cus,ord.`payment` as payment_mode,ord.`current_state` as current_state,cus.`firstname` as name,cus.`lastname` as lastname,cus.email as email,cus.`website` as ws, ord.`date_add` as `date`, ord.`reference` as `ref`, ords.`name`as order_status,ads.`address1` as `address1`,ads.`address2` as `address2` from  `"._DB_PREFIX_."order_detail` ordd join `"._DB_PREFIX_."orders` ord ON (ord.`id_order` = ordd.`id_order`) join `"._DB_PREFIX_."customer` cus on (cus.`id_customer`= ord.`id_customer`) join `"._DB_PREFIX_."order_state_lang` ords on (ord.`current_state`= ords.`id_order_state`) join `"._DB_PREFIX_."address` ads on (ads.`id_customer`= cus.`id_customer`) join `"._DB_PREFIX_."country_lang` cntry on (cntry.`id_country`= ads.`id_country`) where ordd.`id_order`=".$id_order." and cntry.`id_lang`=".$id_lang);  
 								
 								$dashboard_state = "N/A";
 							}
 							else
 								$dashboard_state = $dashboard[0]['state'];
-
+												
 							$a=0;
 							$dash_price = array();
 							foreach($dashboard as $dashboard1)

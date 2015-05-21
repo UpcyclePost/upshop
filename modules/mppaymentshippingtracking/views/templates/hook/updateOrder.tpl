@@ -24,11 +24,12 @@
 		{/if}
 
 		<!-- Tab -->
+		<!--
 		<ul class="nav nav-tabs">
 			<li class="active">
 				<a href="#status" data-toggle="tab">
 					<i class="icon-time"></i>
-					{l s='Payment Status' mod='mppaymentshippingtracking'}</span>
+					{l s='Order Status' mod='mppaymentshippingtracking'}</span>
 				</a>
 			</li>
 			<li>
@@ -46,76 +47,8 @@
 			</li>
 			{/if}
 		</ul>
+		-->
 
-		<!-- Tab content -->
-		<div class="tab-content panel">
-			<!-- Tab status -->
-			<div class="tab-pane active" id="status">
-				<h4 class="visible-print">{l s='Status'} <span class="badge">({$history|@count})</span></h4>
-				<!-- History of status -->
-				<div class="table-responsive">
-					<table class="table history-status row-margin-bottom">
-						<tbody>
-							{foreach from=$history item=row key=key}
-								{if ($key == 0)}
-									<tr>
-										<td style="background-color:{$row['color']}">
-											<img src="{$img_url}os/{$row['id_order_state']|intval}.gif" width="16" height="16" alt="{$row['ostate_name']|stripslashes}" /></td>
-										<td style="background-color:{$row['color']};color:{$row['text-color']}">
-											{$row['ostate_name']|stripslashes}
-										</td>
-										<td style="background-color:{$row['color']};color:{$row['text-color']}">
-										</td>
-										<td style="background-color:{$row['color']};color:{$row['text-color']}">
-											{dateFormat date=$row['date_add'] full=true}
-										</td>
-									</tr>
-								{else}
-									<tr>
-										<td>
-											<img src="{$img_url}os/{$row['id_order_state']|intval}.gif" width="16" height="16" />
-										</td>
-										<td>
-											{$row['ostate_name']|stripslashes}
-										</td>
-										<td>
-										</td>
-										<td>
-											{dateFormat date=$row['date_add'] full=true}
-										</td>
-									</tr>
-								{/if}
-							{/foreach}
-						</tbody>
-					</table>
-				</div>
-				<!-- Change status form -->
-				<form action="{$update_url_link}" method="post" class="form-horizontal well" id="change_order_status_form">
-					<div class="row">
-						<div class="col-lg-9 form-group" id="select_ele_id">
-							<select id="id_order_state" class="chosen form-control" name="id_order_state">
-							{foreach from=$states item=state}
-								{if !$state['hidden']}
-								<option value="{$state['id_order_state']|intval}"{if $state['id_order_state'] == $currentState->id} selected="selected" disabled="disabled"{/if}>{$state['name']|escape}</option>
-								{/if}
-							{/foreach}
-							</select>
-							<input type="hidden" name="id_order_state_checked" class="id_order_state_checked" value="{$currentState->id}" />
-						</div>
-						<div class="col-lg-3">
-							<a href="#wk_shipping_form" style="color:white;display:none;" class="btn btn-primary" id="update_order_status_shipping">
-								<span>{l s='Update status' mod='mppaymentshippingtracking'}</span>
-							</a>
-							<a href="#wk_delivery_form" style="color:white;display:none;" class="btn btn-primary" id="update_order_status_delivary">
-								<span>{l s='Update status' mod='mppaymentshippingtracking'}</span>
-							</a>
-							<button type="submit" name="submitState" class="btn btn-primary" id="update_order_status">
-								<span>{l s='Update status' mod='mppaymentshippingtracking'}</span>
-							</button>
-						</div>
-					</div>
-				</form>
-			</div>
 			<!-- Tab shipping -->
 			<div class="tab-pane" id="shipping">
 				<h4 class="visible-print">{l s='Shipping' mod='mppaymentshippingtracking'}</h4>
@@ -226,6 +159,86 @@
 						</table>
 					</div>
 				{/if}
+			</div>
+	</div>
+	</div>
+<div class="box-account box-recent">
+	<div class="box-head">
+		<h2>{l s='Order Status' mod='marketplace'}</h2>
+		<div class="wk_border_line"></div>
+	</div>
+	<div class="box-content">
+
+		<!-- Tab content -->
+		<div class="tab-content panel">
+			<!-- Tab status -->
+			<div class="tab-pane active" id="status">
+				<h4 class="visible-print">{l s='Status'} <span class="badge">({$history|@count})</span></h4>
+				<!-- History of status -->
+				<div class="table-responsive">
+					<table class="table history-status row-margin-bottom">
+						<tbody>
+							{foreach from=$history item=row key=key}
+								{if ($key == 0)}
+									<tr>
+										<td style="background-color:{$row['color']}">
+											<img src="{$img_url}os/{$row['id_order_state']|intval}.gif" width="16" height="16" alt="{$row['ostate_name']|stripslashes}" /></td>
+										<td style="background-color:{$row['color']};color:{$row['text-color']}">
+											{$row['ostate_name']|stripslashes}
+										</td>
+										<td style="background-color:{$row['color']};color:{$row['text-color']}">
+										</td>
+										<td style="background-color:{$row['color']};color:{$row['text-color']}">
+											{dateFormat date=$row['date_add'] full=true}
+										</td>
+									</tr>
+								{else}
+									<tr>
+										<td>
+											<img src="{$img_url}os/{$row['id_order_state']|intval}.gif" width="16" height="16" />
+										</td>
+										<td>
+											{$row['ostate_name']|stripslashes}
+										</td>
+										<td>
+										</td>
+										<td>
+											{dateFormat date=$row['date_add'] full=true}
+										</td>
+									</tr>
+								{/if}
+							{/foreach}
+						</tbody>
+					</table>
+				</div>
+
+
+				<!-- Change status form -->
+				<form action="{$update_url_link}" method="post" class="form-horizontal well" id="change_order_status_form" onsubmit="needToConfirm= false;">
+					<div class="row">
+						<div class="col-lg-9 form-group" id="select_ele_id">
+							<select id="id_order_state" class="chosen form-control" name="id_order_state" onchange="needToConfirm= true;">
+							{foreach from=$states item=state}
+								{if !$state['hidden']}
+								<option value="{$state['id_order_state']|intval}"{if $state['id_order_state'] == $currentState->id} selected="selected" disabled="disabled"{/if}>{$state['name']|escape}</option>
+								{/if}
+							{/foreach}
+							</select>
+							<input type="hidden" name="id_order_state_checked" class="id_order_state_checked" value="{$currentState->id}" />
+						</div>
+						<div class="col-lg-3">
+							<a href="#wk_shipping_form" style="color:white;display:none;" class="btn btn-primary" id="update_order_status_shipping">
+								<span>{l s='Update status' mod='mppaymentshippingtracking'}</span>
+							</a>
+							<a href="#wk_delivery_form" style="color:white;display:none;" class="btn btn-primary" id="update_order_status_delivary">
+								<span>{l s='Update status' mod='mppaymentshippingtracking'}</span>
+							</a>
+							<button type="submit" name="submitState" class="btn btn-primary" id="update_order_status">
+								<span>{l s='Update status' mod='mppaymentshippingtracking'}</span>
+							</button>
+						</div>
+					</div>
+				</form>
 			</div>
 			<!-- Tab delivery -->
 			<div class="tab-pane" id="delivery">
@@ -354,7 +367,7 @@
 				</div>
 
 				<div id="submit_block">
-					<button name="shipping_info" class="btn btn-primary" type="submit">
+					<button name="shipping_info" class="btn btn-primary" type="submit" onclick="needToConfirm = false;">
 						<span>{l s='Submit' mod='mppaymentshippingtracking'}</span>
 					</button>
 				</div>
@@ -493,4 +506,15 @@
 </div>
 <script type="text/javascript">
 	var update_tracking_number_link = '{$update_tracking_number_link}';
+</script>
+
+<script language="JavaScript">
+  var needToConfirm = false;
+
+  window.onbeforeunload = confirmExit;
+  function confirmExit()
+  {
+	if (needToConfirm)
+      return "You have changed the status of the order please click the Update Status button";
+  }
 </script>
