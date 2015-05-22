@@ -29,40 +29,33 @@
 </table>
 
 <!-- ADDRESSES -->
-<table style="width: 100%">
-	<tr>
-		<td style="width: 17%"></td>
-		<td style="width: 83%">
-			{if !empty($delivery_address)}
-				<table style="width: 100%">
-					<tr>
-						<td style="width: 50%">
-							<span style="font-weight: bold; font-size: 10pt; color: #9E9F9E">{l s='Delivery Address' pdf='true'}</span><br />
-							 {$delivery_address}
-						</td>
-						<td style="width: 50%">
-							<span style="font-weight: bold; font-size: 10pt; color: #9E9F9E">{l s='Billing Address' pdf='true'}</span><br />
-							 {$invoice_address}
-						</td>
-					</tr>
-				</table>
-			{else}
-				<table style="width: 100%">
-					<tr>
+{if !empty($delivery_address)}
+	<table style="width: 100%">
+		<tr>
+			<td style="width: 50%">
+				<span style="font-weight: bold; font-size: 10pt; color: #9E9F9E">{l s='Delivery Address' pdf='true'}</span><br />
+				 {$delivery_address}
+			</td>
+			<td style="width: 50%">
+				<span style="font-weight: bold; font-size: 10pt; color: #9E9F9E">{l s='Billing Address' pdf='true'}</span><br />
+				 {$invoice_address}
+			</td>
+		</tr>
+	</table>
+{else}
+	<table style="width: 100%">
+		<tr>
 
-						<td style="width: 50%">
-							<span style="font-weight: bold; font-size: 10pt; color: #9E9F9E">{l s='Billing & Delivery Address.' pdf='true'}</span><br />
-							 {$invoice_address}
-						</td>
-						<td style="width: 50%">
+			<td style="width: 50%">
+				<span style="font-weight: bold; font-size: 10pt; color: #9E9F9E">{l s='Billing & Delivery Address.' pdf='true'}</span><br />
+				 {$invoice_address}
+			</td>
+			<td style="width: 50%">
 
-						</td>
-					</tr>
-				</table>
-			{/if}
-		</td>
-	</tr>
-</table>
+			</td>
+		</tr>
+	</table>
+{/if}
 <!-- / ADDRESSES -->
 
 <div style="line-height: 1pt">&nbsp;</div>
@@ -70,13 +63,12 @@
 <!-- PRODUCTS TAB -->
 <table style="width: 100%">
 	<tr>
-		<td style="width: 17%; padding-right: 7px; text-align: right; vertical-align: top; font-size: 7pt;">
+		<td style="font-size: 7pt;">
 			<!-- CUSTOMER INFORMATION -->
-			<b>{l s='Order Number:' pdf='true'}</b><br />
-			{$order->getUniqReference()}<br />
+			<span style="font-weight: bold; font-size: 10pt; color: #9E9F9E">{l s='Order Details.' pdf='true'}</span><br />
+			<b>{l s='Order Reference:' pdf='true'}</b> - {$order->getUniqReference()}<br />
 			<br />
-			<b>{l s='Order Date:' pdf='true'}</b><br />
-			{dateFormat date=$order->date_add full=0}<br />
+			<b>{l s='Order Date:' pdf='true'}</b> - {dateFormat date=$order->date_add full=0}<br />
 			<br />
 			<b>{l s='Payment Method:' pdf='true'}</b><br />
 			<table style="width: 100%;">
@@ -93,29 +85,30 @@
 			</table>
 			<br />
 			{if isset($carrier)}
-			<b>{l s='Carrier:' pdf='true'}</b><br />
-			{$carrier->name}<br />
+			<b>{l s='Carrier:' pdf='true'}</b> - {$carrier->name}<br />
 			<br />
 			{/if}
 			<!-- / CUSTOMER INFORMATION -->
 		</td>
-		<td style="width: 83%; text-align: right">
+	</tr>
+	<tr>
+		<td>	
 			<table style="width: 100%; font-size: 8pt;">
 				<tr style="line-height:4px;">
 					{$product_reference_width = 45}
 					{if Configuration::get('PS_PDF_IMG_INVOICE')}
 						{$product_reference_width = $product_reference_width - 10}
-						<td style="text-align: left; background-color: #4D4D4D; color: #FFF; padding-left: 10px; font-weight: bold; width: 10%">{l s='Image' pdf='true'}</td>
+						<td style="text-align: left; background-color: #0099cc; color: #FFF; padding-left: 10px; font-weight: bold; width: 10%">{l s='Image' pdf='true'}</td>
 					{/if}
 					{if !$tax_excluded_display}
 						{$product_reference_width = $product_reference_width - 10}
 					{/if}
-					<td style="text-align: left; background-color: #4D4D4D; color: #FFF; padding-left: 10px; font-weight: bold; width: {$product_reference_width}%">{l s='Product / Reference' pdf='true'}</td>
+					<td style="text-align: left; background-color: #0099cc; color: #FFF; padding-left: 10px; font-weight: bold; width: {$product_reference_width}%">{l s='Product / Reference' pdf='true'}</td>
 					<!-- unit price tax excluded is mandatory -->
 					{if !$tax_excluded_display}
-						<td style="background-color: #4D4D4D; color: #FFF; text-align: right; font-weight: bold; width: 20%">{l s='Unit Price' pdf='true'} <br />{l s='(Tax Excl.)' pdf='true'}</td>
+						<td style="background-color: #0099cc; color: #FFF; text-align: right; font-weight: bold; width: 20%">{l s='Unit Price' pdf='true'} <br />{l s='(Tax Excl.)' pdf='true'}</td>
 					{/if}
-					<td style="background-color: #4D4D4D; color: #FFF; text-align: right; font-weight: bold; width: 10%">
+					<td style="background-color: #0099cc; color: #FFF; text-align: right; font-weight: bold; width: 10%">
 						{l s='Unit Price' pdf='true'}
 						{if $tax_excluded_display}
 							 {l s='(Tax Excl.)' pdf='true'}
@@ -123,9 +116,9 @@
 							 {l s='(Tax Incl.)' pdf='true'}
 						{/if}
 					</td>
-					<td style="background-color: #4D4D4D; color: #FFF; text-align: right; font-weight: bold; width: 10%; white-space: nowrap;">{l s='Discount' pdf='true'}</td>
-					<td style="background-color: #4D4D4D; color: #FFF; text-align: center; font-weight: bold; width: 10%">{l s='Qty' pdf='true'}</td>
-					<td style="background-color: #4D4D4D; color: #FFF; text-align: right; font-weight: bold; width: {if !$tax_excluded_display}15%{else}25%{/if}">
+					<td style="background-color: #0099cc; color: #FFF; text-align: right; font-weight: bold; width: 10%; white-space: nowrap;">{l s='Discount' pdf='true'}</td>
+					<td style="background-color: #0099cc; color: #FFF; text-align: center; font-weight: bold; width: 10%">{l s='Qty' pdf='true'}</td>
+					<td style="background-color: #0099cc; color: #FFF; text-align: right; font-weight: bold; width: {if !$tax_excluded_display}15%{else}25%{/if}">
 						{l s='Total' pdf='true'}
 						{if $tax_excluded_display}
 							{l s='(Tax Excl.)' pdf='true'}
