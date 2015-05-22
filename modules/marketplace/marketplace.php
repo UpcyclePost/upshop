@@ -3,6 +3,7 @@ if (!defined('_PS_VERSION_'))
     exit;
 
 include_once 'classes/MarketplaceClassInclude.php';
+
 class MarketPlace extends Module
 {
     const INSTALL_SQL_FILE = 'install.sql';

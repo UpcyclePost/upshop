@@ -1,5 +1,5 @@
 <?php
-include_once 'modules/marketplace/classes/MarketplaceClassInclude.php';
+include_once 'modules/marketplace/classes/MarketplaceClassInclude.php'; 
 class marketplaceMarketplaceaccountModuleFrontController extends ModuleFrontController 
 {
 	public function initContent() 
