@@ -48,7 +48,7 @@ class PdfInvoiceControllerCore extends FrontController
 			$order = new Order((int)$id_order);
 
 		if (!isset($order) || !Validate::isLoadedObject($order))
-			die(Tools::displayError('0 The invoice was not found.'));
+			die(Tools::displayError('The invoice was not found.'));
 
 		If (_PS_MODE_DEV_)
 			{
@@ -67,7 +67,7 @@ class PdfInvoiceControllerCore extends FrontController
 			{
 			If (_PS_MODE_DEV_) 
 			{
-				echo "customer does not matchxxxxxxxx<br>";
+				echo "customer does not match<br>";
 				echo "test : " . ((Tools::isSubmit('secure_key') && $order->secure_key != Tools::getValue('secure_key'))) . "<br>";
 			}
 			// customer does not match, but do they have the secure key?
@@ -77,13 +77,13 @@ class PdfInvoiceControllerCore extends FrontController
 				if ($order->secure_key != Tools::getValue('secure_key'))
 					{
 					If (_PS_MODE_DEV_){echo "customer does not match and no secure key<br>";} 
-					die(Tools::displayError('1 The invoice was not found1111111111111111111.'));
+					die(Tools::displayError('The invoice was not found'));
 					}
 				}
 				else
 				{
 					If (_PS_MODE_DEV_){echo "no secure key<br>";}
-					die(Tools::displayError('4 The invoice was not found44444444.'));					
+					die(Tools::displayError('The invoice was not found.'));					
 				}
 			}
 
