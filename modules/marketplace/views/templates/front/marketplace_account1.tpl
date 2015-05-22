@@ -847,7 +847,7 @@
 					<div class="box-head">
 						<h2>{l s='Order Details' mod='marketplace'}</h2>
 							Order Reference - {$dashboard[0]['ref']}
-							<a target="_blank" class="btn btn-gray" style="float:right;margin:-15px 0 0 0" href="{$link->getPageLink('pdf-invoice', true)}?id_order={$dashboard[0]['id_order']|intval}"><i class="fa fa-file-pdf-o icon-only"></i> {l s='Download invoice as a PDF file.'}</a>
+							<a target="_blank" class="btn btn-gray" style="float:right;margin:-15px 0 0 0" href="{$link->getPageLink('pdf-invoice', true)}?id_order={$dashboard[0]['id_order']|intval}&amp;secure_key={$dashboard[0]['secure_key']|escape:'html':'UTF-8'}"><i class="fa fa-file-pdf-o icon-only"></i> {l s='Download invoice as a PDF file.'}</a>
 						<div class="wk_border_line"></div>
 					</div>
 					<div class="box-content">

@@ -48,10 +48,44 @@ class PdfInvoiceControllerCore extends FrontController
 			$order = new Order((int)$id_order);
 
 		if (!isset($order) || !Validate::isLoadedObject($order))
-			die(Tools::displayError('The invoice was not found.'));
+			die(Tools::displayError('0 The invoice was not found.'));
 
-		if ((isset($this->context->customer->id) && $order->id_customer != $this->context->customer->id) || (Tools::isSubmit('secure_key') && $order->secure_key != Tools::getValue('secure_key')))
-			die(Tools::displayError('The invoice was not found.'));
+		If (_PS_MODE_DEV_)
+			{
+				echo "<br>Order : " . $id_order;
+				echo "<br>this->context->customer->id : " . $this->context->customer->id;		
+				echo "<br>order->id_customer : " . $order->id_customer;
+				echo "<br>Secure_key : " . Tools::getValue('secure_key');
+				echo "<br>order->secure_key : " . $order->secure_key;
+				echo "<pre>";
+		//		print_r($order);
+				echo "</pre><br>";
+				echo "Customer Match?  : " . ((isset($this->context->customer->id) && $order->id_customer != $this->context->customer->id)) . "<br>";
+			}	
+		// check to see if customer requesting invoice matches customer that placed the order
+		if ((isset($this->context->customer->id) && $order->id_customer != $this->context->customer->id))
+			{
+			If (_PS_MODE_DEV_) 
+			{
+				echo "customer does not matchxxxxxxxx<br>";
+				echo "test : " . ((Tools::isSubmit('secure_key') && $order->secure_key != Tools::getValue('secure_key'))) . "<br>";
+			}
+			// customer does not match, but do they have the secure key?
+			if ((Tools::isSubmit('secure_key')))
+				{
+				// secure_key submitted, does it match?
+				if ($order->secure_key != Tools::getValue('secure_key'))
+					{
+					If (_PS_MODE_DEV_){echo "customer does not match and no secure key<br>";} 
+					die(Tools::displayError('1 The invoice was not found1111111111111111111.'));
+					}
+				}
+				else
+				{
+					If (_PS_MODE_DEV_){echo "no secure key<br>";}
+					die(Tools::displayError('4 The invoice was not found44444444.'));					
+				}
+			}
 
 		if (!OrderState::invoiceAvailable($order->getCurrentState()) && !$order->invoice_number)
 			die(Tools::displayError('No invoice is available.'));
