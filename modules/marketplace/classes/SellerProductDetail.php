@@ -206,16 +206,30 @@ class SellerProductDetail extends ObjectModel
 				}
 				$image_list = $this->unactiveImage($mp_product_id);
 				if($image_list){
+					$have_cover = false;
+					// if one of the other image is already have cover
+					$images = Image::getImages($id_lang, $main_product_id);
+					if ($images)
+					{
+						foreach ($images as $img)
+							if ($img['cover'] == 1)
+								$have_cover = true;
+					}
+
+
 					foreach($image_list as $image){
 						$old_path = $image_dir.'/'.$image['seller_product_image_id'].'.jpg';
 						//$position = $count + 1;
 						$image_obj = new Image();
 						$image_obj->id_product = $ps_product_id;
 						$image_obj->position = Image::getHighestPosition($main_product_id) + 1;
-						if($count == 0)
-							$image_obj->cover = false;
+						if ($count == 0)
+						{
+							if (!$have_cover)
+								$image_obj->cover = 1;
+						}
 						else
-							$image_obj->cover = false;
+							$image_obj->cover = 0;
 						$image_obj->add();
 						$image_id = $image_obj->id;				
 						$new_path = $image_obj->getPathForCreation();

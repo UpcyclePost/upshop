@@ -98,9 +98,9 @@
 					    <td>{$foo.position|escape:'html':'UTF-8'}</td>
 					   <td>
 					    {if {$foo.cover} == 1}
-						 <img class="covered" id="changecoverimage{$foo.id_image|escape:'html':'UTF-8'}" alt="{$foo.id_image|escape:'html':'UTF-8'}" src="{$img_ps_dir|escape:'html':'UTF-8'}admin/enabled.gif" is_cover="1"  id_pro="{$id|escape:'html':'UTF-8'}" />
+						 <img class="covered" id="changecoverimage{$foo.id_image|escape:'html':'UTF-8'}" alt="{$foo.id_image|escape:'html':'UTF-8'}" src="{$img_ps_dir|escape:'html':'UTF-8'}admin/enabled.gif" is_cover="1"  id_pro="{$id_product|escape:'html':'UTF-8'}" />
 						{else}
-						 <img class="covered" id="changecoverimage{$foo.id_image|escape:'html':'UTF-8'}" alt="{$foo.id_image|escape:'html':'UTF-8'}" src="{$img_ps_dir|escape:'html':'UTF-8'}admin/forbbiden.gif" is_cover="0"  id_pro="{$id|escape:'html':'UTF-8'}" />
+						 <img class="covered" id="changecoverimage{$foo.id_image|escape:'html':'UTF-8'}" alt="{$foo.id_image|escape:'html':'UTF-8'}" src="{$img_ps_dir|escape:'html':'UTF-8'}admin/forbbiden.gif" is_cover="0"  id_pro="{$id_product|escape:'html':'UTF-8'}" />
 						{/if} 
 					   </td>
 					   <td>

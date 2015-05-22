@@ -157,7 +157,56 @@ class marketplaceProductupdateModuleFrontController extends ModuleFrontControlle
 				//Left Menu Links Close
 
 				Hook::exec('actionBeforeShowUpdatedProduct', array('marketplace_product_details' =>$pro_info));
+			
+				//images in product update product page
+				$obj_mp_shopproduct = new MarketplaceShopProduct();
+				$id_product_info = $obj_mp_shopproduct->findMainProductIdByMppId($id);
 				
+				$i = 0;
+				$img_info = array();
+				if($id_product_info)
+				{
+					$link = new Link();
+					$id_product = $id_product_info['id_product'];
+					
+					$product = new Product($id_product);
+					$id_lang = $this->context->language->id;
+					$id_image_detail = $product->getImages($id_lang);
+					$product_link_rewrite = Db::getInstance()->getRow("select * from `". _DB_PREFIX_."product_lang` where `id_product`=".$id_product." and `id_lang`=1");
+					$name = $product_link_rewrite['link_rewrite'];
+					
+					
+					
+					if(!empty($id_image_detail))
+					{
+					  foreach($id_image_detail as $id_image_info)
+					  {
+						$img_info[$i]['id_image'] = $id_image_info['id_image'];
+						$ids = $id_product.'-'.$id_image_info['id_image'];
+						$img_info[$i]['image_link'] = $link->getImageLink($name,$ids);
+						$img_info[$i]['cover'] = $id_image_info['cover'];
+						$img_info[$i]['position'] = $id_image_info['position'];
+						
+						$i++;
+						
+					  }
+					}
+					
+					$img = Product::getCover($id_product);
+					$ids = $id_product.'-'.$img['id_image'];
+					$image_id = $link->getImageLink($name,$ids);
+					$count = count($img_info);
+					$this->context->smarty->assign("img_info", $img_info);
+					$this->context->smarty->assign("count", $count);
+					$this->context->smarty->assign("id", $id);
+					$this->context->smarty->assign("id_product", $id_product);
+										
+					$this->context->smarty->assign("image_id", $image_id);
+					$this->context->smarty->assign("root_dir", _PS_ROOT_DIR_);
+					$this->context->smarty->assign("is_approve",1);
+					$imageediturl = $link->getModuleLink('marketplace','productimageedit');	
+					$this->context->smarty->assign('imageediturl',$imageediturl);	
+				}
 
 				$this->context->smarty->assign("pro_info",$pro_info);
 				$this->context->smarty->assign("is_seller",1);			
@@ -302,6 +351,44 @@ class marketplaceProductupdateModuleFrontController extends ModuleFrontControlle
 														
 							}
 						}
+
+						if (isset($_FILES['images'])) {
+							$other_images = $_FILES["images"]['tmp_name'];
+							$other_images_name = $_FILES["images"]['name'];
+							$count = count($other_images);
+						} else {
+							$count = 0;
+						}
+						
+						for ($i = 0; $i < $count; $i++)
+						{
+							if($other_images[$i]!='')
+							{
+								$fileExtension   = strrchr($other_images_name[$i], ".");
+								if(in_array($fileExtension, $validExtensions)) 
+								{
+									list($image_width, $image_height) = getimagesize($other_images[$i]);
+									if($image_width >= 200 && $image_width  <= 2000 && $image_height >= 200 &&  $image_height <= 2000)
+									{
+									$length     = 6;
+									$characters = "0123456789abcdefghijklmnopqrstuvwxyz";
+									$u_other_id = "";
+									for ($p = 0; $p < $length; $p++)
+										$u_other_id .= $characters[mt_rand(0, Tools::strlen($characters))];
+
+									Db::getInstance()->insert('marketplace_product_image', array(
+																'seller_product_id' =>(int)$id,
+																'seller_product_image_id' =>pSQL($u_other_id),
+																'active' =>0,
+															));
+									$image_name = $u_other_id . ".jpg";
+									$address    = "modules/marketplace/img/product_img/";
+									ImageManager::resize($other_images[$i],$address . $image_name);
+									}
+								}					
+							}
+						}
+
 						$image_dir = 'modules/marketplace/img/product_img';
 						
 						$obj_seller_product->updatePsProductByMarketplaceProduct($id, $image_dir,1,$main_product_id);
@@ -331,6 +418,42 @@ class marketplaceProductupdateModuleFrontController extends ModuleFrontControlle
 							move_uploaded_file($_FILES["product_image"]["tmp_name"],$address.$image_name);
 							
 						}
+
+						if (isset($_FILES['images'])) {
+							$other_images = $_FILES["images"]['tmp_name'];
+							$other_images_name = $_FILES["images"]['name'];
+							$count = count($other_images);
+						} else {
+							$count = 0;
+						}
+					
+						for ($i = 0; $i < $count; $i++)
+						{
+							if($other_images[$i]!='')
+							{
+								$fileExtension   = strrchr($other_images_name[$i], ".");
+								if(in_array($fileExtension, $validExtensions)) 
+								{
+									list($image_width, $image_height) = getimagesize($other_images[$i]);
+									if($image_width >= 200 && $image_width  <= 2000 && $image_height >= 200 &&  $image_height <= 2000)
+									{
+									$length     = 6;
+									$characters = "0123456789abcdefghijklmnopqrstuvwxyz";
+									$u_other_id = "";
+									for ($p = 0; $p < $length; $p++)
+										$u_other_id .= $characters[mt_rand(0, Tools::strlen($characters))];
+
+									Db::getInstance()->insert('marketplace_product_image', array(
+																		'seller_product_id' =>(int)$id,
+																		'seller_product_image_id' =>pSQL($u_other_id)
+																));
+									$image_name = $u_other_id . ".jpg";
+									$address    = "modules/marketplace/img/product_img/";
+									ImageManager::resize($other_images[$i],$address . $image_name);
+									}
+								}					
+							}
+						}
 					}			
 					Hook::exec('actionUpdateproductExtrafield', array('marketplace_product_id' =>Tools::getValue('id')));
 					$mkt_acc_link = $link->getModuleLink('marketplace','marketplaceaccount',array('edit'=>1,'l'=>3));
@@ -349,6 +472,8 @@ class marketplaceProductupdateModuleFrontController extends ModuleFrontControlle
 	public function setMedia() 
 	{
 		parent::setMedia();
+		$this->addJS(_MODULE_DIR_.'marketplace/views/js/imageedit.js');
+		$this->addCSS(_MODULE_DIR_.'marketplace/css/product_details.css');
 		$this->addCSS(array(
 				_MODULE_DIR_.'marketplace/css/add_product.css',
 				_MODULE_DIR_.'marketplace/css/marketplace_account.css'

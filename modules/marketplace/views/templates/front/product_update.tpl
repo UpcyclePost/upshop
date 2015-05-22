@@ -86,13 +86,19 @@
 						<input type="text" id="product_name" name="product_name" value="{$pro_info['product_name']|escape:'html':'UTF-8'}" class="form-control" />
 					</div>
 
-                                        <div class="form-group">
-                                                <label for="upload_image">
-                                                        {l s='Upload Image :' mod='marketplace'}
-                                                </label>
-                                                <input type="file" id="product_image" name="product_image" value="" class="account_input form-control" size="chars" />
-                                                <p class="img_validate">{l s='Valid image extensions are jpg,jpeg and png.' mod='marketplace'}</p>
-                                        </div>
+                    <div class="form-group">
+                            <label for="upload_image">
+                                    {l s='Upload Image :' mod='marketplace'}
+                            </label>
+                            <input type="file" id="product_image" name="product_image" value="" class="account_input form-control" size="chars" />
+                            <p class="img_validate">{l s='Valid image extensions are jpg,jpeg and png.' mod='marketplace'}</p>
+                    </div>
+                    <div class="row-info-right1 form-group" style="width:100%;"> 
+						<a onclick="showOtherImage(); return false;">
+							<div id="add_img">{l s='Add Other Image' mod='marketplace'}</div>
+						</a>
+						<div id="otherimages" style="margin-left:0px;float:left;"> </div>
+			        </div> 
 
 					<div class="form-group">
 						<label for="prod_short_desc">
@@ -133,6 +139,64 @@
 					{hook h="DisplayMpupdateproductfooterhook"}
 				</div>
 			</div>
+
+			<label for="prod_quantity">{l s='Product Images ' mod='marketplace'}</label>
+			<div style="float:left;width:100%;margin-bottom:20px;">
+				{if $is_approve==1}
+			    <div id="image_details">
+					<table>
+					 <tr>
+					 	<th>{l s='Image' mod='marketplace'}</th>
+						  <th>{l s='Position' mod='marketplace'}</th>
+						  <th>{l s='Cover' mod='marketplace'}</th>
+						  <th>{l s='Action' mod='marketplace'}</th>
+					 </tr>
+					 {if {$count} > 0}
+					  {foreach from=$img_info item=foo}
+					   <tr class="unactiveimageinforow{$foo.id_image|escape:'html':'UTF-8'}">
+					    <td><a class="fancybox" href="http://{$foo.image_link|escape:'html':'UTF-8'}">
+					    <img title="15" width="45" height="45" alt="15" src="http://{$foo.image_link|escape:'html':'UTF-8'}" />
+					   </a>
+					   </td>
+					    <td>{$foo.position|escape:'html':'UTF-8'}</td>
+					   <td>
+					    {if {$foo.cover} == 1}
+						 <img class="covered" id="changecoverimage{$foo.id_image|escape:'html':'UTF-8'}" alt="{$foo.id_image|escape:'html':'UTF-8'}" src="{$img_ps_dir|escape:'html':'UTF-8'}admin/enabled.gif" is_cover="1"  id_pro="{$id_product|escape:'html':'UTF-8'}" />
+						{else}
+						 <img class="covered" id="changecoverimage{$foo.id_image|escape:'html':'UTF-8'}" alt="{$foo.id_image|escape:'html':'UTF-8'}" src="{$img_ps_dir|escape:'html':'UTF-8'}admin/forbbiden.gif" is_cover="0"  id_pro="{$id_product|escape:'html':'UTF-8'}" />
+						{/if} 
+					   </td>
+					   <td>
+					   {if {$foo.cover} == 1}
+					     <img title="Delete this image" is_cover="1" class="delete_pro_image" alt="{$foo.id_image|escape:'html':'UTF-8'}"  src="{$img_ps_dir|escape:'html':'UTF-8'}admin/delete.gif" id_pro="{$id_product|escape:'html':'UTF-8'}" />
+					   {else}
+					     <img title="Delete this image" is_cover="0" class="delete_pro_image" alt="{$foo.id_image|escape:'html':'UTF-8'}"  src="{$img_ps_dir|escape:'html':'UTF-8'}admin/delete.gif" id_pro="{$id_product|escape:'html':'UTF-8'}" />
+			           {/if}		   
+					   </td>
+					   </tr>
+					  {/foreach}
+					 {/if}
+					</table>
+			    </div>
+				{else}
+					<div id="image_details" style="float:left;margin-top:10px;">
+						<table>
+						<tr><th>Image</th></tr>
+						{foreach $mp_pro_image as $mp_pro_ima}
+						<tr>
+							<td>
+							<a class="fancybox" href="{$modules_dir|escape:'html':'UTF-8'}/marketplace/img/product_img/{$mp_pro_ima['seller_product_image_id']|escape:'html':'UTF-8'}.jpg">
+								<img title="15" width="45" height="45" alt="15" src="{$modules_dir|escape:'html':'UTF-8'}/marketplace/img/product_img/{$mp_pro_ima['seller_product_image_id']|escape:'html':'UTF-8'}.jpg" />
+							</a>
+							</td>	
+						</tr>
+						{/foreach}
+						</table>
+					</div>
+				{/if}
+			</div>
+
+
 			{hook h="DisplayMpupdateproducttabhook"}
 			<div class="form-group" style="text-align:center;" id="update_product_submit_div">
 				<button type="submit" id="SubmitCreate" class="btn btn-default button button-medium">
@@ -151,6 +215,17 @@
 			initializeUnchecked: 'collapsed'
 		});
 	});
+</script>
+
+<script type="text/javascript">
+$('.fancybox').fancybox();		
+var ajax_urlpath = '{$imageediturl|escape:'html':'UTF-8'}';
+var space_error = '{l s='Space is not allowed.' js=1 mod='marketplace'}';
+var confirm_delete_msg = '{l s='Do you want to delete the photo?' js=1 mod='marketplace'}';
+var delete_msg = '{l s='Deleted.' js=1 mod='marketplace'}';
+var error_msg = '{l s='An error occurred.' js=1 mod='marketplace'}';
+var src_forbidden = '{$img_ps_dir|escape:'html':'UTF-8'}admin/forbbiden.gif';
+var src_enabled = '{$img_ps_dir|escape:'html':'UTF-8'}admin/enabled.gif';	
 </script>
 
 <script language="javascript" type="text/javascript">
@@ -183,3 +258,34 @@ function removeEvent(divNum)
 	i--;
 }
 </script>
+
+<style>
+
+#otherimages div{
+  margin-bottom: 10px;
+}
+
+#otherimages div input{
+  display: inline !important;
+  float: left;
+}
+
+#otherimages div a{
+  color: #0000ff;
+}
+#add_img {
+    color: #0000FF;
+    float: left;
+    font-family: times new roman;
+    margin-bottom: 10px;
+    margin-left:0;
+    margin-top: 10px;
+    width: 100%;
+    cursor: pointer;
+}
+
+#add_img:hover {
+	text-decoration:underline;
+}
+
+</style>
