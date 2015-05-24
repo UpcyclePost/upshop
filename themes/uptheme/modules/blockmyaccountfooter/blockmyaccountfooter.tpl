@@ -28,7 +28,7 @@
 	<h4><a href="{$link->getPageLink('my-account', true)|escape:'html':'UTF-8'}" title="{l s='Manage my customer account' mod='blockmyaccountfooter'}" rel="nofollow">{l s='My account' mod='blockmyaccountfooter'}</a></h4>
 	<div class="block_content toggle-footer">
 		<ul class="bullet">
-			<li><a href="{$link->getPageLink('history', true)|escape:'html':'UTF-8'}" title="{l s='My orders placed' mod='blockmyaccountfooter'}" rel="nofollow">{l s='My orders placed' mod='blockmyaccountfooter'}</a></li>
+			<li><a href="{$link->getPageLink('history', true)|escape:'html':'UTF-8'}" title="{l s='My Purchases' mod='blockmyaccountfooter'}" rel="nofollow">{l s='My Purchases' mod='blockmyaccountfooter'}</a></li>
 			{if $returnAllowed}<li><a href="{$link->getPageLink('order-follow', true)|escape:'html':'UTF-8'}" title="{l s='My merchandise returns' mod='blockmyaccountfooter'}" rel="nofollow">{l s='My merchandise returns' mod='blockmyaccountfooter'}</a></li>{/if}
 			<li><a href="{$link->getPageLink('addresses', true)|escape:'html':'UTF-8'}" title="{l s='My addresses' mod='blockmyaccountfooter'}" rel="nofollow">{l s='My addresses' mod='blockmyaccountfooter'}</a></li>
 			{if $voucherAllowed}<li><a href="{$link->getPageLink('discount', true)|escape:'html':'UTF-8'}" title="{l s='My vouchers' mod='blockmyaccountfooter'}" rel="nofollow">{l s='My vouchers' mod='blockmyaccountfooter'}</a></li>{/if}

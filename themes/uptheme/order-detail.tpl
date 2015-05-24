@@ -56,7 +56,7 @@
 </div>
 
 {if count($order_history)}
-<h1 class="page-heading">{l s='Follow your order\'s status step-by-step'}</h1>
+<h1 class="page-heading">{l s='Follow your purchase status step-by-step'}</h1>
 <div class="table_block">
 	<table class="detail_step_by_step table table-bordered">
 		<thead>
