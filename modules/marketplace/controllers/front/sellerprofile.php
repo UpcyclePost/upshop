@@ -192,6 +192,7 @@ class marketplaceSellerprofileModuleFrontController extends ModuleFrontControlle
 							$seller_profile = $link->getModuleLink('marketplace','sellerprofile',$param);
 							$link_store = $link->getModuleLink('marketplace','shopstore',$param);
 							$link_contact = $link->getModuleLink('marketplace','contact',$param);
+							$account_dashboard = $link->getModuleLink('marketplace', 'marketplaceaccount',$param);
 							
 							$param1 = array('flag'=>'1','all_reviews'=>'1','shop'=>$id_shop);
 							$all_reviews_links = $link->getModuleLink('marketplace','allreviews',$param1);
@@ -224,7 +225,9 @@ class marketplaceSellerprofileModuleFrontController extends ModuleFrontControlle
 							$this->context->smarty->assign("link_collection",$link_collection);
 							$this->context->smarty->assign("seller_profile",$seller_profile);
 							$this->context->smarty->assign("all_reviews_links",$all_reviews_links);
-							$this->setTemplate('seller-profile.tpl');
+							$this->context->smarty->assign("account_dashboard", $account_dashboard);
+							$this->setTemplate('seller-profile.tpl'); 
+							
 						} //market_place_seller_info check close
 						else
 						{

@@ -15,11 +15,11 @@
 				<li><span class="menutitle">{l s='Marketplace' mod='marketplace'}</span></li>
 				<li {if $logic==1}class="menu_active"{/if}>
 					<span>
-						<a href="{$account_dashboard|escape:'html':'UTF-8'}" title="Account Dashboard">{l s='Account Dashboard' mod='marketplace'}</a>
+						<a href="{$account_dashboard|escape:'html':'UTF-8'}" title="My Dashboard">{l s='My Dashboard' mod='marketplace'}</a>
 					</span>
 				</li>
 
-				<li {if $logic==3}class="menu_active"{/if}>
+				<li style="border-top: solid 2px #0187d0" {if $logic==3}class="menu_active"{/if}>
 					<span>
 						<a href="{$product_list|escape:'html':'UTF-8'}" title="Product List">{l s='Product List' mod='marketplace'}</a>
 					</span>
@@ -31,7 +31,7 @@
 					</span>
 				</li>
 
-				<li {if $logic==4}class="menu_active"{/if}>
+				<li style="border-top: solid 2px #0187d0" {if $logic==4}class="menu_active"{/if}>
 					<span>
 						<a href="{$my_order|escape:'html':'UTF-8'}" title="My Orders Received">{l s='My Orders Received' mod='marketplace'}</a>
 					</span>
@@ -59,7 +59,7 @@
 					</span>
 				</li>
 
-                <li>
+                <li style="border-top: solid 2px #0187d0">
                         <span>
                                 <a href="{$link_store|escape:'html':'UTF-8'}" title="View Shop">{l s='View Shop' mod='marketplace'}</a>
                         </span>

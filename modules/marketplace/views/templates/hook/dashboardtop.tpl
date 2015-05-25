@@ -2,5 +2,5 @@
 	<p class="hello">
 		<strong>{l s='Hello' mod='marketplace'}, {$seller_name|escape:'html':'UTF-8'}!</strong>
 	</p>
-	<p>{l s='From your My Account Dashboard you have the ability to view a snapshot of your recent account activity and update your account information. Select a link below to view or edit information.' mod='marketplace'}</p>
+	<p>{l s='From My Dashboard you have the ability to view a snapshot of your recent account activity and update your account information. Select a link below to view or edit information.' mod='marketplace'}</p>
 </div>
