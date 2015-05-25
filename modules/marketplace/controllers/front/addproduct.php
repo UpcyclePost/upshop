@@ -114,7 +114,9 @@ class marketplaceAddproductModuleFrontController extends ModuleFrontController
 			
 			//Recursive Category Tree Closed		
 			$tree = "<ul id='tree1'>";
+			$tree .= "<!--"; // hide the root category
 			$tree .= "<li><input type='checkbox' checked='checked' class='product_category' name='product_category[]' value='".$root->id."'><label>".$root->name."</label>";
+			$tree .= " -->"; //Hide the root category
 			//$depth = 1;
 			$exclude = array();
 			array_push($exclude, 0);

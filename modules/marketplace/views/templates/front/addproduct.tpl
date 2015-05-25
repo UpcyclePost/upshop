@@ -101,7 +101,7 @@ $(document).ready(function() {
 
 						<div class="form-group">
 							<a onclick="showOtherImage(); return false;" class="btn btn-default button button-small">
-								<span>{l s='Add more image' mod='marketplace'}</span>
+								<span>{l s='Add another image' mod='marketplace'}</span>
 							</a>
 							<div id="wk_prod_other_images"></div>
 				        </div>   
@@ -165,7 +165,7 @@ var req_price = '{l s='Product price is required.' js=1 mod='marketplace'}';
 var num_price = '{l s='Product price should be numeric.' js=1 mod='marketplace'}';
 var req_qty = '{l s='Product quantity is required.' js=1 mod='marketplace'}';
 var num_qty = '{l s='Product quantity should be numeric.' js=1 mod='marketplace'}';
-var req_catg = '{l s='Please select atleast one category.' js=1 mod='marketplace'}';
+var req_catg = '{l s='Please select at least one category.' js=1 mod='marketplace'}';
 var img_remove = '{l s='Remove' js=1 mod='marketplace'}';
 
 

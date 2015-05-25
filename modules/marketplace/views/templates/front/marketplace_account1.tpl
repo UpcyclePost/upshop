@@ -460,11 +460,7 @@
 										<img id="{$product['id']|escape:'html':'UTF-8'}" class="edit_img" src="{$img_ps_dir|escape:'html':'UTF-8'}admin/edit.gif"/>
 									</td>
 									<td>
-										<!--
-										<img title="15" width="45" height="45" alt="15" src="http://192.168.1.15/upshop/12/chicken-wire-rabbit-by-kendra-haste.jpg">
-										<img src="{$link->getImageLink($product.link_rewrite, $product.id_image, 'small_default')|escape:'html':'UTF-8'}"></img>
-										-->
-											xx{$product.id_image}xx
+
 									</td>
 									<td>
 										<a href="{$product_details_link|escape:'html':'UTF-8'}&id={$product['id']|escape:'html':'UTF-8'}">									
