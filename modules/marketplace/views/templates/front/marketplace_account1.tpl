@@ -62,7 +62,7 @@
 				<div class="box-account box-recent">
 					<div class="box-head">
 						<div class="box-head-left">
-						<h2>{l s='Recent Orders' mod='marketplace'}</h2>
+						<h2>{l s='Recent Orders Received' mod='marketplace'}</h2>
 						</div>
 						<div class="box-head-right">
 						<a class="btn btn-default button button-small" href="{$link->getModuleLink('marketplace','marketplaceaccount',['shop'=>{$id_shop|escape:'html':'UTF-8'},'l'=>4])|escape:'html':'UTF-8'}"><span>{l s='View All' mod='marketplace'}</span></a>
@@ -74,6 +74,7 @@
 						<table class="data-table" id="my-orders-table" style="width:100%;">
 							<thead>
 								<tr class="first last">
+								<th>{l s='View Order' mod='marketplace'}</th>
 								<th>{l s='Order' mod='marketplace'} #</th>
 								<th>{l s='Date' mod='marketplace'}</th>
 								<th>{l s='Ship To' mod='marketplace'}</th>
@@ -87,7 +88,8 @@
 								{assign var=i value=0}
 								{while $i != $count}
 									<tr class="even">
-										<td>{$dashboard[$i]['id_order']|escape:'html':'UTF-8'}</td>
+										<td><a class="btn btn-default button button-small" href="{$link->getModuleLink('marketplace','marketplaceaccount',['flag'=>1,'shop'=>{$id_shop|escape:'html':'UTF-8'},'l'=>6,id_order=>{$dashboard[$i]['id_order']|escape:'html':'UTF-8'}])|escape:'html':'UTF-8'}"><span>View</span></a></td>
+										<td>{$dashboard[$i]['ref']|escape:'html':'UTF-8'}</td>
 										<td><span class="nobr">{$dashboard[$i]['date_add']|escape:'html':'UTF-8'}</span></td>
 										<!-- <td>{$dashboard[$i]['name']|escape:'html':'UTF-8'}</td> -->
 										<td>{$order_by_cus[$i]['firstname']|escape:'html':'UTF-8'}</td>
@@ -641,7 +643,7 @@
 			<div class="wk_right_col">
 				<div class="box-account box-recent">
 					<div class="box-head">
-						<h2>{l s='Recent Orders' mod='marketplace'}</h2>
+						<h2>{l s='Recent Orders Received' mod='marketplace'}</h2>
 						<div class="wk_border_line"></div>
 					</div>
 					<div class="box-content">
@@ -649,11 +651,12 @@
 					<table class="data-table" id="my-orders-table">
 						<thead>
 							<tr class="first last">
+								<th>{l s='View Order' mod='marketplace'}</th>
 								<th>{l s='Order #' mod='marketplace'}</th>
 								<th>{l s='Date' mod='marketplace'}</th>
 								<th>{l s='Ship To' mod='marketplace'}</th>
+								<th><span class="nobr">{l s='Order Total' mod='marketplace'}</span></th>
 								<th>{l s='Status' mod='marketplace'}</th>
-								<th>{l s='Payment Mode' mod='marketplace'}</th>
 							</tr>
 						</thead>
 						<tbody>
@@ -666,14 +669,12 @@
 								{else}
 									<tr class="odd order_tr" is_id_order="{$dashboard[$i]['id_order']|escape:'html':'UTF-8'}" is_id_order_detail="{$dashboard[$i]['id_order_detail']|escape:'html':'UTF-8'}">
 								{/if}
-										<td><a href="{$link->getModuleLink('marketplace','marketplaceaccount',['flag'=>1,'shop'=>{$id_shop|escape:'html':'UTF-8'},'l'=>6,id_order=>{$dashboard[$i]['id_order']|escape:'html':'UTF-8'}])|escape:'html':'UTF-8'}">{$dashboard[$i]['id_order']|escape:'html':'UTF-8'}</a></td>
-
-										<td><a href="{$link->getModuleLink('marketplace','marketplaceaccount',['flag'=>1,'shop'=>{$id_shop|escape:'html':'UTF-8'},'l'=>6,id_order=>{$dashboard[$i]['id_order']|escape:'html':'UTF-8'}])|escape:'html':'UTF-8'}"><span class="nobr">{$dashboard[$i]['date_add']|escape:'html':'UTF-8'}</span></a></td>
-
-										<td><a href="{$link->getModuleLink('marketplace','marketplaceaccount',['flag'=>1,'shop'=>{$id_shop|escape:'html':'UTF-8'},'l'=>6,id_order=>{$dashboard[$i]['id_order']|escape:'html':'UTF-8'}])|escape:'html':'UTF-8'}">{$order_by_cus[$i]['firstname']|escape:'html':'UTF-8'}</a></td>
-
-										<td><a href="{$link->getModuleLink('marketplace','marketplaceaccount',['flag'=>1,'shop'=>{$id_shop|escape:'html':'UTF-8'},'l'=>6,id_order=>{$dashboard[$i]['id_order']|escape:'html':'UTF-8'}])|escape:'html':'UTF-8'}"><em>{$dashboard[$i]['order_status']|escape:'html':'UTF-8'}</em></a></td>
-										<td><a href="{$link->getModuleLink('marketplace','marketplaceaccount',['flag'=>1,'shop'=>{$id_shop|escape:'html':'UTF-8'},'l'=>6,id_order=>{$dashboard[$i]['id_order']|escape:'html':'UTF-8'}])|escape:'html':'UTF-8'}"><em>{$dashboard[$i]['payment_mode']|escape:'html':'UTF-8'}</em></a></td>
+										<td><a class="btn btn-default button button-small" href="{$link->getModuleLink('marketplace','marketplaceaccount',['flag'=>1,'shop'=>{$id_shop|escape:'html':'UTF-8'},'l'=>6,id_order=>{$dashboard[$i]['id_order']|escape:'html':'UTF-8'}])|escape:'html':'UTF-8'}"><span>View</span></a></td>
+										<td>{$dashboard[$i]['ref']|escape:'html':'UTF-8'}</td>
+										<td><span class="nobr">{$dashboard[$i]['date_add']|escape:'html':'UTF-8'}</span></td>
+										<td>{$order_by_cus[$i]['firstname']|escape:'html':'UTF-8'}</td>
+										<td><span class="price">{$currency->prefix}{$dashboard[$i]['total_price']|string_format:"%.2f"}{$currency->suffix}</span></td>
+										<td><em>{$dashboard[$i]['order_status']|escape:'html':'UTF-8'}</em></td>
 									</tr>
 							{assign var=i value=$i+1}
 							{/while}
