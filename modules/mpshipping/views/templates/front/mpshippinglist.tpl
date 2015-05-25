@@ -1,6 +1,6 @@
 {capture name=path}
         <a href="{$dash_board_link}">
-                {l s='Marketplace Dashboard'}
+                {l s='My Dashboard'}
         </a>
         <span class="navigation-pipe">{$navigationPipe}</span>
         <span class="navigation_page">{l s='Shipping Methods'}</span>

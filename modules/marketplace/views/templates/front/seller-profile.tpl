@@ -4,11 +4,12 @@
 	</p>
 {/if}
 {capture name=path}
-<a href="{$link->getPageLink('my-account', true)|escape:'html':'UTF-8'}">
-        {l s='Marketplace account'}
+<a href="{$account_dashboard|addslashes}">
+        {l s='My Dashboard'}
 </a>
 <span class="navigation-pipe">{$navigationPipe}</span>
 <span class="navigation_page">{l s='Seller Profile' mod='marketplace'}</span>
+	
 {/capture}
 <div class="main_block">
 <div class="dashboard_content">

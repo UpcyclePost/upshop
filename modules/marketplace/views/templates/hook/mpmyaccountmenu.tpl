@@ -31,9 +31,9 @@
 		</a>
 	</li>
 	<li class="lnk_wishlist">
-		<a title="Account Dashboard" href="{$account_dashboard|addslashes}">
+		<a title="My Dashboard" href="{$account_dashboard|addslashes}">
 			<i class="icon-dashboard"></i>
-			<span>{l s='Account Dashboard' mod='marketplace'}</span>
+			<span>{l s='My Dashboard' mod='marketplace'}</span>
 		</a>
 	</li>
 {else if $is_seller==0}

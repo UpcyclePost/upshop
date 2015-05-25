@@ -40,13 +40,7 @@
 <div class="main_block" >
 	{hook h="DisplayMpmenuhook"}
 	{if $logic==1}
-	{capture name=path}
-        <a href="{$account_dashboard|addslashes}">
-                {l s='Account Dashboard'}
-        </a>
-        <span class="navigation-pipe">{$navigationPipe}</span>
-        <span class="navigation_page">{l s='Dashboard' mod='marketplace'}</span>
-	{/capture}
+	{capture name=path}{l s='My Dashboard'}{/capture}
 	<div class="dashboard_content">
 			<div class="dashboard">
 				<div class="page-title">
@@ -189,7 +183,7 @@
 	{else if $logic==2}
 	{capture name=path}
         <a href="{$account_dashboard|addslashes}">
-                {l s='Account Dashboard'}
+                {l s='My Dashboard'}
         </a>
         <span class="navigation-pipe">{$navigationPipe}</span>
         <span class="navigation_page">{l s='Edit Seller Profile' mod='marketplace'}</span>
@@ -382,7 +376,7 @@
 	{else if $logic==3}
         {capture name=path}
         <a href="{$account_dashboard|addslashes}">
-                {l s='Account Dashboard'}
+                {l s='My Dashboard'}
         </a>
         <span class="navigation-pipe">{$navigationPipe}</span>
         <span class="navigation_page">{l s='Product List' mod='marketplace'}</span>
@@ -629,7 +623,7 @@
 	{else if $logic==4}
         {capture name=path}
         <a href="{$account_dashboard|addslashes}">
-                {l s='Account Dashboard'}
+                {l s='My Dashboard'}
         </a>
         <span class="navigation-pipe">{$navigationPipe}</span>
         <span class="navigation_page">{l s='My Orders' mod='marketplace'}</span>
@@ -732,7 +726,7 @@
 	{else if $logic==5}
         {capture name=path}
         <a href="{$account_dashboard|addslashes}">
-                {l s='Account Dashboard'}
+                {l s='My Dashboard'}
         </a>
         <span class="navigation-pipe">{$navigationPipe}</span>
         <span class="navigation_page">{l s='Payment Details' mod='marketplace'}</span>
@@ -808,7 +802,7 @@
 	{else if $logic==6}
         {capture name=path}
         <a href="{$account_dashboard|addslashes}">
-                {l s='Account Dashboard'}
+                {l s='My Dashboard'}
         </a>
         <span class="navigation-pipe">{$navigationPipe}</span>
         <a href="{$my_order|escape:'html':'UTF-8'}">
