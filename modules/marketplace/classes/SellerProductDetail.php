@@ -518,8 +518,10 @@ class SellerProductDetail extends ObjectModel
 				$orderway = 'desc';
 			}
 		
-		
-		$product_list = Db::getInstance()->ExecuteS("SELECT * from`" . _DB_PREFIX_ . "marketplace_seller_product` mslp where mslp.id_seller=" . $id_seller." order by mslp.`" . $orderby . "` " . $orderway . " limit ".(((int)$p - 1) * (int)$n).",".(int)$n);
+		$product_listSQL = "SELECT * from`" . _DB_PREFIX_ . "marketplace_seller_product` mslp 
+							where mslp.id_seller=" . $id_seller." 
+							order by mslp.`" . $orderby . "` " . $orderway . ", mslp.`product_name` asc limit ".(((int)$p - 1) * (int)$n).",".(int)$n;
+		$product_list = Db::getInstance()->ExecuteS($product_listSQL);
 		   
 		   if($product_list)
 		    return $product_list;

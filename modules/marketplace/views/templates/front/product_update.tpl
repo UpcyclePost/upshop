@@ -93,12 +93,21 @@
                             <input type="file" id="product_image" name="product_image" value="" class="account_input form-control" size="chars" />
                             <p class="img_validate">{l s='Valid image extensions are jpg,jpeg and png.' mod='marketplace'}</p>
                     </div>
+<!--
                     <div class="row-info-right1 form-group" style="width:100%;"> 
-						<a onclick="showOtherImage(); return false;">
-							<div id="add_img">{l s='Add Other Image' mod='marketplace'}</div>
+						<a onclick="showOtherImage(); return false;" class="btn btn-default button button-small">
+							<div id="add_img">{l s='Add another Image' mod='marketplace'}</div>
 						</a>
-						<div id="otherimages" style="margin-left:0px;float:left;"> </div>
+						<div id="wk_prod_other_images" style="margin-left:0px;float:left;"> </div>
 			        </div> 
+-->
+					<div class="form-group">
+						<a onclick="showOtherImage(); return false;" class="btn btn-default button button-small">
+								<span>{l s='Add another image' mod='marketplace'}</span>
+							</a>
+						<div id="wk_prod_other_images"></div>
+				      </div>   
+						
 
 					<div class="form-group">
 						<label for="prod_short_desc">
@@ -129,8 +138,7 @@
 						<label for="prod_quantity">{l s='Quantity :' mod='marketplace'}<sup>*</sup></label>
 						<input type="text" id="product_quantity" name="product_quantity" value="{$pro_info['quantity']|escape:'html':'UTF-8'}"  class="form-control"/>
 					</div> 
-
-
+					
 					<div class="form-group">
 						<label for="prod_category">{l s='Category :' mod='marketplace'}<sup>*</sup></label>
 						<div>{$categoryTree|escape:'intval'}</div>
@@ -236,26 +244,28 @@ var req_price = '{l s='Product price is required.' js=1 mod='marketplace'}';
 var num_price = '{l s='Product price should be numeric.' js=1 mod='marketplace'}';
 var req_qty = '{l s='Product quantity is required.' js=1 mod='marketplace'}';
 var num_qty = '{l s='Product quantity should be numeric.' js=1 mod='marketplace'}';
-var req_catg = '{l s='Please select atleast one category.' js=1 mod='marketplace'}';
+var req_catg = '{l s='Please select at least one category.' js=1 mod='marketplace'}';
+var img_remove = '{l s='Remove' js=1 mod='marketplace'}';
 
 
-var i=2;
-function showOtherImage() 
+var i = 2;
+function showOtherImage()
 {
-	var newdiv = document.createElement('div');
-	newdiv.setAttribute("id","childDiv"+i);
-	newdiv.innerHTML = "<input type='file' id='images"+i+"' name='images[]' /><a href=\"javascript:;\" onclick=\"removeEvent('childDiv"+i+"')\">Remove</a>";
-	var ni = document.getElementById('otherimages');
-	ni.appendChild(newdiv);
-	i++;
-} 
+    var newdiv = document.createElement('div');
+    newdiv.setAttribute("id", "childDiv" + i);
+    newdiv.setAttribute("class", "wkChildDivClass");
+    newdiv.innerHTML = "<div class='col-md-6'><input type='file' id='images" + i + "' name='images[]'/></div><a class='wk_more_img_remove btn btn-default button button-small' href=\"javascript:;\" onclick=\"removeEvent('childDiv" + i + "')\"><span>"+img_remove+"</span></a>";
+    var ni = document.getElementById('wk_prod_other_images');
+    ni.appendChild(newdiv);
+    i++;
+}
 
 function removeEvent(divNum)
 {
-	var d = document.getElementById('otherimages');
-	var olddiv = document.getElementById(divNum);
-	d.removeChild(olddiv);
-	i--;
+    var d = document.getElementById('wk_prod_other_images');
+    var olddiv = document.getElementById(divNum);
+    d.removeChild(olddiv);
+    i--;
 }
 </script>
 

@@ -61,6 +61,7 @@ class marketplaceProductupdateModuleFrontController extends ModuleFrontControlle
 				$category =  Db::getInstance()->ExecuteS("SELECT a.`id_category`,l.`name` from `"._DB_PREFIX_."category` a LEFT  JOIN `"._DB_PREFIX_."category_lang` l  ON (a.`id_category`=l.`id_category`) where a.id_parent=".$root->id." and l.id_lang=".$id_lang." and l.`id_shop`=".$this->context->shop->id." order by a.`id_category`");
 					
 				$tree = "<ul id='tree1'>";
+				$tree .= "<!--"; // hide the root category
 				$tree .= "<li><input type='checkbox'";
 				if($checked_product_cat)
 				{     					//For old products which have uploded
@@ -75,7 +76,8 @@ class marketplaceProductupdateModuleFrontController extends ModuleFrontControlle
 					if($defaultcatid == $root->id)
 						$tree .= "checked";
 				}
-				$tree .= " name='product_category[]' class='product_category' value='".$root->id."'><label>".$root->name."</label>";
+				$tree .= " name='product_category[]' class='product_category' style='display:none !important' value='".$root->id."'><label>".$root->name."</label>";
+				$tree .= " -->"; //Hide the root category 
 				//$depth = 1;
 				$exclude = array();
 				array_push($exclude, 0);
@@ -114,6 +116,7 @@ class marketplaceProductupdateModuleFrontController extends ModuleFrontControlle
 					 }
 					 $tree .= "</ul>";
 				}
+
 				$this->context->smarty->assign("categoryTree",$tree);
 				//Prepair Category Tree Closed
 				
