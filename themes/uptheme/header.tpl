@@ -66,6 +66,19 @@
 		<meta property="og:type" content="website">
 		<meta property="og:description" content="{$meta_description|escape:html:'UTF-8'}">
 		<meta property="og:image" content="{$img_ps_dir}logo.jpg" />
+		{else}
+			<script type="text/javascript">var switchTo5x=true;</script>
+			<script type="text/javascript" src="http://w.sharethis.com/button/buttons.js"></script>
+			<script type="text/javascript">
+				stLight.options(
+				{
+				publisher: '0919549b-9f77-444b-bd9a-4c8683b78c51',
+				doNotHash: false,
+				doNotCopy: false,
+				hashAddressBar: false
+				}
+				);
+			</script>
 		{/if}
 		<link href="http{if Tools::usingSecureMode()}s{/if}://{$smarty.server.SERVER_NAME}/css/font-awesome.min.css" rel="stylesheet">
 		<script type="text/javascript" src="http{if Tools::usingSecureMode()}s{/if}://{$smarty.server.SERVER_NAME}/js/libraries/tagmanager/tagmanager.js"></script>
