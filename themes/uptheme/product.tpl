@@ -161,23 +161,7 @@
 				<label>{l s='Reference:'} </label>
 				<span class="editable" itemprop="sku">{if !isset($groups)}{$product->reference|escape:'html':'UTF-8'}{/if}</span>
 			</p>
-			<!--
-			{if !$product->is_virtual && $product->condition}
-			<p id="product_condition">
-				<label>{l s='Condition:'} </label>
-				{if $product->condition == 'new'}
-					<link itemprop="itemCondition" href="http://schema.org/NewCondition"/>
-					<span class="editable">{l s='New product'}</span>
-				{elseif $product->condition == 'used'}
-					<link itemprop="itemCondition" href="http://schema.org/UsedCondition"/>
-					<span class="editable">{l s='Used'}</span>
-				{elseif $product->condition == 'refurbished'}
-					<link itemprop="itemCondition" href="http://schema.org/RefurbishedCondition"/>
-					<span class="editable">{l s='Refurbished'}</span>
-				{/if}
-			</p>
-			{/if}
-			-->
+
 			{if $product->description_short || $packItems|@count > 0}
 				<div id="short_description_block">
 					{if $product->description_short}
@@ -191,6 +175,16 @@
 							</a>
 						</p>
 					{/if}
+					<div style="padding:5px 0 10px 0">
+						<span class='st_facebook_large' displayText='Facebook'></span>
+						<span class='st_twitter_large' displayText='Tweet'></span>
+						<span class='st_linkedin_large' displayText='LinkedIn'></span>
+						<span class='st_googleplus_large' displayText='Google +'></span>
+						<span class='st_pinterest_large' displayText='Pinterest'></span>
+						<span class='st_stumbleupon_large' displayText='StumbleUpon'></span>
+						<span class='st_email_large' displayText='Email'></span>
+						<span class='st_sharethis_large' displayText='ShareThis'></span>
+					</div>
 					<!--{if $packItems|@count > 0}
 						<div class="short_description_pack">
 						<h3>{l s='Pack content'}</h3>
@@ -236,7 +230,7 @@
 				<ul id="usefull_link_block" class="clearfix no-print">
 					{if $HOOK_EXTRA_LEFT}{$HOOK_EXTRA_LEFT}{/if}
 					<li class="print">
-						<a href="javascript:print();">
+						<a href="javascript:print();" style="font-size:120%">
 							{l s='Print'}
 						</a>
 					</li>
