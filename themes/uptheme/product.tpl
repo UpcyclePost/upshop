@@ -175,16 +175,6 @@
 							</a>
 						</p>
 					{/if}
-					<div style="padding:5px 0 10px 0">
-						<span class='st_facebook_large' displayText='Facebook'></span>
-						<span class='st_twitter_large' displayText='Tweet'></span>
-						<span class='st_linkedin_large' displayText='LinkedIn'></span>
-						<span class='st_googleplus_large' displayText='Google +'></span>
-						<span class='st_pinterest_large' displayText='Pinterest'></span>
-						<span class='st_stumbleupon_large' displayText='StumbleUpon'></span>
-						<span class='st_email_large' displayText='Email'></span>
-						<span class='st_sharethis_large' displayText='ShareThis'></span>
-					</div>
 					<!--{if $packItems|@count > 0}
 						<div class="short_description_pack">
 						<h3>{l s='Pack content'}</h3>
@@ -199,6 +189,17 @@
 					{/if}-->
 				</div> <!-- end short_description_block -->
 			{/if}
+					<div style="padding:5px 0 10px 0">
+						<span class='st_facebook_large' displayText='Facebook'></span>
+						<span class='st_twitter_large' displayText='Tweet'></span>
+						<span class='st_linkedin_large' displayText='LinkedIn'></span>
+						<span class='st_googleplus_large' displayText='Google +'></span>
+						<span class='st_pinterest_large' displayText='Pinterest'></span>
+						<span class='st_stumbleupon_large' displayText='StumbleUpon'></span>
+						<span class='st_email_large' displayText='Email'></span>
+						<span class='st_sharethis_large' displayText='ShareThis'></span>
+					</div>
+
 			{if ($display_qties == 1 && !$PS_CATALOG_MODE && $PS_STOCK_MANAGEMENT && $product->available_for_order)}
 				<!-- number of item in stock -->
 				<p id="pQuantityAvailable"{if $product->quantity <= 0} style="display: none;"{/if}>
