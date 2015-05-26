@@ -142,8 +142,8 @@ $(document).ready(function() {
 						<div class="form-group">   
 							<label for="product_image" style="display:block">{l s='Upload Image :' mod='marketplace'}</label>
 							<input type="file" id="product_image" name="product_image" value="" class="account_input form-control" size="chars"  />
-							<img style="display:none;" id="testImg" src="#" alt="" height="30px" width="30px" />
-							<p class="help-block">{l s='Valid image extensions are jpg,jpeg and png.' mod='marketplace'}</p>
+							<img style="display:none;" id="testImg" src="#" alt="" height="40px" width="40px" />
+							<p class="help-block">{l s='Valid image extensions are jpg, jpeg, and png.' mod='marketplace'}</p>
 						</div>
 
 						<div class="form-group">
@@ -218,7 +218,7 @@ $(document).ready(function() {
 	    var newdiv = document.createElement('div');
 	    newdiv.setAttribute("id", "childDiv" + i);
 	    newdiv.setAttribute("class", "wkChildDivClass");
-	    newdiv.innerHTML = "<input type='file' onchange=\"changeEvent(this,"+i+")\" id='images"+i+"' name='images[]' /><img id='showimg"+i+"' style=\"display:none\" src=\"#\" height=\"30px\" width=\"30px\" onload=\"loadEvent("+i+")\"><a href=\"javascript:;\" onclick=\"removeEvent('childDiv"+i+"')\">Remove</a>";
+	    newdiv.innerHTML = "<input class=\"btn\" type='file' onchange=\"changeEvent(this,"+i+")\" id='images"+i+"' name='images[]' /><img id='showimg"+i+"' style=\"display:none\" src=\"#\" height=\"40px\" width=\"40px\" onload=\"loadEvent("+i+")\"><a style=\"height:27px\" class=\"btn btn-default button button-small\" href=\"javascript:;\" onclick=\"removeEvent('childDiv"+i+"')\"><span style=\"color:#FFF\">Remove</span></a>";
 	    var ni = document.getElementById('wk_prod_other_images');
 	    ni.appendChild(newdiv);
 	    i++;
