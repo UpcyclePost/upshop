@@ -58,7 +58,7 @@ $('document').ready(function(){
 {/literal}
 </script>
 <li class="sendtofriend">
-	<a id="send_friend_button" href="#send_friend_form" style="font-size:120%">{l s='Send to a friend' mod='sendtoafriend'}</a>
+	<a id="send_friend_button" href="#send_friend_form">{l s='Send to a friend' mod='sendtoafriend'}</a>
 </li>
 
 <div style="display: none;">
