@@ -17,7 +17,58 @@
 	padding: 10px;
 	margin-bottom: 5px;
 }
+
+#otherimages div
+{
+  margin-bottom: 10px;
+}
+
+.wkChildDivClass
+{
+	display: inline-flex;
+}
+
+#otherimages div input
+{
+  display: inline !important;
+  float: left;
+}
+
+#otherimages div a
+{
+  color: #0000ff;
+}
+
+#wk_prod_other_images div a
+{
+	color: #0000ff;
+	margin-left: 50px;
+}
+
+#add_img
+{
+    color: #0000FF;
+    float: left;
+    font-family: times new roman;
+    margin-bottom: 10px;
+    margin-left:0;
+    margin-top: 10px;
+    width: 100%;
+    cursor: pointer;
+}
+
+div.uploader
+{
+    width: 33%;
+    display: inline-block;
+}
+
+#add_img:hover
+{
+	text-decoration:underline;
+}
 </style>
+
 {capture name=path}{l s='Product Update' mod='marketplace'}{/capture}
 <span id="error">{l s='Field Should not be Empty.' mod='marketplace'}</span>
 	{if $is_main_er==1}
@@ -87,10 +138,11 @@
 					</div>
 
                     <div class="form-group">
-                            <label for="upload_image">
+                            <label for="upload_image" style="display:block">
                                     {l s='Upload Image :' mod='marketplace'}
                             </label>
                             <input type="file" id="product_image" name="product_image" value="" class="account_input form-control" size="chars" />
+                            <img style="display:none;" id="testImg" src="#" alt="" height="30px" width="30px" />
                             <p class="img_validate">{l s='Valid image extensions are jpg,jpeg and png.' mod='marketplace'}</p>
                     </div>
 <!--
@@ -223,79 +275,83 @@
 			initializeUnchecked: 'collapsed'
 		});
 	});
+	$('.fancybox').fancybox();		
+	var ajax_urlpath = '{$imageediturl|escape:'html':'UTF-8'}';
+	var space_error = '{l s='Space is not allowed.' js=1 mod='marketplace'}';
+	var confirm_delete_msg = '{l s='Do you want to delete the photo?' js=1 mod='marketplace'}';
+	var delete_msg = '{l s='Deleted.' js=1 mod='marketplace'}';
+	var error_msg = '{l s='An error occurred.' js=1 mod='marketplace'}';
+	var src_forbidden = '{$img_ps_dir|escape:'html':'UTF-8'}admin/forbbiden.gif';
+	var src_enabled = '{$img_ps_dir|escape:'html':'UTF-8'}admin/enabled.gif';	
+	var req_prod_name = '{l s='Product name is required.' js=1 mod='marketplace'}';
+	var char_prod_name = '{l s='Product name cannot contain special characters.' js=1 mod='marketplace'}';
+	var char_prod_name_length = '{l s='Product name should be less than 120 characters.' js=1 mod='marketplace'}';
+	var req_price = '{l s='Product price is required.' js=1 mod='marketplace'}';
+	var num_price = '{l s='Product price should be numeric.' js=1 mod='marketplace'}';
+	var req_qty = '{l s='Product quantity is required.' js=1 mod='marketplace'}';
+	var num_qty = '{l s='Product quantity should be numeric.' js=1 mod='marketplace'}';
+	var req_catg = '{l s='Please select at least one category.' js=1 mod='marketplace'}';
+	var img_remove = '{l s='Remove' js=1 mod='marketplace'}';
+
+	var i = 2;
+	function showOtherImage()
+	{
+	    var newdiv = document.createElement('div');
+	    newdiv.setAttribute("id", "childDiv" + i);
+	    newdiv.setAttribute("class", "wkChildDivClass");
+	    newdiv.innerHTML = "<input type='file' onchange=\"changeEvent(this,"+i+")\" id='images"+i+"' name='images[]' /><img id='showimg"+i+"' style=\"display:none\" src=\"#\" height=\"30px\" width=\"30px\" onload=\"loadEvent("+i+")\"><a href=\"javascript:;\" onclick=\"removeEvent('childDiv"+i+"')\">Remove</a>";
+	    var ni = document.getElementById('wk_prod_other_images');
+	    ni.appendChild(newdiv);
+	    i++;
+	}
+
+	function changeEvent(obj,i)
+	{
+		getotherImgSize(obj,i);
+	}
+
+	function loadEvent(i)
+	{
+		$('#showimg'+i).css('display', 'block');
+	}
+
+	function getotherImgSize(input,i){
+	    if (input.files && input.files[0])
+	    {
+	        var reader = new FileReader();
+	        reader.onload = function (e)
+	        {
+	            $('#showimg'+i).attr('src', e.target.result);
+	        }
+	        reader.readAsDataURL(input.files[0]);
+	    }
+	}
+
+	function removeEvent(divNum)
+	{
+	    var d = document.getElementById('wk_prod_other_images');
+	    var olddiv = document.getElementById(divNum);
+	    d.removeChild(olddiv);
+	    i--;
+	}
+
+	function getImgSize(input){
+	    if (input.files && input.files[0])
+	    {
+	        var reader = new FileReader();
+	        reader.onload = function (e){
+	            $('#testImg').attr('src', e.target.result);
+	        }
+	        reader.readAsDataURL(input.files[0]);
+	    }
+	}
+
+	$('#testImg').on('load',function(){
+		$('#testImg').css('display', 'inline-block');
+	});
+
+	$("#product_image").change(function(){
+	    getImgSize(this);
+	});
 </script>
 
-<script type="text/javascript">
-$('.fancybox').fancybox();		
-var ajax_urlpath = '{$imageediturl|escape:'html':'UTF-8'}';
-var space_error = '{l s='Space is not allowed.' js=1 mod='marketplace'}';
-var confirm_delete_msg = '{l s='Do you want to delete the photo?' js=1 mod='marketplace'}';
-var delete_msg = '{l s='Deleted.' js=1 mod='marketplace'}';
-var error_msg = '{l s='An error occurred.' js=1 mod='marketplace'}';
-var src_forbidden = '{$img_ps_dir|escape:'html':'UTF-8'}admin/forbbiden.gif';
-var src_enabled = '{$img_ps_dir|escape:'html':'UTF-8'}admin/enabled.gif';	
-</script>
-
-<script language="javascript" type="text/javascript">
-var req_prod_name = '{l s='Product name is required.' js=1 mod='marketplace'}';
-var char_prod_name = '{l s='Product name cannot contain special characters.' js=1 mod='marketplace'}';
-var char_prod_name_length = '{l s='Product name should be less than 120 characters.' js=1 mod='marketplace'}';
-var req_price = '{l s='Product price is required.' js=1 mod='marketplace'}';
-var num_price = '{l s='Product price should be numeric.' js=1 mod='marketplace'}';
-var req_qty = '{l s='Product quantity is required.' js=1 mod='marketplace'}';
-var num_qty = '{l s='Product quantity should be numeric.' js=1 mod='marketplace'}';
-var req_catg = '{l s='Please select at least one category.' js=1 mod='marketplace'}';
-var img_remove = '{l s='Remove' js=1 mod='marketplace'}';
-
-
-var i = 2;
-function showOtherImage()
-{
-    var newdiv = document.createElement('div');
-    newdiv.setAttribute("id", "childDiv" + i);
-    newdiv.setAttribute("class", "wkChildDivClass");
-    newdiv.innerHTML = "<div class='col-md-6'><input type='file' id='images" + i + "' name='images[]'/></div><a class='wk_more_img_remove btn btn-default button button-small' href=\"javascript:;\" onclick=\"removeEvent('childDiv" + i + "')\"><span>"+img_remove+"</span></a>";
-    var ni = document.getElementById('wk_prod_other_images');
-    ni.appendChild(newdiv);
-    i++;
-}
-
-function removeEvent(divNum)
-{
-    var d = document.getElementById('wk_prod_other_images');
-    var olddiv = document.getElementById(divNum);
-    d.removeChild(olddiv);
-    i--;
-}
-</script>
-
-<style>
-
-#otherimages div{
-  margin-bottom: 10px;
-}
-
-#otherimages div input{
-  display: inline !important;
-  float: left;
-}
-
-#otherimages div a{
-  color: #0000ff;
-}
-#add_img {
-    color: #0000FF;
-    float: left;
-    font-family: times new roman;
-    margin-bottom: 10px;
-    margin-left:0;
-    margin-top: 10px;
-    width: 100%;
-    cursor: pointer;
-}
-
-#add_img:hover {
-	text-decoration:underline;
-}
-
-</style>

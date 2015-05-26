@@ -161,6 +161,7 @@ class SellerProductDetail extends ObjectModel
 		{
 			$count = 0;
 			$default_tax_rule_group = 1;
+			$id_lang = Context::getContext()->language->id;
 			$product_info = $this->getMarketPlaceProductInfo($mp_product_id);
 			$quantity = (int)$product_info['quantity'];
 			$category_id = (int)$product_info['id_category'];
@@ -225,6 +226,7 @@ class SellerProductDetail extends ObjectModel
 						$image_obj->position = Image::getHighestPosition($main_product_id) + 1;
 						if ($count == 0)
 						{
+
 							if (!$have_cover)
 								$image_obj->cover = 1;
 						}
