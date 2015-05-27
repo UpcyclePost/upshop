@@ -41,7 +41,6 @@
 
 </div>
 <p class="tag_validate">Remove existing tags, by clicking on the x next to the tag name</p>
-<br></br>
 <script>
   $('.tm-input').tagsManager({
         tagsContainer: '.tags-container',
