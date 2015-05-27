@@ -137,21 +137,6 @@ div.uploader
 						<input type="text" id="product_name" name="product_name" value="{$pro_info['product_name']|escape:'html':'UTF-8'}" class="form-control" />
 					</div>
 
-                    <div class="form-group">
-                            <label for="upload_image" style="display:block">
-                                    {l s='Upload Image :' mod='marketplace'}
-                            </label>
-                            <input type="file" id="product_image" name="product_image" value="" class="account_input form-control" size="chars" />
-                            <img style="display:none;" id="testImg" src="#" alt="" height="40px" width="40px" />
-                            <p class="img_validate">{l s='Valid image extensions are jpg, jpeg, and png.' mod='marketplace'}</p>
-                    </div>
-					<div class="form-group">
-						<a onclick="showOtherImage(); return false;" class="btn btn-default button button-small">
-								<span>{l s='Add another image' mod='marketplace'}</span>
-							</a>
-						<div id="wk_prod_other_images"></div>
-					</div>				
-
 					<div class="form-group">
 						<label for="prod_short_desc">
 							{l s='Short Description :' mod='marketplace'}
@@ -185,8 +170,21 @@ div.uploader
 						<label for="prod_category">{l s='Category :' mod='marketplace'}<sup>*</sup></label>
 						<div>{$categoryTree|escape:'intval'}</div>
 					</div>
-
 					{hook h="DisplayMpupdateproductfooterhook"}
+                    <div class="form-group">
+                            <label for="upload_image" style="display:block">
+                                    {l s='Upload Image :' mod='marketplace'}
+                            </label>
+                            <input type="file" id="product_image" name="product_image" value="" class="account_input form-control" size="chars" />
+                            <img style="display:none;" id="testImg" src="#" alt="" height="40px" width="40px" />
+                            <p class="img_validate">{l s='Valid image extensions are jpg, jpeg, and png.' mod='marketplace'}</p>
+                    </div>
+					<div class="form-group">
+						<a onclick="showOtherImage(); return false;" class="btn btn-default button button-small">
+								<span>{l s='Add another image' mod='marketplace'}</span>
+							</a>
+						<div id="wk_prod_other_images"></div>
+					</div>				
 				</div>
 			</div>
 

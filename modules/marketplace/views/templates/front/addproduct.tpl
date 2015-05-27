@@ -139,19 +139,6 @@ $(document).ready(function() {
 							<label for="product_name" class="control-label required">{l s='Product Name :' mod='marketplace'}</label>
 							<input type="text" id="product_name" name="product_name" value="{$c_mp_product_name|escape:'html':'UTF-8'}" class="form-control" />
 						</div>
-						<div class="form-group">   
-							<label for="product_image" style="display:block">{l s='Upload Image :' mod='marketplace'}</label>
-							<input type="file" id="product_image" name="product_image" value="" class="account_input form-control" size="chars"  />
-							<img style="display:none;" id="testImg" src="#" alt="" height="40px" width="40px" />
-							<p class="help-block">{l s='Valid image extensions are jpg, jpeg, and png.' mod='marketplace'}</p>
-						</div>
-
-						<div class="form-group">
-							<a onclick="showOtherImage(); return false;" class="btn btn-default button button-small">
-								<span>{l s='Add another image' mod='marketplace'}</span>
-							</a>
-							<div id="wk_prod_other_images"></div>
-				        </div>   
 
 				        <div class="form-group">	
 							<label for="short_description" class="control-label">{l s='Short Description :' mod='marketplace'}</label>
@@ -182,6 +169,20 @@ $(document).ready(function() {
 							<div>{$categoryTree|escape:'intval'}</div>
 						</div>
 				        {hook h="DisplayMpaddproductfooterhook"}
+						<div class="form-group">   
+							<label for="product_image" style="display:block">{l s='Upload Image :' mod='marketplace'}</label>
+							<input type="file" id="product_image" name="product_image" value="" class="account_input form-control" size="chars"  />
+							<img style="display:none;" id="testImg" src="#" alt="" height="40px" width="40px" />
+							<p class="help-block">{l s='Valid image extensions are jpg, jpeg, and png.' mod='marketplace'}</p>
+						</div>
+
+						<div class="form-group">
+							<a onclick="showOtherImage(); return false;" class="btn btn-default button button-small">
+								<span>{l s='Add another image' mod='marketplace'}</span>
+							</a>
+							<div id="wk_prod_other_images"></div>
+				        </div>   
+
 				    </div>
 				</div>
 		    	{hook h="DisplayMpaddproducttabhook"}
