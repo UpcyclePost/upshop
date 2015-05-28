@@ -34,12 +34,12 @@
 </div>
 {else}
 <!-- Block search module TOP -->
-<div id="search_block_top" class="col-sm-3 clearfix search-container">
+<div id="search_block_top" class="col-sm-3 clearfix">
 	<form id="searchbox" method="get" action="{$link->getPageLink('search', null, null, null, false, null, true)|escape:'html':'UTF-8'}" >
 		<input type="hidden" name="controller" value="search" />
 		<input type="hidden" name="orderby" value="position" />
 		<input type="hidden" name="orderway" value="desc" />
-		<input class="search_query form-control search" type="text" id="search_query_top" name="search_query" placeholder="{l s='Find Products' mod='blocksearch'}" value="{$search_query|escape:'htmlall':'UTF-8'|stripslashes}" />
+		<input class="search_query form-control" type="text" id="search_query_top" name="search_query" placeholder="{l s='Find Products' mod='blocksearch'}" value="{$search_query|escape:'htmlall':'UTF-8'|stripslashes}" />
 		<button type="submit" name="submit_search" class="btn btn-default button-search">
 			<span>{l s='Search' mod='blocksearch'}</span>
 		</button>
@@ -48,9 +48,15 @@
 <!-- /Block search module TOP -->
 {/if}
 <!-- center the logo by moving this code from header.tpl -->
-<div id="header_logo" class="col-sm-3 clearfix text-center">
-	<a href="http://{$smarty.server.SERVER_NAME}" title="{$shop_name|escape:'html':'UTF-8'}">
-		<img class="logo" src="{$logo_url}" alt="{$shop_name|escape:'html':'UTF-8'}"{if isset($logo_image_width) && $logo_image_width} width="{$logo_image_width}"{/if}{if isset($logo_image_height) && $logo_image_height} height="{$logo_image_height}"{/if}/>
-	</a>
+<div id="header_logo" class="col-sm-3 clearfix">
+       <a href="http://{$smarty.server.SERVER_NAME}" title="{$shop_name|escape:'html':'UTF-8'}">
+              <img class="logo img-responsive" src="{$logo_url}" alt="{$shop_name|escape:'html':'UTF-8'}"{if isset($logo_image_width) && $logo_image_width} width="{$logo_image_width}"{/if}{if isset($logo_image_height) && $logo_image_height} height="{$logo_image_height}"{/if}/>
+</a>
 </div>
 <!-- /center the logo -->
+<div class="col-sm-2 clearfix" style="padding-top:10px">
+<a href="http://{$smarty.server.SERVER_NAME}/shops" class="btn btn-default button button-medium" title="{l s='Shop Gallery'}" style="float:right; white-space:nowrap;">
+<i class="fa fa-shopping-cart icon-only"></i>{l s='Shop Gallery'}
+</a>
+</div>
+

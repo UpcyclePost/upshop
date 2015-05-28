@@ -401,33 +401,27 @@ class ShopCore extends ObjectModel
 				// Hmm there is something really bad in your Prestashop !
 				if (!Validate::isLoadedObject($default_shop))
 					throw new PrestaShopException('Shop not found');
-				if (defined('_PS_EXTERNAL_SCRIPT_ACCESS_'))
-				{
-					$shop = $default_shop;
-				}
+
+				$params = $_GET;
+				unset($params['id_shop']);
+				$url = $default_shop->domain;
+				if (!Configuration::get('PS_REWRITING_SETTINGS'))
+					$url .= $default_shop->getBaseURI().'index.php?'.http_build_query($params);
 				else
 				{
-					$params = $_GET;
-					unset($params['id_shop']);
-					$url = $default_shop->domain;
-					if (!Configuration::get('PS_REWRITING_SETTINGS'))
-						$url .= $default_shop->getBaseURI().'index.php?'.http_build_query($params);
+					// Catch url with subdomain "www"
+					if (strpos($url, 'www.') === 0 && 'www.'.$_SERVER['HTTP_HOST'] === $url || $_SERVER['HTTP_HOST'] === 'www.'.$url)
+						$url .= $_SERVER['REQUEST_URI'];
 					else
-					{
-						// Catch url with subdomain "www"
-						if (strpos($url, 'www.') === 0 && 'www.'.$_SERVER['HTTP_HOST'] === $url || $_SERVER['HTTP_HOST'] === 'www.'.$url)
-							$url .= $_SERVER['REQUEST_URI'];
-						else
-							$url .= $default_shop->getBaseURI();
+						$url .= $default_shop->getBaseURI();
 
-						if (count($params))
-							$url .= '?'.http_build_query($params);
-					}
-					$redirect_type = Configuration::get('PS_CANONICAL_REDIRECT') == 2 ? '301' : '302';
-					header('HTTP/1.0 '.$redirect_type.' Moved');
-					header('location: http://'.$url);
-					exit;
+					if (count($params))
+						$url .= '?'.http_build_query($params);
 				}
+				$redirect_type = Configuration::get('PS_CANONICAL_REDIRECT') == 2 ? '301' : '302';
+				header('HTTP/1.0 '.$redirect_type.' Moved');
+				header('location: http://'.$url);
+				exit;
 			}
 			elseif (defined('_PS_ADMIN_DIR_') && empty($shop->physical_uri))
 			{
