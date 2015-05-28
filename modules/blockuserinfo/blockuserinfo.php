@@ -98,10 +98,6 @@ class BlockUserInfo extends Module
 				$account_dashboard = $link->getModuleLink('marketplace', 'marketplaceaccount',$param);
 
 				$this->context->smarty->assign("account_dashboard", $account_dashboard);
-
-				$this->context->smarty->assign("shop_id", $id_shop);
-
-				$this->context->smarty->assign("up_user_id", $this->context->customer->website);
 			}
 		} else {
 			$this->context->smarty->assign("is_seller", -1);

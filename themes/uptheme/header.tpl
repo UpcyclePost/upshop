@@ -42,6 +42,7 @@
 		<meta name="apple-mobile-web-app-capable" content="yes" />
 		<link rel="icon" type="image/vnd.microsoft.icon" href="{$favicon_url}?{$img_update_time}" />
 		<link rel="shortcut icon" type="image/x-icon" href="{$favicon_url}?{$img_update_time}" />
+		<link href="{$css_dir}styles.min.css" type="text/css" rel="stylesheet" />
 {if isset($css_files)}
 	{foreach from=$css_files key=css_uri item=media}
 		<link rel="stylesheet" href="{$css_uri|escape:'html':'UTF-8'}" type="text/css" media="{$media|escape:'html':'UTF-8'}" />
@@ -56,7 +57,6 @@
                 <link href="{$css_dir}ptmfix.css" rel="stylesheet" type="text/css" media="screen" />
                 <link href="{$css_dir}custommaker.css" rel="stylesheet" type="text/css" media="screen" />
                 <link href="{$css_dir}customuser.css" rel="stylesheet" type="text/css" media="screen" />
-				<link href="{$css_dir}styles.min.css" type="text/css" rel="stylesheet" />
 		{$HOOK_HEADER}
 		<link rel="stylesheet" href="http{if Tools::usingSecureMode()}s{/if}://fonts.googleapis.com/css?family=Source+Sans+Pro:400,300,700,600" type="text/css" media="all" />
 		{if $page_name!='product'}
@@ -81,7 +81,6 @@
 			</script>
 		{/if}
 		<link href="http{if Tools::usingSecureMode()}s{/if}://{$smarty.server.SERVER_NAME}/css/font-awesome.min.css" rel="stylesheet">
-		<link href="{$css_dir}upcyclepost/css/upcyclepost.css" rel="stylesheet">
 		<script type="text/javascript" src="http{if Tools::usingSecureMode()}s{/if}://{$smarty.server.SERVER_NAME}/js/libraries/tagmanager/tagmanager.js"></script>
 		<!--[if IE 8]>
 		<script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
@@ -107,12 +106,17 @@
 		<div id="page">
 			<div class="header-container">
 				<header id="header">
+					<div class="nav">
+						<div class="container">
+							<div class="row">
+								<nav>{hook h="displayNav"}</nav>
+							</div>
+						</div>
+					</div>
 					<div>
 						<div class="container">
 							<div class="row">
-								<a id="mobile-menu" class="mobile-menu fa fa-bars visible-lg visible-md"></a>
 								{if isset($HOOK_TOP)}{$HOOK_TOP}{/if}
-								{hook h="displayNav"}
 							</div>
 						</div>
 					</div>
