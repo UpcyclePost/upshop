@@ -340,6 +340,12 @@ class OrderOpcControllerCore extends ParentOrderController
 	{
 		parent::initContent();
 
+		if (!$this->isLogged)
+		{
+			header('Location:http://'.$_SERVER['SERVER_NAME'].'/profile/login?redirect=cart');
+			die();
+		}
+
 		/* id_carrier is not defined in database before choosing a carrier, set it to a default one to match a potential cart _rule */
 		if (empty($this->context->cart->id_carrier))
 		{
