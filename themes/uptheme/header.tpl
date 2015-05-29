@@ -82,6 +82,9 @@
 		{/if}
 		<link href="http{if Tools::usingSecureMode()}s{/if}://{$smarty.server.SERVER_NAME}/css/font-awesome.min.css" rel="stylesheet">
 		<link href="{$css_dir}upcyclepost/css/upcyclepost.css" rel="stylesheet">
+		<!-- mmenu -->
+		<link href="{$css_dir}upcyclepost/libraries/mobile-slide-menu/jquery.mmenu.positioning.css" rel="stylesheet">
+
 		<script type="text/javascript" src="http{if Tools::usingSecureMode()}s{/if}://{$smarty.server.SERVER_NAME}/js/libraries/tagmanager/tagmanager.js"></script>
 		<!--[if IE 8]>
 		<script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
@@ -117,6 +120,79 @@
 						</div>
 					</div>
 				</header>
+				<!-- Nav -->
+				<div class="container">
+					<div class="row">
+						<nav class="menu hidden-xs hidden-sm" id="main-menu">
+							<div class="content-container">
+								<div class="menu-container clearfix">
+									<div class="main-menu menu-categories clearfix">
+										<h4 class="blue">Browse Ideas</h4>
+										<div class="col-sm-3">
+											<ul>
+												<li><a href="/gallery/art">Art</a></li>
+												<li><a href="/gallery/automotive">Automotive</a></li>
+												<li><a href="/gallery/construction">Construction</a></li>
+												<li><a href="/gallery/crafts">Crafts</a></li>
+												<li><a href="/gallery/electronics">Electronics</a></li>
+												<li><a href="/gallery/fashion">Fashion</a></li>
+											</ul></div><div class="col-sm-3"><ul>
+												<li><a href="/gallery/furniture">Furniture</a></li>
+												<li><a href="/gallery/glass">Glass</a></li>
+												<li><a href="/gallery/hardware">Hardware</a></li>
+												<li><a href="/gallery/holidays">Holidays</a></li>
+												<li><a href="/gallery/home">Home</a></li>
+												<li><a href="/gallery/jewelry">Jewelry</a></li>
+											</ul></div><div class="col-sm-3"><ul>
+												<li><a href="/gallery/metal">Metal</a></li>
+												<li><a href="/gallery/musical">Musical</a></li>
+												<li><a href="/gallery/office">Office</a></li>
+												<li><a href="/gallery/outdoors">Outdoors</a></li>
+												<li><a href="/gallery/paper">Paper</a></li>
+												<li><a href="/gallery/pets">Pets</a></li>
+											</ul></div><div class="col-sm-3"><ul>
+												<li><a href="/gallery/plastic">Plastic</a></li>
+												<li><a href="/gallery/sporting-goods">Sporting Goods</a></li>
+												<li><a href="/gallery/toys">Toys</a></li>
+												<li><a href="/gallery/vintage">Vintage</a></li>
+												<li><a href="/gallery/wood">Wood</a></li>
+												<li><a href="/gallery/yard">Yard</a></li>
+											</ul>
+										</div>
+										<div class="col-sm-6" style="margin-top: 15px;">
+											<ul>
+												<a href="/search/users"><li><i class="fa fa-users"></i> Visit Profile Gallery</a></li>
+											</ul>
+										</div>
+									</div>
+									<div class="main-menu menu-child-menus clearfix">
+										<div class="menu-col-1 clearfix">
+											<h4 class="blue">Company</h4>
+											<div class="col-xs-12">
+												<ul>
+													<li><a href="/about">About Us</a></li>
+													<li><a target="_blank" href="http://www.facebook.com/upcyclepost">Facebook</a></li>
+													<li><a target="_blank" href="http://www.twitter.com/upcyclepost">Twitter</a></li>
+													<li><a target="_blank" href="http://www.linkedin.com/company/upcyclepost-com">LinkedIn</a></li>
+													<li><a target="_blank" href="/blog">Blog</a></li>
+													<li><a target="_blank" href="/contact">Contact Us</a></li>
+												</ul>
+											</div>
+										</div>
+										<div class="menu-col-2 clearfix">
+											<h4 class="green">Do you have an idea?</h4>
+											<div class="col-xs-12">
+												<p>It doesn't matter if it's a work in progress, rough draft or a finished product.</p>
+												<a class="btn btn-green" href="/post/idea"><i class="fa fa-camera"></i>Post Your Idea</a>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+						</nav>
+					</div>
+				</div>
+				<!-- End Nav -->
 			</div>
 			<div class="columns-container">
 				<div id="columns" class="container">

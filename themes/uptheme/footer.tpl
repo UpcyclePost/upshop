@@ -40,6 +40,58 @@
 			{/if}
 		</div><!-- #page -->
 {/if}
+
+<nav id="mobile-slide-menu" class="hidden">
+	<ul>
+		<li><a href="/"><i class="fa fa-home fa-fw"></i> Home</a></li>
+		<li><a href="/post/idea"><i class="fa fa-camera fa-fw"></i> Post Ideas</a></li>
+		<li><a href="/gallery"><i class="fa fa-search fa-fw"></i> Find Inspiration</a>
+			<ul>
+				<li><a href="/gallery/art">Art</a></li>
+				<li><a href="/gallery/automotive">Automotive</a></li>
+				<li><a href="/gallery/construction">Construction</a></li>
+				<li><a href="/gallery/crafts">Crafts</a></li>
+				<li><a href="/gallery/electronics">Electronics</a></li>
+				<li><a href="/gallery/fashion">Fashion</a></li>
+				<li><a href="/gallery/furniture">Furniture</a></li>
+				<li><a href="/gallery/glass">Glass</a></li>
+				<li><a href="/gallery/hardware">Hardware</a></li>
+				<li><a href="/gallery/holidays">Holidays</a></li>
+				<li><a href="/gallery/home">Home</a></li>
+				<li><a href="/gallery/jewelry">Jewelry</a></li>
+				<li><a href="/gallery/metal">Metal</a></li>
+				<li><a href="/gallery/musical">Musical</a></li>
+				<li><a href="/gallery/office">Office</a></li>
+				<li><a href="/gallery/outdoors">Outdoors</a></li>
+				<li><a href="/gallery/paper">Paper</a></li>
+				<li><a href="/gallery/pets">Pets</a></li>
+				<li><a href="/gallery/plastic">Plastic</a></li>
+				<li><a href="/gallery/sporting-goods">Sporting Goods</a></li>
+				<li><a href="/gallery/toys">Toys</a></li>
+				<li><a href="/gallery/vintage">Vintage</a></li>
+				<li><a href="/gallery/wood">Wood</a></li>
+				<li><a href="/gallery/yard">Yard</a></li>
+			</ul>
+		</li>
+		<li><a href="/gallery"><i class="fa fa-camera fa-fw"></i> Browse</a>
+			<ul>
+				<li><a href="/gallery"><i class="fa fa-fw fa-lightbulb-o"></i> Ideas</a></li>
+				<li><a href="/shops"><i class="fa fa-fw fa-tags"></i> Shops</a></li>
+				<li><a href="/search/users"><i class="fa fa-fw fa-users"></i> Users</a></li>
+			</ul>
+		</li>
+		<li><a href="/profile/login"><i class="fa fa-sign-in fa-fw"></i> Login</a></li>
+		<li><a href="/profile/register"><i class="fa fa-sign-in fa-rotate-270 fa-fw"></i> Sign Up</a></li>
+		<li><a href="/blog"><i class="fa fa-rss fa-fw"></i> Blog</a></li>
+	</ul>
+</nav>
+
 {include file="$tpl_dir./global.tpl"}
+	<!-- Horizontal Dropdown Menu -->
+	<script src="http{if Tools::usingSecureMode()}s{/if}://{$smarty.server.SERVER_NAME}/shop/themes/uptheme/js/libraries/horizontal-menu/cbpHorizontalMenu.js"></script>
+	<!-- Mobile Slide Menu -->
+	<script src="http{if Tools::usingSecureMode()}s{/if}://{$smarty.server.SERVER_NAME}/shop/themes/uptheme/js/libraries/mobile-slide-menu/jquery.mmenu.min.js"></script>
+
+	<script src="http{if Tools::usingSecureMode()}s{/if}://{$smarty.server.SERVER_NAME}/shop/themes/uptheme/js/up/site.js"></script>
 	</body>
 </html>

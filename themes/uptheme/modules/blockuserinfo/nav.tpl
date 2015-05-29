@@ -1,6 +1,11 @@
 <!-- Block user information module NAV  -->
 <div class="header_user_info">
 	<div class="buttons hidden-xs hidden-sm">
+		{if !$is_logged}
+			<a href="/profile/login" class="btn btn-none"><i class="fa fa-sign-in fa-fw"></i> Sign In</a>
+			<a href="/profile/register" class="btn btn-none"><i class="fa fa-sign-in fa-fw fa-rotate-270"></i> Sign Up</a>
+		{/if}
+
 		<div class="btn-group">
 			<button type="button" class="btn btn-user dropdown-toggle" data-toggle="dropdown">
 				<span>Browse</span> <i class="fa fa-camera"></i>
@@ -49,6 +54,7 @@
 			<a style="margin: 0; padding: 0" href="/shop/quick-order"><i class="fa fa-fw fa-shopping-cart"></i><br>Cart{if $cart_qties > 0}<span class="items">{$cart_qties}</span>{/if}</a>
 		</div>
 	</div>
+	<a class="slide-menu fa fa-bars hidden-lg hidden-md" href="#mobile-slide-menu"></a>
 	<!-- <a href="{$link->getPageLink('my-account', true)|escape:'html':'UTF-8'}" title="{l s='View my customer account' mod='blockuserinfo'}" class="account" rel="nofollow"><span>You</span></a> -->
 </div>
 <!-- /Block usmodule NAV -->
