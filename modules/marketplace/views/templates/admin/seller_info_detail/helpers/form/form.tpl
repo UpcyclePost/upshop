@@ -58,7 +58,6 @@
 				<input type="text" name="phone" id="phone1" maxlength="{$phone_digit}" {if {$set}==0}value="{$phone}"{/if}/>
 				<label class="errors" id="phone_error"></label></div>
 			</div> <!-- phone-->
-				 
 					
 		<div class="form-group">
 			<label class="col-lg-3 control-label">{l s='Fax' mod='marketplace'}</label>

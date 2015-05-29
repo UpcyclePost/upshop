@@ -456,7 +456,19 @@
 										<img id="{$product['id']|escape:'html':'UTF-8'}" class="edit_img" src="{$img_ps_dir|escape:'html':'UTF-8'}admin/edit.gif"/>
 									</td>
 									<td>
-
+										{if isset($product.unactive_image)} <!--product is not activated yet-->
+											<a class="fancybox" href="{$modules_dir}marketplace/img/product_img/{$product.unactive_image|escape:'html':'UTF-8'}.jpg">
+												<img class="img-thumbnail" width="45" height="45" src="{$modules_dir}marketplace/img/product_img/{$product.unactive_image|escape:'html':'UTF-8'}.jpg">
+											</a>
+										{else if isset($product.cover_image)} <!--product is atleast one time activated-->
+											<a class="fancybox" href="{$product.image_path}">
+												<img class="img-thumbnail" width="45" height="45" src="{$link->getImageLink($product.obj_product->link_rewrite, $product.cover_image, 'small_default')}">
+											</a>
+										{else if isset($product.id_product)}
+											<img class="img-thumbnail" width="45" height="45" src="{$link->getImageLink($product.obj_product->link_rewrite, $product.lang_iso|cat : '-default', 'small_default')}">
+										{else}
+											<img class="img-thumbnail" width="45" height="45" src="{$modules_dir}marketplace/img/product_img/no_img.jpg">
+										{/if}
 									</td>
 									<td>
 										<a href="{$product_details_link|escape:'html':'UTF-8'}&id={$product['id']|escape:'html':'UTF-8'}">									
