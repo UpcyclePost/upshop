@@ -11,6 +11,9 @@ class marketplaceRegistrationprocessModuleFrontController extends ModuleFrontCon
 		$seller_name = Tools::getValue('person_name');
 		$phone = Tools::getValue('phone');
 		$business_email_id = Tools::getValue('business_email_id');
+		$bank = Tools::getValue('bank');
+		$routing = Tools::getValue('routing');
+		$cc = Tools::getValue('cc');
 		$fb_id = Tools::getValue('fb_id');
 		$tw_id = Tools::getValue('tw_id');
 		$fax = Tools::getValue('fax');
@@ -24,6 +27,9 @@ class marketplaceRegistrationprocessModuleFrontController extends ModuleFrontCon
         $context->cookie->__set('c_mp_fax',$fax);
         $context->cookie->__set('c_mp_business_email',$business_email_id);
         $context->cookie->__set('c_mp_address',$address);
+		$context->cookie->__set('c_mp_bank',$bank);
+        $context->cookie->__set('c_mp_routing',$routing);
+        $context->cookie->__set('c_mp_cc',$cc);
         $context->cookie->__set('c_mp_facebook',$fb_id);
         $context->cookie->__set('c_mp_twitter',$tw_id);
 		if($result == 1)
@@ -53,7 +59,50 @@ class marketplaceRegistrationprocessModuleFrontController extends ModuleFrontCon
 			{
 				$url = $link->getModuleLink('marketplace','sellerrequest', array('mp_error' => 5));
 				Tools::redirect($url);
+			}elseif(trim($bank) == '')
+			{
+				$url = $link->getModuleLink('marketplace','sellerrequest', array('mp_error' => 6));
+				Tools::redirect($url);
+			}elseif(trim($routing) == '')
+			{
+				$url = $link->getModuleLink('marketplace','sellerrequest', array('mp_error' => 7));
+				Tools::redirect($url);
 			}
+			
+			/*************Create Stripe manage account*******************/
+			include_once(_PS_MODULE_DIR_.'stripepro/lib/Stripe.php');
+		    \Stripe\Stripe::setApiKey(Configuration::get('STRIPE_MODE') ? Configuration::get('STRIPE_PRIVATE_KEY_LIVE') : Configuration::get('STRIPE_PRIVATE_KEY_TEST'));
+			
+			
+			/* Try to process the manage account and catch any error message */
+			try
+			{
+				$result_json = \Stripe\Account::create(array("managed" => true,"country" => "US","email" => $business_email_id,"business_name" => $shop_name,"debit_negative_balances" => true, "bank_account" => array("country"=>"US","currency"=>'USD',"account_number"=>$bank,"routing_number"=>$routing), "tos_acceptance" => array('date'=>time(),"ip"=>$_SERVER['REMOTE_ADDR'])));
+				
+			}
+			catch (Exception $e)
+			{
+				$this->_errors['stripe_error'] = $e->getMessage();	
+			}
+			
+			if(!isset($this->_errors['stripe_error'])){
+				
+			Db::getInstance()->Execute('INSERT INTO '._DB_PREFIX_.'stripepro_sellers (stripe_seller_id, id_customer, secret, publishable, status, date_add) VALUES (\''.$result_json->id.'\', '.$customer_id.', \''.$result_json->keys->secret.'\', \''.$result_json->keys->publishable.'\', \'unverified\', NOW())');
+			
+			  $account = \Stripe\Account::retrieve($result_json->id);
+				$account->legal_entity->ssn_last_4  = Tools::getValue('ssn');
+				$account->legal_entity->type = Tools::getValue('type');
+				$account->legal_entity->first_name = Tools::getValue('fname');
+				$account->legal_entity->last_name = Tools::getValue('lname');
+				$account->legal_entity->dob = array("day"=>Tools::getValue('day'),"month"=>Tools::getValue('month'),"year"=>Tools::getValue('year'));
+				$account->save();
+				
+			}else{
+				
+				$url = $link->getModuleLink('marketplace','sellerrequest', array('mp_error' => $this->_errors['stripe_error']));
+				Tools::redirect($url);
+				}
+				
 			Hook::exec('actionBeforeAddSeller');
 			/**
 			*Saving seller details
@@ -108,6 +157,9 @@ class marketplaceRegistrationprocessModuleFrontController extends ModuleFrontCon
 		$context->cookie->__unset('c_mp_shop_desc');
         $context->cookie->__unset('c_mp_seller_name');
         $context->cookie->__unset('c_mp_phone');
+		$context->cookie->__unset('c_mp_bank');
+        $context->cookie->__unset('c_mp_routing');
+        $context->cookie->__unset('c_mp_cc');
         $context->cookie->__unset('c_mp_fax');
         $context->cookie->__unset('c_mp_business_email');
         $context->cookie->__unset('c_mp_address');

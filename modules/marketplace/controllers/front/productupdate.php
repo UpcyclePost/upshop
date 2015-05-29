@@ -211,6 +211,22 @@ class marketplaceProductupdateModuleFrontController extends ModuleFrontControlle
 					$this->context->smarty->assign('imageediturl',$imageediturl);	
 				}
 
+				else
+				{
+					//product not approved yet
+					$imageediturl = $link->getModuleLink('marketplace','productimageedit');	
+					$this->context->smarty->assign('imageediturl',$imageediturl);
+					$this->context->smarty->assign("is_approve",0);
+					$obj_mp_pro_image = new MarketplaceProductImage();
+					$mp_pro_image = $obj_mp_pro_image->findProductImageByMpProId(Tools::getValue('id'));
+					if($mp_pro_image) {
+						$this->context->smarty->assign("mp_pro_image",$mp_pro_image);
+						$cover_img = $mp_pro_image['0']['seller_product_image_id'];
+						$this->context->smarty->assign("cover_img",$cover_img);
+					} else {
+						$this->context->smarty->assign("mp_pro_image",'0');
+					}
+
 				$this->context->smarty->assign("pro_info",$pro_info);
 				$this->context->smarty->assign("is_seller",1);			
 				$this->context->smarty->assign("logic","update_product");

@@ -33,6 +33,12 @@
 		<div class="alert alert-danger">{l s='Email ID is requird field.' mod='marketplace'}</div>
 	{else if $mp_error == 5}
 		<div class="alert alert-danger">{l s='Invalid Email ID.' mod='marketplace'}</div>
+    {else if $mp_error == 6}
+		<div class="alert alert-danger">{l s='Bank Account number is required field.' mod='marketplace'}</div>
+	{else if $mp_error == 7}
+		<div class="alert alert-danger">{l s='Routing is requird field.' mod='marketplace'}</div>
+    {else if $mp_error !=''}
+		<div class="alert alert-danger">{$mp_error}</div>
 	{/if}
 {/if}
 {hook h='displayMpAddSellerHeaderHook'}
@@ -118,6 +124,48 @@
 					<label for="address">{l s='Address' mod='marketplace'}</label>
 					<textarea name="address" class = "form-control"></textarea>
 				</div>
+                <div class="form-group">	
+					<label for="address">{l s='Address' mod='marketplace'}</label>
+					<textarea name="address" class = "form-control"></textarea>
+				</div>
+                 <fieldset style="border:2px dotted #999;padding: 10px">
+                <legend style="border: 1px solid #999;padding: 8px;background: #fbfbfb;width:auto;"><i class="icon-money"></i>&nbsp;{l s='Payment transfer info for Stripe' mod='marketplace'}</legend>
+                 <div id="bank" class="form-group" >
+					<label for="bank">{l s='Bank Account Number' mod='marketplace'}<sup>*</sup></label>
+					<input class="reg_sel_input form-control"  type="text" name="bank" id="bank" />
+                    {l s='e.g.' mod='marketplace'} 000123456789
+				</div>
+					
+				<div id="routing" class="form-group" >
+					<label for="routing">{l s='Routing Number' mod='marketplace'}<sup>*</sup></label>
+					<input class="reg_sel_input form-control"  type="text" name="routing" id="routing" />
+                    {l s='e.g.' mod='marketplace'} 110000000
+				</div>
+                <fieldset style="border:2px dotted #cdcdcd;padding: 10px">
+                <legend style="border: 1px solid #cdcdcd;padding: 8px;background: #fbfbfb;width:auto;font-size:15px;"><i class="icon-user"></i>&nbsp;{l s='Legal Entities' mod='marketplace'}</legend>
+                <div id="type" class="form-group" >
+					<label for="type">{l s='Entity Type' mod='marketplace'}<sup>*</sup></label>
+					<select name="type" id="type"><option value="individual">{l s='Individual' mod='marketplace'}</option><option value="company">{l s='Company' mod='marketplace'}</option></select>
+				</div>
+                <div id="fname" class="form-group" >
+					<label for="fname">{l s='First Name' mod='marketplace'}<sup>*</sup></label>
+					<input class="form-control"  type="text" name="fname" id="fname" style="width:100px;display: inline;" />&nbsp;&nbsp;
+                    <label for="lname">{l s='Last Name' mod='marketplace'}<sup>*</sup></label>
+					<input class="form-control"  type="text" name="lname" id="lname" style="width:100px;display: inline;" />
+				</div>
+                <div id="ssn" class="form-group" >
+					<label for="ssn">{l s='SSN last 4 digits' mod='marketplace'}<sup>*</sup></label>
+					<input class="form-control"  type="text" name="ssn" id="ssn" style="width:50px;display: inline;" />
+				</div>
+                <div id="routing" class="form-group" >
+					<label for="routing">{l s='Date of birth' mod='marketplace'}<sup>*</sup></label>
+                    <input class="form-control"  type="text" name="month" id="month" style="width:30px;display: inline;" /> /
+					<input class="form-control"  type="text" name="day" id="day" style="width:30px;display: inline;" /> /
+                    <input class="form-control"  type="text" name="year" id="year" style="width:50px;display: inline;" />&nbsp;
+                    {l s='e.g.' mod='marketplace'} 12/31/1988 (mm/dd/yyyy)
+				</div>
+                </fieldset>
+                </fieldset>
 				<!--
 				<div id="facebook" class="form-group" >
 					<label for="fb_id1">{l s='Facebook Id' mod='marketplace'}</label>
@@ -134,7 +182,8 @@
 			<div class="form-group" style="text-align:center;">
 				<button type="submit" id="seller_save" class="btn btn-default button button-medium">
 					<span>{l s='Register' mod='marketplace'}<i class="icon-chevron-right right"></i></span>
-				</button>
+				</button><br><br>
+                By registering your account, you agree to our <a href="{$link->getCMSLink(3)|escape:'html':'UTF-8'}" class="iframe" rel="nofollow" target="_blank">Terms of Service</a> and the <a href="https://stripe.com/connect/account-terms" class="iframe" rel="nofollow" target="_blank">Stripe Connected Account Agreement</a>. 
 			</div>
 		</form>
 		</div>
