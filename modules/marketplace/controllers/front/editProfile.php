@@ -38,6 +38,60 @@ class marketplaceEditProfileModuleFrontController extends ModuleFrontController
         if (Tools::getValue('update_facbook_id'))
             $facebook_id = trim(Tools::getValue('update_facbook_id'));
         
+		$bank = Tools::getValue('bank');
+		$routing = Tools::getValue('routing');
+		$ssn = Tools::getValue('ssn');
+		/******Stripe info update****/
+		include_once(_PS_MODULE_DIR_.'stripepro/lib/Stripe.php');
+		\Stripe\Stripe::setApiKey(Configuration::get('STRIPE_MODE') ? Configuration::get('STRIPE_PRIVATE_KEY_LIVE') : Configuration::get('STRIPE_PRIVATE_KEY_TEST'));
+		
+		$account_id = Db::getInstance()->getValue('select `stripe_seller_id` from '._DB_PREFIX_.'stripepro_sellers where `id_customer` = '.$customer_id);
+		if(trim($account_id)!=''){
+		$account = \Stripe\Account::retrieve($account_id);
+		$account->business_name = $shop_name;
+		if(substr($bank,0,2)!="**" && strlen($bank)>9)
+		$account->bank_account = array("account_number"=>$bank,"country"=>'US',"currency"=>'usd',"routing_number"=>$routing);		
+
+		if(substr($ssn,0,2)!="**" && strlen($ssn)==4)
+		$account->legal_entity->ssn_last_4  = $ssn;
+		$account->legal_entity->type = Tools::getValue('type');
+		if(Tools::getValue('fname')!='')
+		$account->legal_entity->first_name = Tools::getValue('fname');
+		if(Tools::getValue('lname')!='')
+		$account->legal_entity->last_name = Tools::getValue('lname');
+		$account->legal_entity->dob = array("day"=>Tools::getValue('day'),"month"=>Tools::getValue('month'),"year"=>Tools::getValue('year'));
+		$account->save();
+		}else{
+			
+			
+			/* Try to process the manage account and catch any error message */
+			try
+			{
+				$result_json = \Stripe\Account::create(array("managed" => true,"country" => "US","email" => $business_email,"business_name" => $shop_name,"debit_negative_balances" => true, "bank_account" => array("country"=>"US","currency"=>'USD',"account_number"=>$bank,"routing_number"=>$routing), "tos_acceptance" => array('date'=>time(),"ip"=>$_SERVER['REMOTE_ADDR'])));
+				
+			}
+			catch (Exception $e)
+			{
+				$this->_errors['stripe_error'] = $e->getMessage();	
+			}
+			
+			if(!isset($this->_errors['stripe_error'])){
+				
+			Db::getInstance()->Execute('INSERT INTO '._DB_PREFIX_.'stripepro_sellers (stripe_seller_id, id_customer, secret, publishable, status, date_add) VALUES (\''.$result_json->id.'\', '.$customer_id.', \''.$result_json->keys->secret.'\', \''.$result_json->keys->publishable.'\', \'unverified\', NOW())');
+			
+			   $account = \Stripe\Account::retrieve($result_json->id);
+				$account->legal_entity->ssn_last_4  = Tools::getValue('ssn');
+				$account->legal_entity->type = Tools::getValue('type');
+				$account->legal_entity->first_name = Tools::getValue('fname');
+				$account->legal_entity->last_name = Tools::getValue('lname');
+				$account->legal_entity->dob = array("day"=>Tools::getValue('day'),"month"=>Tools::getValue('month'),"year"=>Tools::getValue('year'));
+				$account->save();
+				
+			}
+			
+			
+			}
+		
         
         $market_place_seller_info = Db::getInstance(_PS_USE_SQL_SLAVE_)->getRow("select * from `" . _DB_PREFIX_ . "marketplace_seller_info` where id =" . $market_seller_id['marketplace_seller_id'] . "");
         if ($_FILES['update_shop_logo']["size"] != 0)

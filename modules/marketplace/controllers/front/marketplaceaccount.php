@@ -238,6 +238,31 @@ class marketplaceMarketplaceaccountModuleFrontController extends ModuleFrontCont
 						{
                             /*if (Tools::getIsset('edit-profile')) 
 							{*/
+							
+							/*************Get Stripe manage account details*******************/
+							include_once(_PS_MODULE_DIR_.'stripepro/lib/Stripe.php');
+							\Stripe\Stripe::setApiKey(Configuration::get('STRIPE_MODE') ? Configuration::get('STRIPE_PRIVATE_KEY_LIVE') : Configuration::get('STRIPE_PRIVATE_KEY_TEST'));
+							$account_id = Db::getInstance()->getValue('select `stripe_seller_id` from '._DB_PREFIX_.'stripepro_sellers where `id_customer` = '.$customer_id);
+						    if(trim($account_id)!=''){
+						    $account = \Stripe\Account::retrieve($account_id);
+							$this->context->smarty->assign('stripestatus',$account->legal_entity->verification->status);
+							$this->context->smarty->assign('bank_data',$account->bank_accounts->data[0]);
+							$this->context->smarty->assign('ssn',$account->legal_entity->ssn_last_4);
+							$this->context->smarty->assign('type',$account->legal_entity->type);
+							$this->context->smarty->assign('fname',$account->legal_entity->first_name);
+							$this->context->smarty->assign('lname',$account->legal_entity->last_name);
+							$this->context->smarty->assign('dob',$account->legal_entity->dob);
+							}else{
+							$this->context->smarty->assign('stripestatus','');
+							$this->context->smarty->assign('bank_data',array());
+							$this->context->smarty->assign('ssn','');
+							$this->context->smarty->assign('type','');
+							$this->context->smarty->assign('fname','');
+							$this->context->smarty->assign('lname','');
+							$this->context->smarty->assign('dob',array());
+								}
+				
+							
                                 $this->context->smarty->assign("edit", 1);
                                 $editprofile = $link->getModuleLink('marketplace', 'editProfile', $param);
                                
@@ -342,7 +367,9 @@ class marketplaceMarketplaceaccountModuleFrontController extends ModuleFrontCont
 							{
 								$productList = 0;
 							}
-							
+							else
+								$productList = $this->getProductDetails($productList);
+
 							$param = array('l'=>$logic);
 							$this->context->smarty->assign('param',$param);
 							$sortingLink = $link->getModuleLink('marketplace', 'marketplaceaccount',array('shop'=>$id_shop,'l'=>$logic,'p'=>$page_no));
@@ -504,6 +531,44 @@ class marketplaceMarketplaceaccountModuleFrontController extends ModuleFrontCont
         	Tools::redirect($myaccountpage);
         }
     }
+
+    public function getProductDetails($productList)
+	{
+		$obj_mp_shop_product = new MarketplaceShopProduct();
+		$obj_mp_product = new SellerProductDetail();
+		$id_lang = $this->context->language->id;
+		foreach ($productList as $key => $product)
+		{
+			$ps_product = $obj_mp_shop_product->findMainProductIdByMppId($product['id']);
+			if ($ps_product) // if product activated
+			{
+				$obj_product = new Product($ps_product['id_product'], false, $id_lang);
+				$cover = Product::getCover($ps_product['id_product']);
+
+				if ($cover)
+				{
+					$obj_image = new Image($cover['id_image']);
+					$productList[$key]['image_path'] = _THEME_PROD_DIR_.$obj_image->getExistingImgPath().'.jpg';
+					$productList[$key]['cover_image'] = $ps_product['id_product'].'-'.$cover['id_image'];
+				}
+
+				$productList[$key]['id_product'] = $ps_product['id_product'];
+				$productList[$key]['id_lang'] = $this->context->language->id;
+				$productList[$key]['lang_iso'] = $this->context->language->iso_code;
+				$productList[$key]['obj_product'] = $obj_product;
+			}
+			else //if product not active
+			{
+				$productList[$key]['price'] = Tools::convertPrice($product['price']); //convert price for multiple currency
+				$unactive_image = $obj_mp_product->unactiveImage($product['id']);
+				// product is unactive so by default first image is taken because no one is cover image
+				if ($unactive_image)
+					$productList[$key]['unactive_image'] = $unactive_image[0]['seller_product_image_id'];
+			}
+		}
+		return $productList;
+	}
+
     public function setMedia()
     {
         parent::setMedia();
