@@ -331,6 +331,45 @@
 									<label for="update_phone" class="control-label required">{l s='Phone' mod='marketplace'}</label>
 									<input class="required form-control" type="text" value="{$marketplace_seller_info['phone']|escape:'html':'UTF-8'}" name="update_phone" id="update_phone" maxlength="{$phone_digit}"/>
 								</div>
+                                 <fieldset style="border:2px dotted #999;padding: 10px">
+                                <legend style="border: 1px solid #999;padding: 8px;background: #fbfbfb;width:auto;"><i class="icon-money"></i>&nbsp;{l s='Payment transfer info for Stripe' mod='marketplace'} <font color="{if $stripestatus==verified}green{else}orange{/if}">{if $stripestatus!=''}({$stripestatus}){/if}</font></legend>
+                                 <div id="bank" class="form-group" >
+                                    <label for="bank">{l s='Bank Account Number' mod='marketplace'} {if $bank_data.bank_name!=''}({$bank_data.bank_name}){/if}</label>
+                                    <input class="reg_sel_input form-control"  type="text" name="bank" id="bank" value="{if $bank_data.last4!=''}********{$bank_data.last4}{/if}" />
+                                    {l s='e.g.' mod='marketplace'} 000123456789
+                                </div>
+                                    
+                                <div id="routing" class="form-group" >
+                                    <label for="routing">{l s='Routing Number' mod='marketplace'}</label>
+                                    <input class="reg_sel_input form-control"  type="text" name="routing" id="routing" value="{$bank_data.routing_number}" />
+                                    {l s='e.g.' mod='marketplace'} 110000000
+                                </div>
+                                
+                                <fieldset style="border:2px dotted #cdcdcd;padding: 10px">
+                                <legend style="border: 1px solid #cdcdcd;padding: 8px;background: #fbfbfb;width:auto;font-size:15px;"><i class="icon-user"></i>&nbsp;{l s='Legal Entities' mod='marketplace'}</legend>
+                                <div id="type" class="form-group" >
+                                    <label for="type">{l s='Entity Type' mod='marketplace'}</label>
+                                    <select name="type" id="type"><option value="individual" {if $type=='individual'}selected="selected"{/if}>{l s='Individual' mod='marketplace'}</option><option value="company" {if $type=='company'}selected="selected"{/if}>{l s='Company' mod='marketplace'}</option></select>
+                                </div>
+                                <div id="fname" class="form-group" >
+                                    <label for="fname">{l s='First Name' mod='marketplace'}</label>
+                                    <input class="form-control"  type="text" name="fname" id="fname" style="width:100px;display: inline;" value="{$fname}" />&nbsp;&nbsp;
+                                    <label for="lname">{l s='Last Name' mod='marketplace'}</label>
+                                    <input class="form-control"  type="text" name="lname" id="lname" style="width:100px;display: inline;" value="{$lname}" />
+                                </div>
+                                <div id="ssn" class="form-group" >
+                                    <label for="ssn">{l s='SSN last 4 digits' mod='marketplace'}</label>
+                                    <input class="form-control"  type="text" name="ssn" id="ssn" style="width:50px;display: inline;" value="{if $type!=''}****{/if}" />
+                                </div>
+                                <div id="routing" class="form-group" >
+                                    <label for="routing">{l s='Date of birth' mod='marketplace'}</label>
+                                    <input class="form-control"  type="text" name="day" id="day" style="width:30px;display: inline;" value="{$dob.day}" /> /
+                                    <input class="form-control"  type="text" name="month" id="month" style="width:30px;display: inline;" value="{$dob.month}" /> /
+                                    <input class="form-control"  type="text" name="year" id="year" style="width:50px;display: inline;" value="{$dob.year}" />&nbsp;
+                                    {l s='e.g.' mod='marketplace'} 31/12/1988
+                                </div>
+                                </fieldset>
+                                </fieldset>
 								<div class="form-group">
 									<label for="update_fax" class="control-label">{l s='Fax' mod='marketplace'}</label>
 									<input class="required form-control" type="text" value="{$marketplace_seller_info['fax']|escape:'html':'UTF-8'}" name="update_fax" id="update_fax"/>
@@ -456,7 +495,19 @@
 										<img id="{$product['id']|escape:'html':'UTF-8'}" class="edit_img" src="{$img_ps_dir|escape:'html':'UTF-8'}admin/edit.gif"/>
 									</td>
 									<td>
-
+										{if isset($product.unactive_image)} <!--product is not activated yet-->
+											<a class="fancybox" href="{$modules_dir}marketplace/img/product_img/{$product.unactive_image|escape:'html':'UTF-8'}.jpg">
+												<img class="img-thumbnail" width="45" height="45" src="{$modules_dir}marketplace/img/product_img/{$product.unactive_image|escape:'html':'UTF-8'}.jpg">
+											</a>
+										{else if isset($product.cover_image)} <!--product is atleast one time activated-->
+											<a class="fancybox" href="{$product.image_path}">
+												<img class="img-thumbnail" width="45" height="45" src="{$link->getImageLink($product.obj_product->link_rewrite, $product.cover_image, 'small_default')}">
+											</a>
+										{else if isset($product.id_product)}
+											<img class="img-thumbnail" width="45" height="45" src="{$link->getImageLink($product.obj_product->link_rewrite, $product.lang_iso|cat : '-default', 'small_default')}">
+										{else}
+											<img class="img-thumbnail" width="45" height="45" src="{$modules_dir}marketplace/img/product_img/no_img.jpg">
+										{/if}
 									</td>
 									<td>
 										<a href="{$product_details_link|escape:'html':'UTF-8'}&id={$product['id']|escape:'html':'UTF-8'}">									

@@ -230,6 +230,7 @@ div.uploader
 					<div id="image_details" style="float:left;margin-top:10px;">
 						<table>
 						<tr><th>Image</th></tr>
+						{if isset($mp_pro_image) && $mp_pro_image}
 						{foreach $mp_pro_image as $mp_pro_ima}
 						<tr>
 							<td>
@@ -239,6 +240,13 @@ div.uploader
 							</td>	
 						</tr>
 						{/foreach}
+						{else}
+						<tr>
+							<td>
+							<img class="img-thumbnail" width="45" height="45" src="{$modules_dir}marketplace/img/product_img/no_img.jpg">
+							</td>	
+						</tr>
+						{/if}
 						</table>
 					</div>
 				{/if}
