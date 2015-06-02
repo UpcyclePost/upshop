@@ -482,8 +482,7 @@
 									<th>{l s='Price' mod='marketplace'}</th>
 									<th>{l s='Quantity' mod='marketplace'}</th>
 									<th>{l s='Status' mod='marketplace'}</th>
-									<th>{l s='Action' mod='marketplace'}</th>
-									<th>{l s='Image' mod='marketplace'}</th>
+									<th>{l s='Delete' mod='marketplace'}</th>
 								</tr>
 							</thead>
 						<tbody>
@@ -496,13 +495,9 @@
 									</td>
 									<td>
 										{if isset($product.unactive_image)} <!--product is not activated yet-->
-											<a class="fancybox" href="{$modules_dir}marketplace/img/product_img/{$product.unactive_image|escape:'html':'UTF-8'}.jpg">
 												<img class="img-thumbnail" width="45" height="45" src="{$modules_dir}marketplace/img/product_img/{$product.unactive_image|escape:'html':'UTF-8'}.jpg">
-											</a>
 										{else if isset($product.cover_image)} <!--product is atleast one time activated-->
-											<a class="fancybox" href="{$product.image_path}">
 												<img class="img-thumbnail" width="45" height="45" src="{$link->getImageLink($product.obj_product->link_rewrite, $product.cover_image, 'small_default')}">
-											</a>
 										{else if isset($product.id_product)}
 											<img class="img-thumbnail" width="45" height="45" src="{$link->getImageLink($product.obj_product->link_rewrite, $product.lang_iso|cat : '-default', 'small_default')}">
 										{else}
@@ -516,7 +511,7 @@
 									</td>
 									<td>
 										<a href="{$product_details_link|escape:'html':'UTF-8'}&id={$product['id']|escape:'html':'UTF-8'}">
-										{$product['description']|truncate:30|strip_tags}
+										{$product['short_description']|strip_tags|truncate:30|escape:'html':'UTF-8'}
 										</a>
 									</td>
 									<td>
@@ -541,12 +536,6 @@
 									<td>
 										<img id="{$product['id']|escape:'html':'UTF-8'}" class="delete_img" src="{$img_ps_dir|escape:'html':'UTF-8'}admin/delete.gif"/>
 										{hook h="PriceDisplay" id_product=$product['id']|escape:'html':'UTF-8'}
-									</td>
-									<td>
-										<a href="" class="edit_seq"  alt="1"  product-id="{$product['id']|escape:'intval'}" id="">
-											<img class="img_detail" alt="Details" id="edit_seq{$product['id']|escape:'html':'UTF-8'}" src="{$img_ps_dir|escape:'html':'UTF-8'}admin/more.png">
-										</a>
-										<input type="hidden" id="urlimageedit" value="{$imageediturl|escape:'html':'UTF-8'}"/>
 									</td>
 								</tr>
 								<div  class="row_info">
