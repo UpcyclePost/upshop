@@ -304,6 +304,7 @@ class ProductCore extends ObjectModel
 			'date_upd' => 					array('type' => self::TYPE_DATE, 'shop' => true, 'validate' => 'isDateFormat'),
 			'pack_stock_type' =>			array('type' => self::TYPE_INT, 'shop' => true, 'validate' => 'isUnsignedInt'),
 
+
 			/* Lang fields */
 			'meta_description' => 			array('type' => self::TYPE_STRING, 'lang' => true, 'validate' => 'isGenericName', 'size' => 255),
 			'meta_keywords' => 				array('type' => self::TYPE_STRING, 'lang' => true, 'validate' => 'isGenericName', 'size' => 255),
@@ -1121,6 +1122,7 @@ class ProductCore extends ObjectModel
 					($only_active ? ' AND product_shop.`active` = 1' : '').'
 				ORDER BY '.(isset($order_by_prefix) ? pSQL($order_by_prefix).'.' : '').'`'.pSQL($order_by).'` '.pSQL($order_way).
 				($limit > 0 ? ' LIMIT '.(int)$start.','.(int)$limit : '');
+
 		$rq = Db::getInstance(_PS_USE_SQL_SLAVE_)->executeS($sql);
 		if ($order_by == 'price')
 			Tools::orderbyPrice($rq, $order_way);

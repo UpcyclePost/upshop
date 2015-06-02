@@ -133,7 +133,9 @@ class CategoryControllerCore extends FrontController
 			'allow_oosp' => (int)Configuration::get('PS_ORDER_OUT_OF_STOCK'),
 			'comparator_max_item' => (int)Configuration::get('PS_COMPARATOR_MAX_ITEM'),
 			'suppliers' => Supplier::getSuppliers(),
-			'body_classes' => array($this->php_self.'-'.$this->category->id, $this->php_self.'-'.$this->category->link_rewrite)
+			'body_classes' => array($this->php_self.'-'.$this->category->id, $this->php_self.'-'.$this->category->link_rewrite),
+			'link_store' => $this->context->link->getModuleLink('marketplace','shopstore')		
+						
 		));
 	}
 
