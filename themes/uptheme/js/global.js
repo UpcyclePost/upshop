@@ -297,7 +297,6 @@ function display(view)
 					html += '<div class="functional-buttons clearfix col-sm-12">' + $(element).find('.functional-buttons').html() + '</div>';
 				html += '</div>';
 			html += '</div></div>';
-			alert(html);
 		$(element).html(html);
 		});
 		$('.display').find('li#list').addClass('selected');
