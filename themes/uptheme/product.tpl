@@ -151,7 +151,7 @@
 				<p class="online_only">{l s='Online only'}</p>
 			{/if}
 			<h4 itemprop="shop">
-			<label>{l s='Shop' mod='marketplace'} - </label>
+			<label>{l s='By' mod='marketplace'} - </label>
 			<a class="product-name" title="Go to shop" href="{$link_store|addslashes}">
 				{$mkt_seller_info['shop_name']|escape:'html':'UTF-8'}
 			</a>

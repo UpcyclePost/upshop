@@ -59,6 +59,7 @@
 		</select>
 	</div>
 </form>
+
 <!-- /Sort products -->
 	{if !isset($paginationId) || $paginationId == ''}
 		{addJsDef request=$request}
