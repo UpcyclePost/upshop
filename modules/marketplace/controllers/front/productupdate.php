@@ -78,6 +78,7 @@ class marketplaceProductupdateModuleFrontController extends ModuleFrontControlle
 				}
 				$tree .= " name='product_category[]' class='product_category' style='display:none !important' value='".$root->id."'><label>".$root->name."</label>";
 				$tree .= " -->"; //Hide the root category 
+				
 				//$depth = 1;
 				$exclude = array();
 				array_push($exclude, 0);
