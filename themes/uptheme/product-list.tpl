@@ -38,6 +38,7 @@
 	{math equation="nbLi/nbItemsPerLine" nbLi=$nbLi nbItemsPerLine=$nbItemsPerLine assign=nbLines}
 	{math equation="nbLi/nbItemsPerLineTablet" nbLi=$nbLi nbItemsPerLineTablet=$nbItemsPerLineTablet assign=nbLinesTablet}
 	<!-- Products list -->
+
 	<ul{if isset($id) && $id} id="{$id}"{/if} class="product_list grid row{if isset($class) && $class} {$class}{/if}">
 	{foreach from=$products item=product name=products}
 		{math equation="(total%perLine)" total=$smarty.foreach.products.total perLine=$nbItemsPerLine assign=totModulo}
@@ -51,7 +52,7 @@
 				<div class="left-block">
 					<div class="product-image-container">
 						<a class="product_img_link" href="{$product.link|escape:'html':'UTF-8'}" title="{$product.name|escape:'html':'UTF-8'}" itemprop="url">
-							<img class="replace-2x img-responsive" src="{$link->getImageLink($product.link_rewrite, $product.id_image, 'home_default')|escape:'html':'UTF-8'}" alt="{if !empty($product.legend)}{$product.legend|escape:'html':'UTF-8'}{else}{$product.name|escape:'html':'UTF-8'}{/if}" title="{if !empty($product.legend)}{$product.legend|escape:'html':'UTF-8'}{else}{$product.name|escape:'html':'UTF-8'}{/if}" {if isset($homeSize)} width="{$homeSize.width}" height="{$homeSize.height}"{/if} itemprop="image" />
+							<img class="replace-2x img-responsive" src="{$link->getImageLink($product.link_rewrite, $product.id_image, 'medium_default')|escape:'html':'UTF-8'}" alt="{if !empty($product.legend)}{$product.legend|escape:'html':'UTF-8'}{else}{$product.name|escape:'html':'UTF-8'}{/if}" title="{if !empty($product.legend)}{$product.legend|escape:'html':'UTF-8'}{else}{$product.name|escape:'html':'UTF-8'}{/if}" {if isset($mediumSize)} width="{$mediumSize.width}" height="{$mediumSize.height}"{/if} itemprop="image" />
 						</a>
 						{if isset($quick_view) && $quick_view}
 							<div class="quick-view-wrapper-mobile">
@@ -115,6 +116,13 @@
 						{if isset($product.pack_quantity) && $product.pack_quantity}{$product.pack_quantity|intval|cat:' x '}{/if}
 						<a class="product-name" href="{$product.link|escape:'html':'UTF-8'}" title="{$product.name|escape:'html':'UTF-8'}" itemprop="url" >{$product.name|truncate:45:'...'|escape:'html':'UTF-8'}</a>
 					</h5>
+					<h4 itemprop="shop">
+					{l s='Shop' mod='marketplace'} - 
+					<a class="product-name" title="Go to shop" href="{$smart.server.SERVER_NAME}shops/{$product.website|addslashes}">
+						{$product.shop_name|escape:'html':'UTF-8'}		
+					</a>
+					</h4>
+
 					{hook h='displayProductListReviews' product=$product}
 					<p class="product-desc" itemprop="description">
 						{$product.description_short|strip_tags:'UTF-8'|truncate:360:'...'}

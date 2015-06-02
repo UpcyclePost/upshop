@@ -669,7 +669,7 @@ class CategoryCore extends ObjectModel
 					MAX(il.`legend`) as legend, m.`name` AS manufacturer_name, cl.`name` AS category_default,
 					DATEDIFF(product_shop.`date_add`, DATE_SUB(NOW(),
 					INTERVAL '.(Validate::isUnsignedInt(Configuration::get('PS_NB_DAYS_NEW_PRODUCT')) ? Configuration::get('PS_NB_DAYS_NEW_PRODUCT') : 20).'
-						DAY)) > 0 AS new, product_shop.price AS orderprice
+						DAY)) > 0 AS new, product_shop.price AS orderprice, uc.`website`, ums.`shop_name`
 				FROM `'._DB_PREFIX_.'category_product` cp
 				LEFT JOIN `'._DB_PREFIX_.'product` p
 					ON p.`id_product` = cp.`id_product`
@@ -692,6 +692,10 @@ class CategoryCore extends ObjectModel
 					AND il.`id_lang` = '.(int)$id_lang.')
 				LEFT JOIN `'._DB_PREFIX_.'manufacturer` m
 					ON m.`id_manufacturer` = p.`id_manufacturer`
+				LEFT JOIN `'._DB_PREFIX_.'marketplace_shop_product` umsp ON umsp.id_product = p.id_product
+				LEFT JOIN `'._DB_PREFIX_.'marketplace_shop` ums ON ums.id = umsp.id_shop
+				LEFT JOIN `'._DB_PREFIX_.'customer` uc ON uc.id_customer = ums.id_customer
+				
 				WHERE product_shop.`id_shop` = '.(int)$context->shop->id.'
 					AND cp.`id_category` = '.(int)$this->id
 					.($active ? ' AND product_shop.`active` = 1' : '')

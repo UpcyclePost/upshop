@@ -35,6 +35,7 @@ ul.product_list.list > li .product-image-container{
 }
 ul.product_list.grid > li .product-container .product-image-container{
     border:none;
+    padding: 15px 0 0 0;
 }
 .block .title_block:first-child, .block h4:first-child{
     margin-top:0;
