@@ -343,26 +343,23 @@ class LinkCore
 		// Override if going to store to go to members profile page
 		if ($controller == 'shopstore')
 			{
-			if (_PS_MODE_DEV_) 
-				{
-				print_r($params);
-				print_r("<br>shop ". $params['shop']);
-				}
 			// shop link may not always be to logged in users store, so let's look up the up Id for the current shop
-			if ($params['shop'])
-				{
-					$m_shop_id = $params['shop'];
-					$sql = "select c.id_customer,c.website from up_customer c JOIN up_marketplace_shop m ON c.id_customer = m.id_customer where m.id = $m_shop_id";
-					if (_PS_MODE_DEV_) print_r("<br>". $sql);
-					$seller_up_shopid = Db::getInstance(_PS_USE_SQL_SLAVE_)->getRow($sql);
-					if ($seller_up_shopid) 
+			if (isset($params['shop']))
+			{
+				if ($params['shop'])
 					{
-						$up_shop_id = $seller_up_shopid['website'];
-						return $this->getBaseLink($id_shop, $ssl, $relative_protocol).'../shops/'.$up_shop_id;
+						$m_shop_id = $params['shop'];
+						$sql = "select c.id_customer,c.website from up_customer c JOIN up_marketplace_shop m ON c.id_customer = m.id_customer where m.id = $m_shop_id";
+						if (_PS_MODE_DEV_) print_r("<br>". $sql);
+						$seller_up_shopid = Db::getInstance(_PS_USE_SQL_SLAVE_)->getRow($sql);
+						if ($seller_up_shopid) 
+						{
+							$up_shop_id = $seller_up_shopid['website'];
+							return $this->getBaseLink($id_shop, $ssl, $relative_protocol).'../shops/'.$up_shop_id;
+						}
 					}
 				}
-			}
-			
+			}			
 		
 		/*if ($controller == 'shopstore')
 			{

@@ -257,6 +257,7 @@ function bindGrid()
 	});
 }
 
+
 function display(view)
 {
 	if (view == 'list')
@@ -269,7 +270,10 @@ function display(view)
 				html += '<div class="left-block col-xs-4 col-xs-5 col-md-4">' + $(element).find('.left-block').html() + '</div>';
 				html += '<div class="center-block col-xs-4 col-xs-7 col-md-4">';
 					html += '<div class="product-flags">'+ $(element).find('.product-flags').html() + '</div>';
-					html += '<h5 itemprop="name">'+ $(element).find('h5').html() + '</h5>';
+					html += '<div class="product-name"><a href="'+ $(element).find('.product-name').attr('href') + '">' + $(element).find('.product-name').html() + '</a></div>';
+					if ($(element).find('.shop-name').html() != null){
+						html += 'By <span class="shop-name"><a href="' + $(element).find('.shop-name').attr('href') + '">' + $(element).find('.shop-name').html() + '</a></span>';
+					}
 					var rating = $(element).find('.comments_note').html(); // check : rating
 					if (rating != null) {
 						html += '<div itemprop="aggregateRating" itemscope itemtype="http://schema.org/AggregateRating" class="comments_note">'+ rating + '</div>';
@@ -293,6 +297,7 @@ function display(view)
 					html += '<div class="functional-buttons clearfix col-sm-12">' + $(element).find('.functional-buttons').html() + '</div>';
 				html += '</div>';
 			html += '</div></div>';
+			alert(html);
 		$(element).html(html);
 		});
 		$('.display').find('li#list').addClass('selected');
@@ -309,7 +314,11 @@ function display(view)
 			html += '<div class="left-block">' + $(element).find('.left-block').html() + '</div>';
 			html += '<div class="right-block">';
 				html += '<div class="product-flags">'+ $(element).find('.product-flags').html() + '</div>';
-				html += '<h5 itemprop="name">'+ $(element).find('h5').html() + '</h5>';
+				html += '<div class="product-name">'+ $(element).find('.product-name').html() + '</div>';
+				if ($(element).find('.shop-name').html() != null){
+						html += 'By <span class="shop-name"><a href="' + $(element).find('.shop-name').attr('href') + '">' + $(element).find('.shop-name').html() + '</a></span>';
+				}
+
 				var rating = $(element).find('.comments_note').html(); // check : rating
 					if (rating != null) {
 						html += '<div itemprop="aggregateRating" itemscope itemtype="http://schema.org/AggregateRating" class="comments_note">'+ rating + '</div>';

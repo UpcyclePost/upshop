@@ -13,13 +13,15 @@ ul.product_list .availability span {
   margin-bottom: 20px; }
   ul.product_list .availability span.available-now {
     background: #89c226;
-    border: 1px solid #89c226; }
+    border: 1px solid #89c226; 
+    border-radius: 4px;}
   ul.product_list .availability span.out-of-stock {
-    background: #fe9126;
-    border: 1px solid #e4752b; }
+    background: #ff6666;
+    border: 1px solid #ff6666;
+    border-radius: 4px; }
   ul.product_list .availability span.available-dif {
-    background: #fe9126;
-    border: 1px solid #e4752b; }
+    background: #ff6666;
+    border: 1px solid #ff6666; }
 ul.product_list .color-list-container {
   margin-bottom: 12px; }
   ul.product_list .color-list-container ul li {

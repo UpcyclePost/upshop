@@ -86,12 +86,13 @@
 	</ul>
 </nav>
 
+
 {include file="$tpl_dir./global.tpl"}
 	<!-- Horizontal Dropdown Menu -->
-	<script src="http{if Tools::usingSecureMode()}s{/if}://{$smarty.server.SERVER_NAME}/shop/themes/uptheme/js/libraries/horizontal-menu/cbpHorizontalMenu.js"></script>
+	<script src="{if Tools::usingSecureMode()}{$base_dir_ssl}{else}{$base_dir}{/if}themes/uptheme/js/libraries/horizontal-menu/cbpHorizontalMenu.js"></script>
 	<!-- Mobile Slide Menu -->
-	<script src="http{if Tools::usingSecureMode()}s{/if}://{$smarty.server.SERVER_NAME}/shop/themes/uptheme/js/libraries/mobile-slide-menu/jquery.mmenu.min.js"></script>
+	<script src="{if Tools::usingSecureMode()}{$base_dir_ssl}{else}{$base_dir}{/if}themes/uptheme/js/libraries/mobile-slide-menu/jquery.mmenu.min.js"></script>
 
-	<script src="http{if Tools::usingSecureMode()}s{/if}://{$smarty.server.SERVER_NAME}/shop/themes/uptheme/js/up/site.js"></script>
+	<script src="{if Tools::usingSecureMode()}{$base_dir_ssl}{else}{$base_dir}{/if}themes/uptheme/js/up/site.js"></script>
 	</body>
 </html>

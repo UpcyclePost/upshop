@@ -704,19 +704,21 @@ table.table-product-discounts {
 #availability_value,
 #last_quantities {
   color: #fff;
-  font-weight: 700;
+  font-weight: 500;
   line-height: 18px;
   display: inline-block;
   padding: 3px 8px 4px;
-  margin-left: 5px; }
+  margin-left: 1px;
+  border-radius: 4px }
 
 #last_quantities {
-  background: #fe9126;
-  border: 1px solid #e4752b;
+  background: #ff6666;
+  border: 1px solid #ff6666;
   padding: 4px 8px 3px;
   position: relative;
   top: 1px;
-  margin-left: 0px; }
+  margin-left: 0px;
+  border-radius: 4px }
 
 #availability_statut,
 #pQuantityAvailable {

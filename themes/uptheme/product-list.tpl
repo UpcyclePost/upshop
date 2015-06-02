@@ -112,17 +112,14 @@
 					{hook h="displayProductPriceBlock" product=$product type="weight"}
 				</div>
 				<div class="right-block">
-					<h5 itemprop="name">
-						{if isset($product.pack_quantity) && $product.pack_quantity}{$product.pack_quantity|intval|cat:' x '}{/if}
-						<a class="product-name" href="{$product.link|escape:'html':'UTF-8'}" title="{$product.name|escape:'html':'UTF-8'}" itemprop="url" >{$product.name|truncate:45:'...'|escape:'html':'UTF-8'}</a>
-					</h5>
-					<h4 itemprop="shop">
-					{l s='Shop' mod='marketplace'} - 
-					<a class="product-name" title="Go to shop" href="{$smart.server.SERVER_NAME}shops/{$product.website|addslashes}">
+					{if isset($product.pack_quantity) && $product.pack_quantity}{$product.pack_quantity|intval|cat:' x '}{/if}
+					<a class="product-name" href="{$product.link|escape:'html':'UTF-8'}" title="{$product.name|escape:'html':'UTF-8'}" itemprop="url" >{$product.name|truncate:45:'...'|escape:'html':'UTF-8'}</a>
+					{if isset($product.website)}
+					{l s='By' mod='marketplace'} 
+					<a class="shop-name" title="Go to shop" href="http://{$smarty.server.SERVER_NAME}/shops/{$product.website|addslashes}">
 						{$product.shop_name|escape:'html':'UTF-8'}		
 					</a>
-					</h4>
-
+					{/if}
 					{hook h='displayProductListReviews' product=$product}
 					<p class="product-desc" itemprop="description">
 						{$product.description_short|strip_tags:'UTF-8'|truncate:360:'...'}
