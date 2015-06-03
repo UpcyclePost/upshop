@@ -88,15 +88,6 @@
 					<label for="about_business">{l s='Shop Description' mod='marketplace'}</label>
 					<textarea name="about_business"  class="about_business wk_tinymce form-control"></textarea>
 				</div>
-					 
-				<!--
-				<div class="form-group">  
-					<label for="upload_logo">{l s='Shop Logo' mod='marketplace'}</label>
-					<input class="form-control" id="upload_logo1" type="file"  name="upload_logo" />
-					<div class="info_description">{l s='Image minimum size must be 200 x 200px' mod='marketplace'}</div>
-				</div>
-				-->
-		
 				<div id="person_name" class="required form-group" >
 					<label for="person_name">{l s='Seller Name' mod='marketplace'}<sup>*</sup></label>
 					<input class="form-control"  type="text" name="person_name" id="person_name1" />
@@ -106,30 +97,16 @@
 					<label for="phone1">{l s='Phone' mod='marketplace'}<sup>*</sup></label>
 					<input class="form-control" type="text" name="phone" id="phone1" maxlength="{$phone_digit|escape:'html':'UTF-8'}" />
 				</div>		 
-					
-				<!--
-				<div class="form-group">
-					<label for="phone1">{l s='Fax' mod='marketplace'}</label>
-					<input class="form-control" type="text" name="fax" id="fax1" maxlength="10" />
-					<label class="errors" id="fax_error"></label>
-				</div>
-				-->
-				
 				<div class="form-group">	
 					<label for="business_email_id1">{l s='Business Email' mod='marketplace'}<sup>*</sup></label>
 					<input class="form-control" type="text" name="business_email_id" id="business_email_id1" />
-				</div>
-							
-				<div class="form-group">	
-					<label for="address">{l s='Address' mod='marketplace'}</label>
-					<textarea name="address" class = "form-control"></textarea>
 				</div>
                 <div class="form-group">	
 					<label for="address">{l s='Address' mod='marketplace'}</label>
 					<textarea name="address" class = "form-control"></textarea>
 				</div>
                  <fieldset style="border:2px dotted #999;padding: 10px">
-                <legend style="border: 1px solid #999;padding: 8px;background: #fbfbfb;width:auto;"><i class="icon-money"></i>&nbsp;{l s='Payment transfer info for Stripe' mod='marketplace'}</legend>
+                <legend style="border: 1px solid #999;padding: 8px;background: #fbfbfb;width:auto;"><i class="icon-money"></i>&nbsp;{l s='So that we can get you your money' mod='marketplace'}</legend>
                  <div id="bank" class="form-group" >
 					<label for="bank">{l s='Bank Account Number' mod='marketplace'}<sup>*</sup></label>
 					<input class="reg_sel_input form-control"  type="text" name="bank" id="bank" />
