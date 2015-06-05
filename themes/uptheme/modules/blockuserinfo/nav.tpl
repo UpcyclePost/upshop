@@ -20,14 +20,14 @@
 			{if $is_seller == 1}
 				<div class="btn-group">
 					<button type="button" class="btn btn-user dropdown-toggle" data-toggle="dropdown">
-						<span>Your Shop</span> <i class="fa up-shop-1"></i>
+						<span>Your Shop{if $m_number_orders > 0 } <font class="items">{$m_number_orders}</font>{/if}</span> <i class="fa up-shop-1"></i>
 					</button>
 					<ul class="dropdown-menu dropdown-menu-right" role="menu">
 						<li><a href="{$account_dashboard|addslashes}"><i class="fa fa-fw fa-dashboard"></i> Dashboard</a></li>
 						<li class="divider"></li>
 						<li><a href="{$add_product|addslashes}"><i class="fa fa-fw fa-plus"></i> Add Product</a></li>
 						<li><a href="{$product_list|addslashes}"><i class="fa fa-fw fa-list"></i> Product List</a></li>
-						<li><a href="{$my_order|addslashes}"><i class="fa fa-fw fa-tasks"></i> Orders</a></li>
+						<li><a href="{$my_order|addslashes}"><i class="fa fa-fw fa-tasks"></i> Orders{if $m_number_orders > 0 } <font class="items pull-right">{$m_number_orders}</font>{/if}</a></li>
 						<li class="divider"></li>
 						<li><a href="{$edit_profile|addslashes}"><i class="fa fa-fw fa-gears"></i> Shop Profile</a></li>
 						<li><a href="{$my_shop|addslashes}"><i class="fa fa-fw fa-eye"></i> View Shop</a></li>

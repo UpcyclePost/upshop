@@ -97,19 +97,32 @@ class BlockUserInfo extends Module
 				$param = array('shop' => $id_shop);
 				$account_dashboard = $link->getModuleLink('marketplace', 'marketplaceaccount',$param);
 
-                                $add_product    = $link->getModuleLink('marketplace', 'addproduct',$param);
+		                $add_product    = $link->getModuleLink('marketplace', 'addproduct',$param);
 				$edit_profile   = $link->getModuleLink('marketplace', 'marketplaceaccount',array('shop'=>$id_shop,'l'=>2,'edit-profile'=>1));
 				$product_list   = $link->getModuleLink('marketplace', 'marketplaceaccount',array('shop'=>$id_shop,'l'=>3));
 				$my_order    	= $link->getModuleLink('marketplace', 'marketplaceaccount',array('shop'=>$id_shop,'l'=>4));
 				$my_shop	= $link->getModuleLink('marketplace', 'shopstore',$param);
-			
-				$this->context->smarty->assign("account_dashboard", $account_dashboard);
-	                        $this->context->smarty->assign("add_product", $add_product);
-        	                $this->context->smarty->assign("edit_profile", $edit_profile);
-                	        $this->context->smarty->assign("product_list", $product_list);
-                        	$this->context->smarty->assign("my_order", $my_order);
-                        	$this->context->smarty->assign("my_shop", $my_shop);
 
+				//get the # of orders for the seller
+				$sql = 'SELECT count(*) AS total from `'._DB_PREFIX_.'marketplace_shop_product` msp
+				join  `'._DB_PREFIX_.'order_detail` ordd on (ordd.`product_id`=msp.`id_product`)
+				join  `'._DB_PREFIX_.'orders` ord on (ordd.`id_order`=ord.`id_order`)
+				join  `'._DB_PREFIX_.'marketplace_seller_product` msep on (msep.`id` = msp.`marketplace_seller_id_product`)
+				join  `'._DB_PREFIX_.'marketplace_customer` mkc on (mkc.`marketplace_seller_id` = msep.`id_seller`)
+				join  `'._DB_PREFIX_.'customer` cus on (mkc.`id_customer`=cus.`id_customer`)
+				join  `'._DB_PREFIX_.'order_state_lang` ords on (ord.`current_state`=ords.`id_order_state`)
+				where ords.id_lang=1 and cus.`id_customer`= '.$customer_id.' and ord.current_state in (2)';
+			
+				$m_number_orders = Db::getInstance()->getValue($sql);
+				
+					
+				$this->context->smarty->assign("account_dashboard", $account_dashboard);
+		                $this->context->smarty->assign("add_product", $add_product);
+		                $this->context->smarty->assign("edit_profile", $edit_profile);
+		       	        $this->context->smarty->assign("product_list", $product_list);
+              			$this->context->smarty->assign("my_order", $my_order);
+		               	$this->context->smarty->assign("my_shop", $my_shop);
+		               	$this->context->smarty->assign("m_number_orders", $m_number_orders);
 			}
 		} else {
 			$this->context->smarty->assign("is_seller", -1);

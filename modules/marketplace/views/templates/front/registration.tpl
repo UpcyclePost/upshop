@@ -79,28 +79,22 @@
 		<p><sup>*</sup> {l s='Required field' mod='marketplace'}</p>
 		<form action="{$link->getModuleLink('marketplace', 'registrationprocess')|escape:'htmlall':'UTF-8'}" method="post" id="createaccountform" class="std contact-form-box" enctype="multipart/form-data">
 			<fieldset>
+				<div id="person_name" class="required form-group" >
+					<label for="person_name"><sup>*</sup>{l s='Seller Name' mod='marketplace'}</label>
+					<input class="form-control"  type="text" name="person_name" id="person_name1" value="{$seller_name}"/>
+				</div>
 				<div class="form-group">	
-					<label for="shop_name1">{l s='Shop Name' mod='marketplace'}<sup>*</sup></label>	
+					<label for="shop_name1"><sup>*</sup>{l s='Shop Name' mod='marketplace'}</label>	
 					<input class="is_required validate form-control" type="text" id="shop_name1" name="shop_name" />
 				</div>
-
-				<div class="form-group">
-					<label for="about_business">{l s='Shop Description' mod='marketplace'}</label>
-					<textarea name="about_business"  class="about_business wk_tinymce form-control"></textarea>
+				<div class="form-group">	
+					<label for="business_email_id1"><sup>*</sup>{l s='Business Email' mod='marketplace'}</label>
+					<input class="form-control" type="text" name="business_email_id" id="business_email_id1" value="{$seller_email}"/>
 				</div>
-				<div id="person_name" class="required form-group" >
-					<label for="person_name">{l s='Seller Name' mod='marketplace'}<sup>*</sup></label>
-					<input class="form-control"  type="text" name="person_name" id="person_name1" />
-				</div>
-				
 				<div class="required form-group">
-					<label for="phone1">{l s='Phone' mod='marketplace'}<sup>*</sup></label>
+					<label for="phone1"><sup>*</sup>{l s='Phone' mod='marketplace'}</label>
 					<input class="form-control" type="text" name="phone" id="phone1" maxlength="{$phone_digit|escape:'html':'UTF-8'}" />
 				</div>		 
-				<div class="form-group">	
-					<label for="business_email_id1">{l s='Business Email' mod='marketplace'}<sup>*</sup></label>
-					<input class="form-control" type="text" name="business_email_id" id="business_email_id1" />
-				</div>
                 <div class="form-group">	
 					<label for="address">{l s='Address' mod='marketplace'}</label>
 					<textarea name="address" class = "form-control"></textarea>
@@ -108,34 +102,34 @@
                  <fieldset style="border:2px dotted #999;padding: 10px">
                 <legend style="border: 1px solid #999;padding: 8px;background: #fbfbfb;width:auto;"><i class="icon-money"></i>&nbsp;{l s='So that we can get you your money' mod='marketplace'}</legend>
                  <div id="bank" class="form-group" >
-					<label for="bank">{l s='Bank Account Number' mod='marketplace'}<sup>*</sup></label>
+					<label for="bank"><sup>*</sup>{l s='Bank Account Number' mod='marketplace'}</label>
 					<input class="reg_sel_input form-control"  type="text" name="bank" id="bank" />
                     {l s='e.g.' mod='marketplace'} 000123456789
 				</div>
 					
 				<div id="routing" class="form-group" >
-					<label for="routing">{l s='Routing Number' mod='marketplace'}<sup>*</sup></label>
+					<label for="routing"><sup>*</sup>{l s='Routing Number' mod='marketplace'}</label>
 					<input class="reg_sel_input form-control"  type="text" name="routing" id="routing" />
                     {l s='e.g.' mod='marketplace'} 110000000
 				</div>
                 <fieldset style="border:2px dotted #cdcdcd;padding: 10px">
                 <legend style="border: 1px solid #cdcdcd;padding: 8px;background: #fbfbfb;width:auto;font-size:15px;"><i class="icon-user"></i>&nbsp;{l s='Legal Entities' mod='marketplace'}</legend>
                 <div id="type" class="form-group" >
-					<label for="type">{l s='Entity Type' mod='marketplace'}<sup>*</sup></label>
+					<label for="type"><sup>*</sup>{l s='Entity Type' mod='marketplace'}</label>
 					<select name="type" id="type"><option value="individual">{l s='Individual' mod='marketplace'}</option><option value="company">{l s='Company' mod='marketplace'}</option></select>
 				</div>
                 <div id="fname" class="form-group" >
-					<label for="fname">{l s='First Name' mod='marketplace'}<sup>*</sup></label>
+					<label for="fname"><sup>*</sup>{l s='First Name' mod='marketplace'}</label>
 					<input class="form-control"  type="text" name="fname" id="fname" style="width:100px;display: inline;" />&nbsp;&nbsp;
-                    <label for="lname">{l s='Last Name' mod='marketplace'}<sup>*</sup></label>
+                    <label for="lname"><sup>*</sup>{l s='Last Name' mod='marketplace'}</label>
 					<input class="form-control"  type="text" name="lname" id="lname" style="width:100px;display: inline;" />
 				</div>
                 <div id="ssn" class="form-group" >
-					<label for="ssn">{l s='SSN last 4 digits' mod='marketplace'}<sup>*</sup></label>
+					<label for="ssn"><sup>*</sup>{l s='SSN last 4 digits' mod='marketplace'}</label>
 					<input class="form-control"  type="text" name="ssn" id="ssn" style="width:50px;display: inline;" />
 				</div>
                 <div id="routing" class="form-group" >
-					<label for="routing">{l s='Date of birth' mod='marketplace'}<sup>*</sup></label>
+					<label for="routing"><sup>*</sup>{l s='Date of birth' mod='marketplace'}</label>
                     <input class="form-control"  type="text" name="month" id="month" style="width:30px;display: inline;" /> /
 					<input class="form-control"  type="text" name="day" id="day" style="width:30px;display: inline;" /> /
                     <input class="form-control"  type="text" name="year" id="year" style="width:50px;display: inline;" />&nbsp;

@@ -16,8 +16,7 @@ class marketplaceSellerrequestModuleFrontController extends ModuleFrontControlle
             $img_error = Tools::getValue('img_size_error');
             $mp_error = Tools::getValue('mp_error');
             if ($img_error == 1)
-                $smarty_vars = array_merge($smarty_vars, array('img_size_error' => 1));
-            
+                $smarty_vars = array_merge($smarty_vars, array('img_size_error' => 1));          
             
             if ($mp_error)
                  $smarty_vars = array_merge($smarty_vars, array('mp_error' => $mp_error));
@@ -32,6 +31,12 @@ class marketplaceSellerrequestModuleFrontController extends ModuleFrontControlle
                                                             'title_bg_color' => Configuration::get('MP_TITLE_COLOR'),
                                                             'title_text_color' => Configuration::get('MP_TITLE_TEXT_COLOR')));
             $this->context->smarty->assign($smarty_vars);
+            
+            $seller_email = $this->context->customer->email;
+            $seller_name = $this->context->customer->firstname .' '.$this->context->customer->lastname;
+
+            $this->context->smarty->assign("seller_name", $seller_name);           
+            $this->context->smarty->assign("seller_email", $seller_email);
             $this->setTemplate('registration.tpl');
         } 
         else 
