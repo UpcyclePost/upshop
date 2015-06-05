@@ -252,42 +252,8 @@
 								<div class="row-info-right">{$marketplace_seller_info['fax']|escape:'html':'UTF-8'}</div>
 							</div>
 							<div class="row-info">
-								<div class="row-info-left">{l s='Facebook Id' mod='marketplace'}</div>
-								<div class="row-info-right">
-									{if $marketplace_seller_info['facebook_id']==''}
-										{l s='Not found' mod='marketplace'}
-									{else}
-										{$marketplace_seller_info['facebook_id']|escape:'html':'UTF-8'}
-									{/if}
-								</div>
-							</div>
-							<div class="row-info">
-								<div class="row-info-left">{l s='Twitter Id' mod='marketplace'}</div>
-								<div class="row-info-right">
-									{if $marketplace_seller_info['twitter_id']==''}
-										{l s='Not found' mod='marketplace'}
-									{else}
-										{$marketplace_seller_info['twitter_id']|escape:'html':'UTF-8'}
-									{/if}
-								</div>
-							</div>
-							<div class="row-info">
 								<div class="row-info-left">{l s='Address' mod='marketplace'}</div>
 								<div class="row-info-right">{$marketplace_seller_info['address']|escape:'html':'UTF-8'}</div>
-							</div>
-							<div class="row-info">
-								<div class="row-info-left">{l s='About Shop' mod='marketplace'}</div>
-								<div class="row-info-right">
-									{if $market_place_shop['about_us']==''}
-										{l s='Please write some information about your shop' mod='marketplace'}
-									{else}
-										{$market_place_shop['about_us']|escape:'intval'}
-									{/if}
-								</div>
-							</div>
-							<div class="row-info">
-								<div class="row-info-left">{l s='Shop Logo' mod='marketplace'}</div>
-								<div class="row-info-right"><img src='{$logo_path|escape:'html':'UTF-8'}' width="100" height="100"  alt={$marketplace_seller_info['shop_name']|escape:'html':'UTF-8'}></div>
 							</div>
 							{hook h="DisplayMpshopviewfooterhook"}
 						</div>
@@ -298,12 +264,6 @@
 								<fieldset>
 								<div class="form-group">
 									<div class="update_error">
-									  <!-- {if $shop_img_size_error == 1}
-										{l s='Shop logo image minimum size must be 200 x 200px' mod='marketplace'}
-									  {/if}
-									  {if $seller_img_size_error==1}
-										{l s='Seller image minumum size must be 200 x 200px' mod='marketplace'}
-									  {/if} -->
 									  {hook h='displayMpUpdateSellerProfileHeaderhook'}
 									</div>
 								</div>
@@ -311,14 +271,6 @@
 									<label for="update_seller_name" class="control-label required">{l s='Seller Name' mod='marketplace'}</label>
 									<input class="required form-control" type="text" value="{$marketplace_seller_info['seller_name']|escape:'html':'UTF-8'}" name="update_seller_name" id="update_seller_name"/>
 								</div>
-								<!--
-								<div class="required form-group">
-									<img src="{$old_seller_logo_path|escape:'html':'UTF-8'}" width="100" height="100"><br />
-									<label class="control-label">{l s='Seller Profile Image' mod='marketplace'}</label>
-									<input class="required form-control" type="file" name="update_seller_logo" id="update_seller_logo"/>
-									<div class="info_description">{l s='Image minimum size must be 200 x 200px' mod='marketplace'}</div>
-								</div>
-								-->
 								<div class="required form-group">
 									<label for="update_shop_name" class="control-label required">{l s='Shop Name' mod='marketplace'}</label>
 									<input class="required form-control" type="text" value="{$marketplace_seller_info['shop_name']|escape:'html':'UTF-8'}" name="update_shop_name" id="update_shop_name"/>
@@ -335,20 +287,16 @@
 									<label for="update_address" class="control-label">{l s='Address' mod='marketplace'}</label>
 									<textarea class="required form-control"  name="update_address" id="update_address">{$marketplace_address|escape:'html':'UTF-8'}</textarea>
 								</div>
-								<div class="form-group">
-									<label for="update_about_shop" class="control-label">{l s='About Shop' mod='marketplace'}</label>
-									<textarea name="update_about_shop" id="update_about_shop" class="update_about_shop_detail wk_tinymce form-control">{$market_place_shop['about_us']|escape:'html':'UTF-8'}</textarea>
-								</div>
-                                 <fieldset style="border:2px dotted #999;padding: 10px">
-                                <legend style="border: 1px solid #999;padding: 8px;background: #fbfbfb;width:auto;"><i class="icon-money"></i>&nbsp;{l s='Payment transfer info for Stripe' mod='marketplace'} <font color="{if $stripestatus==verified}green{else}orange{/if}">{if $stripestatus!=''}({$stripestatus}){/if}</font></legend>
+                                 <fieldset style="border:2px dotted #999;padding:10px;margin-bottom:10px">
+                                <legend style="border: 1px solid #999;padding: 8px;background: #fbfbfb;width:auto;"><i class="icon-money"></i>&nbsp;{l s='So that we can get you your money' mod='marketplace'} <font color="{if $stripestatus==verified}green{else}orange{/if}">{if $stripestatus!=''}({$stripestatus}){/if}</font></legend>
                                  <div id="bank" class="form-group" >
-                                    <label for="bank">{l s='Bank Account Number' mod='marketplace'} {if $bank_data.bank_name!=''}({$bank_data.bank_name}){/if}</label>
+                                    <label for="bank" class="control-label required">{l s='Bank Account Number' mod='marketplace'} {if $bank_data.bank_name!=''}({$bank_data.bank_name}){/if}</label>
                                     <input class="reg_sel_input form-control"  type="text" name="bank" id="bank" value="{if $bank_data.last4!=''}********{$bank_data.last4}{/if}" />
                                     {l s='e.g.' mod='marketplace'} 000123456789
                                 </div>
                                     
                                 <div id="routing" class="form-group" >
-                                    <label for="routing">{l s='Routing Number' mod='marketplace'}</label>
+                                    <label for="routing" class="control-label required">{l s='Routing Number' mod='marketplace'}</label>
                                     <input class="reg_sel_input form-control"  type="text" name="routing" id="routing" value="{$bank_data.routing_number}" />
                                     {l s='e.g.' mod='marketplace'} 110000000
                                 </div>
@@ -356,25 +304,25 @@
                                 <fieldset style="border:2px dotted #cdcdcd;padding: 10px">
                                 <legend style="border: 1px solid #cdcdcd;padding: 8px;background: #fbfbfb;width:auto;font-size:15px;"><i class="icon-user"></i>&nbsp;{l s='Legal Entities' mod='marketplace'}</legend>
                                 <div id="type" class="form-group" >
-                                    <label for="type">{l s='Entity Type' mod='marketplace'}</label>
+                                    <label for="type" class="control-label required">{l s='Entity Type' mod='marketplace'}</label>
                                     <select name="type" id="type"><option value="individual" {if $type=='individual'}selected="selected"{/if}>{l s='Individual' mod='marketplace'}</option><option value="company" {if $type=='company'}selected="selected"{/if}>{l s='Company' mod='marketplace'}</option></select>
                                 </div>
                                 <div id="fname" class="form-group" >
-                                    <label for="fname">{l s='First Name' mod='marketplace'}</label>
+                                    <label for="fname" class="control-label required">{l s='First Name' mod='marketplace'}</label>
                                     <input class="form-control"  type="text" name="fname" id="fname" style="width:100px;display: inline;" value="{$fname}" />&nbsp;&nbsp;
-                                    <label for="lname">{l s='Last Name' mod='marketplace'}</label>
+                                    <label for="lname" class="control-label required">{l s='Last Name' mod='marketplace'}</label>
                                     <input class="form-control"  type="text" name="lname" id="lname" style="width:100px;display: inline;" value="{$lname}" />
                                 </div>
                                 <div id="ssn" class="form-group" >
-                                    <label for="ssn">{l s='SSN last 4 digits' mod='marketplace'}</label>
+                                    <label for="ssn" class="control-label required">{l s='SSN last 4 digits' mod='marketplace'}</label>
                                     <input class="form-control"  type="text" name="ssn" id="ssn" style="width:50px;display: inline;" value="{if $type!=''}****{/if}" />
                                 </div>
                                 <div id="routing" class="form-group" >
-                                    <label for="routing">{l s='Date of birth' mod='marketplace'}</label>
-                                    <input class="form-control"  type="text" name="day" id="day" style="width:30px;display: inline;" value="{$dob.day}" /> /
+                                    <label for="routing" class="control-label required">{l s='Date of birth' mod='marketplace'}</label>
                                     <input class="form-control"  type="text" name="month" id="month" style="width:30px;display: inline;" value="{$dob.month}" /> /
+                                    <input class="form-control"  type="text" name="day" id="day" style="width:30px;display: inline;" value="{$dob.day}" /> /
                                     <input class="form-control"  type="text" name="year" id="year" style="width:50px;display: inline;" value="{$dob.year}" />&nbsp;
-                                    {l s='e.g.' mod='marketplace'} 31/12/1988
+                                    {l s='e.g.' mod='marketplace'} 12/31/1988
                                 </div>
                                 </fieldset>
                                 </fieldset>
