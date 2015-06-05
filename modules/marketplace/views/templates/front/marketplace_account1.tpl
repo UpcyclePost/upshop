@@ -419,7 +419,7 @@
 							{foreach $product_lists as $product}
 								<tr class="even">
 									<td>
-										<img id="{$product['id']|escape:'html':'UTF-8'}" class="edit_img" src="{$img_ps_dir|escape:'html':'UTF-8'}admin/edit.gif"/>
+										<a id="{$product['id']|escape:'html':'UTF-8'}" class="btn btn-default button button-small edit_img"><span>Edit</span></a>
 									</td>
 									<td>
 										{if isset($product.unactive_image)} <!--product is not activated yet-->
@@ -433,24 +433,16 @@
 										{/if}
 									</td>
 									<td>
-										<a href="{$product_details_link|escape:'html':'UTF-8'}&id={$product['id']|escape:'html':'UTF-8'}">									
 										{$product['product_name']|escape:'html':'UTF-8'}
-										</a>
 									</td>
 									<td>
-										<a href="{$product_details_link|escape:'html':'UTF-8'}&id={$product['id']|escape:'html':'UTF-8'}">
 										{$product['short_description']|strip_tags|truncate:30|escape:'html':'UTF-8'}
-										</a>
 									</td>
 									<td>
-										<a href="{$product_details_link|escape:'html':'UTF-8'}&id={$product['id']|escape:'html':'UTF-8'}">
 										{$currency->prefix}{$product['price']|string_format:"%.2f"}{$currency->suffix}
-										</a>
 									</td>
 									<td>
-										<a href="{$product_details_link|escape:'html':'UTF-8'}&id={$product['id']|escape:'html':'UTF-8'}">
 										{$product['quantity']|escape:'html':'UTF-8'}
-										</a>
 									</td>
 									{if $product['active'] == 0}
 										<td>

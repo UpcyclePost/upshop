@@ -5503,7 +5503,7 @@ textarea {
 
 #columns {
   position: relative;
-  padding-bottom: 50px;
+  padding-bottom: 10px;
   padding-top: 90px; }
 
 #index .tab-content {
@@ -5751,9 +5751,9 @@ span.exclusive {
   border-color: #89c226;
   padding: 0;
   text-shadow: 1px 1px rgba(0, 0, 0, 0.24);
-  -moz-border-radius: 2px;
-  -webkit-border-radius: 2px;
-  border-radius: 2px; }
+  -moz-border-radius: 4px;
+  -webkit-border-radius: 4px;
+  border-radius: 4px; }
   .button.button-small span {
     display: block;
     padding: 3px 8px 3px 8px;
@@ -7054,7 +7054,7 @@ div.star a:hover {
     .footer-container #footer ul.row {
       position: static; }
     .footer-container #footer .footer-block {
-      margin-top: 45px; }
+      margin-top: 25px; }
       @media (max-width: 767px) {
         .footer-container #footer .footer-block {
           margin-top: 20px; } }
@@ -7118,7 +7118,7 @@ div.star a:hover {
     .footer-container #footer #social_block {
       float: left;
       width: 50%;
-      padding: 22px 15px 0 15px; }
+      padding: 10px 15px 0 15px; }
       @media (max-width: 767px) {
         .footer-container #footer #social_block {
           width: 100%;
