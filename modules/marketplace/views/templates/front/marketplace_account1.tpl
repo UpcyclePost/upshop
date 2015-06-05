@@ -331,6 +331,14 @@
 									<label for="update_phone" class="control-label required">{l s='Phone' mod='marketplace'}</label>
 									<input class="required form-control" type="text" value="{$marketplace_seller_info['phone']|escape:'html':'UTF-8'}" name="update_phone" id="update_phone" maxlength="{$phone_digit}"/>
 								</div>
+								<div class="form-group">
+									<label for="update_address" class="control-label">{l s='Address' mod='marketplace'}</label>
+									<textarea class="required form-control"  name="update_address" id="update_address">{$marketplace_address|escape:'html':'UTF-8'}</textarea>
+								</div>
+								<div class="form-group">
+									<label for="update_about_shop" class="control-label">{l s='About Shop' mod='marketplace'}</label>
+									<textarea name="update_about_shop" id="update_about_shop" class="update_about_shop_detail wk_tinymce form-control">{$market_place_shop['about_us']|escape:'html':'UTF-8'}</textarea>
+								</div>
                                  <fieldset style="border:2px dotted #999;padding: 10px">
                                 <legend style="border: 1px solid #999;padding: 8px;background: #fbfbfb;width:auto;"><i class="icon-money"></i>&nbsp;{l s='Payment transfer info for Stripe' mod='marketplace'} <font color="{if $stripestatus==verified}green{else}orange{/if}">{if $stripestatus!=''}({$stripestatus}){/if}</font></legend>
                                  <div id="bank" class="form-group" >
@@ -370,34 +378,6 @@
                                 </div>
                                 </fieldset>
                                 </fieldset>
-								<div class="form-group">
-									<label for="update_fax" class="control-label">{l s='Fax' mod='marketplace'}</label>
-									<input class="required form-control" type="text" value="{$marketplace_seller_info['fax']|escape:'html':'UTF-8'}" name="update_fax" id="update_fax"/>
-								</div>
-								<div class="form-group">
-									<label for="update_facbook_id" class="control-label">{l s='Facebook Id' mod='marketplace'}</label>
-									<input class="required form-control" type="text" value="{$marketplace_seller_info['facebook_id']|escape:'html':'UTF-8'}" name="update_facbook_id" id="update_facbook_id"/>
-								</div>
-								<div class="form-group">
-									<label for="update_twitter_id" class="control-label">{l s='Twitter Id' mod='marketplace'}</label>
-									<input class="required form-control" type="text" value="{$marketplace_seller_info['twitter_id']|escape:'html':'UTF-8'}" name="update_twitter_id" id="update_twitter_id"/>
-								</div>
-								<div class="form-group">
-									<label for="update_address" class="control-label">{l s='Address' mod='marketplace'}</label>
-									<textarea class="required form-control"  name="update_address" id="update_address">{$marketplace_address|escape:'html':'UTF-8'}</textarea>
-								</div>
-								<div class="form-group">
-									<label for="update_about_shop" class="control-label">{l s='About Shop' mod='marketplace'}</label>
-									<textarea name="update_about_shop" id="update_about_shop" class="update_about_shop_detail wk_tinymce form-control">{$market_place_shop['about_us']|escape:'html':'UTF-8'}</textarea>
-								</div>
-								<!--
-								<div class="form-group">
-									<img src="{$old_shop_logo_path|escape:'html':'UTF-8'}" width="100" height="100"><br />
-									<label for="update_shop_logo" class="control-label">{l s='Shop Logo' mod='marketplace'}</label>
-									<input class="required form control" type="file" name="update_shop_logo" id="update_shop_logo"/>
-									<div class="info_description">{l s='Image minimum size must be 200 x 200px' mod='marketplace'}</div>
-								</div>
-								-->
 								{hook h="DisplayMpshopaddfooterhook"}
 								<div class="submit-button">
 									<button type="submit" id="update_profile" class="btn btn-default button button-medium">

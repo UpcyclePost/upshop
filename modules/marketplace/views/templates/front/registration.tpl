@@ -143,17 +143,6 @@
 				</div>
                 </fieldset>
                 </fieldset>
-				<!--
-				<div id="facebook" class="form-group" >
-					<label for="fb_id1">{l s='Facebook Id' mod='marketplace'}</label>
-					<input class="reg_sel_input form-control"  type="text" name="fb_id" id="fb_id1" />
-				</div>
-					
-				<div id="twitter" class="form-group" >
-					<label for="tw_id1">{l s='Twitter Id' mod='marketplace'}</label>
-					<input class="reg_sel_input form-control"  type="text" name="tw_id" id="tw_id1" />
-				</div>
-				-->
 				{hook h="DisplayMpshoprequestfooterhook"}
 			</fieldset>
 			<div class="form-group" style="text-align:center;">
