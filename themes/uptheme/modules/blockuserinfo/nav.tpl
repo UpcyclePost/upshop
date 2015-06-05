@@ -25,12 +25,12 @@
 					<ul class="dropdown-menu dropdown-menu-right" role="menu">
 						<li><a href="{$account_dashboard|addslashes}"><i class="fa fa-fw fa-dashboard"></i> Dashboard</a></li>
 						<li class="divider"></li>
-						<li><a href="/shop/module/marketplace/addproduct?shop={$id_shop}"><i class="fa fa-fw fa-plus"></i> Add Product</a></li>
-						<li><a href="/shop/module/marketplace/marketplaceaccount?shop={$id_shop}&l=3"><i class="fa fa-fw fa-list"></i> Product List</a></li>
-						<li><a href="/shop/module/marketplace/marketplaceaccount?shop={$id_shop}&l=4"><i class="fa fa-fw fa-tasks"></i> Orders</a></li>
+						<li><a href="{$add_product|addslashes}"><i class="fa fa-fw fa-plus"></i> Add Product</a></li>
+						<li><a href="{$product_list|addslashes}"><i class="fa fa-fw fa-list"></i> Product List</a></li>
+						<li><a href="{$my_order|addslashes}"><i class="fa fa-fw fa-tasks"></i> Orders</a></li>
 						<li class="divider"></li>
-						<li><a href="/shop/module/marketplace/marketplaceaccount?shop={$id_shop}&l=2&edit-profile=1"><i class="fa fa-fw fa-gears"></i> Shop Profile</a></li>
-						<li><a href="{$link->getModuleLink('marketplace','shopstore',['shop'=>{$id_shop}])}"><i class="fa fa-fw fa-eye"></i> View Shop</a></li>
+						<li><a href="{$edit_profile|addslashes}"><i class="fa fa-fw fa-gears"></i> Shop Profile</a></li>
+						<li><a href="{$my_shop|addslashes}"><i class="fa fa-fw fa-eye"></i> View Shop</a></li>
 					</ul>
 				</div>
 			{/if}
