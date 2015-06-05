@@ -349,8 +349,7 @@ class LinkCore
 				if ($params['shop'])
 					{
 						$m_shop_id = $params['shop'];
-						$sql = "select c.id_customer,c.website from up_customer c JOIN up_marketplace_shop m ON c.id_customer = m.id_customer where m.id = $m_shop_id";
-						if (_PS_MODE_DEV_) print_r("<br>". $sql);
+						$sql = "select c.id_customer,c.website from up_customer c LEFT JOIN up_marketplace_customer umc ON c.id_customer = umc.id_customer LEFT JOIN up_marketplace_shop ums ON umc.marketplace_seller_id = ums.id_customer where ums.id = $m_shop_id";
 						$seller_up_shopid = Db::getInstance(_PS_USE_SQL_SLAVE_)->getRow($sql);
 						if ($seller_up_shopid) 
 						{
