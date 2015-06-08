@@ -1,16 +1,10 @@
 
 .footer-container{
     background-color: #ffffff;
-    border-top:solid 1px;
-    border-color:#0187d0;
 }
 
-.footer-container #footer h4, .footer-container #footer h4, .footer-container #footer #social_block h4, .footer-container #footer h4 a, .footer-container #footer #block_contact_infos > div ul li > span, .footer-container #footer #block_contact_infos > div ul li > span a, .footer-container #footer #block_contact_infos > div ul li i::before, .footer-container #footer #block_contact_infos > div ul li i{
+.footer-container #footer h4, .footer-container #footer h4, .footer-container #footer, .footer-container #footer h4 a, .footer-container #footer #block_contact_infos > div ul li > span, .footer-container #footer #block_contact_infos > div ul li > span a, .footer-container #footer #block_contact_infos > div ul li i::before, .footer-container #footer #block_contact_infos > div ul li i{
     color: #0187d0;
-}
-
-.footer-container #footer a{
-    color: #c0c0c0;
 }
 
 .footer-container #footer a:hover{
@@ -18,7 +12,7 @@
 }
 
 .footer-container #footer{
-    color: #c0c0c0;
+    color: #555;
 }
 
 
@@ -33,17 +27,6 @@
 #footer #newsletter_block_left .form-group .form-control{
     color: #c0c0c0;
 }
-
-
-
-.footer-container #footer #social_block ul li a{
-    color: #89c226;
-}
-
-.footer-container #footer #social_block ul li a:hover{
-    color: #0187d0 !important;
-}
-
 
 header .nav, #languages-block-top ul, #currencies-block-top ul, #currencies-block-top div.current:hover, #currencies-block-top div.current.active{
     background: #0187d0;
@@ -91,12 +74,6 @@ ul.product_list.list > li .product-image-container, ul.product_list.list .color-
 ul.product_list.grid > li .product-container .product-image-container .content_price, ul.product_list .product-image-container .quick-view-wrapper-mobile .quick-view-mobile, ul.product_list .product-image-container .quick-view-wrapper-mobile .quick-view-mobile:hover{
     background-color: #0187d0;
 }
-
-
-
-
-
-
 
 
 ul.step li.step_todo span{

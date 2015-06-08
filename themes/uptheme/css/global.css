@@ -7116,21 +7116,21 @@ div.star a:hover {
     .footer-container #footer .blockcategories_footer {
       clear: left; }
     .footer-container #footer #social_block {
-      float: left;
-      width: 50%;
-      padding: 10px 15px 0 15px; }
+      padding: 0px 10px 0 10px; 
+      border-left: 1px solid #ddd;
+      border-right: 1px solid #ddd;
+      height:35px;}
       @media (max-width: 767px) {
         .footer-container #footer #social_block {
           width: 100%;
-          float: left;
           padding-top: 5px; } }
       .footer-container #footer #social_block ul {
-        float: right; }
+        float: right;
+        height:37px; }
         @media (max-width: 767px) {
           .footer-container #footer #social_block ul {
             float: none; } }
         .footer-container #footer #social_block ul li {
-          float: left;
           width: 40px;
           text-align: center; }
           @media (min-width: 768px) and (max-width: 991px) {
@@ -7138,8 +7138,9 @@ div.star a:hover {
               width: 30px; } }
           .footer-container #footer #social_block ul li a {
             display: inline-block;
-            color: #908f8f;
-            font-size: 28px; }
+            color: rgb(85,85,85);
+            font-size: 18px; 
+            margin-top: -5px;}
             @media (min-width: 768px) and (max-width: 991px) {
               .footer-container #footer #social_block ul li a {
                 font-size: 20px; } }
@@ -7153,9 +7154,9 @@ div.star a:hover {
               -webkit-font-smoothing: antialiased;
               -moz-osx-font-smoothing: grayscale; }
             .footer-container #footer #social_block ul li a:hover {
-              color: #fff; }
+              color: #0187d0; }
           .footer-container #footer #social_block ul li.facebook a:before {
-            content: "\f09a"; }
+            content: "\f082"; }
           .footer-container #footer #social_block ul li.twitter a:before {
             content: "\f099"; }
           .footer-container #footer #social_block ul li.rss a:before {
@@ -8350,6 +8351,95 @@ header .buttons font.items {
     color: white;
     padding: 0 7px 0 7px;
     margin-left: 5px;
+}
+@media(max-width:767px) {
+    .hidden-xs {
+        display: none !important;
+    }
+}
+.footer {
+  border-top: 1px solid #ccc;
+  background: #fff;
+  border-top: 1px solid #ddd;
+  border-bottom: 1px solid #ddd;
+}
+
+@media(max-width:824px){
+.content-container {
+    width: 1600px;
+    display: block;
+    margin: auto;
+    padding-left: 15px; 
+    padding-right: 15px;
+    }
+}
+
+
+@media(max-width:1620px) {
+    .content-container{
+        width: 100%;
+    }
+}
+@media(max-width:1366px) {
+    .content-container {
+        width: 1072px;
+    }
+}
+@media(max-width:1094px) {
+    .content-container {
+        width: 808px;
+    }
+}
+@media(max-width:824px) {
+    .content-container {
+        width: 100%
+       }
+}
+
+.slug {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    height:35px;
+}
+.slug li {
+    float: right;
+    font-size: 12px;
+}
+.slug li.copyright {
+    padding: 10px 14px;
+    margin-right: 50px;
+}
+.slug li.f-logo {
+    position: relative;
+    float: left;
+    margin-left:50px;
+}
+.slug li.f-logo a {
+    padding: 10px 0 2px;
+}
+.slug li a {
+    color: #555;
+    padding: 10px 14px;
+    display: block;
+    text-decoration: none;
+}
+.slug li a:hover {
+    color: #0187d0;
+}
+.slug li.social ul {
+    border-left: 1px solid #ddd;
+    border-right: 1px solid #ddd;
+    list-style: none;
+    margin: 0 10px;
+    padding: 0 20px;
+}
+.slug li.social ul li {
+    font-size: 18px;
+    float: left;
+}
+.slug li.social ul li a {
+    padding: 6px;
 }
 
 
