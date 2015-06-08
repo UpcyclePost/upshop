@@ -8442,7 +8442,10 @@ header .buttons font.items {
     padding: 6px;
 }
 
-}.login-panel {
+.login-panel {
+     width:80%;
+     margin-left:auto;
+     margin-right:auto;
      background: #fff;
      -webkit-border-radius: 4px;
      -webkit-background-clip: padding-box;
@@ -8454,9 +8457,6 @@ header .buttons font.items {
      -moz-box-shadow: 0 2px 2px rgba(0, 0, 0, .2), 0 0 1px 0 rgba(0, 0, 0, .1);
      box-shadow: 0 2px 2px rgba(0, 0, 0, .2), 0 0 1px 0 rgba(0, 0, 0, .1);
  }
-.login-panel {
-    margin-bottom: 30px;
-}
 
 .login-panel-subheader {
     margin: 0;
