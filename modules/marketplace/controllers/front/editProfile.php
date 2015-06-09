@@ -6,6 +6,7 @@ class marketplaceEditProfileModuleFrontController extends ModuleFrontController
 {
     public function initContent()
     {
+		$stripe_error = '';
         $customer_id  = $this->context->cookie->id_customer;
         $link = new Link();
         $id_shop = Tools::getValue('update_id_shop');
@@ -72,25 +73,44 @@ class marketplaceEditProfileModuleFrontController extends ModuleFrontController
 			}
 			catch (Exception $e)
 			{
-				$this->_errors['stripe_error'] = $e->getMessage();	
+				$body = $e->getJsonBody();
+				$this->_errors['stripe_error'] = $body['error'];	
+				if (class_exists('Logger'))
+				Logger::addLog($this->l('Stripe - Edit profile update failed').' '.$body['error'], 1, null, 'Customer', (int)$customer_id, true);
 			}
 			
 			if(!isset($this->_errors['stripe_error'])){
 				
-			Db::getInstance()->Execute('INSERT INTO '._DB_PREFIX_.'stripepro_sellers (stripe_seller_id, id_customer, secret, publishable, status, date_add) VALUES (\''.$result_json->id.'\', '.$customer_id.', \''.$result_json->keys->secret.'\', \''.$result_json->keys->publishable.'\', \'unverified\', NOW())');
-			
-			   $account = \Stripe\Account::retrieve($result_json->id);
-				$account->legal_entity->ssn_last_4  = Tools::getValue('ssn');
-				$account->legal_entity->type = Tools::getValue('type');
-				$account->legal_entity->first_name = Tools::getValue('fname');
-				$account->legal_entity->last_name = Tools::getValue('lname');
-				$account->legal_entity->dob = array("day"=>Tools::getValue('day'),"month"=>Tools::getValue('month'),"year"=>Tools::getValue('year'));
-				$account->save();
+				Db::getInstance()->Execute('INSERT INTO '._DB_PREFIX_.'stripepro_sellers (stripe_seller_id, id_customer, secret, publishable, status, date_add) VALUES (\''.$result_json->id.'\', '.$customer_id.', \''.$result_json->keys->secret.'\', \''.$result_json->keys->publishable.'\', \'unverified\', NOW())');
 				
+				try
+				{
+				   $account = \Stripe\Account::retrieve($result_json->id);
+					$account->legal_entity->ssn_last_4  = Tools::getValue('ssn');
+					$account->legal_entity->type = Tools::getValue('type');
+					$account->legal_entity->first_name = Tools::getValue('fname');
+					$account->legal_entity->last_name = Tools::getValue('lname');
+					$account->legal_entity->dob = array("day"=>Tools::getValue('day'),"month"=>Tools::getValue('month'),"year"=>Tools::getValue('year'));
+					$account->save();
+					
+					}
+				catch (Exception $e)
+				{
+					$body = $e->getJsonBody();
+				   $this->_errors['stripe_error'] = $body['error'];	
+					if (class_exists('Logger'))
+					Logger::addLog($this->l('Stripe - Edit profile update failed').' '.$body['error'], 1, null, 'Customer', $customer_id, true);
+				}
+					
 			}
 			
 			
 			}
+			
+			if(isset($this->_errors['stripe_error']))
+				$stripe_error = '&stripe_error='.$this->_errors['stripe_error'];
+				
+				
 		
         
         $market_place_seller_info = Db::getInstance(_PS_USE_SQL_SLAVE_)->getRow("select * from `" . _DB_PREFIX_ . "marketplace_seller_info` where id =" . $market_seller_id['marketplace_seller_id'] . "");
@@ -101,7 +121,7 @@ class marketplaceEditProfileModuleFrontController extends ModuleFrontController
             {
                 $param = array('shop' => $id_shop, 'l' => 2, 'edit-profile' => 0, 'img_shop' => 1);
                 $redirect_link = $link->getModuleLink('marketplace', 'marketplaceaccount',$param);
-                Tools::redirect($redirect_link);
+                Tools::redirect($redirect_link.$stripe_error);
             }
         }
 
@@ -112,7 +132,7 @@ class marketplaceEditProfileModuleFrontController extends ModuleFrontController
             {
               $param = array('shop' => $id_shop, 'l' => 2, 'edit-profile' => 0, 'img_seller' => 1);
               $redirect_link = $link->getModuleLink('marketplace', 'marketplaceaccount',$param);
-              Tools::redirect($redirect_link);
+              Tools::redirect($redirect_link.$stripe_error);
             }
             else 
             { 
@@ -191,7 +211,7 @@ class marketplaceEditProfileModuleFrontController extends ModuleFrontController
         $param = array('shop'=>$id_shop);
         Hook::exec('actionUpdateshopExtrafield', array('marketplace_seller_id' => $market_seller_id['marketplace_seller_id']));
         $redirect_link1 = $link->getModuleLink('marketplace', 'marketplaceaccount',array('shop'=>$id_shop,'l'=>2,'update'=>1));
-        Tools::redirect($redirect_link1);
+        Tools::redirect($redirect_link1.$stripe_error);
     }
 
     public function setMedia()
