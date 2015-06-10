@@ -261,6 +261,8 @@ class marketplaceMarketplaceaccountModuleFrontController extends ModuleFrontCont
 							$this->context->smarty->assign('lname','');
 							$this->context->smarty->assign('dob',array());
 								}
+							if( Tools::getValue('update') != '' && Tools::getValue('update') != 0 && Tools::getValue('stripe_error') != '')
+                            $this->context->smarty->assign('stripe_error', Tools::getValue('stripe_error'));
 				
 							
                                 $this->context->smarty->assign("edit", 1);

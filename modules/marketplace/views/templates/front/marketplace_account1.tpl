@@ -198,6 +198,9 @@
 		{if $seller_img_size_error==1}
 			<p class="alert alert-danger">{l s='Seller image minumum size must be 200 x 200px' mod='marketplace'}</p>
 		{/if}
+        {if $stripe_error!=''}
+			<p class="alert alert-danger">{$stripe_error}</p>
+		{/if}
 		<div class="dashboard">
 			<div class="page-title">
 				<span>{l s='Edit Seller Profile' mod='marketplace'}</span>
