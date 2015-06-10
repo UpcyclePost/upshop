@@ -41,6 +41,7 @@ body#cms #columns ul {
 </style>
 {if $block == 1}
 	<!-- Block CMS module -->
+	{if $page_name == "cms"}
 	{foreach from=$cms_titles key=cms_key item=cms_title}
 		<section id="informations_block_left_{$cms_key}" class="block informations_block_left login-panel">
 			<div class="login-panel-header">
@@ -77,6 +78,7 @@ body#cms #columns ul {
 			</div>
 		</section>
 	{/foreach}
+	{/if}
 	<!-- /Block CMS module -->
 {else}
 	<!-- MODULE Block footer -->
