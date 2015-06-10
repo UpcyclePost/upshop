@@ -214,6 +214,39 @@ class Cart extends CartCore{
 			}
 		}
 
+		$cart_rules = CartRule::getCustomerCartRules(Context::getContext()->cookie->id_lang, Context::getContext()->cookie->id_customer, true, true, false, $this);
+		$result = Db::getInstance('SELECT * FROM '._DB_PREFIX_.'cart_cart_rule WHERE id_cart='.$this->id);
+		$cart_rules_in_cart = array();
+
+		if (is_array($result) && count($result))
+			foreach ($result as $row)
+				$cart_rules_in_cart[] = $row['id_cart_rule'];
+
+		$total_products_wt = $this->getOrderTotal(true, Cart::ONLY_PRODUCTS);
+		$total_products = $this->getOrderTotal(false, Cart::ONLY_PRODUCTS);
+
+		$free_carriers_rules = array();
+
+		foreach ($cart_rules as $cart_rule)
+		{
+			$total_price = $cart_rule['minimum_amount_tax'] ? $total_products_wt : $total_products;
+			$total_price += $cart_rule['minimum_amount_tax'] && $cart_rule['minimum_amount_shipping'] ? $real_best_price : 0;
+			$total_price += !$cart_rule['minimum_amount_tax'] && $cart_rule['minimum_amount_shipping'] ? $real_best_price_wt : 0;
+			if ($cart_rule['free_shipping'] && $cart_rule['carrier_restriction'] && $cart_rule['minimum_amount'] <= $total_price)
+			{
+				$cr = new CartRule((int)$cart_rule['id_cart_rule']);
+				if (Validate::isLoadedObject($cr) &&
+					$cr->checkValidity(Context::getContext(), in_array((int)$cart_rule['id_cart_rule'], $cart_rules_in_cart), false, false))
+				{
+					$carriers = $cr->getAssociatedRestrictions('carrier', true, false);
+					if (is_array($carriers) && count($carriers) && isset($carriers['selected']))
+						foreach ($carriers['selected'] as $carrier)
+							if (isset($carrier['id_carrier']) && $carrier['id_carrier'])
+								$free_carriers_rules[] = (int)$carrier['id_carrier'];
+				}
+			}
+		}
+
 		// For each delivery options :
 		//    - Set the carrier list
 		//    - Calculate the price
@@ -236,7 +269,7 @@ class Cart extends CartCore{
 					{
 						
 						$ps_id_carrier = $id_carrier;
-						
+
 						$obj_mp_shipping_map = new Mpshippingmap();
 						$mpshipping_id = $obj_mp_shipping_map->getMpshippingId($ps_id_carrier);
 						if($mpshipping_id) {
@@ -333,10 +366,12 @@ class Cart extends CartCore{
 							$delivery_option_list[$id_address][$key]['carrier_list'][$id_carrier]['logo'] = false;
 						
 						$position += $carrier_collection[$id_carrier]->position;
-						
 					}		
+				$total_price_without_tax_with_rules = (in_array($id_carrier, $free_carriers_rules)) ? 0 : $total_price_without_tax ;
+
 				$delivery_option_list[$id_address][$key]['total_price_with_tax'] = $total_price_with_tax;
 				$delivery_option_list[$id_address][$key]['total_price_without_tax'] = $total_price_without_tax;
+				$delivery_option_list[$id_address][$key]['is_free'] = !$total_price_without_tax_with_rules ? true : false;
 				$delivery_option_list[$id_address][$key]['position'] = $position / count($value['carrier_list']);
 			}
 

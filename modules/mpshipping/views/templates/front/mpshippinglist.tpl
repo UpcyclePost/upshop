@@ -1,22 +1,13 @@
-{capture name=path}
-        <a href="{$dash_board_link}">
-                {l s='My Dashboard'}
-        </a>
-        <span class="navigation-pipe">{$navigationPipe}</span>
-        <span class="navigation_page">{l s='Shipping Methods'}</span>
-{/capture}
 <div class="shipping_list_container left">
 <div class="box-account box-recent">
 	<div class="box-head">
 		<div class="box-head-left">
-			<h2>{l s='Shipping Methods' mod='mpshipping'}</h2>
+			<h2>{l s='Shipping Plan' mod='mpshipping'}</h2>
 		</div>
 		<div class="box-head-right">
-			<!--
 			<a href="{$dash_board_link}">
 				<img src="{$modules_dir}mpshipping/img/home.gif">
 			</a>
-			-->
 			<a class="btn btn-default button button-small" id="add_new_shipping" href="{$addnew_shipping_link}"><span>{l s='Add New' mod='mpshipping'}</span></a>
 		</div>
 	</div>
@@ -64,13 +55,13 @@
 							{/if}
 						</td>
 						<td>
-							<a href="{$link->getModuleLink('mpshipping','basiceditshipping',['shop'=>{$mp_id_shop},'id_shipping'=>{$mp_sp_det['id']}])}" id="shipping_basicedit" style="color:blue;">
+							<a href="{$link->getModuleLink('mpshipping','addnewshipping',['shop'=>{$mp_id_shop},'id_shipping'=>{$mp_sp_det['id']}])}" id="shipping_basicedit" style="color:blue;">
 								{l s='Basic edit' mod='mpshipping'}
 							</a>
-							&nbsp;&nbsp;
+							{*&nbsp;&nbsp;
 							<a href="{$link->getModuleLink('mpshipping','impactpriceedit',['shop'=>{$mp_id_shop},'id_shipping'=>{$mp_sp_det['id']}])}" id="impact_edit" style="color:blue;">
 								{l s='Impact edit' mod='mpshipping'}
-							</a>
+							</a>*}
 							&nbsp;&nbsp;
 							<a href="{$link->getModuleLink('mpshipping','sellershippinglist',['shop'=>{$mp_id_shop},'id_shipping'=>{$mp_sp_det['id']},'delete'=>1])}" id="delete_shipping">
 								<img title="{l s='Delete' mod='mpshipping'}" src="{$img_ps_dir|escape:'html':'UTF-8'}admin/delete.gif"/>

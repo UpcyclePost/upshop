@@ -22,6 +22,7 @@
 		public $active;		
 		public $is_done=0;
 		public $shipping_handling;
+		public $shipping_policy;
 		
 		public static $definition = array(
 			'table' => 'mp_shipping_method',
@@ -47,6 +48,7 @@
 				'active' => array('type' => self::TYPE_BOOL),
 				'is_done' => array('type' => self::TYPE_BOOL),
 				'shipping_handling' => array('type' => self::TYPE_BOOL),
+				'shipping_policy' => array('type' => self::TYPE_STRING),
 			),
 		);
 	
