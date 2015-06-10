@@ -140,4 +140,19 @@
 	var ranges_info = '{l s='Ranges' js=1 mod='mpshipping'}';
 	var shipping_method = {$shipping_method};
 	var finish_error = '{l s='You need to go through all step' js=1 mod='mpshipping'}';
+
+	
+
+	var shipping_name_error = '{l s='Shipping name is required field' js=1 mod='mpshipping'}';
+	var transit_time_error = '{l s='Transit time is required field' js=1 mod='mpshipping'}';
+	var invalid_logo_file_error = '{l s='Invalid logo file!' js=1 mod='mpshipping'}';
+	var shipping_charge_error_message = '{l s='' js=1 mod='mpshipping'}';
+	var shipping_charge_lower_limit_error1 = '{l s='Shipping charge lower limit is blank' js=1 mod='mpshipping'}';
+	var shipping_charge_lower_limit_error2 = '{l s='Shipping charge lower limit should not negative' js=1 mod='mpshipping'}';
+	var shipping_charge_upper_limit_error1 = '{l s='Shipping charge upper limit is blank' js=1 mod='mpshipping'}';
+	var shipping_charge_upper_limit_error2 = '{l s='Shipping charge upper limit should not negative' js=1 mod='mpshipping'}';
+	var shipping_charge_limit_error = '{l s='Shipping charge upper limit should not less than lower limit' js=1 mod='mpshipping'}';
+	var shipping_charge_limit_equal_error = '{l s='Shipping charge lower limit and upper limit should not equal' js=1 mod='mpshipping'}';
+	var invalid_logo_size_error = '{l s='Invalid logo size' js=1 mod='mpshipping'}';
+	var no_range_available_error = '{l s='No Range Available' js=1 mod='mpshipping'}';
 </script>

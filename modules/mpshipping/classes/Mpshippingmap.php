@@ -35,29 +35,38 @@
 			return parent::delete();
 		}
 		
-		public function isAllreadyMapByShippingID($mp_shipping_id) {
+		public function isAllreadyMapByShippingID($mp_shipping_id)
+		{
 			$is_mapped = Db::getInstance()->getRow('select * from `'._DB_PREFIX_.'mp_shipping_map` where mp_shipping_id='.$mp_shipping_id);
-			if(empty($is_mapped)) {
+			if(empty($is_mapped))
 				return false;
-			} else {
+			else
 				return $is_mapped;
-			}
 		}
-		public function getCarrierId($mp_shipping_id){
-		$carrier_id = Db::getInstance()->getValue('select `ps_id_carriers` from `'._DB_PREFIX_.'mp_shipping_map` where mp_shipping_id='.$mp_shipping_id);
-		if(empty($carrier_id)) {
-				return false;
-			} else {
-				return $carrier_id;
-			}
+		public function getCarrierId($mp_shipping_id)
+		{
+			$carrier_id = Db::getInstance()->getValue('select `ps_id_carriers` from `'._DB_PREFIX_.'mp_shipping_map` where mp_shipping_id='.$mp_shipping_id);
+			if (empty($carrier_id))
+					return false;
+			else
+					return $carrier_id;
 		}
 		
-		public function getMpshippingId($ps_id_carriers) {
+		public function getMpshippingId($ps_id_carriers)
+		{
 			$mp_shipping_id = Db::getInstance()->getValue('select `mp_shipping_id` from `'._DB_PREFIX_.'mp_shipping_map` where ps_id_carriers='.$ps_id_carriers);
-			if(empty($mp_shipping_id)) {
+			if(empty($mp_shipping_id))
 					return false;
-				} else {
+			else
 					return $mp_shipping_id;
-				}
+		}
+
+		public function getAllCarrierId()
+		{
+			$carrier_id = Db::getInstance()->executeS('select `ps_id_carriers` from `'._DB_PREFIX_.'mp_shipping_map`');
+			if (empty($carrier_id))
+				return false;
+			else
+				return $carrier_id;
 		}
 	}

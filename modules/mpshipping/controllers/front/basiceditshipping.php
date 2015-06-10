@@ -53,6 +53,7 @@ class mpshippingbasiceditshippingModuleFrontController extends ModuleFrontContro
 					$this->context->smarty->assign('tracking_url',$obj_mpshipping_method->tracking_url);
 					$this->context->smarty->assign('grade',$obj_mpshipping_method->grade);
 					$this->context->smarty->assign('shipping_handling',$obj_mpshipping_method->shipping_handling);
+					$this->context->smarty->assign('shipping_handling_charge',Configuration::get('PS_SHIPPING_HANDLING'));
 					$this->context->smarty->assign('is_free',$obj_mpshipping_method->is_free);
 					$this->context->smarty->assign('max_width',$obj_mpshipping_method->max_width);
 					$this->context->smarty->assign('max_height',$obj_mpshipping_method->max_height);
@@ -144,7 +145,6 @@ class mpshippingbasiceditshippingModuleFrontController extends ModuleFrontContro
 					
 					$this->context->smarty->assign('currency_sign', $currency->sign);
 					$this->context->smarty->assign('PS_WEIGHT_UNIT', Configuration::get('PS_WEIGHT_UNIT'));
-					$this->context->smarty->assign('PS_DIMENSION_UNIT', Configuration::get('PS_DIMENSION_UNIT'));
 					$this->setTemplate('basicupdateshipping.tpl');
 				}
 			}
