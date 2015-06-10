@@ -83,19 +83,30 @@ class marketplaceRegistrationprocessModuleFrontController extends ModuleFrontCon
 			catch (Exception $e)
 			{
 				$this->_errors['stripe_error'] = $e->getMessage();	
+				if (class_exists('Logger'))
+					Logger::addLog('Stripe error - '.$e->getMessage(), 1, null, 'Customer', $customer_id, true);
 			}
 			
 			if(!isset($this->_errors['stripe_error'])){
 				
 			Db::getInstance()->Execute('INSERT INTO '._DB_PREFIX_.'stripepro_sellers (stripe_seller_id, id_customer, secret, publishable, status, date_add) VALUES (\''.$result_json->id.'\', '.$customer_id.', \''.$result_json->keys->secret.'\', \''.$result_json->keys->publishable.'\', \'unverified\', NOW())');
 			
-			  $account = \Stripe\Account::retrieve($result_json->id);
-				$account->legal_entity->ssn_last_4  = Tools::getValue('ssn');
-				$account->legal_entity->type = Tools::getValue('type');
-				$account->legal_entity->first_name = Tools::getValue('fname');
-				$account->legal_entity->last_name = Tools::getValue('lname');
-				$account->legal_entity->dob = array("day"=>Tools::getValue('day'),"month"=>Tools::getValue('month'),"year"=>Tools::getValue('year'));
-				$account->save();
+				try
+				{
+				  $account = \Stripe\Account::retrieve($result_json->id);
+					$account->legal_entity->ssn_last_4  = Tools::getValue('ssn');
+					$account->legal_entity->type = Tools::getValue('type');
+					$account->legal_entity->first_name = Tools::getValue('fname');
+					$account->legal_entity->last_name = Tools::getValue('lname');
+					$account->legal_entity->dob = array("day"=>Tools::getValue('day'),"month"=>Tools::getValue('month'),"year"=>Tools::getValue('year'));
+					$account->save();
+				}
+				catch (Exception $e)
+				{
+					$this->_errors['stripe_error'] = $e->getMessage();	
+					if (class_exists('Logger'))
+						Logger::addLog('Stripe error - '.$e->getMessage(), 1, null, 'Customer', $customer_id, true);
+				}
 				
 			}else{
 				
