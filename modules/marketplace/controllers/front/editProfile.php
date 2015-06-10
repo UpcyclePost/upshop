@@ -48,20 +48,32 @@ class marketplaceEditProfileModuleFrontController extends ModuleFrontController
 		
 		$account_id = Db::getInstance()->getValue('select `stripe_seller_id` from '._DB_PREFIX_.'stripepro_sellers where `id_customer` = '.$customer_id);
 		if(trim($account_id)!=''){
-		$account = \Stripe\Account::retrieve($account_id);
-		$account->business_name = $shop_name;
-		if(substr($bank,0,2)!="**" && strlen($bank)>9)
-		$account->bank_account = array("account_number"=>$bank,"country"=>'US',"currency"=>'usd',"routing_number"=>$routing);		
-
-		if(substr($ssn,0,2)!="**" && strlen($ssn)==4)
-		$account->legal_entity->ssn_last_4  = $ssn;
-		$account->legal_entity->type = Tools::getValue('type');
-		if(Tools::getValue('fname')!='')
-		$account->legal_entity->first_name = Tools::getValue('fname');
-		if(Tools::getValue('lname')!='')
-		$account->legal_entity->last_name = Tools::getValue('lname');
-		$account->legal_entity->dob = array("day"=>Tools::getValue('day'),"month"=>Tools::getValue('month'),"year"=>Tools::getValue('year'));
-		$account->save();
+			
+			try
+			{
+			  $account = \Stripe\Account::retrieve($account_id);
+			  $account->business_name = $shop_name;
+			  if(substr($bank,0,2)!="**" && strlen($bank)>9)
+			  $account->bank_account = array("account_number"=>$bank,"country"=>'US',"currency"=>'usd',"routing_number"=>$routing);		
+	  
+			  if(substr($ssn,0,2)!="**" && strlen($ssn)==4)
+			  $account->legal_entity->ssn_last_4  = $ssn;
+			  $account->legal_entity->type = Tools::getValue('type');
+			  if(Tools::getValue('fname')!='')
+			  $account->legal_entity->first_name = Tools::getValue('fname');
+			  if(Tools::getValue('lname')!='')
+			  $account->legal_entity->last_name = Tools::getValue('lname');
+			  $account->legal_entity->dob = array("day"=>Tools::getValue('day'),"month"=>Tools::getValue('month'),"year"=>Tools::getValue('year'));
+			  $account->save();
+			}
+			catch (Exception $e)
+			{
+				     $this->_errors['stripe_error'] = $e->getMessage();	
+					if (class_exists('Logger'))
+					Logger::addLog('Stripe - profile update failed - '.$e->getMessage(), 1, null, 'Customer', $customer_id, true);
+				
+				}
+			  
 		}else{
 			
 			
@@ -73,10 +85,9 @@ class marketplaceEditProfileModuleFrontController extends ModuleFrontController
 			}
 			catch (Exception $e)
 			{
-				$body = $e->getJsonBody();
-				$this->_errors['stripe_error'] = $body['error'];	
+				$this->_errors['stripe_error'] = $e->getMessage();	
 				if (class_exists('Logger'))
-				Logger::addLog($this->l('Stripe - Edit profile update failed').' '.$body['error'], 1, null, 'Customer', (int)$customer_id, true);
+				Logger::addLog('Stripe - profile update failed - '.$e->getMessage(), 1, null, 'Customer', (int)$customer_id, true);
 			}
 			
 			if(!isset($this->_errors['stripe_error'])){
@@ -96,10 +107,9 @@ class marketplaceEditProfileModuleFrontController extends ModuleFrontController
 					}
 				catch (Exception $e)
 				{
-					$body = $e->getJsonBody();
-				   $this->_errors['stripe_error'] = $body['error'];	
+				   $this->_errors['stripe_error'] = $e->getMessage();	
 					if (class_exists('Logger'))
-					Logger::addLog($this->l('Stripe - Edit profile update failed').' '.$body['error'], 1, null, 'Customer', $customer_id, true);
+					Logger::addLog('Stripe - profile update failed - '.$e->getMessage(), 1, null, 'Customer', $customer_id, true);
 				}
 					
 			}
@@ -108,7 +118,7 @@ class marketplaceEditProfileModuleFrontController extends ModuleFrontController
 			}
 			
 			if(isset($this->_errors['stripe_error']))
-				$stripe_error = '&stripe_error='.$this->_errors['stripe_error'];
+				$stripe_error = '&stripe_error=Stripe error: '.$this->_errors['stripe_error'];
 				
 				
 		
