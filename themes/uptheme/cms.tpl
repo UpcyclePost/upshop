@@ -22,6 +22,29 @@
 *  @license    http://opensource.org/licenses/afl-3.0.php  Academic Free License (AFL 3.0)
 *  International Registered Trademark & Property of PrestaShop SA
 *}
+<style>
+.list-group-item {
+  position: relative;
+  display: block;
+  padding: 10px 15px;
+  margin-bottom: -1px;
+  background-color: #fff;
+  border: none;
+}
+.list-group-item a{
+	text-decoration: none;
+}
+
+.list-group-item a:hover{
+	text-decoration: underline;
+}
+
+.title_block{
+	margin:5px 0px 10px 25px;
+	font-weight:bold;
+}
+</style>
+
 {if isset($cms) && !isset($cms_category)}
 	{if !$cms->active}
 		<br />
@@ -38,14 +61,28 @@
 		</div>
 	{/if}
 	<div class="rte{if $content_only} content_only{/if}">
-		{$cms->content}
+		<div class="login-panel">
+			<div class="login-panel-header">
+			<h1>{$cms->meta_title}</h1>
+			</div>
+			<div class="login-panel-body">
+				<div class="sub-pages fixed-height" style="overflow-y: scroll; height: 580px; padding-left; 15px; padding-right: 15px;" data-height="75%">
+				{$cms->content}
+				</div>
+			</div>
+		</div>
 	</div>
 {elseif isset($cms_category)}
+
 	<div class="block-cms">
+		<div class="login-panel">
+			<div class="login-panel-header">
+
 		<h1><a href="{if $cms_category->id eq 1}{$base_dir}{else}{$link->getCMSCategoryLink($cms_category->id, $cms_category->link_rewrite)}{/if}">{$cms_category->name|escape:'html':'UTF-8'}</a></h1>
 		{if $cms_category->description}
 			<p>{$cms_category->description|escape:'html':'UTF-8'}</p>
 		{/if}
+			</div>	
 		{if isset($sub_category) && !empty($sub_category)}	
 			<p class="title_block">{l s='List of sub categories in %s:' sprintf=$cms_category->name}</p>
 			<ul class="bullet list-group">
@@ -66,6 +103,9 @@
 				{/foreach}
 			</ul>
 		{/if}
+		<p></p>
+		</div>
+
 	</div>
 {else}
 	<div class="alert alert-danger">

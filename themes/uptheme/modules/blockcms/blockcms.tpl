@@ -22,16 +22,31 @@
 *  @license    http://opensource.org/licenses/afl-3.0.php  Academic Free License (AFL 3.0)
 *  International Registered Trademark & Property of PrestaShop SA
 *}
-
+<style>
+.block .list-block {
+  margin-top: 4px;
+}
+.block .list-block li {
+  padding: 5px 0 6px 0px;
+  border-top: 1px solid #d6d4d4;
+}
+body#cms #columns ul {
+  margin-left: 10px;
+}
+.block .list-block li a:hover {
+  color: #0187d0;
+  font-weight: normal;
+}
+	
+</style>
 {if $block == 1}
 	<!-- Block CMS module -->
+	{if $page_name == "cms"}
 	{foreach from=$cms_titles key=cms_key item=cms_title}
-		<section id="informations_block_left_{$cms_key}" class="block informations_block_left">
-			<p class="title_block">
-				<a href="{$cms_title.category_link|escape:'html':'UTF-8'}">
-					{if !empty($cms_title.name)}{$cms_title.name}{else}{$cms_title.category_name}{/if}
-				</a>
-			</p>
+		<section id="informations_block_left_{$cms_key}" class="block informations_block_left login-panel">
+			<div class="login-panel-header">
+					<h1>{if !empty($cms_title.name)}{$cms_title.name}{else}{$cms_title.category_name}{/if}</h1>
+			</div>
 			<div class="block_content list-block">
 				<ul>
 					{foreach from=$cms_title.categories item=cms_page}
@@ -63,6 +78,7 @@
 			</div>
 		</section>
 	{/foreach}
+	{/if}
 	<!-- /Block CMS module -->
 {else}
 	<!-- MODULE Block footer -->
