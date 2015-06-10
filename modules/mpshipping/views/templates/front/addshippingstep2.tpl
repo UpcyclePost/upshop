@@ -1,8 +1,8 @@
 <form role="form" id="step_carrier_pricezone" class="defaultForm form-horizontal" enctype="multipart/form-data" method="post" action="{$mpshippingprocess_link_step2}">
 	
 	<!-- shipping handling charge set disable by default because handling apply global and seller do not change or apply handling charge for his/her shipping method so shipping handling charge set default disabled -->
-	<input type="hidden" name="shipping_handling" value="0">
-	<!-- <div class="form-group">
+	<!-- <input type="hidden" name="shipping_handling" value="0"> -->
+	<div class="form-group">
 		<label class="control-label col-lg-3">
 			{l s=' Add handling costs' mod='mpshipping'}
 		</label>
@@ -15,7 +15,17 @@
 				<a class="slide-button btn"></a>
 			</span>
 		</div>
-	</div> -->
+	</div>
+	<div class="form-group" id="shipping_handling_charge">
+		<label class="control-label col-lg-3">
+			{l s='Handling Charge' mod='mpshipping'}
+		</label>
+		<div class="input-group fixed-width-md col-lg-2">
+			<span class="input-group-addon">&nbsp; {$currency_sign}</span>
+			<input type="text" class="form-control" value="{$shipping_handling_charge}" disabled="disabled" />
+		</div>
+		<div class="col-lg-7"></div>
+	</div>
 	
 	<div class="form-group">
 		<label class="control-label col-lg-3">

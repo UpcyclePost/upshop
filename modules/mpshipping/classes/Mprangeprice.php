@@ -69,4 +69,13 @@
 		public function deleteRangeByMpshippingId($mp_shipping_id) {
 			return Db::getInstance()->delete('mp_range_price','mp_shipping_id='.$mp_shipping_id);
 		}
+
+		public function getRangeDetailsByShippingId($mp_shipping_id)
+		{
+			$is_range = Db::getInstance()->getRow("select * from "._DB_PREFIX_."mp_range_price where mp_shipping_id=".$mp_shipping_id);
+			if(empty($is_range)) 
+				return false;
+
+			return $is_range;
+		}
 	}

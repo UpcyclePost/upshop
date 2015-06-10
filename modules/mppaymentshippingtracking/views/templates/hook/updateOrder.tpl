@@ -81,7 +81,7 @@
 						<tbody>
 							{foreach from=$order->getShipping() item=line}
 							<tr>
-								<td>{dateFormat date=$line.date_add full=true}</td>
+								<td>{$line.date_add|date_format:"%D %l:%M %p"|escape:'html':'UTF-8'}</td>								
 								<td>{$line.type}</td>
 								<td>{$line.carrier_name}</td>
 								<td class="weight">{$line.weight|string_format:"%.3f"} {Configuration::get('PS_WEIGHT_UNIT')}</td>
@@ -189,7 +189,7 @@
 										<td style="background-color:{$row['color']};color:{$row['text-color']}">
 										</td>
 										<td style="background-color:{$row['color']};color:{$row['text-color']}">
-											{dateFormat date=$row['date_add'] full=true}
+											{$row['date_add']|date_format:"%D %l:%M %p"|escape:'html':'UTF-8'}
 										</td>
 									</tr>
 								{else}
@@ -227,12 +227,6 @@
 							<input type="hidden" name="id_order_state_checked" class="id_order_state_checked" value="{$currentState->id}" />
 						</div>
 						<div class="col-lg-3">
-							<a href="#wk_shipping_form" style="color:white;display:none;" class="btn btn-primary" id="update_order_status_shipping">
-								<span>{l s='Update status' mod='mppaymentshippingtracking'}</span>
-							</a>
-							<a href="#wk_delivery_form" style="color:white;display:none;" class="btn btn-primary" id="update_order_status_delivary">
-								<span>{l s='Update status' mod='mppaymentshippingtracking'}</span>
-							</a>
 							<button type="submit" name="submitState" class="btn btn-primary" id="update_order_status">
 								<span>{l s='Update status' mod='mppaymentshippingtracking'}</span>
 							</button>

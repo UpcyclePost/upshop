@@ -42,7 +42,8 @@
 			return parent::delete();
 		}
 		
-		public function getDliveryMethodForPriceRange($id_zone,$mp_shipping_id) {
+		public function getDliveryMethodForPriceRange($id_zone,$mp_shipping_id) 
+		{
 			$delivery_emthod = 	Db::getInstance()->executeS('
 			SELECT msd.`id`,round(mrp.`delimiter1`,2) as delimiter1,round(mrp.`delimiter2`,2) as delimiter2,mrp.`id` as id_range
 			FROM `'._DB_PREFIX_.'mp_shipping_delivery` msd left join
@@ -126,5 +127,15 @@
 				return false;
 			else
 				return $deliver_id_detail['id'];
+		}
+
+		public function getDliveryMethodByIdZone($id_zone,$mp_shipping_id) 
+		{
+			$ship_del_details = Db::getInstance()->getRow('SELECT * FROM `'._DB_PREFIX_.'mp_shipping_delivery` WHERE `mp_shipping_id` = '.(int)$mp_shipping_id.' AND  `id_zone` = '.(int)$id_zone);
+			
+			if(empty($ship_del_details))
+				return false;
+
+			return $ship_del_details;
 		}
 	}

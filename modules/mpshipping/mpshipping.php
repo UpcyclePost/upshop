@@ -12,13 +12,13 @@
 		{
 			$this->name = 'mpshipping';
 			$this->tab = 'front_office_features';
-			$this->version = '0.3';
-			$this->author = 'webkul';
+			$this->version = '1.6';
+			$this->author = 'Webkul';
 			$this->need_instance = 1;
 			$this->dependencies = array('marketplace');
 			parent::__construct();
-			$this->displayName = $this->l('Shipping by country');
-			$this->description = $this->l('Provide seller to create own shipping method');
+			$this->displayName = $this->l('Marketplace Seller Shipping');
+			$this->description = $this->l('Provide seller to create their own shipping method');
 		}
 		
 		public function callAssociateModuleToShop() 
@@ -710,9 +710,24 @@
 	        return $responce;
 	    }
 
+	    public function deleteCarriersFromPS()
+	    {
+	    	$obj_mpshipping = new Mpshippingmap();
+	    	$carriers_id = $obj_mpshipping->getAllCarrierId();
+	    	foreach ($carriers_id as $carr)
+	    	{
+	    		$obj_carrier = new Carrier($carr['ps_id_carriers']);
+	    		$is_deleted = $obj_carrier->delete();
+	    		if (!$is_deleted)
+	    			return false;
+	    	}
+	    	return true;				
+	    }
+
 		public function uninstall()
 		{
 			if (!parent::uninstall()
+				|| !$this->deleteCarriersFromPS()
 				|| !$this->dropTable()
 				|| !$this->deleteOverrideFile()
 				|| !$this->callUninstallTab()) 

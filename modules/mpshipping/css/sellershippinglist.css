@@ -504,3 +504,90 @@ input[type="radio"], input[type="checkbox"] {
 {
     padding: 5px;
 }
+
+/* customization */
+.no_margin
+{
+    margin: 0px;
+}
+
+.no_padding
+{
+    padding: 0px;
+}
+
+.heading_cont
+{
+    padding: 10px;
+    background-color: #F6F6F6;
+}
+
+.heading_text
+{
+    color: #333333;
+    font-size: 25px;
+    margin: 0px;
+}
+
+.margin-top-25
+{
+    margin-top: 25px;
+}
+
+.pro_head_text
+{
+    color: #333333;
+    font-size: 20px;
+    margin: 0px;
+}
+
+.margin-top-30
+{
+    margin-top: 30px;
+}
+
+.pro_sub_text
+{
+    color: #333333;
+    font-size: 15px;
+}
+
+.ship_tb_head
+{
+    background-color: #D6D4D4;
+}
+
+.ship_cost_cont
+{
+    border-right: 1px solid #D6D4D4;
+    border-left: 1px solid #D6D4D4;
+    border-bottom: 1px solid #D6D4D4;
+}
+
+.color-black
+{
+    color: #333333;
+}
+.width-100
+{
+    width: 100%;
+}
+.delay_dropd
+{
+    text-align: left;
+}
+.delay_ddp_caret
+{
+    margin-top: 1%;
+}
+.ship_save_btn
+{
+    margin-top: 20px;
+}
+
+.tran_val:hover, .tran_val:focus 
+{
+    background-color: #337AB7 !important;
+    color: white !important;
+}
+/* customization */

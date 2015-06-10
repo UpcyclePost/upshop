@@ -7,13 +7,18 @@
 		{
 			parent::initContent();	
 			$link = new Link();
+
+			$currency_details = Currency::getCurrency(Context::getContext()->cookie->id_currency);
+			$this->context->smarty->assign('currency_details',$currency_details);
+			
 			$shipping_ajax_link = $link->getModuleLink('mpshipping','shippingajax');
 			$this->context->smarty->assign('shipping_ajax_link',$shipping_ajax_link);
 
 			$shipping_ajax_range = $link->getModuleLink('mpshipping','shoprange');
 			$this->context->smarty->assign('shipping_ajax_range_link',$shipping_ajax_range);
+			
 			$id_customer = $this->context->cookie->id_customer;
-			if($id_customer) 
+			if($id_customer)
 			{
 				//check customer is marketplace customer or not
 				$mp_customer = new MarketplaceCustomer();
@@ -28,35 +33,26 @@
 					{
 						//marketplace shop info by customer id
 						$obj_mp_shop = new MarketplaceShop();
+						
 						$mp_shop_info = $obj_mp_shop->getMarketPlaceShopInfoByCustomerId($id_customer);
 						$mp_id_shop = $mp_shop_info['id'];						
 
+						//if erorr occur
 						$is_main_error = Tools::getValue('is_main_error');						
 						if($is_main_error) 
-						{
 							$this->context->smarty->assign('is_main_error',$is_main_error);
-						} 
 						else 
-						{
 							$this->context->smarty->assign('is_main_error',-1);
-						}
 						
-
-						$mp_shipping_id = Tools::getValue('mpsp_id');
+						//shipping_id
+						$mp_shipping_id = Tools::getValue('id_shipping');
 						if($mp_shipping_id) 
-						{
 							$this->context->smarty->assign('mp_shipping_id',$mp_shipping_id);
-						} 
-						else 
-						{
-							$this->context->smarty->assign('mp_shipping_id',0);
-						}
-						
+
+						//steps
 						$step_count = Tools::getValue('step');
 						if($step_count) 
-						{
 							$this->context->smarty->assign('step_count',$step_count);
-						} 
 						else 
 						{
 							$step_count = 1;
@@ -79,10 +75,12 @@
 							$this->context->smarty->assign('grade',$obj_mpshipping_method->grade);
 							$this->context->smarty->assign('is_free',$obj_mpshipping_method->is_free);
 							$this->context->smarty->assign('shipping_handling',$obj_mpshipping_method->shipping_handling);
+							$this->context->smarty->assign('shipping_handling_charge',Configuration::get('PS_SHIPPING_HANDLING'));
 							$this->context->smarty->assign('max_width',$obj_mpshipping_method->max_width);
 							$this->context->smarty->assign('max_height',$obj_mpshipping_method->max_height);
 							$this->context->smarty->assign('max_depth',$obj_mpshipping_method->max_depth);
 							$this->context->smarty->assign('max_weight',$obj_mpshipping_method->max_weight);
+							$this->context->smarty->assign('shipping_policy',$obj_mpshipping_method->shipping_policy);
 							
 							//@shipping_method==1 billing accroding to weight
 							//@shipping_method==2 billing accroding to price
@@ -188,21 +186,20 @@
 						$currency = new Currency(Configuration::get('PS_CURRENCY_DEFAULT'));
 						$this->context->smarty->assign('currency_sign', $currency->sign);
 						$this->context->smarty->assign('PS_WEIGHT_UNIT', Configuration::get('PS_WEIGHT_UNIT'));
-						$this->context->smarty->assign('PS_DIMENSION_UNIT', Configuration::get('PS_DIMENSION_UNIT'));
 							
-						$this->setTemplate('addmpshipping.tpl');
+						// $this->setTemplate('addmpshipping.tpl');
+						$this->setTemplate('wkshipping.tpl');
 					}
 				}
 			}
 		}
 		
-		public function setMedia() {
+		public function setMedia() 
+		{
 			parent::setMedia();
 			$this->addCSS(_MODULE_DIR_.'mpshipping/css/sellershippinglist.css');
 			$this->addJs(_MODULE_DIR_.'mpshipping/js/mpshipping.js');
-			//$this->addJqueryPlugin('smartWizard');
 			$this->addJqueryPlugin('typewatch');
-			//$this->addJs(_PS_JS_DIR_.'admin_carrier_wizard.js');
 		}
 	}
 ?>

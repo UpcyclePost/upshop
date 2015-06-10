@@ -1,4 +1,15 @@
 	$(document).ready(function() {
+
+		$('.tran_val').on('click', function(e)
+		{
+			e.preventDefault();
+			
+			var delay_msg = $(this).html();
+			$('.ship_trans_text').html(delay_msg);
+			$('#ship_transit_time').val(delay_msg);
+		});
+
+
 		$(".buttonNext").click(function(e){
 			var is_error = false;
 			var message = '';
@@ -10,12 +21,12 @@
 
 			if(shipping_name == '')
 			{
-				alert("Shipping name is required field");
+				alert(shipping_name_error);
 				is_error = true;
 			}
 			else if(transit_time == '')
 			{
-				alert("Transit time is required field");
+				alert(transit_time_error);
 				is_error = true;
 			}
 			else if (logo)
@@ -24,7 +35,7 @@
         		get_ext = get_ext.reverse(); // reverse name to check extension
         		if ( $.inArray ( get_ext[0].toLowerCase(), exts ) <= -1 )
         		{
-        			alert('Invalid logo file!');
+        			alert(invalid_logo_file_error);
         			return false;
         		}
 			}
@@ -44,35 +55,35 @@
 					var price_value_lower = $(".edit_price_value_lower").val();
 					var price_value_upper = $(".edit_price_value_upper").val();
 					var is_free_check = $("#is_free_off").is(":checked");
-					var error_message = "";
 					//alert($.isNumeric(price_value_lower));
 					//return false;
 					//alert(error_message);
+					shipping_charge_error_message = "";
 					if(is_free_check)
 					{
 						if(price_value_lower == "" || !$.isNumeric(price_value_lower))
-							error_message = error_message.concat("Shipping charge lower limit is blank");
+							shipping_charge_error_message = shipping_charge_error_message.concat(shipping_charge_lower_limit_error1);
 						else if(price_value_lower < 0)
-							error_message = error_message.concat("Shipping charge lower limit should not negative");
+							shipping_charge_error_message = shipping_charge_error_message.concat(shipping_charge_lower_limit_error2);
 						else if(price_value_upper == "" || !$.isNumeric(price_value_upper))
-							error_message = error_message.concat("Shipping charge upper limit is blank");
+							shipping_charge_error_message = shipping_charge_error_message.concat(shipping_charge_upper_limit_error1);
 						else if(price_value_upper < 0)
-							error_message = error_message.concat("Shipping charge upper limit should not negative");
+							shipping_charge_error_message = shipping_charge_error_message.concat(shipping_charge_upper_limit_error2);
 						else if (parseFloat(price_value_upper) < parseFloat(price_value_lower))
-							error_message = error_message.concat("Shipping charge upper limit should not less than lower limit");
+							shipping_charge_error_message = shipping_charge_error_message.concat(shipping_charge_limit_error);
 						else if (parseFloat(price_value_upper) === parseFloat(price_value_lower))
-							error_message = error_message.concat("Shipping charge lower limit and upper limit should not equal");
+							shipping_charge_error_message = shipping_charge_error_message.concat(shipping_charge_limit_equal_error);
 						
 					}
 					
-					if(error_message == "")
+					if(shipping_charge_error_message == "")
 					{
 						$('.button_click').attr('value','next');
 						$('#step_carrier_pricezone').submit();
 					}
 					else
 					{
-						alert(error_message);
+						alert(shipping_charge_error_message);
 						return false;
 					}
 				}
@@ -208,7 +219,7 @@
 			if ($(this).width() > 125 || $(this).height() > 125)
 			{
 				$('#testImg').css('display', 'none');
-				alert("Invalid logo size "+$(this).width()+'*'+$(this).height());
+				alert(invalid_logo_size_error+$(this).width()+'*'+$(this).height());
 				$("#shipping_logo").attr('value','');
 				$(".filename").text('No file selected');
 				$('#testImg').attr('src', '');
@@ -288,7 +299,7 @@
 						$('#impact_price_block').css('display','block');
 						$('#newbody').fadeIn(1000);
 					} else {
-						alert("no range available");
+						alert(no_range_available_error);
 					}
 				},
 				error: function(xhr, status, error) {
@@ -839,3 +850,12 @@ function enableTextField(checkbox_obj)
 	else
 		$(text_id).attr('disabled', 'disabled');
 }
+$(document).ready(function(){
+	$("input[name='shipping_handling']").on('change',function(){
+		if($("#shipping_handling_on").is(":checked"))
+			$("#shipping_handling_charge").show();
+		else
+			$("#shipping_handling_charge").hide();
+	});
+	$("#shipping_handling_charge").hide();
+});

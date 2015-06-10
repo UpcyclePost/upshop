@@ -84,7 +84,7 @@
 									<tr class="even">
 										<td><a class="btn btn-default button button-small" href="{$link->getModuleLink('marketplace','marketplaceaccount',['flag'=>1,'shop'=>{$id_shop|escape:'html':'UTF-8'},'l'=>6,id_order=>{$dashboard[$i]['id_order']|escape:'html':'UTF-8'}])|escape:'html':'UTF-8'}"><span>View</span></a></td>
 										<td>{$dashboard[$i]['ref']|escape:'html':'UTF-8'}</td>
-										<td><span class="nobr">{$dashboard[$i]['date_add']|escape:'html':'UTF-8'}</span></td>
+										<td><span class="nobr">{$dashboard[$i]['date_add']|date_format:"%D %l:%M %p"|escape:'html':'UTF-8'}</span></td>
 										<!-- <td>{$dashboard[$i]['name']|escape:'html':'UTF-8'}</td> -->
 										<td>{$order_by_cus[$i]['firstname']|escape:'html':'UTF-8'}</td>
 										<td><span class="price">{$currency->prefix}{$dashboard[$i]['total_price']|string_format:"%.2f"}{$currency->suffix}</span></td>
@@ -628,7 +628,7 @@
 								{/if}
 										<td><a class="btn btn-default button button-small" href="{$link->getModuleLink('marketplace','marketplaceaccount',['flag'=>1,'shop'=>{$id_shop|escape:'html':'UTF-8'},'l'=>6,id_order=>{$dashboard[$i]['id_order']|escape:'html':'UTF-8'}])|escape:'html':'UTF-8'}"><span>View</span></a></td>
 										<td>{$dashboard[$i]['ref']|escape:'html':'UTF-8'}</td>
-										<td><span class="nobr">{$dashboard[$i]['date_add']|escape:'html':'UTF-8'}</span></td>
+										<td><span class="nobr">{$dashboard[$i]['date_add']|date_format:"%D %l:%M %p"|escape:'html':'UTF-8'}</span></td>
 										<td>{$order_by_cus[$i]['firstname']|escape:'html':'UTF-8'}</td>
 										<td><span class="price">{$currency->prefix}{$dashboard[$i]['total_price']|string_format:"%.2f"}{$currency->suffix}</span></td>
 										<td><em>{$dashboard[$i]['order_status']|escape:'html':'UTF-8'}</em></td>
