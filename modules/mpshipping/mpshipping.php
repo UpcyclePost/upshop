@@ -16,7 +16,9 @@
 			$this->author = 'Webkul';
 			$this->need_instance = 1;
 			$this->dependencies = array('marketplace');
+			$this->bootstrap = true;
 			parent::__construct();
+
 			$this->displayName = $this->l('Marketplace Seller Shipping');
 			$this->description = $this->l('Provide seller to create their own shipping method');
 		}
@@ -540,6 +542,15 @@
 			}
 		}
 
+		private function _postProcess()
+	    {
+	        if (Tools::isSubmit('btnSubmit'))
+	            Configuration::updateValue('MP_SHIPPING_ADMIN_APPROVE', Tools::getValue('MP_SHIPPING_ADMIN_APPROVE'));
+
+	        $module_config = $this->context->link->getAdminLink('AdminModules');
+	        Tools::redirectAdmin($module_config.'&configure='.$this->name.'&tab_module='.$this->tab.'&module_name='.$this->name.'&conf=4');
+	    }
+
 		public function getContent()
 		{
 			$link = new Link();
@@ -547,8 +558,90 @@
 								 'admin_mpshipping_url' => $link->getAdminLink('AdminMpsellershipping'));
 
 			$this->context->smarty->assign($smarty_vars);
-			return $this->display(__FILE__, './views/templates/admin/admin.tpl');
+
+			if (Tools::isSubmit('btnSubmit'))
+                $this->_postProcess();
+
+			$this->_html = $this->renderForm();
+			$this->_html .= '<br>';
+			$this->_html .= $this->display(__FILE__, './views/templates/admin/admin.tpl');
+
+			return $this->_html;
+			// return $this->display(__FILE__, './views/templates/admin/admin.tpl');
 		}
+
+		public function renderForm()
+	    {
+	    	// Get default language
+	    	$default_lang = (int)Configuration::get('PS_LANG_DEFAULT');
+	        $fields_form[0]['form'] = array(
+                'legend' => array(
+                    'title' => $this->l('Configuration'),
+                    'icon' => 'icon-cogs'
+                ),
+                'input' => array(
+                    array(
+                        'type' => 'switch',
+                        'label' => $this->l('Carrier request need to be approved by admin'),
+                        'name' => 'MP_SHIPPING_ADMIN_APPROVE',
+                        'required' => false,
+                        'class' => 't',
+                        'is_bool' => true,
+                        'values' => array(
+                            array(
+                                'id' => 'active_on',
+                                'value' => 1,
+                                'label' => $this->l('Enabled')
+                            ),
+                            array(
+                                'id' => 'active_off',
+                                'value' => 0,
+                                'label' => $this->l('Disabled')
+                            )
+                        ),
+                        'hint' => $this->l('If No, marketplace carrier request is atomatically approved.')
+                    ),
+                ),
+                'submit' => array(
+                    'title' => $this->l('Save'),
+                )
+        	);
+
+	        $helper = new HelperForm();
+
+	        // Module, token and currentIndex
+	        $helper->module = $this;
+	        $helper->name_controller = $this->name;
+	        $helper->token = Tools::getAdminTokenLite('AdminModules');
+	        $helper->currentIndex = AdminController::$currentIndex.'&configure='.$this->name.'&tab_module='.$this->tab.'&module_name='.$this->name;
+
+	        // Title and toolbar
+	        $helper->title = $this->displayName;
+	        $helper->show_toolbar = true;
+	        $helper->submit_action = 'btnSubmit';
+	        $helper->table = $this->table;
+	        $helper->identifier = $this->identifier;
+
+	        //Language
+	        $helper->default_form_language = $default_lang;
+	        $helper->allow_employee_form_lang = $default_lang;
+
+	        //$this->fields_form = array();
+	        $helper->tpl_vars = array(
+	            'fields_value' => $this->getConfigFieldsValues(),
+	            'languages' => $this->context->controller->getLanguages(),
+	            'id_language' => $this->context->language->id
+	        );
+
+	        return $helper->generateForm($fields_form);
+	    }
+
+	    public function getConfigFieldsValues()
+	    {
+	        return array(
+	            'MP_SHIPPING_ADMIN_APPROVE' => Tools::getValue('MP_SHIPPING_ADMIN_APPROVE', Configuration::get('MP_SHIPPING_ADMIN_APPROVE')),
+	        );
+	    }
 
 		public function hookActionProductSave($params)
 		{

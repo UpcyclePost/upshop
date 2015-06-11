@@ -60,7 +60,7 @@
 					</div>
 					<div class="row">
 						<div class="col-sm-3">
-							<p class="pro_sub_text">{l s='Processing Time' mod='mpshipping'}</p>
+							<p class="pro_sub_text">{l s='Processing Times' mod='mpshipping'}</p>
 						</div>
 						<div class="col-sm-9">
 							<input type="hidden" name="transit_time" id="ship_transit_time" {if isset($mp_shipping_id)}value="{$transit_delay}"{else}value="{l s='Ready To Ship In' mod='mpshipping'}"{/if}>
@@ -77,10 +77,10 @@
 								</button>
 								<ul class="dropdown-menu width-100" role="menu" aria-labelledby="dropdownMenu1">
 									<li role="presentation"><a role="menuitem" class="tran_val" tabindex="-1" href="#">{l s='Ready To Ship In' mod='mpshipping'}</a></li>
-									<li role="presentation"><a role="menuitem" class="tran_val" tabindex="-1" href="#">{l s='1 Bussiness day' mod='mpshipping'}</a></li>
-									<li role="presentation"><a role="menuitem" class="tran_val" tabindex="-1" href="#">{l s='1-2 Bussiness day' mod='mpshipping'}</a></li>
-									<li role="presentation"><a role="menuitem" class="tran_val" tabindex="-1" href="#">{l s='1-3 Bussiness day' mod='mpshipping'}</a></li>
-									<li role="presentation"><a role="menuitem" class="tran_val" tabindex="-1" href="#">{l s='3-5 Bussiness day' mod='mpshipping'}</a></li>
+									<li role="presentation"><a role="menuitem" class="tran_val" tabindex="-1" href="#">{l s='1 Business day' mod='mpshipping'}</a></li>
+									<li role="presentation"><a role="menuitem" class="tran_val" tabindex="-1" href="#">{l s='1-2 Business days' mod='mpshipping'}</a></li>
+									<li role="presentation"><a role="menuitem" class="tran_val" tabindex="-1" href="#">{l s='1-3 Business days' mod='mpshipping'}</a></li>
+									<li role="presentation"><a role="menuitem" class="tran_val" tabindex="-1" href="#">{l s='3-5 Business days' mod='mpshipping'}</a></li>
 									<li role="presentation"><a role="menuitem" class="tran_val" tabindex="-1" href="#">{l s='1-2 Weeks' mod='mpshipping'}</a></li>
 									<li role="presentation"><a role="menuitem" class="tran_val" tabindex="-1" href="#">{l s='2-3 Weeks' mod='mpshipping'}</a></li>
 									<li role="presentation"><a role="menuitem" class="tran_val" tabindex="-1" href="#">{l s='3-4 Weeks' mod='mpshipping'}</a></li>
@@ -96,7 +96,7 @@
 			<div class="row no_margin margin-top-25">
 				<div class="col-sm-12">
 					<h2 class="text-capitalize pro_head_text">{l s='Shipping Costs' mod='mpshipping'}</h2>
-					<span>{l s='Add the countries you will ship to, the costs adn upgrades you offer' mod='mpshipping'}.</span>
+					<span>{l s='Add the countries you will ship to, the costs and upgrades you offer' mod='mpshipping'}.</span>
 					<div class="row margin-top-30">
 						<div class="col-sm-3">
 							<p class="pro_sub_text">{l s='Shipping costs' mod='mpshipping'}</p>
@@ -153,7 +153,7 @@
 			</div>
 			
 			<div class="col-sm-12">
-				<button type="submit" class="btn btn-primary pull-right ship_save_btn"> {l s='save' mod='mpshipping'} </button>
+				<button type="submit" class="btn btn-primary pull-right ship_save_btn"> {l s=' save ' mod='mpshipping'} </button>
 			</div>
 			
 		</form>
