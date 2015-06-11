@@ -1,10 +1,4 @@
 ﻿<style type="text/css">
-.page-title{
-	background-color: {$title_bg_color|escape:'html':'UTF-8'} !important;
-}
-.page-title span{
-	color: {$title_text_color|escape:'html':'UTF-8'} !important;
-}
 .color_one {
 	float:left;
 	width:100%;
@@ -43,8 +37,8 @@
 	{capture name=path}{l s='My Dashboard'}{/capture}
 	<div class="dashboard_content">
 			<div class="dashboard">
-				<div class="page-title">
-					<span>{l s='My Dashboard' mod='marketplace'}</span>
+				<div class="page-title login-panel-header">
+					<h1>{l s='My Dashboard' mod='marketplace'}</h1>
 				</div>
 				<div class="wk_right_col">
 				<div class="left full">
@@ -202,8 +196,8 @@
 			<p class="alert alert-danger">{$stripe_error}</p>
 		{/if}
 		<div class="dashboard">
-			<div class="page-title">
-				<span>{l s='Edit Seller Profile' mod='marketplace'}</span>
+			<div class="page-title login-panel-header">
+				<h1>{l s='Edit Seller Profile' mod='marketplace'}</h1>
 			</div>
 			<div class="wk_right_col">
 				<div class="profile_content">
@@ -270,17 +264,13 @@
 									  {hook h='displayMpUpdateSellerProfileHeaderhook'}
 									</div>
 								</div>
-								<div class="required form-group">	
-									<label for="update_seller_name" class="control-label required">{l s='Seller Name' mod='marketplace'}</label>
-									<input class="required form-control" type="text" value="{$marketplace_seller_info['seller_name']|escape:'html':'UTF-8'}" name="update_seller_name" id="update_seller_name"/>
-								</div>
+								<p><sup style="color:#f00;">*</sup> {l s='Required field' mod='marketplace'}</p>
+								<input class="required form-control" type="hidden" value="{$marketplace_seller_info['seller_name']|escape:'html':'UTF-8'}" name="update_seller_name" id="update_seller_name"/>
+								<input class="required form-control" type="hidden" value="{$marketplace_seller_info['business_email']|escape:'html':'UTF-8'}" name="update_business_email" id="update_business_email"/>
+
 								<div class="required form-group">
 									<label for="update_shop_name" class="control-label required">{l s='Shop Name' mod='marketplace'}</label>
 									<input class="required form-control" type="text" value="{$marketplace_seller_info['shop_name']|escape:'html':'UTF-8'}" name="update_shop_name" id="update_shop_name"/>
-								</div>
-								<div class="required form-group">
-									<label for="update_business_email" class="control-label required">{l s='Business email' mod='marketplace'}</label>
-									<input class="required form-control" type="text" value="{$marketplace_seller_info['business_email']|escape:'html':'UTF-8'}" name="update_business_email" id="update_business_email"/>
 								</div>
 								<div class="required form-group">
 									<label for="update_phone" class="control-label required">{l s='Phone' mod='marketplace'}</label>
@@ -290,8 +280,8 @@
 									<label for="update_address" class="control-label">{l s='Address' mod='marketplace'}</label>
 									<textarea class="required form-control"  name="update_address" id="update_address">{$marketplace_address|escape:'html':'UTF-8'}</textarea>
 								</div>
-                                 <fieldset style="border:2px dotted #999;padding:10px;margin-bottom:10px">
-                                <legend style="border: 1px solid #999;padding: 8px;background: #fbfbfb;width:auto;"><i class="icon-money"></i>&nbsp;{l s='So that we can get you your money' mod='marketplace'} <font color="{if $stripestatus==verified}green{else}orange{/if}">{if $stripestatus!=''}({$stripestatus}){/if}</font></legend>
+                                 <fieldset style="">
+                                <legend style="border: 1px solid #999;padding: 8px;background: #fbfbfb;width:auto;"><i class="icon-money"></i>&nbsp;{l s='Banking Info' mod='marketplace'} <font color="{if $stripestatus==verified}green{else}orange{/if}">{if $stripestatus!=''}({$stripestatus}){/if}</font></legend>
                                  <div id="bank" class="form-group" >
                                     <label for="bank" class="control-label required">{l s='Bank Account Number' mod='marketplace'} {if $bank_data.bank_name!=''}({$bank_data.bank_name}){/if}</label>
                                     <input class="reg_sel_input form-control"  type="text" name="bank" id="bank" value="{if $bank_data.last4!=''}********{$bank_data.last4}{/if}" />
@@ -357,8 +347,8 @@
 				{else if $is_edited == 1}
 					<p class="alert alert-success">{l s='Updated Successful' mod='marketplace'}</p>
 				{/if}
-				<div class="page-title">
-					<span>{l s='Product List' mod='marketplace'}</span>
+				<div class="page-title login-panel-header">
+					<h1>{l s='Product List' mod='marketplace'}</h1>
 				</div>
 				<div class="wk_right_col">
 					<!-- sorting code start -->
@@ -594,8 +584,8 @@
 
 		<div class="dashboard_content">
 		<div class="dashboard">
-			<div class="page-title">
-				<span>{l s='My Orders' mod='marketplace'}</span>
+			<div class="page-title login-panel-header">
+				<h1>{l s='My Orders' mod='marketplace'}</h1>
 			</div>
 			<div class="wk_right_col">
 				<div class="box-account box-recent">
@@ -640,6 +630,7 @@
 				</div>
 				</div>
 				</div>
+				<!--
 				<div class="box-account box-recent">
 					<div class="box-head">
 						<h2>{l s='Customer Feedback' mod='marketplace'}</h2>
@@ -659,6 +650,7 @@
 					{/while}
 					</div>
 				</div>
+				-->
 			</div>
 		</div>
 		</div>
@@ -697,8 +689,8 @@
 
 	<div class="dashboard_content">
 		<div class="dashboard">
-			<div class="page-title">
-				<span>{l s='Payment Details' mod='marketplace'}</span>
+			<div class="page-title login-panel-header">
+				<h1>{l s='Payment Details' mod='marketplace'}</h1>
 			</div>
 			<div class="wk_right_col">
 				<form action="{$payPro_link|escape:'html':'UTF-8'}&pay=1" method="post" class="contact-form-box" enctype="multipart/form-data" id="pay_form" accept-charset="UTF-8,ISO-8859-1,UTF-16">
@@ -776,8 +768,8 @@
         {/capture}
 	<div class="dashboard_content">
 		<div class="dashboard">
-			<div class="page-title">
-				<span>{l s='Order Details' mod='marketplace'}</span>		
+			<div class="page-title login-panel-header">
+				<h1>{l s='Order Details' mod='marketplace'}</h1>		
 			</div>
 			<div class="wk_right_col">
 				<div class="box-account box-recent">

@@ -11,6 +11,7 @@
 </style>
 {if !empty($mp_shipping_data)}
 <div class="shipping_div">
+	<!--
 	<div class="form-group">
 		<div>
 			<label>{l s='Package width :' mod='mpshipping'}</label>
@@ -48,12 +49,13 @@
 		  	<input id="weight" type="text" class="form-control" onkeyup="if (isArrowKey(event)) return ;this.value = this.value.replace(/,/g, '.');" value="{$weight}" name="weight" maxlength="14">
 		</div>		
 	</div>
+	-->
 	<div class="form-group">
 		<div>
 			<label class="add_one">{l s='Carriers' mod='mpshipping'}</label>
 		</div>
 		<div class="input-group">
-			<select id="carriers_restriction" style="height:100px;width:300px;" size="4" multiple="multiple" name="carriers[]">
+			<select id="carriers_restriction" style="height:75px;width:300px;" size="4" multiple="multiple" name="carriers[]">
 
 				{foreach $mp_shipping_data as $shipping_data}
 				{if !empty($mp_shipping_product_map_details)}

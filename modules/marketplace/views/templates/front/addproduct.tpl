@@ -118,8 +118,8 @@ $(document).ready(function() {
 <div class="main_block">
 {hook h="DisplayMpmenuhook"}
 <div class="dashboard_content">
-	<div class="page-title">
-		<span>{l s='Add Product' mod='marketplace'}</span>
+	<div class="page-title login-panel-header">
+		<h1>{l s='Add Product' mod='marketplace'}</h1>
 	</div>
 	<div class="wk_right_col">
 		<ul class="nav nav-tabs">

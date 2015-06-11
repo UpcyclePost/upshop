@@ -10,7 +10,7 @@
 <span class="navigation_page">{l s='Product Details' mod='marketplace'}</span>
 {/capture}
 <div class="main_block">
-{hook h="DisplayMpmenuhook"}
+{hook h="DisplayMpmenuhook"} 
 	<div class="dashboard_content">
 		<div class="page-title">
 			<span>{l s='Product Details' mod='marketplace'}</span>

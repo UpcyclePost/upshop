@@ -39,8 +39,6 @@ header .nav, #languages-block-top ul, #currencies-block-top ul, #currencies-bloc
     border-right-color: #ffffff;
 }
 
-
-
 #contact-link a:hover, #contact-link a.active, #languages-block-top ul li.selected, #languages-block-top ul li:hover a, #currencies-block-top ul li.selected, #currencies-block-top ul li:hover a{
     background: #89c226 !important;
 }

@@ -8,7 +8,7 @@
 {else}
 	<li>
 		<span>
-			<a title="Mp Shipping" href="{$sellershippinglist}" target="_blank">
+			<a title="Mp Shipping" href="{$sellershippinglist}">
 				{l s='Shipping Method' mod='mpshipping'}
 			</a>
 		</span>

@@ -10,7 +10,6 @@ font-size:13px;
 .seller_registration_form {
 	float: left;
     font-family: inherit;
-    font-size: 13px;
     width: 100%;
     margin-top: 9px;
 }
@@ -56,11 +55,19 @@ font-size:13px;
     font-weight: normal;
 }
 .wk_right_col {
-    border: 1px solid #D5D5D5;
+    border-right: 1px solid #D5D5D5;
+    border-left: 1px solid #D5D5D5;
+    border-bottom: 1px solid #D5D5D5;    
     float: left;
     padding: 15px;
     width: 100%;
     background-color: #fff;
+    -webkit-border-radius: 0 0 6px 6px;
+    -webkit-background-clip: padding-box;
+    -moz-border-radius: 0 0 6px 6px;
+    -moz-background-clip: padding;
+    border-radius: 0 0 6px 6px;
+    background-clip: padding-box;    
 }
 
 .reg_sel_lab {
