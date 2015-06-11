@@ -1,3 +1,24 @@
+<style>
+.wk_right_col{
+	background: #fff;
+	padding: 15px;
+}
+.btn-default {
+  color: #555;
+  background-color: #fff;
+  border-color: #555;
+}	
+	
+</style>
+
+{capture name=path}
+<a href="{$link->getModuleLink('marketplace', 'marketplaceaccount')|addslashes}">
+        {l s='My Dashboard'}
+</a>
+<span class="navigation-pipe">{$navigationPipe}</span>
+<span class="navigation_page">{l s='Create Shipping Profile' mod='marketplace'}</span>
+{/capture}
+
 <div class="error wizard_error" {if $is_main_error==-1}style="display:none;"{/if}>
 	{if $is_main_error==1}
 		<div class="alert alert-danger">
@@ -39,15 +60,17 @@
 </div>
 <div class="row">
 	<div class="col-sm-12">
-		<form method="POST" action="{$link->getModuleLink('mpshipping', 'wkshippingprocess')|escape:'html':'UTF-8'}">
-			{if isset($mp_shipping_id)}
-				<input type="hidden" value="{$mp_shipping_id}" name="mpshipping_id">
-			{/if}
-			<div class="row no_margin heading_cont">
-				<p class="text-capitalize heading_text">{l s='Create Shipping Profile' mod='mpshipping'}</p>
-			</div>
-			<div class="row no_margin margin-top-25">
+	<div class="container">
+		<div class="page-title login-panel-header">
+			<h1>{l s='Create Shipping Profile' mod='mpshipping'}</h1>
+		</div>
+		<div class="wk_right_col">
+			<div class="row no_margin">
 				<div class="col-sm-12">
+				<form method="POST" action="{$link->getModuleLink('mpshipping', 'wkshippingprocess')|escape:'html':'UTF-8'}">
+					{if isset($mp_shipping_id)}
+						<input type="hidden" value="{$mp_shipping_id}" name="mpshipping_id">
+					{/if}
 					<h2 class="text-capitalize pro_head_text">{l s='Profile Details' mod='mpshipping'}</h2>
 					<span>{l s='Manually set your shipping rates' mod='mpshipping'}</span>
 					<div class="row margin-top-30">
@@ -55,7 +78,7 @@
 							<p class="pro_sub_text">{l s='Profile Name' mod='mpshipping'}</p>
 						</div>
 						<div class="col-sm-9">
-							<input type="text" class="form-control color-black" name="shipping_name" {if isset($mp_shipping_id)}value="{$mp_shipping_name}"{/if}>
+							<input type="text" class="form-control" name="shipping_name" {if isset($mp_shipping_id)}value="{$mp_shipping_name}"{/if}>
 						</div>
 					</div>
 					<div class="row">
@@ -65,7 +88,7 @@
 						<div class="col-sm-9">
 							<input type="hidden" name="transit_time" id="ship_transit_time" {if isset($mp_shipping_id)}value="{$transit_delay}"{else}value="{l s='Ready To Ship In' mod='mpshipping'}"{/if}>
 							<div class="dropdown">
-								<button class="btn btn-default dropdown-toggle width-100 delay_dropd" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-expanded="true">
+								<button class="width-100" type="button" id="dropdownMenu1" data-toggle="dropdown">
 									<span class="ship_trans_text pull-left">
 										{if (isset($mp_shipping_id) && $transit_delay)}
 											{$transit_delay}
@@ -79,13 +102,8 @@
 									<li role="presentation"><a role="menuitem" class="tran_val" tabindex="-1" href="#">{l s='Ready To Ship In' mod='mpshipping'}</a></li>
 									<li role="presentation"><a role="menuitem" class="tran_val" tabindex="-1" href="#">{l s='1 Business day' mod='mpshipping'}</a></li>
 									<li role="presentation"><a role="menuitem" class="tran_val" tabindex="-1" href="#">{l s='1-2 Business days' mod='mpshipping'}</a></li>
-									<li role="presentation"><a role="menuitem" class="tran_val" tabindex="-1" href="#">{l s='1-3 Business days' mod='mpshipping'}</a></li>
 									<li role="presentation"><a role="menuitem" class="tran_val" tabindex="-1" href="#">{l s='3-5 Business days' mod='mpshipping'}</a></li>
 									<li role="presentation"><a role="menuitem" class="tran_val" tabindex="-1" href="#">{l s='1-2 Weeks' mod='mpshipping'}</a></li>
-									<li role="presentation"><a role="menuitem" class="tran_val" tabindex="-1" href="#">{l s='2-3 Weeks' mod='mpshipping'}</a></li>
-									<li role="presentation"><a role="menuitem" class="tran_val" tabindex="-1" href="#">{l s='3-4 Weeks' mod='mpshipping'}</a></li>
-									<li role="presentation"><a role="menuitem" class="tran_val" tabindex="-1" href="#">{l s='4-6 Weeks' mod='mpshipping'}</a></li>
-									<li role="presentation"><a role="menuitem" class="tran_val" tabindex="-1" href="#">{l s='6-8 Weeks' mod='mpshipping'}</a></li>
 								</ul>
 							</div>
 						</div>
@@ -96,7 +114,6 @@
 			<div class="row no_margin margin-top-25">
 				<div class="col-sm-12">
 					<h2 class="text-capitalize pro_head_text">{l s='Shipping Costs' mod='mpshipping'}</h2>
-					<span>{l s='Add the countries you will ship to, the costs and upgrades you offer' mod='mpshipping'}.</span>
 					<div class="row margin-top-30">
 						<div class="col-sm-3">
 							<p class="pro_sub_text">{l s='Shipping costs' mod='mpshipping'}</p>
@@ -106,18 +123,19 @@
 								<div class="table-responsive ship_prim_cont">
 									<table class="table">
 										<tr class="ship_tb_head">
-											<th class="color-black">{l s='Ship To' mod='mpshipping'}</th>
-											<th class="color-black">{l s='Cost' mod='mpshipping'}</th>
+											<th class="">{l s='Ship To' mod='mpshipping'}</th>
+											<th class="">{l s='Cost' mod='mpshipping'}</th>
 										</tr>
 										<tr>
 											<td class="color-black">{l s='North America' mod='mpshipping'}</td>
 											<td>
 												<div class="input-group input-group-sm">
 													<span class="input-group-addon" id="sizing-addon1">{$currency_details['sign']}</span>
-													<input type="text" class="form-control ship_cost color-black" name="n_america_ship" {if isset($mp_shipping_id)}value="{$price_by_range[$ranges['0']['id_range']]['2']}"{/if} aria-describedby="sizing-addon1">
+													<input type="text" class="form-control ship_cost" name="n_america_ship" {if isset($mp_shipping_id)}value="{$price_by_range[$ranges['0']['id_range']]['2']}"{/if} aria-describedby="sizing-addon1">
 												</div>
 											</td>
 										</tr>
+										<!--
 										<tr>
 											<td class="color-black">{l s='Everywhere Else' mod='mpshipping'}</td>
 											<td>
@@ -127,6 +145,7 @@
 												</div>
 											</td>
 										</tr>
+										-->
 									</table>
 								</div>
 							</div>
@@ -136,26 +155,34 @@
 
 				<div class="row no_margin margin-top-30">
 					<div class="col-sm-3">
-						<span class="pro_sub_text color-black">{l s='Tracking URL' mod='mpshipping'}</span>
+						<span class="pro_sub_text">{l s='Tracking URL' mod='mpshipping'}</span>
 					</div>
 					<div class="col-sm-9">
 						<input type="text" class="form-control color-black" name="tracking_url" {if isset($mp_shipping_id)}value="{$tracking_url}"{/if}>
-						<p><em>{l s="For example: 'http://exampl.com/track.php?num=@' with '@' where the tracking number should appear" mod="mpshipping"}. <em></p>
+						<p><em>{l s="For example: 'http://example.com/track.php?num=@' with '@' where the tracking number should appear" mod="mpshipping"}. <em></p>
+						<p><label for="usps-track">{l s="USPS : " mod="mpshipping"}</label>&nbsp;<span name="usps-track">{l s="https://www.usps.com/search.htm?q=@" mod="mpshipping"}</span></p>
+						<p><label for="fedex-track">{l s="Fedex : " mod="mpshipping"}</label>&nbsp;<span name="fedex-track">{l s="https://www.fedex.com/apps/fedextrack/?cntry_code=us&tracknumbers=@" mod="mpshipping"}</span></p>
+						<p><label for="ups-track">{l s="USPS : " mod="mpshipping"}</label>&nbsp;<span name="ups-track">{l s="https://wwwapps.ups.com/WebTracking/processInputRequest?AgreeToTermsAndConditions=yes&loc=en_US&tracknum=@" mod="mpshipping"}</span></p>
 					</div>
 				</div>
 
 				<div class="row no_margin margin-top-30">
-					<div class="col-sm-12">
+					<div class="col-sm-3">
 						<span class="pro_sub_text">{l s='Shipping Policies' mod='mpshipping'}</span>
-						<textarea class="form-control color-black" name="ship_policy">{if isset($mp_shipping_id)}{$shipping_policy}{/if}</textarea>
+					</div>
+					<div class="col-sm-9">			
+						<textarea class="form-control" name="ship_policy">{if isset($mp_shipping_id)}{$shipping_policy}{/if}</textarea>
 					</div>
 				</div>
+				<div class="col-sm-12"  style="text-align:center;padding-top:10px;">
+					<button type="submit" id="seller_save" class="btn btn-default button button-medium">
+						<span>{l s=' Save ' mod='mpshipping'}&nbsp;<i class="icon-chevron-right "></i></span>			
+					</button>
+				</div>
+				</form>
 			</div>
-			
-			<div class="col-sm-12">
-				<button type="submit" class="btn btn-primary pull-right ship_save_btn"> {l s=' save ' mod='mpshipping'} </button>
-			</div>
-			
-		</form>
+		</div>
+	</div>
+
 	</div>
 </div>

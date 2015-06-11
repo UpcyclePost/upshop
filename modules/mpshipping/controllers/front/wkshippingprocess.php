@@ -9,6 +9,7 @@
 			$link = new Link();
 
 			$my_account_link = $link->getPageLink('my-account');
+			
 			$id_customer = $this->context->cookie->id_customer;
 			if ($id_customer) 
 			{
@@ -88,7 +89,8 @@
 							$addnewshipping_link = $link->getModuleLink('mpshipping','addnewshipping',$params);
 							Tools::redirect($addnewshipping_link);
 						}
-						if(!Validate::isPrice($north_america_ship) || !Validate::isPrice($else_ship))
+						//if(!Validate::isPrice($north_america_ship) || !Validate::isPrice($else_ship))
+						if(!Validate::isPrice($north_america_ship))
 						{
 							if ($mp_id_shippping)
 								$params = array('is_main_error'=>'6', 'id_shipping' => $mp_id_shippping);

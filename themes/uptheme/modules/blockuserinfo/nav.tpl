@@ -49,10 +49,11 @@
 				</ul>
 			</div>
 		{/if}
-
+		{if !$PS_CATALOG_MODE}
 		<div class="pull-right text-center cart">
 			<a style="margin: 0; padding: 0" href="/shop/quick-order"><i class="fa fa-fw fa-shopping-cart"></i><br>Cart{if $cart_qties > 0}<span class="items">{$cart_qties}</span>{/if}</a>
 		</div>
+		{/if}
 	</div>
 	<a class="slide-menu fa fa-bars hidden-lg hidden-md" href="#mobile-slide-menu"></a>
 	<!-- <a href="{$link->getPageLink('my-account', true)|escape:'html':'UTF-8'}" title="{l s='View my customer account' mod='blockuserinfo'}" class="account" rel="nofollow"><span>You</span></a> -->
