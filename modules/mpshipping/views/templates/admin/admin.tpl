@@ -12,17 +12,24 @@
         </div>
     </div>
 
-	<form action="{$smarty.server.REQUEST_URI|escape:'htmlall'}" method="post">
-        <fieldset>
-        	<legend><img src="../img/admin/contact.gif" alt="" title="" />{l s='Carrier Setting' mod='mpshipping'}</legend>
-            <table border="0" width="500" cellpadding="0" cellspacing="0">
-            <tr>
-                <td width="250" style="vertical-align: top;">{l s='Assign carriers to main products' mod='mpshipping'}</td>
-            </tr>
-			</table>
-            <input type="submit" name="mp_shipp_add" id="mp_shipp_add" value="{l s='Assign' mod='mpshipping'}" class="button" />
-            <img src="{$this_path|addslashes}img/loader.gif" class="loader" style="display:none;" alt="{l s='Loading' mod='mpshipping'}" title="{l s='Loading' mod='mpshipping'}" />
-        </fieldset>
+
+    <form action="{$smarty.server.REQUEST_URI|escape:'htmlall'}" method="post">
+        <div class="panel">
+            <div class="panel-heading"><i class="icon-cogs"></i> {l s='Carrier Setting' mod='mpshipping'}</div>
+            <div class="form-wrapper">
+                <div class="form-group" style="height: 5px;">
+                    <label class="control-label col-lg-3">
+                        <span title="" data-html="true" data-toggle="tooltip" class="label-tooltip" data-original-title="Assign carrier to products which are not from marketplace.">
+                            {l s='Assign carriers to main products' mod='mpshipping'}
+                        </span>
+                    </label>
+                    <div class="col-lg-9 ">
+                        <input type="submit" name="mp_shipp_add" id="mp_shipp_add" value="{l s='Assign' mod='mpshipping'}" class="button" />
+                        <img src="{$this_path|addslashes}img/loader.gif" class="loader" style="display:none;" alt="{l s='Loading' mod='mpshipping'}" title="{l s='Loading' mod='mpshipping'}" />
+                    </div>
+                </div>
+            </div><!-- /.form-wrapper -->
+        </div>
     </form>
 </div>
 

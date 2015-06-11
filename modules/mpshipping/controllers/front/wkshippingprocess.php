@@ -223,6 +223,30 @@
 							}
 						}
 
+						if (!$mp_id_shippping && !$is_ps_carrier) 
+						{
+							if (!Configuration::get('MP_SHIPPING_ADMIN_APPROVE')) 
+							{
+								$obj_mpshipping_method = new Mpshippingmethod($mpshipping_id);
+								$obj_mp_map = new Mpshippingmap();
+								$is_mapped = $obj_mp_map->isAllreadyMapByShippingID($mpshipping_id);
+								if(!$is_mapped) 
+								{
+									$obj_mpshipping_method->active = 1;
+									$obj_mpshipping_method->save();
+									$is_added = $obj_mpshipping_method->addToCarrier($mpshipping_id);
+									$obj_mp_map->mp_shipping_id	 = $mpshipping_id;
+									$obj_mp_map->ps_id_carriers	 = $is_added;
+									$obj_mp_map->save();
+									$img_dir = _PS_MODULE_DIR_.$this->module->name.'/img/logo/';
+									if(file_exists($img_dir.$mpshipping_id.'.jpg')) 
+									{
+										Tools::copy($img_dir.$mpshipping_id.'.jpg',_PS_IMG_DIR_.'s/'.$is_added.'.jpg');
+									}
+								}
+							}
+						}
+
 						if ($mp_id_shippping && $is_ps_carrier) 
 						{
 							$obj_mpshipping_del = new Mpshippingdelivery();
