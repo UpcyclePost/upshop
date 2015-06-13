@@ -17,16 +17,13 @@ a:hover {
     float: left;
     width: 100%;
     border-top: 0px;
-    border-right: 1px solid #D5D5D5;    
-    border-bottom: 1px solid #D5D5D5;
-    border-left: 1px solid #D5D5D5;
     padding: 15px;
     background: #fff;
-    -webkit-border-radius-bottom: 4px;
+    -webkit-border-radius: 0 0 4px 4px;
     -webkit-background-clip: padding-box;
-    -moz-border-radius-bottom: 4px;
+    -moz-border-radius: 0 0 4px 4px;
     -moz-background-clip: padding;
-    border-radius-bottom: 4px;
+    border-radius: 0 0 4px 4px;
     background-clip: padding-box;
     -webkit-box-shadow: 0 2px 2px rgba(0, 0, 0, .2), 0 0 1px 0 rgba(0, 0, 0, .1);
     -moz-box-shadow: 0 2px 2px rgba(0, 0, 0, .2), 0 0 1px 0 rgba(0, 0, 0, .1);
@@ -59,7 +56,7 @@ a:hover {
     font-size: 16px;
     padding: 10px;
     display: block;
-    text-transform: uppercase;
+    //text-transform: uppercase;
     background-color: #FBFBFB;
   }
   .menu_item ul li{
@@ -580,7 +577,6 @@ h1
   background-color: #0187d0;
   overflow:hidden;
   padding: 20px;
-  text-transform: uppercase;
 }
 .page-title span{
    font-size:20px;

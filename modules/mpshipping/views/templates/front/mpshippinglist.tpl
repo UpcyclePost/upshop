@@ -5,8 +5,11 @@
 <span class="navigation-pipe">{$navigationPipe}</span>
 <span class="navigation_page">{l s='Shipping Profiles' mod='marketplace'}</span>
 {/capture}
-<div class="shipping_list_container left">
-<div class="box-account box-recent">
+
+{hook h="DisplayMpmenuhook"}
+
+<div class="left col-sm-9">
+<div class="box-account box-recent login-panel">
 	<div class="login-panel-header">
 			<h1>{l s='Shipping Profiles' mod='mpshipping'}</h1>
 	</div>
@@ -15,16 +18,22 @@
 	<table class="data-table" style="width:90%;">
 		<thead>
 			<tr class="first last">
-			<th>{l s='Shipping Name' mod='mpshipping'}</th>
-			<th>{l s='Shipping Method' mod='mpshipping'}</th>
-			<th>{l s='Status' mod='mpshipping'}</th>
 			<th>{l s='Edit' mod='mpshipping'}</th>
+			<th>{l s='Shipping Profile' mod='mpshipping'}</th>
+			<th>{l s='Shipping Method' mod='mpshipping'}</th>
+			<th>{l s='Shipping time' mod='mpshipping'}</th>
+			<th>{l s='Delete' mod='mpshipping'}</th>
 			</tr>
 		</thead>
 		<tbody>
 			{if $mp_shipping_detail!=0}
 				{foreach $mp_shipping_detail as $mp_sp_det}
 					<tr class="even">
+						<td>
+							<a href="{$link->getModuleLink('mpshipping','addnewshipping',['shop'=>{$mp_id_shop},'id_shipping'=>{$mp_sp_det['id']}])}" id="shipping_basicedit" class="btn btn-default button button-small">
+								<span>{l s='Edit' mod='mpshipping'}</span>
+							</a>
+						</td>
 						<td>{$mp_sp_det['mp_shipping_name']}</td>
 						<td>
 							{if $mp_sp_det['is_free'] == 1}
@@ -38,21 +47,9 @@
 							{/if}
 						</td>
 						<td>
-							{if {$mp_sp_det['active']}==0}
-								{l s='Pending' mod='mpshipping'}
-							{else}
-								{l s='Active' mod='mpshipping'}
-							{/if}
+							{$mp_sp_det['transit_delay']}
 						</td>
 						<td>
-							<a href="{$link->getModuleLink('mpshipping','addnewshipping',['shop'=>{$mp_id_shop},'id_shipping'=>{$mp_sp_det['id']}])}" id="shipping_basicedit" style="color:blue;">
-								{l s='Basic edit' mod='mpshipping'}
-							</a>
-							{*&nbsp;&nbsp;
-							<a href="{$link->getModuleLink('mpshipping','impactpriceedit',['shop'=>{$mp_id_shop},'id_shipping'=>{$mp_sp_det['id']}])}" id="impact_edit" style="color:blue;">
-								{l s='Impact edit' mod='mpshipping'}
-							</a>*}
-							&nbsp;&nbsp;
 							<a href="{$link->getModuleLink('mpshipping','sellershippinglist',['shop'=>{$mp_id_shop},'id_shipping'=>{$mp_sp_det['id']},'delete'=>1])}" id="delete_shipping">
 								<img title="{l s='Delete' mod='mpshipping'}" src="{$img_ps_dir|escape:'html':'UTF-8'}admin/delete.gif"/>
 							</a>

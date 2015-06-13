@@ -60,19 +60,18 @@
 </div>
 <div class="row">
 	<div class="col-sm-12">
-	<div class="container">
+	<div class="container login-panel">
 		<div class="page-title login-panel-header">
 			<h1>{l s='Create Shipping Profile' mod='mpshipping'}</h1>
 		</div>
 		<div class="wk_right_col">
 			<div class="row no_margin">
 				<div class="col-sm-12">
-				<form method="POST" action="{$link->getModuleLink('mpshipping', 'wkshippingprocess')|escape:'html':'UTF-8'}">
+				<form method="POST" action="{$link->getModuleLink('mpshipping', 'wkshippingprocess')|escape:'html':'UTF-8'}" id="form_shipping">
 					{if isset($mp_shipping_id)}
 						<input type="hidden" value="{$mp_shipping_id}" name="mpshipping_id">
 					{/if}
 					<h2 class="text-capitalize pro_head_text">{l s='Profile Details' mod='mpshipping'}</h2>
-					<span>{l s='Manually set your shipping rates' mod='mpshipping'}</span>
 					<div class="row margin-top-30">
 						<div class="col-sm-3">
 							<p class="pro_sub_text">{l s='Profile Name' mod='mpshipping'}</p>
@@ -83,23 +82,22 @@
 					</div>
 					<div class="row">
 						<div class="col-sm-3">
-							<p class="pro_sub_text">{l s='Processing Times' mod='mpshipping'}</p>
+							<p class="pro_sub_text">{l s='Shipping Time' mod='mpshipping'}</p>
 						</div>
 						<div class="col-sm-9">
-							<input type="hidden" name="transit_time" id="ship_transit_time" {if isset($mp_shipping_id)}value="{$transit_delay}"{else}value="{l s='Ready To Ship In' mod='mpshipping'}"{/if}>
+							<input type="hidden" name="transit_time" id="ship_transit_time" {if isset($mp_shipping_id)}value="{$transit_delay}"{else}value="{l s='Select a value' mod='mpshipping'}"{/if}>
 							<div class="dropdown">
 								<button class="width-100" type="button" id="dropdownMenu1" data-toggle="dropdown">
 									<span class="ship_trans_text pull-left">
 										{if (isset($mp_shipping_id) && $transit_delay)}
 											{$transit_delay}
 										{else}
-											{l s='Ready To Ship In' mod='mpshipping'}
+											{l s='Select a value' mod='mpshipping'}
 										{/if}
 									</span>
 									<span class="caret pull-right delay_ddp_caret"></span>
 								</button>
 								<ul class="dropdown-menu width-100" role="menu" aria-labelledby="dropdownMenu1">
-									<li role="presentation"><a role="menuitem" class="tran_val" tabindex="-1" href="#">{l s='Ready To Ship In' mod='mpshipping'}</a></li>
 									<li role="presentation"><a role="menuitem" class="tran_val" tabindex="-1" href="#">{l s='1 Business day' mod='mpshipping'}</a></li>
 									<li role="presentation"><a role="menuitem" class="tran_val" tabindex="-1" href="#">{l s='1-2 Business days' mod='mpshipping'}</a></li>
 									<li role="presentation"><a role="menuitem" class="tran_val" tabindex="-1" href="#">{l s='3-5 Business days' mod='mpshipping'}</a></li>
@@ -159,10 +157,10 @@
 					</div>
 					<div class="col-sm-9">
 						<input type="text" class="form-control color-black" name="tracking_url" {if isset($mp_shipping_id)}value="{$tracking_url}"{/if}>
-						<p><em>{l s="For example: 'http://example.com/track.php?num=@' with '@' where the tracking number should appear" mod="mpshipping"}. <em></p>
+						<p><em>{l s="For example: with '@' where the tracking number should appear" mod="mpshipping"}. <em></p>
 						<p><label for="usps-track">{l s="USPS : " mod="mpshipping"}</label>&nbsp;<span name="usps-track">{l s="https://www.usps.com/search.htm?q=@" mod="mpshipping"}</span></p>
 						<p><label for="fedex-track">{l s="Fedex : " mod="mpshipping"}</label>&nbsp;<span name="fedex-track">{l s="https://www.fedex.com/apps/fedextrack/?cntry_code=us&tracknumbers=@" mod="mpshipping"}</span></p>
-						<p><label for="ups-track">{l s="USPS : " mod="mpshipping"}</label>&nbsp;<span name="ups-track">{l s="https://wwwapps.ups.com/WebTracking/processInputRequest?AgreeToTermsAndConditions=yes&loc=en_US&tracknum=@" mod="mpshipping"}</span></p>
+						<p><label for="ups-track">{l s="UPS : " mod="mpshipping"}</label>&nbsp;<span name="ups-track">{l s="https://wwwapps.ups.com/WebTracking/processInputRequest?AgreeToTermsAndConditions=yes&loc=en_US&tracknum=@" mod="mpshipping"}</span></p>
 					</div>
 				</div>
 
@@ -175,7 +173,11 @@
 					</div>
 				</div>
 				<div class="col-sm-12"  style="text-align:center;padding-top:10px;">
-					<button type="submit" id="seller_save" class="btn btn-default button button-medium">
+					<button type="cancel" class="button button-medium">
+						<span>{l s=' Cancel ' mod='mpshipping'}&nbsp;<i class="icon-remove"></i></span>			
+					</button>
+					&nbsp;&nbsp;&nbsp;
+					<button type="submit" id="seller_save" class="button button-medium">
 						<span>{l s=' Save ' mod='mpshipping'}&nbsp;<i class="icon-chevron-right "></i></span>			
 					</button>
 				</div>

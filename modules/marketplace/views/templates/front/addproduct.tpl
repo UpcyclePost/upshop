@@ -117,7 +117,7 @@ $(document).ready(function() {
 {hook h='DisplayMpaddproductheaderhook'}
 <div class="main_block">
 {hook h="DisplayMpmenuhook"}
-<div class="dashboard_content">
+<div class="dashboard_content login-panel">
 	<div class="page-title login-panel-header">
 		<h1>{l s='Add Product' mod='marketplace'}</h1>
 	</div>
@@ -137,23 +137,23 @@ $(document).ready(function() {
 					<div class="add_product_div">
 						<div class="form-group">	
 							<label for="product_name" class="control-label required">{l s='Product Name :' mod='marketplace'}</label>
-							<input type="text" id="product_name" name="product_name" value="{$c_mp_product_name|escape:'html':'UTF-8'}" class="form-control" />
+							<input type="text" id="product_name" name="product_name" value="{$c_mp_product_name|escape:'html':'UTF-8'}" class="form-control" placeholder="{l s='Enter product name' mod='marketplace'}"/>
 						</div>
 
 				        <div class="form-group">	
-							<label for="short_description" class="control-label">{l s='Short Description :' mod='marketplace'}</label>
+							<label for="short_description" class="control-label">{l s='Short Description :' mod='marketplace'}</label> Basic details
 							<textarea name="short_description" id="short_description" cols="2" rows="3" class="wk_tinymce form-control">{$c_mp_short_description|escape:'intval'}</textarea>
 						</div>
 
 						 <div class="form-group">	
-							<label for="product_description" class="control-label">{l s='Description :' mod='marketplace'}</label>
+							<label for="product_description" class="control-label">{l s='Long Description :' mod='marketplace'}</label> Provide more specifics for product page
 						  	<textarea class="wk_tinymce form-control" id="product_description" name="product_description" value="">{$c_mp_product_description|escape:'intval'}</textarea>
 						</div>
 
 						<div class="form-group">
 							<label for="product_price" class="control-label required">{l s='Price :' mod='marketplace'}</label>
 							<div class="input-group">
-						  		<input type="text" id="product_price" name="product_price" value="{$c_mp_product_price|escape:'html':'UTF-8'}"  class="account_input form-control"/>
+						  		<input type="text" id="product_price" name="product_price" value="{$c_mp_product_price|escape:'html':'UTF-8'}"  class="account_input form-control" placeholder="{l s='Enter product price' mod='marketplace'}"/>
 						  		<span class="input-group-addon">{$currency_sign|escape:'html':'UTF-8'}</span>
 						  	</div>
 						</div>
@@ -161,7 +161,7 @@ $(document).ready(function() {
 						{hook h='DisplayMpaddproductpricehook'}
 						<div class="form-group">
 							<label for="product_quantity" class="control-label required">{l s='Quantity :' mod='marketplace'}</label>
-						   	<input type="text" id="product_quantity" name="product_quantity" value="{$c_mp_product_quantity|escape:'html':'UTF-8'}"  class="account_input form-control"  />
+						   	<input type="text" id="product_quantity" name="product_quantity" value="{$c_mp_product_quantity|escape:'html':'UTF-8'}"  class="account_input form-control" placeholder="{l s='Enter quantity available' mod='marketplace'}" />
 						</div>	
 
 						<div class="form-group">

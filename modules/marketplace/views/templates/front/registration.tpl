@@ -92,7 +92,7 @@
 					<input class="is_required validate form-control" type="text" id="shop_name1" name="shop_name" placeholder="Enter your shop name" maxlength="255"/>
 				</div>
 				<div class="required form-group">
-					<label for="phone1"><sup>*</sup>{l s='Phone' mod='marketplace'}</label>
+					<label for="phone1"><sup>*</sup>{l s='Phone' mod='marketplace'}</label>{l s='10 digits, no separators' mod='marketplace'}
 					<input class="form-control" type="text" name="phone" id="phone1" maxlength="{$phone_digit|escape:'html':'UTF-8'}" placeholder="Enter your phone number"/>
 				</div>		 
                 <div class="form-group">	
@@ -112,8 +112,7 @@
 					<input class="reg_sel_input form-control"  type="text" name="routing" id="routing" placeholder="Enter your bank routing number"/>
                     {l s='e.g.' mod='marketplace'} 110000000
 				</div>
-                <fieldset style="border:2px dotted #cdcdcd;padding: 10px">
-                <legend style="border: 1px solid #cdcdcd;padding: 8px;background: #fbfbfb;width:auto;font-size:15px;"><i class="icon-user"></i>&nbsp;{l s='Legal Entities' mod='marketplace'}</legend>
+                <fieldset style="">
                 <div id="type" class="form-group" >
 					<label for="type"><sup>*</sup>{l s='Entity Type' mod='marketplace'}</label>
 					<select name="type" id="type"><option value="individual">{l s='Individual' mod='marketplace'}</option><option value="company">{l s='Company' mod='marketplace'}</option></select>
