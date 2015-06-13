@@ -77,7 +77,7 @@
 </div>
 {else}
 <div class="seller_registration_form">
-	<div class="container">
+	<div class="container login-panel">
 		<div class="page-title login-panel-header">
 			<h1>{l s='Create a Shop' mod='marketplace'}</h1>
 		</div>
@@ -100,7 +100,6 @@
 					<textarea name="address" class = "form-control"  placeholder="Enter your business address"></textarea>
 				</div>
                  <fieldset style="">
-                <legend style="border: 1px solid #999;padding: 8px;background: #fbfbfb;width:auto;"><i class="icon-money"></i>&nbsp;{l s='Banking Information' mod='marketplace'}</legend>
                  <div id="bank" class="form-group" >
 					<label for="bank"><sup>*</sup>{l s='Bank Account Number' mod='marketplace'}</label>
 					<input class="reg_sel_input form-control"  type="text" name="bank" id="bank" placeholder="Enter your bank account number"/>
