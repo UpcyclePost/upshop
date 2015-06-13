@@ -26,7 +26,10 @@
 <footer class="footer hidden-xs">
     <div class="content-container footer-container">
         <nav class="slug clearfix">
-            <li class="f-logo"><a href="http://{$smarty.server.SERVER_NAME}"><img src="http://{$smarty.server.SERVER_NAME}/img/footer-logo.png"/></a></li>
+            <li class="f-logo">
+				<a href="http://{$smarty.server.SERVER_NAME}">
+				<img src="http://{$smarty.server.SERVER_NAME}/img/footer-logo.png"/></a>
+				</li>
             <li class="copyright">&copy {$smarty.now|date_format:"%Y"} UpcyclePost. All rights reserved.</li>
             <li id="social_block">
                 <ul>
@@ -89,6 +92,7 @@
 		
 			</ul>
             </li>
+			<div class="policies">
             <li><a href="{$link->getCMSLink(8)|escape:'html':'UTF-8'}">Policies</a></li>
             {if !isSeller}
                 <li><a href="http://{$smarty.server.SERVER_NAME}profile/login">Create a shop</a></li>
@@ -97,6 +101,7 @@
             <li><a href="http://{$smarty.server.SERVER_NAME}/blog">Blog</a></li>
             <li><a href="{$link->getCMSLink(6)|escape:'html':'UTF-8'}">FAQ</a></li>
             <li><a href="{$link->getCMSLink(4)|escape:'html':'UTF-8'}">About Us</a></li>
+			</div>
         </nav>
     </div>
 </footer>

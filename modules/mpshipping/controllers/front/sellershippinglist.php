@@ -68,6 +68,38 @@
 						$this->context->smarty->assign('impact_price_edit_link',$impact_price_edit_link);
 						$this->context->smarty->assign('view_shipping_link',$view_shipping_link);
 						$this->context->smarty->assign('mp_id_shop',$mp_id_shop);
+
+						//for Menubar on left side
+						$obj_ps_shop = new MarketplaceShop($mp_id_shop);
+						$name_shop = $obj_ps_shop->link_rewrite;
+						$param = array('shop'=>$mp_id_shop);
+						$payment_detail    = $link->getModuleLink('marketplace', 'customerPaymentDetail',$param);
+		                $link_store        = $link->getModuleLink('marketplace', 'shopstore',array('shop'=>$mp_id_shop,'shop_name'=>$name_shop));
+		                $link_collection   = $link->getModuleLink('marketplace', 'shopcollection',array('shop'=>$mp_id_shop,'shop_name'=>$name_shop));
+		                $link_profile      = $link->getModuleLink('marketplace', 'shopprofile',$param);
+		                $add_product       = $link->getModuleLink('marketplace', 'addproduct',$param);
+		                $account_dashboard = $link->getModuleLink('marketplace', 'marketplaceaccount',$param);
+		                $seller_profile    = $link->getModuleLink('marketplace', 'sellerprofile',$param);
+		                $edit_profile    = $link->getModuleLink('marketplace', 'marketplaceaccount',array('shop'=>$mp_id_shop,'l'=>2,'edit-profile'=>1));
+		                $product_list    = $link->getModuleLink('marketplace', 'marketplaceaccount',array('shop'=>$mp_id_shop,'l'=>3));
+		                $my_order    = $link->getModuleLink('marketplace', 'marketplaceaccount',array('shop'=>$mp_id_shop,'l'=>4));
+		                $payment_details    = $link->getModuleLink('marketplace', 'marketplaceaccount',array('shop'=>$mp_id_shop,'id_cus'=>$id_customer,'l'=>5));
+		                        
+		                $this->context->smarty->assign("id_shop", $mp_id_shop);
+		                $this->context->smarty->assign("id_customer", $id_customer);
+		                $this->context->smarty->assign("is_seller", $is_seller);
+		                $this->context->smarty->assign("payment_detail", $payment_detail);
+		                $this->context->smarty->assign("link_store", $link_store);
+		                $this->context->smarty->assign("link_collection", $link_collection);
+		                $this->context->smarty->assign("link_profile", $link_profile);
+		                $this->context->smarty->assign("add_product", $add_product);
+		                $this->context->smarty->assign("account_dashboard", $account_dashboard);
+		                $this->context->smarty->assign("seller_profile", $seller_profile);
+		                $this->context->smarty->assign("edit_profile", $edit_profile);
+		                $this->context->smarty->assign("product_list", $product_list);
+		                $this->context->smarty->assign("my_order", $my_order);
+		                $this->context->smarty->assign("payment_details", $payment_details);
+		                $this->context->smarty->assign("logic", 'shipping_method_list');
 						
 						$this->setTemplate('mpshippinglist.tpl');
 					}

@@ -35,7 +35,7 @@
 	{hook h="DisplayMpmenuhook"}
 	{if $logic==1}
 	{capture name=path}{l s='My Dashboard'}{/capture}
-	<div class="dashboard_content">
+	<div class="dashboard_content login-panel">
 			<div class="dashboard">
 				<div class="page-title login-panel-header">
 					<h1>{l s='My Dashboard' mod='marketplace'}</h1>
@@ -182,7 +182,7 @@
         <span class="navigation-pipe">{$navigationPipe}</span>
         <span class="navigation_page">{l s='Edit Seller Profile' mod='marketplace'}</span>
 	{/capture}
-	<div class="dashboard_content">
+	<div class="dashboard_content login-panel">
 		{if $is_profile_updated == 1}
 			<p class="alert alert-success">{l s='Profile information successfully updated.' mod='marketplace'}</p>
 		{/if}
@@ -273,7 +273,7 @@
 									<input class="required form-control" type="text" value="{$marketplace_seller_info['shop_name']|escape:'html':'UTF-8'}" name="update_shop_name" id="update_shop_name"/>
 								</div>
 								<div class="required form-group">
-									<label for="update_phone" class="control-label required">{l s='Phone' mod='marketplace'}</label>
+									<label for="update_phone" class="control-label required">{l s='Phone' mod='marketplace'}</label> {l s='10 digits, no separators' mod='marketplace'}
 									<input class="required form-control" type="text" value="{$marketplace_seller_info['phone']|escape:'html':'UTF-8'}" name="update_phone" id="update_phone" maxlength="{$phone_digit}"/>
 								</div>
 								<div class="form-group">
@@ -281,7 +281,6 @@
 									<textarea class="required form-control"  name="update_address" id="update_address">{$marketplace_address|escape:'html':'UTF-8'}</textarea>
 								</div>
                                  <fieldset style="">
-                                <legend style="border: 1px solid #999;padding: 8px;background: #fbfbfb;width:auto;"><i class="icon-money"></i>&nbsp;{l s='Banking Info' mod='marketplace'} <font color="{if $stripestatus==verified}green{else}orange{/if}">{if $stripestatus!=''}({$stripestatus}){/if}</font></legend>
                                  <div id="bank" class="form-group" >
                                     <label for="bank" class="control-label required">{l s='Bank Account Number' mod='marketplace'} {if $bank_data.bank_name!=''}({$bank_data.bank_name}){/if}</label>
                                     <input class="reg_sel_input form-control"  type="text" name="bank" id="bank" value="{if $bank_data.last4!=''}********{$bank_data.last4}{/if}" />
@@ -294,8 +293,7 @@
                                     {l s='e.g.' mod='marketplace'} 110000000
                                 </div>
                                 
-                                <fieldset style="border:2px dotted #cdcdcd;padding: 10px">
-                                <legend style="border: 1px solid #cdcdcd;padding: 8px;background: #fbfbfb;width:auto;font-size:15px;"><i class="icon-user"></i>&nbsp;{l s='Legal Entities' mod='marketplace'}</legend>
+                                <fieldset style="">
                                 <div id="type" class="form-group" >
                                     <label for="type" class="control-label required">{l s='Entity Type' mod='marketplace'}</label>
                                     <select name="type" id="type"><option value="individual" {if $type=='individual'}selected="selected"{/if}>{l s='Individual' mod='marketplace'}</option><option value="company" {if $type=='company'}selected="selected"{/if}>{l s='Company' mod='marketplace'}</option></select>
@@ -308,13 +306,13 @@
                                 </div>
                                 <div id="ssn" class="form-group" >
                                     <label for="ssn" class="control-label required">{l s='SSN last 4 digits' mod='marketplace'}</label>
-                                    <input class="form-control"  type="text" name="ssn" id="ssn" style="width:50px;display: inline;" value="{if $type!=''}****{/if}" />
+                                    <input class="form-control"  type="text" name="ssn" id="ssn" style="width:50px;display: inline;" value="{if $type!=''}****{/if}" maxlength="4"/>
                                 </div>
                                 <div id="routing" class="form-group" >
                                     <label for="routing" class="control-label required">{l s='Date of birth' mod='marketplace'}</label>
-                                    <input class="form-control"  type="text" name="month" id="month" style="width:30px;display: inline;" value="{$dob.month}" /> /
-                                    <input class="form-control"  type="text" name="day" id="day" style="width:30px;display: inline;" value="{$dob.day}" /> /
-                                    <input class="form-control"  type="text" name="year" id="year" style="width:50px;display: inline;" value="{$dob.year}" />&nbsp;
+                                    <input class="form-control"  type="text" name="month" id="month" style="width:30px;display: inline;" value="{$dob.month}"  maxlength="2"/> /
+                                    <input class="form-control"  type="text" name="day" id="day" style="width:30px;display: inline;" value="{$dob.day}"  maxlength="2"/> /
+                                    <input class="form-control"  type="text" name="year" id="year" style="width:50px;display: inline;" value="{$dob.year}"  maxlength="4"/>&nbsp;
                                     {l s='e.g.' mod='marketplace'} 12/31/1988
                                 </div>
                                 </fieldset>
@@ -341,7 +339,7 @@
         <span class="navigation-pipe">{$navigationPipe}</span>
         <span class="navigation_page">{l s='Product List' mod='marketplace'}</span>
         {/capture}
-			<div class="dashboard_content">
+			<div class="dashboard_content login-panel">
 				{if $is_deleted == 1}
 					<p class="alert alert-success">{l s='Deleted Successful' mod='marketplace'}</p>
 				{else if $is_edited == 1}
@@ -582,7 +580,7 @@
         <span class="navigation_page">{l s='My Orders' mod='marketplace'}</span>
         {/capture}
 
-		<div class="dashboard_content">
+		<div class="dashboard_content login-panel">
 		<div class="dashboard">
 			<div class="page-title login-panel-header">
 				<h1>{l s='My Orders' mod='marketplace'}</h1>
