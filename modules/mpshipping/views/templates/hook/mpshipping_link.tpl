@@ -6,7 +6,7 @@
 		</a>
 	</li>
 {else}
-	<li>
+	<li {if $logic=='shipping_method_list'}class="menu_active"{/if}>
 		<span>
 			<a title="Mp Shipping" href="{$sellershippinglist}" target="_blank">
 				{l s='Shipping Method' mod='mpshipping'}

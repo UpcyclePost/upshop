@@ -1,4 +1,6 @@
-<div class="shipping_list_container left">
+{hook h="DisplayMpmenuhook"}
+
+<div class="left col-sm-9">
 <div class="box-account box-recent">
 	<div class="box-head">
 		<div class="box-head-left">
