@@ -77,7 +77,7 @@
 </div>
 {else}
 <div class="seller_registration_form">
-	<div class="container">
+	<div class="container login-panel">
 		<div class="page-title login-panel-header">
 			<h1>{l s='Create a Shop' mod='marketplace'}</h1>
 		</div>
