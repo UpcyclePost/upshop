@@ -24,7 +24,7 @@
 *  International Registered Trademark & Property of PrestaShop SA
 *}
 <footer class="footer hidden-xs">
-    <div class="content-container footer-container">
+    <div class="footer-container">
         <nav class="slug clearfix">
             <li class="f-logo">
 				<a href="http://{$smarty.server.SERVER_NAME}">
