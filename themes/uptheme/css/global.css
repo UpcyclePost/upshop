@@ -8423,16 +8423,26 @@ header .buttons font.items {
 .slug li.f-logo {
     position: relative;
     float: left;
-    margin-left:100px;
+    margin-left:40px;
 }
 .slug li.f-logo a {
     padding: 10px 0 2px;
 }
+@media(max-width:870px) {
+.slug li a {
+    color: #555;
+    padding: 10px 4px;
+    display: block;
+    text-decoration: none;    
+  }
+}
+@media(min-width:870px) {
 .slug li a {
     color: #555;
     padding: 10px 14px;
     display: block;
     text-decoration: none;
+  }
 }
 .slug li a:hover {
     color: #0187d0;

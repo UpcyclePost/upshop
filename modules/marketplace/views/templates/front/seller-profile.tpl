@@ -12,9 +12,9 @@
 	
 {/capture}
 <div class="main_block">
-<div class="dashboard_content">
-	<div class="page-title">
-		<span>{l s='Seller Profile' mod='marketplace'}</span>
+<div class="dashboard_content login-panel">
+	<div class="page-title login-panel-header">
+		<h1>{l s='Seller Profile' mod='marketplace'}</h1>
 	</div>
 		<div class="box-account">
 			<div class="box-head">
@@ -24,8 +24,8 @@
 			<div class="box-content" style="border-bottom: 3px solid #D5D3D4;">
 				<div class="wk-left-label">
 					<div class="wk_row">
-						<label class="wk-person-icon">{$market_place_seller_info['seller_name']|escape:'html':'UTF-8'}</label>
-						<span><a href="{$link->getModuleLink('marketplace','shopstore',['shop'=>{$id_shop|escape:'html':'UTF-8'}])|escape:'html':'UTF-8'}" title="{l s='Go to Shop' mod='marketplace'}" class="product-name">{l s='Go to Shop' mod='marketplace'}</a></span>
+						<label class="wk-person-icon">{l s='Seller Name -' mod='marketplace'}</label>
+						<span>{$market_place_seller_info['seller_name']|escape:'html':'UTF-8'} &nbsp;&nbsp;&nbsp;<a href="{$link->getModuleLink('marketplace','shopstore',['shop'=>{$id_shop|escape:'html':'UTF-8'}])|escape:'html':'UTF-8'}" title="{l s='Go to Shop' mod='marketplace'}" class="product-name">{l s='Go to Shop' mod='marketplace'}</a></span>
 					</div>
 					<div class="wk_row">
 						<label class="wk-mail-icon">{l s='Business Email -' mod='marketplace'}</label>
@@ -39,6 +39,7 @@
 						<label class="wk-address-icon">{l s='Address -' mod='marketplace'}</label>
 						<span>{$market_place_seller_info['address']|escape:'html':'UTF-8'}</span>
 					</div>
+					<!--
 					<div class="wk_row">
 						<label class="wk-share-icon">{l s='Social Profile -' mod='marketplace'}</label>
 						<span class="wk-social-icon">
@@ -50,15 +51,18 @@
 							{/if}
 						</span>
 					</div>
+					-->
+					<!--
 					<div class="wk_row">
 						<label class="wk-rating-icon">{l s='Seller Rating -' mod='marketplace'}</label>
 						<span class="avg_rating"></span>
 					</div>
+					-->
 				</div>
 			</div>
 		</div>	
 		<div class="box-account">
-			<div class="box-head">
+<!--			<div class="box-head">
 				<div class="wk_review_head">
 					<h2>{l s='Reviews about seller' mod='marketplace'}</h2>
 				</div>
@@ -69,6 +73,7 @@
 				</div>
 				<div class="wk_border_line"></div>
 			</div>
+
 			<div class="box-content">
 				{if $reviews_count != 0}
 				{foreach from=$reviews_details item=details}
@@ -108,12 +113,14 @@
 				{/if}
 			</div>
 		</div>
+		-->
 		{hook h='DisplayMpspcontentbottomhook'}
 	</div>
 </div>
 
 
 <!-- Fancybox -->
+<!--
 <div style="display: none;">
 	<div id="wk_review_form">
 		<form id="review_submit" method="post" action="{$link->getModuleLink('marketplace', 'sellerprofile', ['shop' => {$id_shop}])|addslashes}">
@@ -148,7 +155,7 @@
 		</form>
 	</div>
 </div>
-
+-->
 <script type="text/javascript">
 $(function()
 {
