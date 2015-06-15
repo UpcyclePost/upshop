@@ -20,7 +20,8 @@
 			
 			//$this->_join .= 'LEFT JOIN `'._DB_PREFIX_.'marketplace_shop` mps ON (mps.`id` = a.`id_shop`)';
 			$this->_join .= 'LEFT JOIN `'._DB_PREFIX_.'marketplace_seller_info` mpsin ON (mpsin.`id` = a.`id_seller`)';
-			$this->_select = 'mpsin.`shop_name`,mpsin.`seller_name`';
+			$this->_join .= 'LEFT JOIN `'._DB_PREFIX_.'marketplace_customer` mpc ON (mpc.`marketplace_seller_id` = a.`id_seller`)';
+			$this->_select = 'mpsin.`shop_name`,mpsin.`seller_name`,mpc.`id_customer`';
 			
 			$this->fields_list = array();
 			$this->fields_list['id'] = array(
@@ -29,9 +30,22 @@
 				'class' => 'fixed-width-xs'
 			);
 			
+			$this->fields_list['id_customer'] = array(
+				'title' => $this->l('Customer'),
+				'align' => 'center',
+				'callback' => 'editCustomerlink',
+				'orderby' => false,
+				'search' => false,
+				'remove_onclick' => true
+			);
+			
 			$this->fields_list['seller_name'] = array(
 				'title' => $this->l('Seller Name'),
-				'align' => 'center'
+				'align' => 'center',
+				'callback' => 'printSellerIcons',
+				'orderby' => false,
+				'search' => false,
+				'remove_onclick' => true
 			);
 			
 			$this->fields_list['product_name'] = array(
@@ -71,6 +85,39 @@
 			parent::__construct();
 
 		}
+		
+	public function editCustomerlink($id_customer, $tr)
+	{
+		
+		$link = new Link();
+		$link = $link->getAdminLink('AdminCustomers').'&amp;viewcustomer&amp;id_customer='.$id_customer;
+		
+		$html = '<span class="btn-group-action">
+	<span class="btn-group">
+		<a class="btn btn-default" href="'.$link.'">
+			<i class="icon-search-plus"></i> &nbsp;'.$id_customer.'
+		</a>
+	</span>
+</span>';
+        return $html;
+
+	}
+	
+	public function printSellerIcons($seller_name, $tr)
+	{
+		$link = new Link();
+		$link = $link->getAdminLink('AdminSellerInfoDetail').'&amp;updatemarketplace_seller_info&amp;id='.$tr['id_seller'];
+		
+		$html = '<span class="btn-group-action">
+	<span class="btn-group">
+		<a class="btn btn-default" href="'.$link.'">
+			<i class="icon-search-plus"></i> &nbsp;'.$seller_name.'
+		</a>
+	</span>
+</span>';
+        return $html;
+
+	}
 	
 		public function initToolbar() 
 		{

@@ -27,8 +27,12 @@
 			);
 			
 			$this->fields_list['id_customer'] = array(
-				'title' => $this->l('Id customer'),
-				'align' => 'center'
+				'title' => $this->l('Customer'),
+				'align' => 'center',
+				'callback' => 'printSellerIcons',
+				'orderby' => false,
+				'search' => false,
+				'remove_onclick' => true
 			);
 			
 			$this->fields_list['business_email'] = array(
@@ -87,6 +91,22 @@
 			parent::__construct();
 			
 		}
+	public function printSellerIcons($id_customer, $tr)
+	{
+		
+		$link = new Link();
+		$link = $link->getAdminLink('AdminCustomers').'&amp;viewcustomer&amp;id_customer='.$id_customer;
+		
+		$html = '<span class="btn-group-action">
+	<span class="btn-group">
+		<a class="btn btn-default" href="'.$link.'">
+			<i class="icon-search-plus"></i> &nbsp;'.$id_customer.'
+		</a>
+	</span>
+</span>';
+        return $html;
+
+	}
 
 		public function renderList() 
 		{

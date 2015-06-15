@@ -8,10 +8,11 @@ class AdminSellerOrdersController extends ModuleAdminController
         $this->className = 'MarketplaceOrderCommission'; 
         $this->context = Context::getContext();
         $this->addRowAction('view');          
-        $this->_select = 'a.id_order as id_order,a.id_customer as id_customer,a.tax as tax,a.shipping as shipping,a.shipping_amt shipping_amt,a.admin_commission as admin_commission,
+        $this->_select = 'o.reference as reference,a.id_order as id_order,a.id_customer as id_customer,a.tax as tax,a.shipping as shipping,a.shipping_amt shipping_amt,a.admin_commission as admin_commission,
             CONCAT(c.`firstname`," ",c.`lastname`) as customer,ms.shop_name as shop_name';
         $this->_join .= 'LEFT JOIN `'._DB_PREFIX_.'marketplace_shop` ms ON (ms.`id_customer` = a.`id_customer`) ';    
         $this->_join .= 'LEFT JOIN `'._DB_PREFIX_.'customer` c ON (a.`id_customer` = c.`id_customer`) ';
+		$this->_join .= 'LEFT JOIN `'._DB_PREFIX_.'orders` o ON (o.`id_order` = a.`id_order`) ';
 
 
         $this->fields_list = array(
@@ -20,7 +21,23 @@ class AdminSellerOrdersController extends ModuleAdminController
                 'align' => 'text-center',
                 'class' => 'fixed-width-xs'
             ),
-            'customer' => array(
+			'reference' => array(
+                'title' => $this->l('Reference'),
+                'align' => 'center',
+				'callback' => 'printRefIcons',
+				'orderby' => false,
+				'search' => false,
+				'remove_onclick' => true
+            ),
+            'id_customer' => array(
+                'title' => $this->l('View Customer'),
+                'align' => 'center',
+				'callback' => 'printEditIcons',
+				'orderby' => false,
+				'search' => false,
+				'remove_onclick' => true
+            ),
+			'customer' => array(
                 'title' => $this->l('Customer'),
                 'align' => 'center',
                 'havingFilter' => true
@@ -55,6 +72,40 @@ class AdminSellerOrdersController extends ModuleAdminController
         $this->identifier  = 'id';
         parent::__construct();
     }
+	
+	public function printEditIcons($id_customer, $tr)
+	{
+		
+		$link = new Link();
+		$link = $link->getAdminLink('AdminCustomers').'&amp;viewcustomer&amp;id_customer='.$id_customer;
+		
+		$html = '<span class="btn-group-action">
+	<span class="btn-group">
+		<a class="btn btn-default" href="'.$link.'">
+			<i class="icon-search-plus"></i> &nbsp;'.$id_customer.'
+		</a>
+	</span>
+</span>';
+        return $html;
+
+	}
+	
+	public function printRefIcons($reference, $tr)
+	{
+		
+		$link = new Link();
+		$link = $link->getAdminLink('AdminOrders').'&amp;vieworder&amp;id_order='.$tr['id_order'];
+		
+		$html = '<span class="btn-group-action">
+	<span class="btn-group">
+		<a class="btn btn-default" href="'.$link.'">
+			<i class="icon-search-plus"></i> &nbsp;'.$reference.'
+		</a>
+	</span>
+</span>';
+        return $html;
+
+	}
 
     public function renderView()
     {
