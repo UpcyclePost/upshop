@@ -346,10 +346,6 @@ class marketplaceMarketplaceaccountModuleFrontController extends ModuleFrontCont
                             $this->context->smarty->assign("proimageeditlink", $proimageeditlink);
                             $pinfosql 		= "SELECT * from`" . _DB_PREFIX_ . "marketplace_seller_product` where id_seller=" . $marketplace_seller_id;
 							$product_info   = Db::getInstance()->ExecuteS($pinfosql, true, false);
-                            echo "<!-- pinfosql " . $pinfosql . "-->";
-                            echo "<!--";
-							print_r ($product_info);
-                            echo "-->";					
                     
                             $count = count($product_info);
 							

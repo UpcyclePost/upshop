@@ -347,9 +347,6 @@
 				{/if}
 				<div class="page-title login-panel-header">
 					<h1>{l s='Product List' mod='marketplace'}</h1>
-					<!-- nbProducts = {$nbProducts} -->
-					<!-- count = {$count} -->
-					<!-- recordperpage = {$recordperpage} -->					
 				</div>
 				<div class="wk_right_col">
 					<!-- sorting code start -->
