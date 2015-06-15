@@ -510,7 +510,7 @@ class SellerProductDetail extends ObjectModel
 		Mail::Send($id_lang,$template,$sub,$templateVars,$business_email,$mp_seller_name,null,'Marketplace',null,null,$temp_path,false,null,null);
 		return true;
 	}
-	// For pagination
+	// For pagination 
 	public static function getProductList($id_seller, $orderby=false,$orderway=false,$p, $n)
 	{	
 		if(!$orderby) {
@@ -523,7 +523,7 @@ class SellerProductDetail extends ObjectModel
 		$product_listSQL = "SELECT * from`" . _DB_PREFIX_ . "marketplace_seller_product` mslp 
 							where mslp.id_seller=" . $id_seller." 
 							order by mslp.`" . $orderby . "` " . $orderway . ", mslp.`product_name` asc limit ".(((int)$p - 1) * (int)$n).",".(int)$n;
-		$product_list = Db::getInstance()->ExecuteS($product_listSQL);
+		$product_list = Db::getInstance()->ExecuteS($product_listSQL, true, false);
 		   
 		   if($product_list)
 		    return $product_list;
