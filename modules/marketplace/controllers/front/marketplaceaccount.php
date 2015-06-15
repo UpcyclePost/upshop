@@ -345,14 +345,14 @@ class marketplaceMarketplaceaccountModuleFrontController extends ModuleFrontCont
                             $this->context->smarty->assign("pro_upd_link", $pro_upd_link);
                             $this->context->smarty->assign("proimageeditlink", $proimageeditlink);
                             $pinfosql 		= "SELECT * from`" . _DB_PREFIX_ . "marketplace_seller_product` where id_seller=" . $marketplace_seller_id;
-							$product_info   = Db::getInstance()->ExecuteS($pinfosql);
+							$product_info   = Db::getInstance()->ExecuteS($pinfosql, true, false);
                             echo "<!-- pinfosql " . $pinfosql . "-->";
                             echo "<!--";
 							print_r ($product_info);
-                            echo "-->";
-							
+                            echo "-->";					
                     
                             $count = count($product_info);
+							
                             $this->context->smarty->assign("product_info", $product_info);
                             $this->context->smarty->assign("count", $count);
                             $this->context->smarty->assign("is_deleted", $is_deleted);
