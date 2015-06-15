@@ -24,6 +24,7 @@
 *  International Registered Trademark & Property of PrestaShop SA
 */
 
+
 class CustomerCore extends ObjectModel
 {
 	public $id;
