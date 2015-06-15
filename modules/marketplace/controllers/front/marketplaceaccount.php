@@ -371,9 +371,6 @@ class marketplaceMarketplaceaccountModuleFrontController extends ModuleFrontCont
 							else
 								$productList = $this->getProductDetails($productList);
 
-							echo '<!--<br>this->n ='.$this->n. "-->" ;
-							echo '<!--<br>$NoOfProduct ='.$NoOfProduct. "-->";
-
 							$param = array('l'=>$logic);
 							$this->context->smarty->assign('param',$param);
 							$sortingLink = $link->getModuleLink('marketplace', 'marketplaceaccount',array('shop'=>$id_shop,'l'=>$logic,'p'=>$page_no));
