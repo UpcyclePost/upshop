@@ -111,11 +111,11 @@ div.uploader
 	</p>
 {/if}
 {hook h='DisplayMpupdateproductheaderhook'}
-<div class="main_block">
+<div class="main_block ">
 {hook h="DisplayMpmenuhook"}
-<div class="dashboard_content">
-	<div class="page-title">
-		<span>{l s='Update Product' mod='marketplace'}</span>
+<div class="dashboard_content login-panel">
+	<div class="page-title login-panel-header">
+		<h1>{l s='Update Product' mod='marketplace'}</h1>
 	</div>
 	<div class="wk_right_col">
 		<ul class="nav nav-tabs">
