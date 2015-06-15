@@ -206,6 +206,7 @@
 							<thead>
 								<tr>
 									<th class="center"><span class="title_box ">{l s='ID'}</span></th>
+                                    <th><span class="title_box">{l s='Reference'}</span></th>
 									<th><span class="title_box">{l s='Date'}</span></th>
 									<th><span class="title_box">{l s='Payment'}</span></th>
 									<th><span class="title_box">{l s='Status'}</span></th>
@@ -218,6 +219,7 @@
 							{foreach $orders_ok AS $key => $order}
 								<tr onclick="document.location = '?tab=AdminOrders&amp;id_order={$order['id_order']|intval}&amp;vieworder&amp;token={getAdminToken tab='AdminOrders'}'">
 									<td>{$order['id_order']}</td>
+                                    <td>{$order['reference']}</td>
 									<td>{dateFormat date=$order['date_add'] full=0}</td>
 									<td>{$order['payment']}</td>
 									<td>{$order['order_state']}</td>

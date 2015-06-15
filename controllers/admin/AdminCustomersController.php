@@ -65,7 +65,7 @@ class AdminCustomersControllerCore extends AdminController
 		foreach ($genders as $gender)
 			$titles_array[$gender->id_gender] = $gender->name;
 
-		$this->_select = '
+		$this->_select = 'marketplace_seller_id as id_seller,
 		a.date_add, gl.name as title, (
 			SELECT SUM(total_paid_real / conversion_rate)
 			FROM '._DB_PREFIX_.'orders o
@@ -80,6 +80,8 @@ class AdminCustomersControllerCore extends AdminController
 			LIMIT 1
 		) as connect';
 		$this->_join = 'LEFT JOIN '._DB_PREFIX_.'gender_lang gl ON (a.id_gender = gl.id_gender AND gl.id_lang = '.(int)$this->context->language->id.')';
+		$this->_join .= 'LEFT JOIN '._DB_PREFIX_.'marketplace_customer ms ON (a.id_customer = ms.id_customer)';
+		
 		$this->fields_list = array(
 			'id_customer' => array(
 				'title' => $this->l('ID'),
@@ -93,6 +95,22 @@ class AdminCustomersControllerCore extends AdminController
 				'list' => $titles_array,
 				'filter_type' => 'int',
 				'order_key' => 'gl!name'
+			),
+			'id_seller' => array(
+				'title' => $this->l('Seller'),
+				'align' => 'text-center',
+				'callback' => 'printSellerIcons',
+				'orderby' => false,
+				'search' => false,
+				'remove_onclick' => true
+			),
+			'website' => array(
+				'title' => $this->l('Website'),
+				'align' => 'text-center',
+				'callback' => 'printWebIcons',
+				'orderby' => false,
+				'search' => false,
+				'remove_onclick' => true
 			),
 			'firstname' => array(
 				'title' => $this->l('First name')
@@ -166,6 +184,41 @@ class AdminCustomersControllerCore extends AdminController
 		// Check if we can add a customer
 		if (Shop::isFeatureActive() && (Shop::getContext() == Shop::CONTEXT_ALL || Shop::getContext() == Shop::CONTEXT_GROUP))
 			$this->can_add_customer = false;
+	}
+	
+	public function printWebIcons($website, $tr)
+	{
+		$shop = Context::getContext()->shop;
+
+		$base = (($ssl && $this->ssl_enable) ? 'https://'.$shop->domain_ssl : 'http://'.$shop->domain);
+		
+		$link =  $base.'/shops/'.$website;
+		
+		$html = '<span class="btn-group-action">
+	<span class="btn-group">
+		<a class="btn btn-default" target="_blank" href="'.$link.'">
+			<i class="icon-search-plus"></i> &nbsp;'.$website.'
+		</a>
+	</span>
+</span>';
+        return $html;
+
+	}
+	
+	public function printSellerIcons($id_seller, $tr)
+	{
+		$link = new Link();
+		$link = $link->getAdminLink('AdminSellerInfoDetail').'&amp;updatemarketplace_seller_info&amp;id='.$id_seller;
+		
+		$html = '<span class="btn-group-action">
+	<span class="btn-group">
+		<a class="btn btn-default" target="_blank" href="'.$link.'">
+			<i class="icon-search-plus"></i> &nbsp;'.$id_seller.'
+		</a>
+	</span>
+</span>';
+        return $html;
+
 	}
 
 	public function postProcess()
