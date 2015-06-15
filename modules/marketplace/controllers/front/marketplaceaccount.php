@@ -344,8 +344,9 @@ class marketplaceMarketplaceaccountModuleFrontController extends ModuleFrontCont
 							
                             $this->context->smarty->assign("pro_upd_link", $pro_upd_link);
                             $this->context->smarty->assign("proimageeditlink", $proimageeditlink);
-                            $product_info         = Db::getInstance()->ExecuteS("SELECT * from`" . _DB_PREFIX_ . "marketplace_seller_product` where id_seller=" . $marketplace_seller_id);
-                            //var_dump($product_info);
+                            $pinfosql 		= "SELECT * from`" . _DB_PREFIX_ . "marketplace_seller_product` where id_seller=" . $marketplace_seller_id;
+							$product_info   = Db::getInstance()->ExecuteS($pinfosql);
+                            echo "<!-- pinfosql " . $pinfosql . "-->";
                     
                             $count = count($product_info);
                             $this->context->smarty->assign("product_info", $product_info);
