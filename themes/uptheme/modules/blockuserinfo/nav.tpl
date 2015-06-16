@@ -2,8 +2,8 @@
 <div class="header_user_info">
 	<div class="buttons hidden-xs hidden-sm">
 		{if !$is_logged}
-			<a href="/profile/login" class="btn btn-none"><i class="fa fa-sign-in fa-fw"></i> Sign In</a>
-			<a href="/profile/register" class="btn btn-none"><i class="fa fa-sign-in fa-fw fa-rotate-270"></i> Sign Up</a>
+			<a href="http{if Tools::usingSecureMode()}s{/if}://{$smarty.server.SERVER_NAME}/profile/login" class="btn btn-none"><i class="fa fa-sign-in fa-fw"></i> Sign In</a>
+			<a href="http{if Tools::usingSecureMode()}s{/if}://{$smarty.server.SERVER_NAME}/profile/register" class="btn btn-none"><i class="fa fa-sign-in fa-fw fa-rotate-270"></i> Sign Up</a>
 		{/if}
 
 		<div class="btn-group">
@@ -39,19 +39,19 @@
 					<span>You</span> <i class="fa fa-user"></i>
 				</button>
 				<ul class="dropdown-menu dropdown-menu-right" role="menu">
-					<li><a href="/shop/order-history"><i class="fa fa-fw fa-tags"></i> Purchases</a></li>
-					<li><a href="/profile/view"><i class="fa fa-fw fa-user"></i> Profile</a></li>
-					<li><a href="/profile/settings"><i class="fa fa-fw fa-gears"></i> Account</a></li>
-					<li><a href="/profile/messages"><i class="fa fa-fw fa-envelope"></i> Messages</a></li>
-					<li><a href="/profile/feed"><i class="fa fa-fw fa-rss"></i> Feed</a></li>
+					<li><a href="http{if Tools::usingSecureMode()}s{/if}://{$smarty.server.SERVER_NAME}/shop/order-history"><i class="fa fa-fw fa-tags"></i> Purchases</a></li>
+					<li><a href="http{if Tools::usingSecureMode()}s{/if}://{$smarty.server.SERVER_NAME}/profile/view"><i class="fa fa-fw fa-user"></i> Profile</a></li>
+					<li><a href="http{if Tools::usingSecureMode()}s{/if}://{$smarty.server.SERVER_NAME}/profile/settings"><i class="fa fa-fw fa-gears"></i> Account</a></li>
+					<li><a href="http{if Tools::usingSecureMode()}s{/if}://{$smarty.server.SERVER_NAME}/profile/messages"><i class="fa fa-fw fa-envelope"></i> Messages</a></li>
+					<li><a href="http{if Tools::usingSecureMode()}s{/if}://{$smarty.server.SERVER_NAME}/profile/feed"><i class="fa fa-fw fa-rss"></i> Feed</a></li>
 					<li class="divider"></li>
-					<li><a href="/profile/logout"><i class="fa fa-fw fa-sign-out"></i> Sign Out</a></li>
+					<li><a href="http{if Tools::usingSecureMode()}s{/if}://{$smarty.server.SERVER_NAME}/profile/logout"><i class="fa fa-fw fa-sign-out"></i> Sign Out</a></li>
 				</ul>
 			</div>
 		{/if}
 		{if !$PS_CATALOG_MODE}
 		<div class="pull-right text-center cart">
-			<a style="margin: 0; padding: 0" href="/shop/quick-order"><i class="fa fa-fw fa-shopping-cart"></i><br>Cart{if $cart_qties > 0}<span class="items">{$cart_qties}</span>{/if}</a>
+			<a style="margin: 0; padding: 0" href="http{if Tools::usingSecureMode()}s{/if}://{$smarty.server.SERVER_NAME}/shop/quick-order"><i class="fa fa-fw fa-shopping-cart"></i><br>Cart{if $cart_qties > 0}<span class="items">{$cart_qties}</span>{/if}</a>
 		</div>
 		{/if}
 	</div>
