@@ -143,10 +143,10 @@ div.uploader
 						</label>&nbsp;Basic details
 						<div name="short_description_length" id="short_description_length" class="short_description_length">
 							<span id="max_char_string" style="{if $pro_info['short_description']|@strlen > 600}color:#F00;font-weight:bold{/if}">
-								{l s='HTML Character Count: ' mod='marketplace'}{$pro_info['short_description']|@strlen}/600
+								{l s='HTML Character Count: ' mod='marketplace'}{$pro_info['short_description']|@html_entity_decode|@strlen}/600
 								</span>
 						</div>
-						<textarea maxlength="600" class="short_description wk_tinymce form-control" id="short_description" name="short_description" value="{$pro_info['description']|escape:'html':'UTF-8'}">{$pro_info['short_description']|escape:'html':'UTF-8'}</textarea>
+						<textarea maxlength="600" class="short_description wk_tinymce form-control" id="short_description" name="short_description" value="{$pro_info['short_description']|escape:'html':'UTF-8'}">{$pro_info['short_description']|escape:'html':'UTF-8'}</textarea>
 					</div>
 					
 					<div class="form-group">
@@ -155,7 +155,7 @@ div.uploader
 						</label>&nbsp;Provide more specifics for product page
 						<div name="product_description_length" id="product_description_length" class="product_description_length">
 							<span id="max_char_string" style="{if $pro_info['description']|@strlen > 1500}color:#F00;font-weight:bold{/if}">
-								{l s='HTML Character Count: ' mod='marketplace'}{$pro_info['description']|@strlen}/1500		
+								{l s='HTML Character Count: ' mod='marketplace'}{$pro_info['description']|@html_entity_decode|@strlen}/1500		
 							</span>
 						</div>
 						<textarea maxlength="1500" class="product_description wk_tinymce form-control" id="product_description" name="product_description" value="{$pro_info['description']|escape:'html':'UTF-8'}">{$pro_info['description']|escape:'html':'UTF-8'}</textarea>
