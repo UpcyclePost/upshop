@@ -175,6 +175,13 @@
 			</script>
 	</div>
 	{else if $logic==2}
+     <script type="text/javascript">
+     function show_load_msg(){
+					$('#update_profile').attr('disabled','disabled');
+					$('#loadin_msg').show();
+					
+					}
+			</script>
 	{capture name=path}
         <a href="{$account_dashboard|addslashes}">
                 {l s='My Dashboard'}
@@ -255,7 +262,7 @@
 							{hook h="DisplayMpshopviewfooterhook"}
 						</div>
 					{else if $edit==1}
-						<form action="{$editprofile|escape:'html':'UTF-8'}" method="post"   enctype="multipart/form-data" accept-charset="UTF-8,ISO-8859-1,UTF-16">
+						<form action="{$editprofile|escape:'html':'UTF-8'}" method="post"   enctype="multipart/form-data" accept-charset="UTF-8,ISO-8859-1,UTF-16" onsubmit="javascript:show_load_msg();">
 							<input type="hidden" value="{$id_shop|escape:'html':'UTF-8'}" name="update_id_shop" />
 							<div class="container">
 								<fieldset>
@@ -321,7 +328,8 @@
 								<div class="submit-button">
 									<button type="submit" id="update_profile" class="btn btn-default button button-medium">
 										<span>{l s='Update' mod='marketplace'}</span>
-									</button>
+									</button>&nbsp;&nbsp;
+                                    <span id="loadin_msg" style="display:none;margin-top: 12px;font-size: 15px;color: orangered;position: absolute;">{l s='Please wait while we validate your banking information...' mod='marketplace'}</span>
 								</div>
 								</fieldset>
 							</div>							
