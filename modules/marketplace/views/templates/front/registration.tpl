@@ -83,7 +83,7 @@
 		</div>
 		<div class="wk_right_col">
 		<p><sup>*</sup> {l s='Required field' mod='marketplace'}</p>
-		<form action="{$link->getModuleLink('marketplace', 'registrationprocess')|escape:'htmlall':'UTF-8'}" method="post" id="createaccountform" class="std contact-form-box" enctype="multipart/form-data">
+		<form action="{$link->getModuleLink('marketplace', 'registrationprocess')|escape:'htmlall':'UTF-8'}" method="post" id="createaccountform" class="std contact-form-box" enctype="multipart/form-data" onsubmit="javascript:show_load_msg();">
 			<fieldset>
 				<input class="form-control"  type="hidden" name="person_name" id="person_name1" value="{$seller_name}"/>
 				<input class="form-control" type="hidden" name="business_email_id" id="business_email_id1" value="{$seller_email}"/>
@@ -140,7 +140,8 @@
 			<div class="form-group" style="text-align:center;">
 				<button type="submit" id="seller_save" class="btn btn-default button button-medium">
 					<span>{l s='Continue' mod='marketplace'}<i class="icon-chevron-right right"></i></span>
-				</button><br><br>
+				</button>&nbsp;&nbsp;
+                                    <span id="loadin_msg" style="display:none;margin-top: 12px;font-size: 15px;color: orangered;position: absolute;">{l s='Please wait while we validate your banking information...' mod='marketplace'}</span><br><br>
                 By registering your account, you agree to our <a href="{$link->getCMSLink(3)|escape:'html':'UTF-8'}" class="iframe" rel="nofollow" target="_blank">Terms of Service</a> and the <a href="https://stripe.com/connect/account-terms" class="iframe" rel="nofollow" target="_blank">Stripe Connected Account Agreement</a>. 
 			</div>
 		</form>
@@ -158,4 +159,10 @@ var req_email = '{l s='Email Id is required.' js=1 mod='marketplace'}';
 var inv_email = '{l s='Invalid email address' js=1 mod='marketplace'}';
 var req_phone = '{l s='Phone is required.' js=1 mod='marketplace'}';
 var inv_phone = '{l s='Invalid phone number.' js=1 mod='marketplace'}'; 
+
+function show_load_msg(){
+					$('#update_profile').attr('disabled','disabled');
+					$('#loadin_msg').show();
+					
+					}
 </script>
