@@ -141,13 +141,26 @@ $(document).ready(function() {
 						</div>
 
 				        <div class="form-group">	
-							<label for="short_description" class="control-label">{l s='Short Description :' mod='marketplace'}</label> Basic details
-							<textarea name="short_description" id="short_description" cols="2" rows="3" class="wk_tinymce form-control">{$c_mp_short_description|escape:'intval'}</textarea>
+							<label for="short_description" class="control-label">
+							{l s='Short Description (600 characters max) : ' mod='marketplace'}
+							</label>&nbsp;Basic details
+							<div name="short_description_length" id="short_description_length" class="short_description_length">
+								<span id="max_char_string" style="{if $c_mp_short_description|@strlen > 600}color:#F00;font-weight:bold{/if}">
+								{l s='HTML Character Count: ' mod='marketplace'}{$c_mp_short_description|@strlen}/600
+								</span>
+							</div>
+							<textarea maxlength="600" name="short_description" id="short_description" cols="2" rows="3" class="short_description wk_tinymce form-control">{$c_mp_short_description|escape:'intval'}</textarea>
 						</div>
-
-						 <div class="form-group">	
-							<label for="product_description" class="control-label">{l s='Long Description :' mod='marketplace'}</label> Provide more specifics for product page
-						  	<textarea class="wk_tinymce form-control" id="product_description" name="product_description" value="">{$c_mp_product_description|escape:'intval'}</textarea>
+						<div class="form-group">	
+							<label for="product_description" class="control-label">
+								{l s='Description (1500 characters max) : ' mod='marketplace'}
+								</label>&nbsp;Provide more specifics for product page
+								<div name="product_description_length" id="product_description_length" class="product_description_length">
+									<span id="max_char_string" style="{if $c_mp_product_description|@strlen > 1500}color:#F00;font-weight:bold{/if}">
+										{l s='HTML Character Count: ' mod='marketplace'}{$c_mp_product_description|@strlen}/1500
+									</span>
+								</div>
+							  	<textarea maxlength="1500" class="product_description wk_tinymce form-control" id="product_description" name="product_description" value="">{$c_mp_product_description|escape:'intval'}</textarea>
 						</div>
 
 						<div class="form-group">
@@ -206,6 +219,8 @@ $(document).ready(function() {
 	var req_prod_name = '{l s='Product name is required.' js=1 mod='marketplace'}';
 	var char_prod_name = '{l s='Product name cannot contain special characters.' js=1 mod='marketplace'}';
 	var char_prod_name_length = '{l s='Product name should be less than 120 characters.' js=1 mod='marketplace'}';
+	var char_prod_short_desc_length = '{l s='Short description should be less than 600 characters.' js=1 mod='marketplace'}';
+	var char_prod_desc_length = '{l s='Description should be less than 1500 characters.' js=1 mod='marketplace'}';
 	var req_price = '{l s='Product price is required.' js=1 mod='marketplace'}';
 	var num_price = '{l s='Product price should be numeric.' js=1 mod='marketplace'}';
 	var req_qty = '{l s='Product quantity is required.' js=1 mod='marketplace'}';

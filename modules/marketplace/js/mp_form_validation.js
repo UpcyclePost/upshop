@@ -4,8 +4,8 @@ $(document).ready(function()
 	$('#SubmitProduct,#SubmitCreate').click(function()
 	{
 		var product_name = $('#product_name').val().trim();
-		var short_description = $('#short_description').val().length;
-		var product_description = $('#product_description').val();
+		var short_description = tinymce.get('short_description').getContent();
+		var product_description = tinymce.get('product_description').getContent();
 		var product_price = $('#product_price').val().trim();
 		var product_quantity = $('#product_quantity').val().trim();
 		var checkbox_length = $('.product_category:checked').length;
@@ -29,6 +29,19 @@ $(document).ready(function()
 			$('#product_name').focus();
 			return false;
 		}
+		else if(short_description.length > 600)
+		{
+			alert(char_prod_short_desc_length + ' : Currently ' + short_description.length + ' characters');
+			$('#short_description').focus();
+			return false;
+		}
+		else if(product_description.length > 1500)
+		{
+			alert(char_prod_desc_length + ' : Currently ' + product_description.length + ' characters');
+			$('#product_description').focus();
+			return false;
+		}
+
 		else if(product_price == '')
 		{
 			alert(req_price);
