@@ -127,7 +127,7 @@ div.uploader
 			</li>
 			{hook h='DisplayMpUpdateProductOption'}
 		</ul>
-	<form action="{$edit_pro_link|escape:'html':'UTF-8'}&edited=1&id={$id|escape:'html':'UTF-8'}" method="post"  enctype="multipart/form-data" accept-charset="UTF-8,ISO-8859-1,UTF-16">
+	<form id="updateproduct" action="{$edit_pro_link|escape:'html':'UTF-8'}&edited=1&id={$id|escape:'html':'UTF-8'}" method="post"  enctype="multipart/form-data" accept-charset="UTF-8,ISO-8859-1,UTF-16">
 		<div class="tab-content panel collapse in">
 			<div class="tab-pane active" id="information">
 				<div class="wk_product_form">
@@ -138,17 +138,27 @@ div.uploader
 					</div>
 
 					<div class="form-group">
-						<label for="prod_short_desc">
-							{l s='Short Description :' mod='marketplace'}
-						</label>
-						<textarea class="short_description wk_tinymce form-control" id="short_description" name="short_description" value="{$pro_info['description']|escape:'html':'UTF-8'}">{$pro_info['short_description']|escape:'html':'UTF-8'}</textarea>
+						<label for="short_description">
+							{l s='Short Description : (600 characters max)' mod='marketplace'}
+						</label>&nbsp;Basic details
+						<div name="short_description_length" id="short_description_length" class="short_description_length">
+							<span id="max_char_string" style="{if $pro_info['short_description']|@strlen > 600}color:#F00;font-weight:bold{/if}">
+								{l s='HTML Character Count: ' mod='marketplace'}{$pro_info['short_description']|@strlen}/600
+								</span>
+						</div>
+						<textarea maxlength="600" class="short_description wk_tinymce form-control" id="short_description" name="short_description" value="{$pro_info['description']|escape:'html':'UTF-8'}">{$pro_info['short_description']|escape:'html':'UTF-8'}</textarea>
 					</div>
 					
 					<div class="form-group">
-						<label for="prod_desc">
-							{l s='Description :' mod='marketplace'}
-						</label>
-						<textarea class="product_description wk_tinymce form-control" id="product_description" name="product_description" value="{$pro_info['description']|escape:'html':'UTF-8'}">{$pro_info['description']|escape:'html':'UTF-8'}</textarea>
+						<label for="product_description">
+							{l s='Description : (1500 characters max)' mod='marketplace'}
+						</label>&nbsp;Provide more specifics for product page
+						<div name="product_description_length" id="product_description_length" class="product_description_length">
+							<span id="max_char_string" style="{if $pro_info['description']|@strlen > 1500}color:#F00;font-weight:bold{/if}">
+								{l s='HTML Character Count: ' mod='marketplace'}{$pro_info['description']|@strlen}/1500		
+							</span>
+						</div>
+						<textarea maxlength="1500" class="product_description wk_tinymce form-control" id="product_description" name="product_description" value="{$pro_info['description']|escape:'html':'UTF-8'}">{$pro_info['description']|escape:'html':'UTF-8'}</textarea>
 					</div>
 
 					<div class="form-group">
@@ -251,8 +261,6 @@ div.uploader
 					</div>
 				{/if}
 			</div>
-
-
 			{hook h="DisplayMpupdateproducttabhook"}
 			<div class="form-group" style="text-align:center;" id="update_product_submit_div">
 				<button type="submit" id="SubmitCreate" class="btn btn-default button button-medium">
@@ -264,6 +272,7 @@ div.uploader
 </div>
 </div>
 </div>
+
 <script type="text/javascript">
 	$(document).ready(function() {
 		$('#tree1').checkboxTree({
@@ -282,6 +291,8 @@ div.uploader
 	var req_prod_name = '{l s='Product name is required.' js=1 mod='marketplace'}';
 	var char_prod_name = '{l s='Product name cannot contain special characters.' js=1 mod='marketplace'}';
 	var char_prod_name_length = '{l s='Product name should be less than 120 characters.' js=1 mod='marketplace'}';
+	var char_prod_short_desc_length = '{l s='Short description should be less than 600 characters.' js=1 mod='marketplace'}';
+	var char_prod_desc_length = '{l s='Description should be less than 1500 characters.' js=1 mod='marketplace'}';
 	var req_price = '{l s='Product price is required.' js=1 mod='marketplace'}';
 	var num_price = '{l s='Product price should be numeric.' js=1 mod='marketplace'}';
 	var req_qty = '{l s='Product quantity is required.' js=1 mod='marketplace'}';
