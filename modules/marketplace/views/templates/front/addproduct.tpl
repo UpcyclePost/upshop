@@ -146,7 +146,7 @@ $(document).ready(function() {
 							</label>&nbsp;Basic details
 							<div name="short_description_length" id="short_description_length" class="short_description_length">
 								<span id="max_char_string" style="{if $c_mp_short_description|@strlen > 600}color:#F00;font-weight:bold{/if}">
-								{l s='HTML Character Count: ' mod='marketplace'}{$c_mp_short_description|@strlen}/600
+								{l s='HTML Character Count: ' mod='marketplace'}{$c_mp_short_description|@html_entity_decode|@strlen}/600
 								</span>
 							</div>
 							<textarea maxlength="600" name="short_description" id="short_description" cols="2" rows="3" class="short_description wk_tinymce form-control">{$c_mp_short_description|escape:'intval'}</textarea>
@@ -157,7 +157,7 @@ $(document).ready(function() {
 								</label>&nbsp;Provide more specifics for product page
 								<div name="product_description_length" id="product_description_length" class="product_description_length">
 									<span id="max_char_string" style="{if $c_mp_product_description|@strlen > 1500}color:#F00;font-weight:bold{/if}">
-										{l s='HTML Character Count: ' mod='marketplace'}{$c_mp_product_description|@strlen}/1500
+										{l s='HTML Character Count: ' mod='marketplace'}{$c_mp_product_description|@html_entity_decode|@strlen}/1500
 									</span>
 								</div>
 							  	<textarea maxlength="1500" class="product_description wk_tinymce form-control" id="product_description" name="product_description" value="">{$c_mp_product_description|escape:'intval'}</textarea>
