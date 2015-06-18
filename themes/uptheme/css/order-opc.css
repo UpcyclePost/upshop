@@ -4,7 +4,8 @@
 #order-opc {
   line-height: 20px; }
   #order-opc .box {
-    padding-bottom: 20px; }
+    padding-bottom: 20px;
+    margin: 15px 15px 30px 15px; }
   #order-opc .cart_navigation {
     margin-bottom: 53px; }
   #order-opc .page-heading.step-num {
@@ -23,6 +24,7 @@
   #order-opc .form-group {
     margin-bottom: 2px; }
     #order-opc .form-group .form-control {
+      border:solid 1px !important;
       max-width: 271px; }
   #order-opc .lost_password {
     display: inline-block;
@@ -55,9 +57,15 @@
   #order-opc #opc_account {
     margin-bottom: 30px; }
   #order-opc .address_delivery.select {
-    margin-bottom: 15px; }
+    margin: 5px 0 15px 15px; }
   #order-opc #address_invoice_form.form-group {
     margin-bottom: 30px; }
+  #order-opc .checkbox.addressesAreEquals {
+    margin: 15px 0 5px 15px; }
+  #order-opc .login-panel{
+    margin-top: 20px;
+  }
+
 
 #new_account_form .id_state,
 #new_account_form .dni,

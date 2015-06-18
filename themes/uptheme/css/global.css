@@ -6044,8 +6044,8 @@ table.table_block td {
         font-size: 14px; } }
 
 .price {
-  font-size: 13px;
-  color: #777;
+  font-size: 14px;
+  color: #555;
   white-space: nowrap; }
 
 .price.product-price {
@@ -6447,9 +6447,9 @@ table.table_block td {
     margin-bottom: 0; }
 
 .page-subheading {
-  font-family: "Open Sans", sans-serif;
+  font-family: inherit;
   font-weight: 600;
-  text-transform: uppercase;
+  text-transform: none;
   color: #555454;
   font-size: 18px;
   padding: 0 0 15px;
@@ -6459,8 +6459,8 @@ table.table_block td {
 
 h3.page-product-heading {
   color: #555454;
-  text-transform: uppercase;
-  font-family: "Open Sans", sans-serif;
+  text-transform: none;
+  font-family: inherit;
   font-weight: 600;
   font-size: 18px;
   line-height: 20px;

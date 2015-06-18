@@ -38,7 +38,15 @@
 		{/if}
 	</h1>
 {else}
-	<h1 class="page-heading step-num"><span>3</span> {l s='Please choose your payment method'}</h1>
+<!-- open the payment login panel -->
+<div class="login-panel">
+
+	<div class="login-panel-header">
+	<h1 class="step-num"><span>3</span> {l s='Please choose your payment method'}</h1>
+
+	</div>
+
+
 {/if}
 
 {if !$opc}
@@ -327,7 +335,7 @@
 							</table>
 						</div> <!-- end order-detail-content -->
 					{/if}
-					{if $opc}<div id="opc_payment_methods-content">{/if}
+					{if $opc}<div id="opc_payment_methods-content" style="padding: 0 0 15px 30px">{/if}
 					<div id="HOOK_PAYMENT">
 						{$HOOK_PAYMENT}
 					</div>
@@ -344,5 +352,8 @@
 					</p>
 				{else}
 					</div> <!-- end opc_payment_methods -->
+					</div> <!-- close the payment panel -->	
 				{/if}
+
 			</div> <!-- end HOOK_TOP_PAYMENT -->
+

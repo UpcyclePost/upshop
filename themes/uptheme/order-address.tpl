@@ -32,7 +32,11 @@
 		<form action="{$link->getPageLink($back_order_page, true)|escape:'html':'UTF-8'}" method="post">
 {else}
 	{assign var="back_order_page" value="order-opc.php"}
-	<h1 class="page-heading step-num"><span>1</span> {l s='Addresses'}</h1>
+<!-- open the order address login panel -->
+<div class="login-panel"> 
+	<div class="login-panel-header">
+	<h1 class="step-num"><span>1</span> {l s='Addresses'}</h1>
+	</div>
 	<div id="opc_account" class="opc-main-block">
 		<div id="opc_account-overlay" class="opc-overlay" style="display: none;"></div>
 {/if}
@@ -86,8 +90,8 @@
 			</ul>
 		</div>
 	</div> <!-- end row -->
-	<p class="address_add submit">
-		<a href="{$link->getPageLink('address', true, NULL, "back={$back_order_page}?step=1{if $back}&mod={$back}{/if}")|escape:'html':'UTF-8'}" title="{l s='Add'}" class="button button-small btn btn-default">
+	<p class="address_add submit" style="padding:0 0 25px 10px">
+		<a href="{$link->getPageLink('address', true, NULL, "back={$back_order_page}?step=1{if $back}&mod={$back}{/if}")|escape:'html':'UTF-8'}" title="{l s='Add'}" class="button button-medium btn btn-default">
 			<span>{l s='Add a new address'}<i class="icon-chevron-right right"></i></span>
 		</a>
 	</p>
@@ -113,6 +117,7 @@
 		</form>
 {else}
 	</div> <!--  end opc_account -->
+	</div> <!-- close the order address login panel -->
 {/if}
 {strip}
 {if !$opc}
@@ -134,9 +139,9 @@
 {addJsDef addressUrlAdd=$smarty.capture.addressUrlAdd}
 {addJsDef formatedAddressFieldsValuesList=$formatedAddressFieldsValuesList}
 {addJsDef opc=$opc|boolval}
-{capture}<h3 class="page-subheading">{l s='Your billing address' js=1}</h3>{/capture}
+{capture}<h3 class="">{l s='Your billing address' js=1}</h3>{/capture}
 {addJsDefL name=titleInvoice}{$smarty.capture.default|@addcslashes:'\''}{/addJsDefL}
-{capture}<h3 class="page-subheading">{l s='Your delivery address' js=1}</h3>{/capture}
+{capture}<h3 class="">{l s='Your delivery address' js=1}</h3>{/capture}
 {addJsDefL name=titleDelivery}{$smarty.capture.default|@addcslashes:'\''}{/addJsDefL}
 {capture}<a class="button button-small btn btn-default" href="{$smarty.capture.addressUrlAdd}" title="{l s='Update' js=1}"><span>{l s='Update' js=1}<i class="icon-chevron-right right"></i></span></a>{/capture}
 {addJsDefL name=liUpdate}{$smarty.capture.default|@addcslashes:'\''}{/addJsDefL}

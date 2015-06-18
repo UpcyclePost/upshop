@@ -24,15 +24,17 @@
 *}
 
 {capture name=path}{l s='Your shopping cart'}{/capture}
-
-<h1 id="cart_title" class="page-heading">{l s='Shopping-cart summary'}
-	{if !isset($empty) && !$PS_CATALOG_MODE}
-		<span class="heading-counter">{l s='Your shopping cart contains:'}
-			<span id="summary_products_quantity">{$productNumber} {if $productNumber == 1}{l s='product'}{else}{l s='products'}{/if}</span>
-		</span>
-	{/if}
-</h1>
-
+<!-- open the shopping cart login panel -->
+<div class="login-panel">
+	<div class="login-panel-header">
+	<h1 id="cart_title" class="">{l s='Shopping-cart summary'}
+		{if !isset($empty) && !$PS_CATALOG_MODE}
+			<span class="heading-counter pull-right">{l s='Your shopping cart contains:'}
+				<span id="summary_products_quantity">{$productNumber} {if $productNumber == 1}{l s='product'}{else}{l s='products'}{/if}</span>
+			</span>
+		{/if}
+	</h1>
+	</div>
 {if isset($account_created)}
 	<p class="alert alert-success">
 		{l s='Your account has been created.'}
@@ -78,7 +80,7 @@
 	{assign var='total_wrapping_taxes_num' value="{if $total_wrapping != 0}1{else}0{/if}"}
 	{* eu-legal *}
 	{hook h="displayBeforeShoppingCartBlock"}
-	<div id="order-detail-content" class="table_block table-responsive">
+	<div id="order-detail-content" class="table_block table-responsive" style="padding:15px">
 		<table id="cart_summary" class="table table-bordered {if $PS_STOCK_MANAGEMENT}stock-management-on{else}stock-management-off{/if}">
 			<thead>
 				<tr>
@@ -561,14 +563,14 @@
 		</div>
 	{/if}
 	<div id="HOOK_SHOPPING_CART">{$HOOK_SHOPPING_CART}</div>
-	<p class="cart_navigation clearfix">
+	<p class="clearfix" style="padding:0 0 25px 10px">
 		{if !$opc}
 			<a  href="{if $back}{$link->getPageLink('order', true, NULL, 'step=1&amp;back={$back}')|escape:'html':'UTF-8'}{else}{$link->getPageLink('order', true, NULL, 'step=1')|escape:'html':'UTF-8'}{/if}" class="button btn btn-default standard-checkout button-medium" title="{l s='Proceed to checkout'}">
 				<span>{l s='Proceed to checkout'}<i class="icon-chevron-right right"></i></span>
 			</a>
 		{/if}
-		<a href="{if (isset($smarty.server.HTTP_REFERER) && ($smarty.server.HTTP_REFERER == $link->getPageLink('order', true) || $smarty.server.HTTP_REFERER == $link->getPageLink('order-opc', true) || strstr($smarty.server.HTTP_REFERER, 'step='))) || !isset($smarty.server.HTTP_REFERER)}{$link->getPageLink('index')}{else}{$smarty.server.HTTP_REFERER|escape:'html':'UTF-8'|secureReferrer}{/if}" class="button-exclusive btn btn-default" title="{l s='Continue shopping'}">
-			<i class="icon-chevron-left"></i>{l s='Continue shopping'}
+		<a href="{if (isset($smarty.server.HTTP_REFERER) && ($smarty.server.HTTP_REFERER == $link->getPageLink('order', true) || $smarty.server.HTTP_REFERER == $link->getPageLink('order-opc', true) || strstr($smarty.server.HTTP_REFERER, 'step='))) || !isset($smarty.server.HTTP_REFERER)}{$link->getPageLink('index')}{else}{$smarty.server.HTTP_REFERER|escape:'html':'UTF-8'|secureReferrer}{/if}" class="button button-medium btn btn-default" title="{l s='Continue shopping'}">
+			<i class="icon-chevron-left"></i>&nbsp;{l s='Continue shopping'}
 		</a>
 	</p>
 	{if !empty($HOOK_SHOPPING_CART_EXTRA)}
@@ -577,6 +579,7 @@
 			<div id="HOOK_SHOPPING_CART_EXTRA">{$HOOK_SHOPPING_CART_EXTRA}</div>
 		</div>
 	{/if}
+</div> <!-- close the shopping cart panel -->
 {strip}
 {addJsDef currencySign=$currencySign|html_entity_decode:2:"UTF-8"}
 {addJsDef currencyRate=$currencyRate|floatval}
