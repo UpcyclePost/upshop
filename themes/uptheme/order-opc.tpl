@@ -49,6 +49,7 @@
 		{include file="$tpl_dir./order-carrier.tpl"}
 		<!-- END Carrier -->
 	
+	
 		<!-- Payment -->
 		{include file="$tpl_dir./order-payment.tpl"}
 		<!-- END Payment -->
