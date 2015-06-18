@@ -35,7 +35,7 @@
 <!-- open the order address login panel -->
 <div class="login-panel"> 
 	<div class="login-panel-header">
-	<h1 class="step-num"><span>1</span> {l s='Addresses'}</h1>
+	<h1 class="step-num"><span>1.</span> {l s='Addresses'}</h1>
 	</div>
 	<div id="opc_account" class="opc-main-block">
 		<div id="opc_account-overlay" class="opc-overlay" style="display: none;"></div>
@@ -90,7 +90,7 @@
 			</ul>
 		</div>
 	</div> <!-- end row -->
-	<p class="address_add submit" style="padding:0 0 25px 10px">
+	<p class="address_add submit" style="padding:0 0 25px 15px">
 		<a href="{$link->getPageLink('address', true, NULL, "back={$back_order_page}?step=1{if $back}&mod={$back}{/if}")|escape:'html':'UTF-8'}" title="{l s='Add'}" class="button button-medium btn btn-default">
 			<span>{l s='Add a new address'}<i class="icon-chevron-right right"></i></span>
 		</a>

@@ -24,8 +24,11 @@
 *}
 
 {capture name=path}{l s='Order confirmation'}{/capture}
-
-<h1 class="page-heading">{l s='Order confirmation'}</h1>
+<div class="dashboard_content login-panel">
+	<div class="login-panel-header">
+	<h1 class="">{l s='Order confirmation'}</h1>
+	</div>
+	<div class="wk_right_col">
 
 {assign var='current_step' value='payment'}
 {include file="$tpl_dir./order-steps.tpl"}
@@ -44,3 +47,5 @@
 	<a class="button-exclusive btn btn-default" href="{$link->getPageLink('history', true)|escape:'html':'UTF-8'}" title="{l s='Go to your order history page'}"><i class="icon-chevron-left"></i>{l s='View your order history'}</a>
 </p>
 {/if}
+	</div>
+</div>

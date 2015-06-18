@@ -42,7 +42,7 @@
 <div class="login-panel">
 
 	<div class="login-panel-header">
-	<h1 class="step-num"><span>3</span> {l s='Please choose your payment method'}</h1>
+	<h1 class="step-num"><span>3.</span> {l s='Please choose your payment method'}</h1>
 
 	</div>
 
