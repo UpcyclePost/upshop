@@ -7,7 +7,10 @@
   color: #555;
   background-color: #fff;
   border-color: #555;
-}	
+}
+.table{
+	margin-bottom: 10px;
+}
 	
 </style>
 
@@ -121,11 +124,11 @@
 								<div class="table-responsive ship_prim_cont">
 									<table class="table">
 										<tr class="ship_tb_head">
-											<th class="">{l s='Ship To' mod='mpshipping'}</th>
+											<th nowrap class="">{l s='Ship To' mod='mpshipping'}</th>
 											<th class="">{l s='Cost' mod='mpshipping'}</th>
 										</tr>
 										<tr>
-											<td class="color-black">{l s='North America' mod='mpshipping'}</td>
+											<td nowrap class="color-black">{l s='North America' mod='mpshipping'}</td>
 											<td>
 												<div class="input-group input-group-sm">
 													<span class="input-group-addon" id="sizing-addon1">{$currency_details['sign']}</span>
@@ -156,8 +159,15 @@
 						<span class="pro_sub_text">{l s='Tracking URL' mod='mpshipping'}</span>
 					</div>
 					<div class="col-sm-9">
+						<p><em>{l s="If you would like the buyer to receive a link to the tracking number for the carrier you are using, you can specify it here" mod="mpshipping"}. <em></p>
+						<p><em>{l s="This field is optional and should only be used if this shipping profile always uses the same carrier" mod="mpshipping"}. <em></p>
+						<p><em>{l s="The '@' sign in the URL will be replaced with a tracking number on the order receipt when a buyer purchases a product" mod="mpshipping"}. <em></p>
+						<p><em>{l s="Examples are provided for the USPS, Fedex and UPS, you can copy those URL's, including the '@' sign to the field below if you are using one of those carriers" mod="mpshipping"}. <em></p>						
+					</div>
+					<div class="col-sm-3">
+					</div>
+					<div class="col-sm-9">
 						<input type="text" class="form-control color-black" name="tracking_url" {if isset($mp_shipping_id)}value="{$tracking_url}"{/if}>
-						<p><em>{l s="For example: with '@' where the tracking number should appear" mod="mpshipping"}. <em></p>
 						<p><label for="usps-track">{l s="USPS : " mod="mpshipping"}</label>&nbsp;<span name="usps-track">{l s="https://www.usps.com/search.htm?q=@" mod="mpshipping"}</span></p>
 						<p><label for="fedex-track">{l s="Fedex : " mod="mpshipping"}</label>&nbsp;<span name="fedex-track">{l s="https://www.fedex.com/apps/fedextrack/?cntry_code=us&tracknumbers=@" mod="mpshipping"}</span></p>
 						<p><label for="ups-track">{l s="UPS : " mod="mpshipping"}</label>&nbsp;<span name="ups-track">{l s="https://wwwapps.ups.com/WebTracking/processInputRequest?AgreeToTermsAndConditions=yes&loc=en_US&tracknum=@" mod="mpshipping"}</span></p>
