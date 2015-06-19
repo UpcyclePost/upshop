@@ -24,8 +24,11 @@
 *}
 
 {capture name=path}{l s='Order confirmation'}{/capture}
-
-<h1 class="page-heading">{l s='Order confirmation'}</h1>
+<div class="dashboard_content login-panel">
+	<div class="login-panel-header">
+	<h1 class="">{l s='Order confirmation'}</h1>
+	</div>
+	<div class="wk_right_col">
 
 {assign var='current_step' value='payment'}
 {include file="$tpl_dir./order-steps.tpl"}
@@ -40,7 +43,17 @@
 	<a class="button-exclusive btn btn-default" href="{$link->getPageLink('guest-tracking', true, NULL, "id_order={$reference_order|urlencode}&email={$email|urlencode}")|escape:'html':'UTF-8'}" title="{l s='Follow my order'}"><i class="icon-chevron-left"></i>{l s='Follow my order'}</a>
     </p>
 {else}
-<p class="cart_navigation exclusive">
-	<a class="button-exclusive btn btn-default" href="{$link->getPageLink('history', true)|escape:'html':'UTF-8'}" title="{l s='Go to your order history page'}"><i class="icon-chevron-left"></i>{l s='View your order history'}</a>
+
+<p class="exclusive" style="">
+	<a class="button button-medium btn btn-default" href="{$link->getPageLink('history', true)|escape:'html':'UTF-8'}" title="{l s='Go to your order history page'}">
+		<i class="fa fa-fw fa-tasks"></i>&nbsp;{l s='View your order history'}
+	</a>
+	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+	<a class="button button-medium btn btn-default" href="/shops" title="{l s='Browse Shops'}">
+		<i class="fa up-shop-1"></i>&nbsp;{l s='Browse Shops'}
+	</a>
 </p>
+
 {/if}
+	</div>
+</div>

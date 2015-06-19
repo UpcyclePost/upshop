@@ -86,7 +86,9 @@ class OrderConfirmationControllerCore extends FrontController
 			'HOOK_ORDER_CONFIRMATION' => $this->displayOrderConfirmation(),
 			'HOOK_PAYMENT_RETURN' => $this->displayPaymentReturn()
 		));
-
+		//echo "<pre>";
+		//print_r($this);
+		//echo "</pre>";
 		if ($this->context->customer->is_guest)
 		{
 			$this->context->smarty->assign(array(
@@ -144,10 +146,22 @@ class OrderConfirmationControllerCore extends FrontController
 				$params['objOrder'] = $order;
 				$params['currencyObj'] = $currency;
 
+				//echo "<pre>";
+				//print_r($params);
+				//echo "</pre>";
+				
 				return Hook::exec('displayOrderConfirmation', $params);
 			}
 		}
 		return false;
+	}
+	
+	public function setMedia()
+	{
+		parent::setMedia();
+		$this->addCSS(array(
+				_MODULE_DIR_.'marketplace/css/marketplace_account.css'
+			));
 	}
 }
 
