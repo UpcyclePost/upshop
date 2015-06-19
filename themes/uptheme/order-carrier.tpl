@@ -32,10 +32,12 @@
 		<form id="form" action="{$link->getPageLink('order', true, NULL, "{if $multi_shipping}multi-shipping={$multi_shipping}{/if}")|escape:'html':'UTF-8'}" method="post" name="carrier_area">
 {else}
 <!-- open the order carrier login panel -->
-<div class="login-panel">
 
-	<div id="carrier_area" class="opc-main-block login-panel-header">
-	<h1 class="step-num"><span>2</span> {l s='Delivery methods'}</h1>
+
+	<div id="carrier_area" class="opc-main-block">
+	<div class="login-panel">
+	<div class="login-panel-header">
+	<h1 class="step-num"><span>2.</span> {l s='Delivery methods'}</h1>
 	</div>
 	
 			<div id="opc_delivery_methods" class="opc-main-block" style="padding:15px">
@@ -383,8 +385,10 @@
 			</form>
 	{else}
 		</div> <!-- end opc_delivery_methods -->
+	</div>
 <!-- end order carrier panel -->
 	{/if}
+
 </div> <!-- end carrier_area -->
 
 {strip}

@@ -49,6 +49,10 @@ class AddressControllerCore extends FrontController
 			_THEME_JS_DIR_.'tools/statesManagement.js',
 			_PS_JS_DIR_.'validate.js'
 		));
+		$this->addCSS(array(
+				_MODULE_DIR_.'marketplace/css/marketplace_account.css'
+			));
+
 	}
 
 	/**
@@ -284,6 +288,7 @@ class AddressControllerCore extends FrontController
 			unset($this->context->cookie->account_created);
 		}
 
+		
 		$this->setTemplate(_PS_THEME_DIR_.'address.tpl');
 	}
 
