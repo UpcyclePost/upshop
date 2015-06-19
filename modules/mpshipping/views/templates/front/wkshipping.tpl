@@ -80,7 +80,7 @@
 							<p class="pro_sub_text">{l s='Profile Name' mod='mpshipping'}</p>
 						</div>
 						<div class="col-sm-9">
-							<input type="text" class="form-control" name="shipping_name" {if isset($mp_shipping_id)}value="{$mp_shipping_name}"{/if}>
+							<input type="text" maxlength="64" class="form-control" name="shipping_name" {if isset($mp_shipping_id)}value="{$mp_shipping_name}"{/if}>
 						</div>
 					</div>
 					<div class="row">

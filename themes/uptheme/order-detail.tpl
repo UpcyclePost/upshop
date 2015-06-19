@@ -23,6 +23,11 @@
 *  International Registered Trademark & Property of PrestaShop SA
 *}
 {if isset($order)}
+<div class="login-panel">
+	<div class="login-panel-header">
+		<h1 class="">{l s='Purchase details'}</h1>
+			Order reference : {$order->reference}
+	</div>
 {if isset($reorderingAllowed) && $reorderingAllowed}
 <div class="box box-small clearfix">
 	<form id="submitReorder" action="{if isset($opc) && $opc}{$link->getPageLink('order-opc', true)}{else}{$link->getPageLink('order', true)}{/if}" method="post" class="submit">
@@ -33,14 +38,19 @@
 			<p class="dark">
 				<strong>{l s='Order Reference %s - placed on' sprintf=$order->getUniqReference()} {dateFormat date=$order->date_add full=0}</strong>
 			</p>
-
 	</form>
 </div>
 {/if}
-<div class="info-order box">
+<div class="info-order" style="padding:15px">
 	{if $carrier->id}<p><strong class="dark">{l s='Carrier'}</strong> {if $carrier->name == "0"}{$shop_name|escape:'html':'UTF-8'}{else}{$carrier->name|escape:'html':'UTF-8'}{/if}</p>{/if}
-	<p><strong class="dark">{l s='Payment method'}</strong> <span class="color-myaccount">{$order->payment|escape:'html':'UTF-8'}</span></p>
+
+	{if isset($followup)}
+	<p class="bold">{l s='Click the following link to track the delivery of your order'}</p>
+	<a href="{$followup|escape:'html':'UTF-8'}" target="_blank">{$followup|escape:'html':'UTF-8'}</a>
+	{/if}
+
 	{if $invoice AND $invoiceAllowed}
+	<p></p>
 	<p>
 		<i class="icon-file-text"></i>
 		<a target="_blank" href="{$link->getPageLink('pdf-invoice', true)}?id_order={$order->id|intval}{if $is_guest}&amp;secure_key={$order->secure_key|escape:'html':'UTF-8'}{/if}">{l s='Download your invoice as a PDF file.'}</a>
@@ -53,10 +63,10 @@
 		<p><i class="icon-gift"></i>&nbsp;{l s='You have requested gift wrapping for this order.'}</p>
 		<p><strong class="dark">{l s='Message'}</strong> {$order->gift_message|nl2br}</p>
 	{/if}
-</div>
+
 
 {if count($order_history)}
-<h1 class="page-heading">{l s='Follow your purchase status step-by-step'}</h1>
+<h3 class="">{l s='Follow your purchase status step-by-step'}</h3>
 <div class="table_block">
 	<table class="detail_step_by_step table table-bordered">
 		<thead>
@@ -75,11 +85,6 @@
 		</tbody>
 	</table>
 </div>
-{/if}
-
-{if isset($followup)}
-<p class="bold">{l s='Click the following link to track the delivery of your order'}</p>
-<a href="{$followup|escape:'html':'UTF-8'}">{$followup|escape:'html':'UTF-8'}</a>
 {/if}
 
 <div class="adresses_bloc">
@@ -121,7 +126,6 @@
 		<thead>
 			<tr>
 				{if $return_allowed}<th class="first_item"><input type="checkbox" /></th>{/if}
-				<th class="{if $return_allowed}item{else}first_item{/if}">{l s='Reference'}</th>
 				<th class="item">{l s='Product'}</th>
 				<th class="item">{l s='Quantity'}</th>
 				{if $order->hasProductReturned()}
@@ -143,7 +147,7 @@
 				</tr>
 			{/if}
 			<tr class="item">
-				<td colspan="{if $return_allowed}2{else}1{/if}">
+				<td colspan="{if $return_allowed}4{else}3{/if}">
 					<strong>{l s='Items'} {if $use_tax}{l s='(tax incl.)'}{/if} </strong>
 				</td>
 				<td colspan="{if $order->hasProductReturned()}5{else}4{/if}">
@@ -152,7 +156,7 @@
 			</tr>
 			{if $order->total_discounts > 0}
 			<tr class="item">
-				<td colspan="{if $return_allowed}2{else}1{/if}">
+				<td colspan="{if $return_allowed}4{else}3{/if}">
 					<strong>{l s='Total vouchers'}</strong>
 				</td>
 				<td colspan="{if $order->hasProductReturned()}5{else}4{/if}">
@@ -162,7 +166,7 @@
 			{/if}
 			{if $order->total_wrapping > 0}
 			<tr class="item">
-				<td colspan="{if $return_allowed}2{else}1{/if}">
+				<td colspan="{if $return_allowed}4{else}3{/if}">
 					<strong>{l s='Total gift wrapping cost'}</strong>
 				</td>
 				<td colspan="{if $order->hasProductReturned()}5{else}4{/if}">
@@ -171,7 +175,7 @@
 			</tr>
 			{/if}
 			<tr class="item">
-				<td colspan="{if $return_allowed}2{else}1{/if}">
+				<td colspan="{if $return_allowed}4{else}3{/if}">
 					<strong>{l s='Shipping & handling'} {if $use_tax}{l s='(tax incl.)'}{/if} </strong>
 				</td>
 				<td colspan="{if $order->hasProductReturned()}5{else}4{/if}">
@@ -179,7 +183,7 @@
 				</td>
 			</tr>
 			<tr class="totalprice item">
-				<td colspan="{if $return_allowed}2{else}1{/if}">
+				<td colspan="{if $return_allowed}4{else}3{/if}">
 					<strong>{l s='Total'}</strong>
 				</td>
 				<td colspan="{if $order->hasProductReturned()}5{else}4{/if}">
@@ -283,7 +287,6 @@
 				{if $product.product_quantity > $product.customizationQuantityTotal}
 					<tr class="item">
 						{if $return_allowed}<td class="order_cb"><input type="checkbox" id="cb_{$product.id_order_detail|intval}" name="ids_order_detail[{$product.id_order_detail|intval}]" value="{$product.id_order_detail|intval}" /></td>{/if}
-						<td><label for="cb_{$product.id_order_detail|intval}">{if $product.product_reference}{$product.product_reference|escape:'html':'UTF-8'}{else}--{/if}</label></td>
 						<td class="bold">
 							<label for="cb_{$product.id_order_detail|intval}">
 								{if $product.download_hash && $logable && $product.display_filename != '' && $product.product_quantity_refunded == 0 && $product.product_quantity_return == 0}
@@ -305,13 +308,15 @@
 							</label>
 						</td>
 						<td class="return_quantity">
+							{if $return_allowed}
 							<input class="order_qte_input form-control grey" name="order_qte_input[{$product.id_order_detail|intval}]" type="text" size="2" value="{$productQuantity|intval}" />
 							<div class="clearfix return_quantity_buttons">
 								<a href="#" class="return_quantity_down btn btn-default button-minus"><span><i class="icon-minus"></i></span></a>
 								<a href="#" class="return_quantity_up btn btn-default button-plus"><span><i class="icon-plus"></i></span></a>
 							</div>
+							{/if}
 							<label for="cb_{$product.id_order_detail|intval}"><span class="order_qte_span editable">{$productQuantity|intval}</span></label></td>
-						{if $order->hasProductReturned()}
+							{if $order->hasProductReturned()}
 							<td>
 								{$product['qty_returned']}
 							</td>
@@ -387,7 +392,7 @@
 				<td data-value="{if $line.weight > 0}{$line.weight|string_format:"%.3f"}{else}0{/if}">{if $line.weight > 0}{$line.weight|string_format:"%.3f"} {Configuration::get('PS_WEIGHT_UNIT')}{else}-{/if}</td>
 				<td data-value="{if $order->getTaxCalculationMethod() == $smarty.const.PS_TAX_INC}{$line.shipping_cost_tax_incl}{else}{$line.shipping_cost_tax_excl}{/if}">{if $order->getTaxCalculationMethod() == $smarty.const.PS_TAX_INC}{displayPrice price=$line.shipping_cost_tax_incl currency=$currency->id}{else}{displayPrice price=$line.shipping_cost_tax_excl currency=$currency->id}{/if}</td>
 				<td>
-					<span class="shipping_number_show">{if $line.tracking_number}{if $line.url && $line.tracking_number}<a href="{$line.url|replace:'@':$line.tracking_number}">{$line.tracking_number}</a>{else}{$line.tracking_number}{/if}{else}-{/if}</span>
+					<span class="shipping_number_show">{if $line.tracking_number}{if $line.url && $line.tracking_number}<a href="{$line.url|replace:'@':$line.tracking_number}" target="_blank">{$line.tracking_number}</a>{else}{$line.tracking_number}{/if}{else}-{/if}</span>
 				</td>
 			</tr>
 			{/foreach}
@@ -464,7 +469,10 @@
 			<button type="submit" name="submitMessage" class="button btn btn-default button-medium"><span>{l s='Send'}<i class="icon-chevron-right right"></i></span></button>
 		</div>
 	</form>
+	<!--<h2><a class="btn btn-gray" style="float:right;margin:-5px 100px 0 0" href="http://{$smarty.server.SERVER_NAME}/profile/messages/send/{$dashboard[0]['ws']}"><i class="fa fa-envelope icon-only"></i> Contact customer</a></h2>--></a>
 {else}
 <p class="alert alert-info"><i class="icon-info-sign"></i>{l s='You cannot return merchandise with a guest account'}</p>
 {/if}
+</div>
 {/if}
+</div>

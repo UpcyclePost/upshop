@@ -98,7 +98,35 @@
 {/literal}
 </script>
 <!-- End of upcyclepost Zendesk Widget script -->
-		
+
+{if $page_name=='order-confirmation'}
+<!-- Facebook tracking pixel for order confirmation -->
+<!-- Facebook Conversion Code for Registrations - UpcyclePost 1 -->
+<script>
+(function() 
+{
+var _fbq = window._fbq || (window._fbq = []);
+if (!_fbq.loaded) 
+	{
+	var fbds = document.createElement('script');
+	fbds.async = true;
+	fbds.src = '//connect.facebook.net/en_US/fbds.js';
+	var s = document.getElementsByTagName('script')[0];
+	s.parentNode.insertBefore(fbds, s);
+	_fbq.loaded = true;
+	}
+}
+)();
+window._fbq = window._fbq || [];
+window._fbq.push(['track', '6025947566399', 
+{
+	'value':'{$total_to_pay}','currency':'{$currency_iso_code}'
+}
+]);
+</script>
+<noscript><img height="1" width="1" alt="" style="display:none" src="https://www.facebook.com/tr?ev=6025947566399&amp;cd[value]={$total_to_pay}&amp;cd[currency]={$currency_iso_code}&amp;noscript=1" /></noscript>
+<!-- End Facebook tracking pixel for order confirmation -->
+{/if}		
 	</head>
 	<body{if isset($page_name)} id="{$page_name|escape:'html':'UTF-8'}"{/if} class="{if isset($page_name)}{$page_name|escape:'html':'UTF-8'}{/if}{if isset($body_classes) && $body_classes|@count} {implode value=$body_classes separator=' '}{/if}{if $hide_left_column} hide-left-column{/if}{if $hide_right_column} hide-right-column{/if}{if isset($content_only) && $content_only} content_only{/if} lang_{$lang_iso}">
 	{if !isset($content_only) || !$content_only}

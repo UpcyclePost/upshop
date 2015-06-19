@@ -23,15 +23,14 @@
 *  International Registered Trademark & Property of PrestaShop SA
 *}
 {capture name=path}
-	<a href="{$link->getPageLink('my-account', true)|escape:'html':'UTF-8'}">
-		{l s='My account'}
-	</a>
-	<span class="navigation-pipe">{$navigationPipe}</span>
 	<span class="navigation_page">{l s='Purchase history'}</span>
 {/capture}
 {include file="$tpl_dir./errors.tpl"}
-<h1 class="page-heading bottom-indent">{l s='Purchase history'}</h1>
-<p class="info-title">{l s='Here are the purchases you\'ve placed.'}</p>
+<div class="login-panel">
+	<div class="login-panel-header">
+		<h1 class="bottom-indent">{l s='Purchase history'}</h1>
+	</div>
+<p class="info-title" style="margin:5px 0 25px 15px">{l s='Here are the purchases you\'ve placed.'}</p>
 {if $slowValidation}
 	<p class="alert alert-warning">{l s='If you have just placed an order, it may take a few minutes for it to be validated. Please refresh this page if your order is missing.'}</p>
 {/if}
@@ -124,3 +123,4 @@
 		</a>
 	</li>
 </ul>
+</div>
