@@ -86,8 +86,18 @@ class OrderConfirmationControllerCore extends FrontController
 			'HOOK_ORDER_CONFIRMATION' => $this->displayOrderConfirmation(),
 			'HOOK_PAYMENT_RETURN' => $this->displayPaymentReturn()
 		));
+
+		$order = new Order($this->id_order);
+		$currency = new Currency($order->id_currency);
+		if (Validate::isLoadedObject($order))
+		{
+			$this->context->smarty->assign('total_to_pay', number_format($order->getOrdersTotalPaid(),2));
+			$this->context->smarty->assign('currency_iso_code', $currency->iso_code);
+			$this->context->smarty->assign('currency_sign', $currency->sign);			
+		}
+
 		//echo "<pre>";
-		//print_r($this);
+		//print_r($order);
 		//echo "</pre>";
 		if ($this->context->customer->is_guest)
 		{
