@@ -29,8 +29,9 @@ $(document).ready(function(){
 		'hideOnContentClick': false
 	});
 
+	
 	$(function(){
-		$( ".datetime" ).datetimepicker({ dateFormat: "yy-mm-dd" });
+		//$( ".datetime" ).datetimepicker({ dateFormat: "yy-mm-dd" });
 	});
 
 	$(document).on('change', '#id_order_state', function(){
