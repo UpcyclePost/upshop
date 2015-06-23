@@ -52,9 +52,9 @@
 	-->
 	<div class="form-group">
 		<div>
-			<label class="add_one">{l s='Carriers' mod='mpshipping'}</label>
+			<label class="add_one">{l s='Shipping Profile' mod='mpshipping'}</label>
 		</div>
-		<div class="input-group">
+		<div class="">
 			<select id="carriers_restriction" style="height:75px;width:300px;" size="4" multiple="multiple" name="carriers[]">
 
 				{foreach $mp_shipping_data as $shipping_data}
@@ -67,7 +67,7 @@
 				
 				{/foreach}
 			</select>
-			<div class="info_description">{l s='If no carrier selected, the first carrier will be used as default shipping method.' mod='mpshipping'}</div>
+			<div class="info_description">{l s='If no profile selected, the first shipping profile will be used as default shipping method.' mod='mpshipping'}</div>
 		</div>
 	</div>
 </div>

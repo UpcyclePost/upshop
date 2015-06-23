@@ -387,6 +387,7 @@ function initCarrierWizard()
 
 function displayRangeType()
 {
+	return;
 	if (shipping_method == 1)
 	{
 		string = string_weight;
