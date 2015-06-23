@@ -82,12 +82,18 @@ class BlockUserInfo extends Module
 		// Add support for marketplace stuff
 		$link            = new link();
 		$customer_id     = $this->context->customer->id;
-
 		// get the number of messages for the customers
-		$sql = 'SELECT count(*) FROM up.message m WHERE m.from_user_ik = '.$customer_id.' and m.read is not null';
-		$m_number_messages = Db::getInstance()->getValue($sql);		
-       	$this->context->smarty->assign("m_number_messages", $m_number_messages);
-
+		If (isset($customer_id)){
+			// get the up customer - website field
+			$sql = 'SELECT website from `'._DB_PREFIX_.'customer` c Where c.id_customer = '.$customer_id;
+			$c_website = Db::getInstance()->getValue($sql);
+			
+			If (isset($c_website)){
+				$sql = 'SELECT count(*) FROM up.message m WHERE m.from_user_ik = '.$c_website.' and m.read is not null';
+				$m_number_messages = Db::getInstance()->getValue($sql);
+		       	$this->context->smarty->assign("m_number_messages", $m_number_messages);
+			}
+		}
 
 		$obj_marketplace_seller = new SellerInfoDetail();
 		$already_request = $obj_marketplace_seller->getMarketPlaceSellerIdByCustomerId($customer_id);
