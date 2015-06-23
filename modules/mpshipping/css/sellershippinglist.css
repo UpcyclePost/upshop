@@ -126,7 +126,7 @@
 }*/
 
 #add_new_shipping:hover {
-	font-weight:bold;
+	font-weight:normal;
 }
 .shipping_add {
     float: left;
