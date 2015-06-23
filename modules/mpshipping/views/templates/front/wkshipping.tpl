@@ -70,17 +70,26 @@
 		<div class="wk_right_col">
 			<div class="row no_margin">
 				<div class="col-sm-12">
-				<form method="POST" action="{$link->getModuleLink('mpshipping', 'wkshippingprocess')|escape:'html':'UTF-8'}" id="form_shipping">
+				<form method="POST" action="{$link->getModuleLink('mpshipping', 'wkshippingprocess')|escape:'html':'UTF-8'}" id="form_shipping" id="form_shipping">
 					{if isset($mp_shipping_id)}
 						<input type="hidden" value="{$mp_shipping_id}" name="mpshipping_id">
 					{/if}
-					<h2 class="text-capitalize pro_head_text">{l s='Profile Details' mod='mpshipping'}</h2>
-					<div class="row margin-top-30">
+					<div class="row">
 						<div class="col-sm-3">
-							<p class="pro_sub_text">{l s='Profile Name' mod='mpshipping'}</p>
+							<h2 class="pro_head_text">{l s='Profile Details' mod='mpshipping'}</h2>
 						</div>
 						<div class="col-sm-9">
-							<input type="text" maxlength="64" class="form-control" name="shipping_name" {if isset($mp_shipping_id)}value="{$mp_shipping_name}"{/if}>
+							<p >{l s='Create shipping Profiles for your products; a shipping profile is the shipping cost, the tracking URL for an order, and any policies that you would like your buyers to know about.' mod='mpshipping'}</p>
+						</div>
+					</div>
+
+					<div class="row">
+						<div class="col-sm-3">
+							<p class="pro_sub_text">{l s='Profile Name' mod='mpshipping'}</p>
+							<p class="">{l s='Required - 64 characters max' mod='mpshipping'}</p>								
+						</div>
+						<div class="col-sm-9">
+							<input type="text" maxlength="64" class="form-control" name="shipping_name" id="shipping_name" {if isset($mp_shipping_id)}value="{$mp_shipping_name}"{/if}>
 						</div>
 					</div>
 					<div class="row">
@@ -114,7 +123,14 @@
 
 			<div class="row no_margin margin-top-25">
 				<div class="col-sm-12">
-					<h2 class="text-capitalize pro_head_text">{l s='Shipping Costs' mod='mpshipping'}</h2>
+					<div class="row">
+						<div class="col-sm-3">
+							<h2 class=" pro_head_text">{l s='Shipping Costs' mod='mpshipping'}</h2>
+						</div>
+						<div class="col-sm-9">
+							<p >{l s='Specify the shipping costs that you would like added to an order. If you have any handling charges include those as part of your shipping cost.' mod='mpshipping'}</p>
+						</div>
+					</div>
 					<div class="row margin-top-30">
 						<div class="col-sm-3">
 							<p class="pro_sub_text">{l s='Shipping costs' mod='mpshipping'}</p>
@@ -132,7 +148,7 @@
 											<td>
 												<div class="input-group input-group-sm">
 													<span class="input-group-addon" id="sizing-addon1">{$currency_details['sign']}</span>
-													<input type="text" class="form-control ship_cost" name="n_america_ship" {if isset($mp_shipping_id)}value="{$price_by_range[$ranges['0']['id_range']]['2']}"{/if} aria-describedby="sizing-addon1">
+													<input type="text" class="form-control ship_cost" name="n_america_ship" {if isset($mp_shipping_id)}value="{$price_by_range[$ranges['0']['id_range']]['2']|number_format:2}"{/if} aria-describedby="sizing-addon1">
 												</div>
 											</td>
 										</tr>
@@ -175,19 +191,26 @@
 				</div>
 
 				<div class="row no_margin margin-top-30">
+
 					<div class="col-sm-3">
 						<span class="pro_sub_text">{l s='Shipping Policies' mod='mpshipping'}</span>
 					</div>
-					<div class="col-sm-9">			
+					<div class="col-sm-9">
+						<p><em>{l s="Specify any policies that you would like the buyer to know about regarding your shipping." mod="mpshipping"}<em></p>
+					</div>
+					<div class="col-sm-3">
+					</div>
+					<div class="col-sm-9">
 						<textarea class="form-control" name="ship_policy">{if isset($mp_shipping_id)}{$shipping_policy}{/if}</textarea>
 					</div>
+
 				</div>
 				<div class="col-sm-12"  style="text-align:center;padding-top:10px;">
-					<button type="cancel" class="button button-medium">
-						<span>{l s=' Cancel ' mod='mpshipping'}&nbsp;<i class="icon-remove"></i></span>			
-					</button>
+					<a class="button button-medium" href="{$link->getModuleLink('mpshipping','sellershippinglist')|escape:'html':'UTF-8'}">
+						<span><i class="icon-chevron-left "></i>&nbsp;{l s=' Back to Shipping Profiles ' mod='mpshipping'}</span>			
+					</a>
 					&nbsp;&nbsp;&nbsp;
-					<button type="submit" id="seller_save" class="button button-medium">
+					<button type="submit" id="buttonNext" name="buttonNext" class="button button-medium">
 						<span>{l s=' Save ' mod='mpshipping'}&nbsp;<i class="icon-chevron-right "></i></span>			
 					</button>
 				</div>

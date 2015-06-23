@@ -5798,7 +5798,7 @@ span.exclusive {
     // border-color: #74d578; }
     @media (max-width: 480px) {
       .button.button-medium span {
-        font-size: 15px;
+        font-size: 14px;
         padding-right: 7px;
         padding-left: 7px; } }
     .button.button-medium span i.left {
@@ -5891,7 +5891,6 @@ span.exclusive {
   padding: 0;
   line-height: 21px;
   color: #333;
-  font-weight: bold;
   border: 1px solid;
   border-color: #cacaca #b7b7b7 #9a9a9a #b7b7b7;
   text-shadow: 1px 1px white; }

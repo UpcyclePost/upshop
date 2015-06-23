@@ -64,11 +64,11 @@
 			<center>{l s='No data found' mod='mpshipping'}</center>
 		</div>
 	{/if}
-	<div class="form-group" style="text-align:center;padding:15px">
+	<div class="" style="text-align:center;padding:15px">
 		{if $mp_shipping_detail!=0}
 		<a class="btn btn-default button button-medium" id="add_product" href="{$add_product}"><span>{l s='Add Product' mod='mpshipping'}</span></a>&nbsp;&nbsp;&nbsp;
 		{/if}
-		<a class="btn btn-default button button-medium exclusive" id="add_new_shipping" href="{$addnew_shipping_link}"><span>{l s='New Shipping Profile' mod='mpshipping'}</span></a>
+		<a class="btn btn-default button button-medium" id="add_new_shipping" href="{$addnew_shipping_link}"><span>{l s='New Shipping Profile' mod='mpshipping'}</span></a>
 	</div>
 </div>		
 </div>
