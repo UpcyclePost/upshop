@@ -437,7 +437,7 @@
 									<td>
 										{$product['short_description']|strip_tags|truncate:30|escape:'html':'UTF-8'}
 									</td>
-									<td>
+									<td nowrap>
 										{$currency->prefix}{$product['price']|string_format:"%.2f"}{$currency->suffix}
 									</td>
 									<td>
