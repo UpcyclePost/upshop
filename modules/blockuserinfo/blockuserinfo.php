@@ -89,7 +89,7 @@ class BlockUserInfo extends Module
 			$c_website = Db::getInstance()->getValue($sql);
 			
 			If (isset($c_website)){
-				$sql = 'SELECT count(*) FROM up.message m WHERE m.from_user_ik = '.$c_website.' and m.read is not null';
+				$sql = 'SELECT count(*) FROM up.message m WHERE m.to_user_ik = '.$c_website.' and m.read is null';
 				$m_number_messages = Db::getInstance()->getValue($sql);
 		       	$this->context->smarty->assign("m_number_messages", $m_number_messages);
 			}
