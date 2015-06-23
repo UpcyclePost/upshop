@@ -30,6 +30,7 @@
 	var ajax_urlpath = '{$imageediturl|escape:'intval'}';
 	var id_lang = '{$id_lang|escape:'html':'UTF-8'}';
 </script>
+
 {/if}
 <div class="main_block" >
 	{hook h="DisplayMpmenuhook"}
@@ -405,12 +406,12 @@
 									<th>{l s='Edit' mod='marketplace'}</th>
 									<th>{l s='Image' mod='marketplace'}</th>
 									<th>{l s='Name' mod='marketplace'}</th>
-									<th>{l s='Description' mod='marketplace'}</th>
+									<!--<th>{l s='Description' mod='marketplace'}</th>-->
 									<th>{l s='Price' mod='marketplace'}</th>
 									<th>{l s='Quantity' mod='marketplace'}</th>
+									<th>{l s='Shipping' mod='marketplace'}</th>
 									<th>{l s='Status' mod='marketplace'}</th>
 									<th>{l s='Delete' mod='marketplace'}</th>
-									<th>{l s='Shipping' mod='marketplace'}</th>
 								</tr>
 							</thead>
 						<tbody>
@@ -435,14 +436,25 @@
 									<td>
 										{$product['product_name']|escape:'html':'UTF-8'}
 									</td>
+									<!--
 									<td>
 										{$product['short_description']|strip_tags|truncate:30|escape:'html':'UTF-8'}
 									</td>
+									-->
 									<td nowrap>
 										{$currency->prefix}{$product['price']|string_format:"%.2f"}{$currency->suffix}
 									</td>
 									<td>
 										{$product['quantity']|escape:'html':'UTF-8'}
+									</td>
+									<td align="center" style="text-align:center;">
+											{if $product['shipping']}
+												<!--{l s='Assigned' mod='marketplace'}-->
+												<i class="fa fa-check-circle fa-2x" style="color:#89c226;"></i>
+											{else}
+												<!--{l s='Not Assigned' mod='marketplace'}-->
+												<i class="fa fa-exclamation-circle fa-2x" style="color:#f3515c;" title="A shipping profile must be assigned to this product, click the edit button to assign one."></i>
+											{/if}
 									</td>
 									{if $product['active'] == 0}
 										<td>
@@ -456,15 +468,6 @@
 									<td>
 										<img id="{$product['id']|escape:'html':'UTF-8'}" class="delete_img" src="{$img_ps_dir|escape:'html':'UTF-8'}admin/delete.gif"/>
 										{hook h="PriceDisplay" id_product=$product['id']|escape:'html':'UTF-8'}
-									</td>
-									<td>
-										<span>
-											{if $product['shipping']}
-												{l s='Assigned' mod='marketplace'}
-											{else}
-												{l s='Not Assigned' mod='marketplace'}
-											{/if}
-										</span>
 									</td>
 								</tr>
 								<div  class="row_info">
