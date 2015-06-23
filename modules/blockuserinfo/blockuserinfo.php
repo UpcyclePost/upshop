@@ -83,6 +83,12 @@ class BlockUserInfo extends Module
 		$link            = new link();
 		$customer_id     = $this->context->customer->id;
 
+		// get the number of messages for the customers
+		$sql = 'SELECT count(*) FROM up.message m WHERE m.from_user_ik = '.$customer_id.' and m.read is not null';
+		$m_number_messages = Db::getInstance()->getValue($sql);		
+       	$this->context->smarty->assign("m_number_messages", $m_number_messages);
+
+
 		$obj_marketplace_seller = new SellerInfoDetail();
 		$already_request = $obj_marketplace_seller->getMarketPlaceSellerIdByCustomerId($customer_id);
 
@@ -97,7 +103,7 @@ class BlockUserInfo extends Module
 				$param = array('shop' => $id_shop);
 				$account_dashboard = $link->getModuleLink('marketplace', 'marketplaceaccount',$param);
 
-		                $add_product    = $link->getModuleLink('marketplace', 'addproduct',$param);
+		        $add_product    = $link->getModuleLink('marketplace', 'addproduct',$param);
 				$edit_profile   = $link->getModuleLink('marketplace', 'marketplaceaccount',array('shop'=>$id_shop,'l'=>2,'edit-profile'=>1));
 				$product_list   = $link->getModuleLink('marketplace', 'marketplaceaccount',array('shop'=>$id_shop,'l'=>3));
 				$my_order    	= $link->getModuleLink('marketplace', 'marketplaceaccount',array('shop'=>$id_shop,'l'=>4));
@@ -117,12 +123,12 @@ class BlockUserInfo extends Module
 				
 					
 				$this->context->smarty->assign("account_dashboard", $account_dashboard);
-		                $this->context->smarty->assign("add_product", $add_product);
-		                $this->context->smarty->assign("edit_profile", $edit_profile);
-		       	        $this->context->smarty->assign("product_list", $product_list);
-              			$this->context->smarty->assign("my_order", $my_order);
-		               	$this->context->smarty->assign("my_shop", $my_shop);
-		               	$this->context->smarty->assign("m_number_orders", $m_number_orders);
+                $this->context->smarty->assign("add_product", $add_product);
+                $this->context->smarty->assign("edit_profile", $edit_profile);
+       	        $this->context->smarty->assign("product_list", $product_list);
+      			$this->context->smarty->assign("my_order", $my_order);
+               	$this->context->smarty->assign("my_shop", $my_shop);
+               	$this->context->smarty->assign("m_number_orders", $m_number_orders);
 			}
 		} else {
 			$this->context->smarty->assign("is_seller", -1);
