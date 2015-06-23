@@ -410,6 +410,7 @@
 									<th>{l s='Quantity' mod='marketplace'}</th>
 									<th>{l s='Status' mod='marketplace'}</th>
 									<th>{l s='Delete' mod='marketplace'}</th>
+									<th>{l s='Shipping' mod='marketplace'}</th>
 								</tr>
 							</thead>
 						<tbody>
@@ -455,6 +456,15 @@
 									<td>
 										<img id="{$product['id']|escape:'html':'UTF-8'}" class="delete_img" src="{$img_ps_dir|escape:'html':'UTF-8'}admin/delete.gif"/>
 										{hook h="PriceDisplay" id_product=$product['id']|escape:'html':'UTF-8'}
+									</td>
+									<td>
+										<span>
+											{if $product['shipping']}
+												{l s='Assigned' mod='marketplace'}
+											{else}
+												{l s='Not Assigned' mod='marketplace'}
+											{/if}
+										</span>
 									</td>
 								</tr>
 								<div  class="row_info">
