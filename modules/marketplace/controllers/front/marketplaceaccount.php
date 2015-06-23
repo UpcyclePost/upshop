@@ -567,6 +567,13 @@ class marketplaceMarketplaceaccountModuleFrontController extends ModuleFrontCont
 				if ($unactive_image)
 					$productList[$key]['unactive_image'] = $unactive_image[0]['seller_product_image_id'];
 			}
+
+			$obj_prod = new Product($ps_product['id_product']);
+			$ps_carriers = $obj_prod->getCarriers();
+			if (empty($ps_carriers))
+				$productList[$key]['shipping'] = 0;
+			else
+				$productList[$key]['shipping'] = 1;
 		}
 		return $productList;
 	}
