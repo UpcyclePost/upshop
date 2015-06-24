@@ -288,39 +288,42 @@
 									<label for="update_address" class="control-label">{l s='Address' mod='marketplace'}</label>
 									<textarea class="required form-control"  name="update_address" id="update_address">{$marketplace_address|escape:'html':'UTF-8'}</textarea>
 								</div>
+                                 {if $stripestatus=='verified'}
+                                <p class="alert alert-success">{l s='Account Verified. Contact customer service if you need to change your banking information.' mod='marketplace'}</p>
+                                {/if}
                                  <fieldset style="">
                                  <div id="bank" class="form-group" >
                                     <label for="bank" class="control-label required">{l s='Bank Account Number' mod='marketplace'} {if $bank_data.bank_name!=''}({$bank_data.bank_name}){/if}</label>
-                                    <input class="reg_sel_input form-control"  type="text" name="bank" id="bank" value="{if $bank_data.last4!=''}********{$bank_data.last4}{/if}" />
+                                    <input class="reg_sel_input form-control"  type="text" name="bank" id="bank" value="{if $bank_data.last4!=''}********{$bank_data.last4}{/if}" {if $stripestatus=='verified'}disabled="disabled"{/if} />
                                     {l s='e.g.' mod='marketplace'} 000123456789
                                 </div>
                                     
                                 <div id="routing" class="form-group" >
                                     <label for="routing" class="control-label required">{l s='Routing Number' mod='marketplace'}</label>
-                                    <input class="reg_sel_input form-control"  type="text" name="routing" id="routing" value="{$bank_data.routing_number}" />
+                                    <input class="reg_sel_input form-control"  type="text" name="routing" id="routing" value="{$bank_data.routing_number}"  {if $stripestatus=='verified'}disabled="disabled"{/if} />
                                     {l s='e.g.' mod='marketplace'} 110000000
                                 </div>
                                 
                                 <fieldset style="">
                                 <div id="type" class="form-group" >
                                     <label for="type" class="control-label required">{l s='Entity Type' mod='marketplace'}</label>
-                                    <select name="type" id="type"><option value="individual" {if $type=='individual'}selected="selected"{/if}>{l s='Individual' mod='marketplace'}</option><option value="company" {if $type=='company'}selected="selected"{/if}>{l s='Company' mod='marketplace'}</option></select>
+                                    <select name="type" id="type" {if $stripestatus=='verified'}disabled="disabled"{/if}><option value="individual" {if $type=='individual'}selected="selected"{/if}>{l s='Individual' mod='marketplace'}</option><option value="company" {if $type=='company'}selected="selected"{/if}>{l s='Company' mod='marketplace'}</option></select>
                                 </div>
                                 <div id="fname" class="form-group" >
                                     <label for="fname" class="control-label required">{l s='First Name' mod='marketplace'}</label>
-                                    <input class="form-control"  type="text" name="fname" id="fname" style="width:100px;display: inline;" value="{$fname}" />&nbsp;&nbsp;
+                                    <input class="form-control"  type="text" name="fname" id="fname" style="width:100px;display: inline;" value="{$fname}" {if $stripestatus=='verified'}disabled="disabled"{/if} />&nbsp;&nbsp;
                                     <label for="lname" class="control-label required">{l s='Last Name' mod='marketplace'}</label>
-                                    <input class="form-control"  type="text" name="lname" id="lname" style="width:100px;display: inline;" value="{$lname}" />
+                                    <input class="form-control"  type="text" name="lname" id="lname" style="width:100px;display: inline;" value="{$lname}" {if $stripestatus=='verified'}disabled="disabled"{/if} />
                                 </div>
                                 <div id="ssn" class="form-group" >
                                     <label for="ssn" class="control-label required">{l s='SSN last 4 digits' mod='marketplace'}</label>
-                                    <input class="form-control"  type="text" name="ssn" id="ssn" style="width:50px;display: inline;" value="{if $type!=''}****{/if}" maxlength="4"/>
+                                    <input class="form-control"  type="text" name="ssn" id="ssn" style="width:50px;display: inline;" value="{if $type!=''}****{/if}" maxlength="4" {if $stripestatus=='verified'}disabled="disabled"{/if} />
                                 </div>
                                 <div id="routing" class="form-group" >
                                     <label for="routing" class="control-label required">{l s='Date of birth' mod='marketplace'}</label>
-                                    <input class="form-control"  type="text" name="month" id="month" style="width:30px;display: inline;" value="{$dob.month}"  maxlength="2"/> /
-                                    <input class="form-control"  type="text" name="day" id="day" style="width:30px;display: inline;" value="{$dob.day}"  maxlength="2"/> /
-                                    <input class="form-control"  type="text" name="year" id="year" style="width:50px;display: inline;" value="{$dob.year}"  maxlength="4"/>&nbsp;
+                                    <input {if $stripestatus=='verified'}disabled="disabled"{/if} class="form-control"  type="text" name="month" id="month" style="width:30px;display: inline;" value="{$dob.month}"  maxlength="2"/> /
+                                    <input {if $stripestatus=='verified'}disabled="disabled"{/if} class="form-control"  type="text" name="day" id="day" style="width:30px;display: inline;" value="{$dob.day}"  maxlength="2"/> /
+                                    <input {if $stripestatus=='verified'}disabled="disabled"{/if} class="form-control"  type="text" name="year" id="year" style="width:50px;display: inline;" value="{$dob.year}"  maxlength="4"/>&nbsp;
                                     {l s='e.g.' mod='marketplace'} 12/31/1988
                                 </div>
                                 </fieldset>

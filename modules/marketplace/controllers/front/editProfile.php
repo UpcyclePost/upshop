@@ -51,20 +51,25 @@ class marketplaceEditProfileModuleFrontController extends ModuleFrontController
 			
 			try
 			{
-			  $account = \Stripe\Account::retrieve($account_id);
-			  $account->business_name = $shop_name;
-			  if(substr($bank,0,2)!="**" && strlen($bank)>9)
-			  $account->bank_account = array("account_number"=>$bank,"country"=>'US',"currency"=>'usd',"routing_number"=>$routing);		
-	  
-			  if(substr($ssn,0,2)!="**" && strlen($ssn)==4)
-			  $account->legal_entity->ssn_last_4  = $ssn;
-			  $account->legal_entity->type = Tools::getValue('type');
-			  if(Tools::getValue('fname')!='')
-			  $account->legal_entity->first_name = Tools::getValue('fname');
-			  if(Tools::getValue('lname')!='')
-			  $account->legal_entity->last_name = Tools::getValue('lname');
-			  $account->legal_entity->dob = array("day"=>Tools::getValue('day'),"month"=>Tools::getValue('month'),"year"=>Tools::getValue('year'));
-			  $account->save();
+			   $account = \Stripe\Account::retrieve($account_id);
+			  $dob = Tools::getValue('day').'-'.Tools::getValue('month').'-'.Tools::getValue('year');
+			  $stripe_dob = $account->legal_entity->dob->day.'-'.$account->legal_entity->dob->month.'-'.$account->legal_entity->dob->year;
+			  if(substr($bank,0,2)!="**" || substr($ssn,0,2)!="**" || $account->legal_entity->type != Tools::getValue('type') || $account->legal_entity->first_name != Tools::getValue('fname') || $account->legal_entity->last_name != Tools::getValue('lname') || $stripe_dob != $dob){
+
+				  $account->business_name = $shop_name;
+				  if(substr($bank,0,2)!="**" && strlen($bank)>9)
+				  $account->bank_account = array("account_number"=>$bank,"country"=>'US',"currency"=>'usd',"routing_number"=>$routing);
+		  
+				  if(substr($ssn,0,2)!="**" && strlen($ssn)==4)
+				  $account->legal_entity->ssn_last_4  = $ssn;
+				  $account->legal_entity->type = Tools::getValue('type');
+				  if(Tools::getValue('fname')!='')
+				  $account->legal_entity->first_name = Tools::getValue('fname');
+				  if(Tools::getValue('lname')!='')
+				  $account->legal_entity->last_name = Tools::getValue('lname');
+				  $account->legal_entity->dob = array("day"=>Tools::getValue('day'),"month"=>Tools::getValue('month'),"year"=>Tools::getValue('year'));
+				  $account->save();
+			  }
 			}
 			catch (Exception $e)
 			{
