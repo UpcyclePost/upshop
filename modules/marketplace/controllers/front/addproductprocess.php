@@ -192,8 +192,6 @@ class marketplaceAddproductprocessModuleFrontController extends ModuleFrontContr
 					if(in_array($fileExtension, $validExtensions)) 
 					{
 						list($image_width, $image_height) = getimagesize($other_images[$i]);
-						if($image_width >= 200 && $image_width  <= 2000 && $image_height >= 200 &&  $image_height <= 2000)
-						{
 						$length     = 6;
 						$characters = "0123456789abcdefghijklmnopqrstuvwxyz";
 						$u_other_id = "";
@@ -207,7 +205,6 @@ class marketplaceAddproductprocessModuleFrontController extends ModuleFrontContr
 						$image_name = $u_other_id . ".jpg";
 						$address    = "modules/marketplace/img/product_img/";
 						ImageManager::resize($other_images[$i],$address . $image_name);
-						}
 					}					
 				}
 			}

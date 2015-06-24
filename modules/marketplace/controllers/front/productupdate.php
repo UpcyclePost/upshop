@@ -389,8 +389,6 @@ class marketplaceProductupdateModuleFrontController extends ModuleFrontControlle
 								if(in_array($fileExtension, $validExtensions)) 
 								{
 									list($image_width, $image_height) = getimagesize($other_images[$i]);
-									if($image_width >= 200 && $image_width  <= 2000 && $image_height >= 200 &&  $image_height <= 2000)
-									{
 									$length     = 6;
 									$characters = "0123456789abcdefghijklmnopqrstuvwxyz";
 									$u_other_id = "";
@@ -405,7 +403,6 @@ class marketplaceProductupdateModuleFrontController extends ModuleFrontControlle
 									$image_name = $u_other_id . ".jpg";
 									$address    = "modules/marketplace/img/product_img/";
 									ImageManager::resize($other_images[$i],$address . $image_name);
-									}
 								}					
 							}
 						}
@@ -477,7 +474,7 @@ class marketplaceProductupdateModuleFrontController extends ModuleFrontControlle
 						}
 					}			
 					Hook::exec('actionUpdateproductExtrafield', array('marketplace_product_id' =>Tools::getValue('id')));
-					$mkt_acc_link = $link->getModuleLink('marketplace','marketplaceaccount',array('edit'=>1,'l'=>3));
+					$mkt_acc_link = $link->getModuleLink('marketplace','productupdate',array('id'=>Tools::getValue('id'),'editproduct'=>1));
 					Tools::redirectAdmin($mkt_acc_link);	
 				}
 			}
