@@ -96,8 +96,12 @@ class BlockUserInfo extends Module
 		}
 
 		$obj_marketplace_seller = new SellerInfoDetail();
-		$already_request = $obj_marketplace_seller->getMarketPlaceSellerIdByCustomerId($customer_id);
-
+		if (isset($customer_id)){
+			$already_request = $obj_marketplace_seller->getMarketPlaceSellerIdByCustomerId($customer_id);
+		}
+		else{
+			$already_request = null;
+		}
 		if ($already_request) {
 			$is_seller = $already_request['is_seller'];
 			$this->context->smarty->assign("is_seller", $is_seller);

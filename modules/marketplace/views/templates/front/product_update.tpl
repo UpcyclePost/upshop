@@ -133,7 +133,7 @@ div.uploader
 				<div class="wk_product_form">
 				{hook h='displayMpUpdateProductBodyHeaderOption'}
 					<div class="required form-group">
-						<label for="product_name">{l s='Product Name :' mod='marketplace'}<sup>*</sup></label>
+						<label for="product_name"><sup style="color:#f00;">*&nbsp;</sup>{l s='Product Name :' mod='marketplace'}</label>
 						<input type="text" id="product_name" name="product_name" value="{$pro_info['product_name']|escape:'html':'UTF-8'}" class="form-control" />
 					</div>
 
@@ -162,9 +162,9 @@ div.uploader
 					</div>
 
 					<div class="form-group">
-						<label for="prod_price">{l s='Price :' mod='marketplace'}<sup>*</sup></label>
+						<label for="prod_price"><sup style="color:#f00;">*&nbsp;</sup>{l s='Price :' mod='marketplace'}</label>
 						<div class="input-group">
-							<input type="text" id="product_price" name="product_price" value="{$pro_info['price']|escape:'html':'UTF-8'}"  class="form-control" />
+							<input type="text" id="product_price" name="product_price" value="{$pro_info['price']|number_format:2|escape:'html':'UTF-8'}"  class="form-control" />
 							<span class="input-group-addon">{$currency_sign|escape:'html':'UTF-8'}</span>
 						</div>
 					</div>
@@ -172,12 +172,12 @@ div.uploader
 					{hook h='DisplayMpaddproductpricehook'}
 
 					<div class="form-group">
-						<label for="prod_quantity">{l s='Quantity :' mod='marketplace'}<sup>*</sup></label>
+						<label for="prod_quantity"><sup style="color:#f00;">*&nbsp;</sup>{l s='Quantity :' mod='marketplace'}</label>
 						<input type="text" id="product_quantity" name="product_quantity" value="{$pro_info['quantity']|escape:'html':'UTF-8'}"  class="form-control"/>
 					</div> 
 					
 					<div class="form-group">
-						<label for="prod_category">{l s='Category :' mod='marketplace'}<sup>*</sup></label>
+						<label for="prod_category"><sup style="color:#f00;">*&nbsp;</sup>{l s='Category :' mod='marketplace'}</label>
 						<div>{$categoryTree|escape:'intval'}</div>
 					</div>
 					{hook h="DisplayMpupdateproductfooterhook"}
@@ -295,6 +295,7 @@ div.uploader
 	var char_prod_desc_length = '{l s='Description should be less than 1500 characters.' js=1 mod='marketplace'}';
 	var req_price = '{l s='Product price is required.' js=1 mod='marketplace'}';
 	var num_price = '{l s='Product price should be numeric.' js=1 mod='marketplace'}';
+	var base_price = '{l s='Product price should be greater than $5.' js=1 mod='marketplace'}';	
 	var req_qty = '{l s='Product quantity is required.' js=1 mod='marketplace'}';
 	var num_qty = '{l s='Product quantity should be numeric.' js=1 mod='marketplace'}';
 	var req_catg = '{l s='Please select at least one category.' js=1 mod='marketplace'}';

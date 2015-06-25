@@ -52,7 +52,7 @@
 	-->
 	<div class="form-group">
 		<div>
-			<label class="add_one">{l s='Shipping Profile' mod='mpshipping'}</label>
+			<label class="add_one"><sup style="color:#f00;">*&nbsp;</sup>{l s='Shipping Profile ' mod='mpshipping'}</label>
 		</div>
 		<div class="">
 			<select id="carriers_restriction" style="height:75px;width:300px;" size="4" multiple="multiple" name="carriers[]">
