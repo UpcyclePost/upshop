@@ -3,7 +3,30 @@
 	float:left;
 	width:100%;
 }
+
 </style>
+{if $logic==2}
+<style type="text/css">
+  .wk_right_col{
+    float: left;
+    width: 100%;
+    border-top: 0px;
+    padding: 15px;
+    background: #fff;
+    -webkit-border-radius: 0;
+    -webkit-background-clip: none;
+    -moz-border-radius: 0;
+    -moz-background-clip: padding;
+    border-radius: 0;
+    background-clip: none;
+    -webkit-box-shadow: none ;
+    -moz-box-shadow: none ;
+    box-shadow: none ;
+	border-bottom: 1px solid #D5D5D5;
+	margin-bottom: 10px;
+  }
+</style>
+{/if}
 
 <script type="text/javascript">
 	//Validation Valiables
@@ -208,6 +231,8 @@
 				<h1>{l s='Edit Seller Profile' mod='marketplace'}</h1>
 			</div>
 			<div class="wk_right_col">
+			<div class="col-sm-12">
+				<div class="col-sm-6">
 				<div class="profile_content">
 					<div class="profile_content_heading">
 						{if $edit==0}
@@ -329,20 +354,38 @@
                                 </fieldset>
                                 </fieldset>
 								{hook h="DisplayMpshopaddfooterhook"}
-								<div class="submit-button">
-									<button type="submit" id="update_profile" class="btn btn-default button button-medium">
-										<span>{l s='Update' mod='marketplace'}</span>
-									</button>&nbsp;&nbsp;
-                                    <span id="loadin_msg" style="display:none;margin-top: 12px;font-size: 15px;color: orangered;position: absolute;">{l s='Please wait while we validate your banking information...' mod='marketplace'}</span>
-								</div>
-								</fieldset>
-							</div>							
-						</form>
+							</div>
+						</div>			
+					</div>
+					<div class="col-sm-6">
+						<div class="container" style="margin-top:20px;">
+						<h4>{l s='Bank account and Routing number information' mod='marketplace'}</h4>
+						<div>
+							For <strong>U.S.</strong> Bank accounts the routing number and account information can be found on your check as shown below.
+							<img src="{$img_dir}US_check.png" height="116" width="321" style="border:solid 1px #0187d0;padding:5px;margin:10px 0 10px 0;"></img>
+						</div>
+						<!--
+						<div>
+							For <strong>Canadian</strong> Bank accounts the routing number and account information can be found on your check as shown below.
+							<img src="{$img_dir}Canadian_check.png" height="121" width="321" style="border:solid 1px #0187d0;padding:5px;margin:10px 0 0 0;"></img>
+						</div>
+						-->
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="submit-button" style="padding-bottom:15px;">
+					<button type="submit" id="update_profile" class="btn btn-default button button-medium">
+						<span>{l s='Update' mod='marketplace'}</span>
+					</button>&nbsp;&nbsp;
+	                <span id="loadin_msg" style="display:none;margin-top: 12px;font-size: 15px;color: orangered;position: absolute;">{l s='Please wait while we validate your banking information...' mod='marketplace'}</span>
+				</div>
+				</fieldset>
+			</div>							
+				</form>
 					{/if}
 				</div>
 			</div>
-		</div>
-	</div>
 	{else if $logic==3}
         {capture name=path}
         <a href="{$account_dashboard|addslashes}">

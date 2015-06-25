@@ -54,6 +54,12 @@ $(document).ready(function()
 			$('#product_price').focus();
 			return false;
 		}
+		else if(product_price < 5)
+		{
+			alert(base_price);
+			$('#product_price').focus();
+			return false;
+		}
 		else if(product_quantity == '')
 		{
 			alert(req_qty);

@@ -223,6 +223,7 @@ $(document).ready(function() {
 	var char_prod_desc_length = '{l s='Description should be less than 1500 characters.' js=1 mod='marketplace'}';
 	var req_price = '{l s='Product price is required.' js=1 mod='marketplace'}';
 	var num_price = '{l s='Product price should be numeric.' js=1 mod='marketplace'}';
+	var base_price = '{l s='Product price should be greater than $5.' js=1 mod='marketplace'}';
 	var req_qty = '{l s='Product quantity is required.' js=1 mod='marketplace'}';
 	var num_qty = '{l s='Product quantity should be numeric.' js=1 mod='marketplace'}';
 	var req_catg = '{l s='Please select at least one category.' js=1 mod='marketplace'}';

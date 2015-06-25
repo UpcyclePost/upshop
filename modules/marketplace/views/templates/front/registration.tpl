@@ -8,6 +8,12 @@
 }
 }
 
+@media (min-width:768px){
+	.col-sm-9 {
+		width:100%;
+	}
+}
+
 .fcevrt{}
 </style>
 
@@ -82,6 +88,9 @@
 			<h1>{l s='Create a Shop' mod='marketplace'}</h1>
 		</div>
 		<div class="wk_right_col">
+			<div class="col-sm-12">
+				<div class="col-sm-6">
+			
 		<p><sup>*</sup> {l s='Required field' mod='marketplace'}</p>
 		<form action="{$link->getModuleLink('marketplace', 'registrationprocess')|escape:'htmlall':'UTF-8'}" method="post" id="createaccountform" class="std contact-form-box" enctype="multipart/form-data" onsubmit="javascript:show_load_msg();">
 			<fieldset>
@@ -137,6 +146,27 @@
                 </fieldset>
 				{hook h="DisplayMpshoprequestfooterhook"}
 			</fieldset>
+
+
+			</div>
+			<div class="col-sm-6">
+				<div class="container" style="margin-top:20px;">
+				<h4>{l s='Bank account and Routing number information' mod='marketplace'}</h4>
+				<div>
+					For <strong>U.S.</strong> Bank accounts the routing number and account information can be found on your check as shown below.
+					<img src="{$img_dir}US_check.png" height="116" width="321" style="border:solid 1px #0187d0;padding:5px;margin:10px 0 10px 0;"></img>
+				</div>
+				<!--
+				<div>
+					For <strong>Canadian</strong> Bank accounts the routing number and account information can be found on your check as shown below.
+					<img src="{$img_dir}Canadian_check.png" height="121" width="321" style="border:solid 1px #0187d0;padding:5px;margin:10px 0 0 0;"></img>
+				</div>
+				-->
+				</div>
+			</div>
+
+	</div>
+		</div>
 			<div class="form-group" style="text-align:center;">
 				<button type="submit" id="seller_save" class="btn btn-default button button-medium">
 					<span>{l s='Continue' mod='marketplace'}<i class="icon-chevron-right right"></i></span>
@@ -145,7 +175,10 @@
                 By registering your account, you agree to our <a href="{$link->getCMSLink(3)|escape:'html':'UTF-8'}" class="iframe" rel="nofollow" target="_blank">Terms of Service</a> and the <a href="https://stripe.com/connect/account-terms" class="iframe" rel="nofollow" target="_blank">Stripe Connected Account Agreement</a>. 
 			</div>
 		</form>
-		</div>
+
+
+	</div>
+		
 	</div>
 </div>
 {/if}
