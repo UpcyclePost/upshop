@@ -5,7 +5,6 @@
 *}
 <div class="payment_module {if $stripe_ps_version < '1.5'}stripe-payment-15{/if}{if $stripe_ps_version > '1.5'}stripe-payment-16{/if}">
 	<h3 class="stripe_title">{l s='Pay by credit / debit card' mod='stripepro'} {if $stripe_allow_btc}{l s=' / Bitcoin' mod='stripepro'}{/if} <img alt="secure" src="{$module_dir|escape:htmlall:'UTF-8'}views/img/secure-icon.png" /></h3>
-<div class="cc_btc_img"><img src="{$stripe_cc}" alt="stripe credit/ debit cards">{if $stripe_allow_btc}<img src="{$stripe_btc}" alt="stripe bitcoin accepted">{/if}</div>
 <button id="stripe-proceed-button">{l s='Proceed to Pay' mod='stripepro'} {convertPrice price=$cart_total/100}</button>
 
 <div style="display: none; width: auto; height: auto;text-align: center;" class="fancybox-overlay fancybox-overlay-fixed" id="fancybox_loadin"><div style="opacity: 1; overflow: visible; height: auto; width: 397px; position: absolute; top: 175px; left: 514px;" class="fancybox-wrap fancybox-desktop fancybox-type-inline fancybox-opened" tabindex="-1"><div style="padding: 15px; width: auto; height: auto;" class="fancybox-skin"><div class="fancybox-outer"><div style="overflow: auto; width: 367px;" class="fancybox-inner"><div id="data" style="font-size: 16px; padding: 5px; display: block;">{l s='Do not press' mod='stripepro'} <b>{l s='BACK' mod='stripepro'}</b> {l s='or' mod='stripepro'} <b>{l s='REFRESH' mod='stripepro'}</b>  {l s='while processing...' mod='stripepro'}<br><br>
