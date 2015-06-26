@@ -26,7 +26,7 @@
 {capture name=path}{l s='Order confirmation'}{/capture}
 <div class="dashboard_content login-panel">
 	<div class="login-panel-header">
-	<h1 class="">{l s='Order confirmation'}xx{$foo}xx</h1>
+	<h1 class="">{l s='Order confirmation'}</h1>
 	</div>
 	<div class="wk_right_col">
 
@@ -43,6 +43,41 @@
 	<a class="button-exclusive btn btn-default" href="{$link->getPageLink('guest-tracking', true, NULL, "id_order={$reference_order|urlencode}&email={$email|urlencode}")|escape:'html':'UTF-8'}" title="{l s='Follow my order'}"><i class="icon-chevron-left"></i>{l s='Follow my order'}</a>
     </p>
 {else}
+
+<table id="orderitems" class="table table-bordered">
+	<thead>
+	<tr>
+		<th>Product</th>
+		<th>Seller</th>
+		<th>Quantity</th>
+		<th>Unit Price</th>
+		<th>Total Price</th>	
+	</tr>
+	</thead>
+{foreach $orderitems as $orderitem}	
+	<tr>
+		<td>{$orderitem['ordered_product_name']}</td>
+		<td>{$orderitem['shop_name']}</td>
+		<td>{$orderitem['qty']}</td>
+		<td>{displayWtPriceWithCurrency price=$orderitem['unit_price'] currency=$currency }</td>
+		<td>{displayWtPriceWithCurrency price=$orderitem['total_price'] currency=$currency }</td>
+	</tr>
+{/foreach}
+	<tfoot>
+	<tr>
+		<td colspan="4"><strong>Items</strong></td>
+		<td>{displayWtPriceWithCurrency price=$orderheader[0]['total_products'] currency=$currency }</td>
+	</tr>
+	<tr>
+		<td colspan="4"><strong>Shipping & Handling</strong></td>
+		<td>{displayWtPriceWithCurrency price=$orderheader[0]['total_shipping'] currency=$currency }</td>
+	</tr>
+	<tr>
+		<td colspan="4"><strong>Total</strong></td>
+		<td>{displayWtPriceWithCurrency price=$orderheader[0]['total_paid'] currency=$currency }</td>
+	</tr>
+	</tfoot>
+</table>
 
 <p class="exclusive" style="">
 	<a class="button button-medium btn btn-default" href="{$link->getPageLink('history', true)|escape:'html':'UTF-8'}" title="{l s='Go to your order history page'}">
