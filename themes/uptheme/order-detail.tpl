@@ -138,7 +138,7 @@
 		<tfoot>
 			{if $priceDisplay && $use_tax}
 				<tr class="item">
-					<td colspan="{if $return_allowed}2{else}1{/if}">
+					<td colspan="{if $return_allowed}4{else}3{/if}">
 						<strong>{l s='Items (tax excl.)'}</strong>
 					</td>
 					<td colspan="{if $order->hasProductReturned()}5{else}4{/if}">

@@ -92,14 +92,36 @@ class OrderConfirmationControllerCore extends FrontController
 		$currency = new Currency($order->id_currency);
 		if (Validate::isLoadedObject($order))
 		{
-			$this->context->smarty->assign('total_to_pay', number_format($order->getOrdersTotalPaid(),2));
+			$this->context->smarty->assign('order', $order);
+			
+			$sql = "SELECT sum(ord.`total_products`) as `total_products`, sum(ord.`total_shipping`) as `total_shipping`, sum(ord.`total_paid`) as `total_paid` from `" . _DB_PREFIX_ . "orders` ord where ord.`reference`='".$order->reference."'";
+			
+			$orderheader =  Db::getInstance()->executeS($sql);
+			
+			$this->context->smarty->assign('orderheader', $orderheader);
+			
+			$this->context->smarty->assign('total_to_pay', number_format($orderheader[0]['total_paid'],2));
 			$this->context->smarty->assign('currency_iso_code', $currency->iso_code);
-			$this->context->smarty->assign('currency_sign', $currency->sign);			
+			$this->context->smarty->assign('currency_sign', $currency->sign);	
+								
+			$sql = "SELECT ord.`id_order` as `id_order`, ordd.`id_order_detail` as `id_order_detail`,ordd.`product_name` as `ordered_product_name`,
+			ordd.`product_price` as total_price,ordd.`product_quantity` as qty, ordd.`id_order` as id_order, p.`price` as unit_price,
+			ord.`id_customer` as order_by_cus,  ord.`payment` as payment_mode,ord.`date_add`,ord.`id_currency` as `id_currency`, ord.`reference` as `ref`, 
+			ords.`name`as order_status , cus.`website` as website , cus.`firstname` as name, msi.`shop_name` as shop_name
+					from `" . _DB_PREFIX_ . "orders` ord
+					 join `" . _DB_PREFIX_ . "order_detail` ordd on (ord.`id_order`= ordd.`id_order`) 
+					 join `" . _DB_PREFIX_ . "order_state_lang` ords on (ord.`current_state`=ords.`id_order_state`)
+					 left join `" . _DB_PREFIX_ . "product` p on (ordd.`product_id`= p.`id_product`) 
+					 left join `" . _DB_PREFIX_ . "marketplace_shop_product` msp on (ordd.`product_id`= msp.`id_product`)
+					 left join `" . _DB_PREFIX_ . "marketplace_seller_product` msep on (msep.`id` = msp.`marketplace_seller_id_product`) 
+					 left join `" . _DB_PREFIX_ . "marketplace_customer` mkc on (mkc.`marketplace_seller_id` = msep.`id_seller`) 
+					 left join `" . _DB_PREFIX_ . "customer` cus on (mkc.`id_customer`=cus.`id_customer`) 
+					 left join `" . _DB_PREFIX_ . "marketplace_seller_info` msi on (msep.`id_seller` = msi.`id`)
+					 where ord.`reference`='".$order->reference."'";
+
+			$this->context->smarty->assign('orderitems', Db::getInstance()->executeS($sql));				
 		}
 
-		//echo "<pre>";
-		//print_r($order);
-		//echo "</pre>";
 		if ($this->context->customer->is_guest)
 		{
 			$this->context->smarty->assign(array(
@@ -157,10 +179,6 @@ class OrderConfirmationControllerCore extends FrontController
 				$params['objOrder'] = $order;
 				$params['currencyObj'] = $currency;
 
-				//echo "<pre>";
-				//print_r($params);
-				//echo "</pre>";
-				
 				return Hook::exec('displayOrderConfirmation', $params);
 			}
 		}
