@@ -25,7 +25,7 @@ $(document).ready(function() {
 		$('#stripe-proceed-button').html("{l s='Proceed to Pay' mod='stripepro'} {convertPrice price=$cart_total/100}");
 		},
     key: '{$stripe_pk}',
-    image: '{$logo_url}',
+    image: '{$img_dir}payment-64x64.png',
 	currency:'{$currency}',
 	email:'{$cu_email}',
 	bitcoin:{if $stripe_allow_btc}true{else}false{/if},
