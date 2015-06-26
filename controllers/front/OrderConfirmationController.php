@@ -76,6 +76,7 @@ class OrderConfirmationControllerCore extends FrontController
 	/**
 	 * Assign template vars related to page content
 	 * @see FrontController::initContent()
+	 
 	 */
 	public function initContent()
 	{

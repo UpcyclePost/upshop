@@ -26,7 +26,7 @@
 {capture name=path}{l s='Order confirmation'}{/capture}
 <div class="dashboard_content login-panel">
 	<div class="login-panel-header">
-	<h1 class="">{l s='Order confirmation'}</h1>
+	<h1 class="">{l s='Order confirmation'}xx{$foo}xx</h1>
 	</div>
 	<div class="wk_right_col">
 
