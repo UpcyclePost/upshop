@@ -272,7 +272,7 @@ class stripepro extends PaymentModule
 					}
 					$(\'<div class="panel panel-highlighted" style="padding: 5px 10px;"><fieldset'.(_PS_VERSION_ < 1.5 ? ' style="width: 400px;"' : '').'><legend><img src="../img/admin/money.gif" alt="" />'.$this->l('Stripe Payment Details').'</legend>';
 
-			if (!empty($stripe_transaction_details['id_transaction'])){
+			if ($stripe_transaction_details['id_transaction']!=''){
 				$output .= $this->l('Stripe Transaction ID:').' '.Tools::safeOutput($stripe_transaction_details['id_transaction']).'<br /><br />'.
 				$this->l('Status:').' <span style="font-weight: bold; color: '.($stripe_transaction_details['status'] == 'paid' ? 'green;">'.$this->l('Paid') : '#CC0000;">'.$this->l('Unpaid')).'</span><br />'.
 				$this->l('Amount:').' '.Tools::displayPrice($stripe_transaction_details['amount'], (int)$order->id_currency).'<br />'.
@@ -877,29 +877,69 @@ class stripepro extends PaymentModule
 					Db::getInstance()->Execute('UPDATE '._DB_PREFIX_.'stripepro_customer SET token = \''.$token.'\' WHERE `id_stripe_customer` = '.$stripe_customer['id_stripe_customer']);
 				}
 			}
-		
-		try
-		{
-			
-			$charge_details = array('amount' => $this->context->cart->getOrderTotal() * 100, 'currency' => $this->context->currency->iso_code, 'description' => $this->l('PrestaShop Customer ID:').
-			' '.(int)$this->context->cookie->id_customer.' - '.$this->l('PrestaShop Cart ID:').' '.(int)$this->context->cart->id, 'capture' => Configuration::get('STRIPE_CAPTURE_TYPE'),"expand" =>array("balance_transaction"));
-
-			/* If we have a Stripe's customer ID for this buyer, charge the customer instead of the card */
-			if (isset($stripe_customer['stripe_customer_id']) && !isset($this->_errors['invalid_customer_card']))
-				$charge_details['customer'] = $stripe_customer['stripe_customer_id'];
-			else
-				$charge_details['source'] = $token;
-			
-			if($payment_src=='btc')
-			$charge_details['source'] = $token;
-
-			$result_json = \Stripe\Charge::create($charge_details);
-
-			/* Save the Customer ID in PrestaShop to re-use it later */
+		/* Save the Customer ID in PrestaShop to re-use it later */
 			if (isset($stripe_customer_exists) && !$stripe_customer_exists)
 				Db::getInstance()->Execute('
 				INSERT INTO '._DB_PREFIX_.'stripepro_customer (id_stripe_customer, stripe_customer_id, token, id_customer, cc_last_digits, date_add)
 				VALUES (NULL, \''.pSQL($stripe_customer['stripe_customer_id']).'\', \''.pSQL($token).'\', '.(int)$this->context->cookie->id_customer.', '.(int)Tools::substr(Tools::getValue('StripLastDigits'), 0, 4).', NOW())');
+		
+		// For each package, generate an order
+			$delivery_option_list = $this->context->cart->getDeliveryOptionList();
+			$package_list = $this->context->cart->getPackageList();
+			$cart_delivery_option = $this->context->cart->getDeliveryOption();
+
+			// If some delivery options are not defined, or not valid, use the first valid option
+			foreach ($delivery_option_list as $id_address => $package)
+				if (!isset($cart_delivery_option[$id_address]) || !array_key_exists($cart_delivery_option[$id_address], $package))
+					foreach ($package as $key => $val)
+					{
+						$cart_delivery_option[$id_address] = $key;
+						break;
+					}
+
+			foreach ($cart_delivery_option as $id_address => $key_carriers)
+				foreach ($delivery_option_list[$id_address][$key_carriers]['carrier_list'] as $id_carrier => $data)
+					foreach ($data['package_list'] as $id_package)
+					{
+						// Rewrite the id_warehouse
+						$package_list[$id_address][$id_package]['id_warehouse'] = (int)$this->context->cart->getPackageIdWarehouse($package_list[$id_address][$id_package], (int)$id_carrier);
+						$package_list[$id_address][$id_package]['id_carrier'] = $id_carrier;
+					}
+			
+			$transID = array();	
+/*****Loop the split orders in split stripe charge******/			
+	foreach ($package_list as $id_address => $packageByAddress)
+		foreach ($packageByAddress as $id_package => $package)
+		{
+			$carrier = null;
+			if (!$this->context->cart->isVirtualCart() && isset($package['id_carrier']))
+			{
+				$carrier = new Carrier($package['id_carrier'], $this->context->cart->id_lang);
+				$id_carrier = (int)$carrier->id;
+			}
+			else
+				$id_carrier = 0;
+
+			$total_paid_tax_incl = (float)Tools::ps_round((float)$this->context->cart->getOrderTotal(true, Cart::BOTH, $package['product_list'], $id_carrier), 2);
+		
+		try
+		{
+			
+			$charge_details = array('amount' => $total_paid_tax_incl * 100, 'currency' => $this->context->currency->iso_code, 'description' => $this->l('PrestaShop Customer ID:').
+			' '.(int)$this->context->cookie->id_customer.' - '.$this->l('PrestaShop Cart ID:').' '.(int)$this->context->cart->id, 'capture' => Configuration::get('STRIPE_CAPTURE_TYPE'),"expand" =>array("balance_transaction"));
+
+			/* If we have a Stripe's customer ID for this buyer, charge the customer instead of the card */
+			//if (isset($stripe_customer['stripe_customer_id']) && !isset($this->_errors['invalid_customer_card']))
+				$charge_details['customer'] = $stripe_customer['stripe_customer_id'];
+			//else
+			//	$charge_details['source'] = $token;
+			
+			if($payment_src=='btc')
+			$charge_details['source'] = $token;
+			
+			$result_json = '';
+
+			$result_json = \Stripe\Charge::create($charge_details);
 
 		// catch the stripe error the correct way.
 		} catch (Exception $e) {
@@ -924,7 +964,7 @@ class stripepro extends PaymentModule
 				$result_json->application_fee = 0;
 
 			$order_status = (int)Configuration::get('STRIPE_PAYMENT_ORDER_STATUS');
-			$message = $this->l('Stripe Transaction Details:')."\n\n".
+			/*$message = $this->l('Stripe Transaction Details:')."\n\n".
 			$this->l('Stripe Transaction ID:').' '.$result_json->id."\n".
 			$this->l('Amount:').' '.($result_json->amount * 0.01)."\n".
 			$this->l('Status:').' '.($result_json->paid == 'true' ? $this->l('Paid') : $this->l('Unpaid'))."\n".
@@ -938,56 +978,59 @@ class stripepro extends PaymentModule
 				  $this->l('Filled:').' '.($result_json->source->filled?'Yes':'No')."\n";
 			
 			$message .= $this->l('Processing Fee:').' '.($result_json->balance_transaction->fee * 0.01)."\n".
-			$this->l('Mode:').' '.($result_json->livemode == 'true' ? $this->l('Live') : $this->l('Test'))."\n";
+			$this->l('Mode:').' '.($result_json->livemode == 'true' ? $this->l('Live') : $this->l('Test'))."\n";*/
 
 			/* In case of successful payment, the address / zip-code can however fail */
 			if (isset($result_json->source->address_line1_check) && $result_json->source->address_line1_check == 'fail')
 			{
-				$message .= "\n".$this->l('Warning: Address line 1 check failed');
+				//$message .= "\n".$this->l('Warning: Address line 1 check failed');
 				$order_status = (int)Configuration::get('STRIPE_PENDING_ORDER_STATUS');
 			}
 			if (isset($result_json->source->address_zip_check) && $result_json->source->address_zip_check == 'fail')
 			{
-				$message .= "\n".$this->l('Warning: Address zip-code check failed');
+				//$message .= "\n".$this->l('Warning: Address zip-code check failed');
 				$order_status = (int)Configuration::get('STRIPE_PENDING_ORDER_STATUS');
 			}
 			// warn if cvc check fails
 			if (isset($result_json->source->cvc_check) && $result_json->source->cvc_check == 'fail')
 			{
-				$message .= "\n".$this->l('Warning: CVC verification check failed');
+				//$message .= "\n".$this->l('Warning: CVC verification check failed');
 				$order_status = (int)Configuration::get('STRIPE_PENDING_ORDER_STATUS');
 			}
 		}
 		else
 			$order_status = (int)Configuration::get('PS_OS_ERROR');
-
+			
+		$transID[] = $result_json->id;
+			/* Store the transaction details */
+				
+		if (isset($result_json->id))
+			Db::getInstance()->execute('INSERT INTO `'._DB_PREFIX_.'stripepro_transaction` (`type`,`source`,`btc_address`, `id_stripe_customer`, `id_cart`,`id_order`, `id_transaction`, `amount`, `status`, `currency`, `cc_type`, `cc_exp`, `cc_last_digits`, `cvc_check`, `fee`, `mode`, `date_add`) VALUES ("payment","'.$result_json->source->object.'","'.($payment_src=='btc'?$result_json->source->inbound_address:'').'", '.(isset($stripe_customer['id_stripe_customer']) ? (int)$stripe_customer['id_stripe_customer'] : 0).', '.(int)$this->context->cart->id.', 0, "'.pSQL($result_json->id).'", "'.($result_json->amount * 0.01).'", "'.($result_json->paid == 'true' ? ($result_json->captured ? 'paid' : 'uncaptured'): 'unpaid').'", "'.pSQL($result_json->currency).'","'.pSQL($result_json->source->brand).'", "'.(int)$result_json->source->exp_month.'/'.(int)$result_json->source->exp_year.'", '.(int)$result_json->source->last4.', '.($result_json->source->object == 'card'?($result_json->source->cvc_check == 'pass' ? 1 : 0):($result_json->source->filled == true ? 1 : 0)).', "'.($result_json->balance_transaction->fee * 0.01).'", "'.($result_json->livemode == 'true' ? 'live' : 'test').'", NOW())');
+			
+	}
 		/* Create the PrestaShop order in database */
-		$this->validateOrder((int)$this->context->cart->id, (int)$order_status, ($result_json->amount * 0.01), $this->displayName, $message, array(), null, false, $this->context->customer->secure_key);
-
-		/** @since 1.5.0 Attach the Stripe Transaction ID to this Order */
-		if (version_compare(_PS_VERSION_, '1.5', '>='))
-		{
-			$new_order = new Order((int)$this->currentOrder);
-			if (Validate::isLoadedObject($new_order))
+		$this->validateOrder((int)$this->context->cart->id, (int)$order_status, $this->context->cart->getOrderTotal(), $this->displayName, null, array(), null, false, $this->context->customer->secure_key);
+       
+	   $currentOrders = Db::getInstance()->ExecuteS('select id_order as id from '._DB_PREFIX_.'orders where id_cart='.(int)$this->context->cart->id.' order by id_order asc');
+	   		
+	   foreach($currentOrders as $key=>$order){
+		   
+		   Db::getInstance()->Execute('UPDATE `'._DB_PREFIX_.'stripepro_transaction` SET `id_order`='.$order['id'].' where `id_transaction`="'.$transID[$key].'"');
+			/** @since 1.5.0 Attach the Stripe Transaction ID to this Order */
+			if (version_compare(_PS_VERSION_, '1.5', '>='))
 			{
-				$payment = $new_order->getOrderPaymentCollection();
-				if (isset($payment[0]))
+				$new_order = new Order((int)$order['id']);
+				if (Validate::isLoadedObject($new_order))
 				{
-					$payment[0]->transaction_id = pSQL($result_json->id);
-					$payment[0]->save();
+					$payment = $new_order->getOrderPaymentCollection();
+					if (isset($payment[0]))
+					{
+						$payment[0]->transaction_id = pSQL($result_json->id);
+						$payment[0]->save();
+					}
 				}
 			}
-		}
-
-		/* Store the transaction details */
-		if (isset($result_json->id))
-			Db::getInstance()->Execute('
-			INSERT INTO '._DB_PREFIX_.'stripepro_transaction (type,source,btc_address, id_stripe_customer, id_cart, id_order,
-			id_transaction, amount, status, currency, cc_type, cc_exp, cc_last_digits, cvc_check, fee, mode, date_add)
-			VALUES (\'payment\',"'.$result_json->source->object.'","'.($payment_src=='btc'?$result_json->source->inbound_address:'').'", '.(isset($stripe_customer['id_stripe_customer']) ? (int)$stripe_customer['id_stripe_customer'] : 0).', '.(int)$this->context->cart->id.', '.(int)$this->currentOrder.', \''.pSQL($result_json->id).'\',
-			\''.($result_json->amount * 0.01).'\', \''.($result_json->paid == 'true' ? ($result_json->captured ? 'paid' : 'uncaptured'): 'unpaid').'\', \''.pSQL($result_json->currency).'\',
-			\''.pSQL($result_json->source->brand).'\', \''.(int)$result_json->source->exp_month.'/'.(int)$result_json->source->exp_year.'\', '.(int)$result_json->source->last4.',
-			'.($result_json->source->object == 'card'?($result_json->source->cvc_check == 'pass' ? 1 : 0):($result_json->source->filled == true ? 1 : 0)).', \''.($result_json->balance_transaction->fee * 0.01).'\', \''.($result_json->livemode == 'true' ? 'live' : 'test').'\', NOW())');
+	   }
 
 		/* Redirect the user to the order confirmation page / history */
 		if (_PS_VERSION_ < 1.5)
