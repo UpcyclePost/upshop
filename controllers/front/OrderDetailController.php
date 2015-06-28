@@ -172,15 +172,20 @@ class OrderDetailControllerCore extends FrontController
 				OrderReturn::addReturnedQuantity($products, $order->id);
 				$order_status = new OrderState((int)$id_order_state, (int)$order->id_lang);
 
-				// Get the Seller ID and Shop name
-				$sql = 'SELECT cus.`website`, msi.`shop_name` AS seller_shop_name FROM `'._DB_PREFIX_.'order_detail` as ordd
-				Join `'._DB_PREFIX_.'orders` as ord on ordd.`id_order` = ord.`id_order`
-				join `'._DB_PREFIX_.'customer` as cus on cus.`id_customer` = ord.`id_customer`
-				INNER JOIN `'._DB_PREFIX_.'marketplace_shop_product` AS msp ON (msp.id_product = ordd.product_id)
-				INNER JOIN `'._DB_PREFIX_.'marketplace_seller_product` AS msep ON (msep.id = msp.marketplace_seller_id_product)
-				INNER JOIN `'._DB_PREFIX_.'marketplace_seller_info` AS msi ON (msi.id = msep.id_seller)
-				WHERE ord.`id_order` = '.$id_order;
+				// Get the Sellers website and shop_name	
+				$sql = "SELECT cus.`website`, msi.`shop_name` AS seller_shop_name
+					from `" . _DB_PREFIX_ . "orders` ord
+					 join `" . _DB_PREFIX_ . "order_detail` ordd on (ord.`id_order`= ordd.`id_order`) 
+					 join `" . _DB_PREFIX_ . "order_state_lang` ords on (ord.`current_state`=ords.`id_order_state`)
+					 left join `" . _DB_PREFIX_ . "product` p on (ordd.`product_id`= p.`id_product`) 
+					 left join `" . _DB_PREFIX_ . "marketplace_shop_product` msp on (ordd.`product_id`= msp.`id_product`)
+					 left join `" . _DB_PREFIX_ . "marketplace_seller_product` msep on (msep.`id` = msp.`marketplace_seller_id_product`) 
+					 left join `" . _DB_PREFIX_ . "marketplace_customer` mkc on (mkc.`marketplace_seller_id` = msep.`id_seller`) 
+					 left join `" . _DB_PREFIX_ . "customer` cus on (mkc.`id_customer`=cus.`id_customer`) 
+					 left join `" . _DB_PREFIX_ . "marketplace_seller_info` msi on (msep.`id_seller` = msi.`id`)
+					 WHERE ord.`id_order` = '".$id_order."'";
 				
+				//echo $sql;
 				$results = Db::getInstance()->executeS($sql);
 				
 				$customer = new Customer($order->id_customer);
