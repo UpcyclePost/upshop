@@ -438,7 +438,8 @@ class MarketPlace extends Module
             //for seller email
 
             $obj_order_detail = new OrderDetail();
-            $product_details = $obj_order_detail->getList($params['objOrder']->id);
+            //$product_details = $obj_order_detail->getList($params['objOrder']->id);
+			$product_details = $obj_order_detail->getList($data['id_order']);
             $obj_mp_prod = new SellerProductDetail();
             $obj_mp_seller = new SellerInfoDetail();
             $seller_list = array();
