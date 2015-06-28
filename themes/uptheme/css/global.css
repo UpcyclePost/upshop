@@ -1688,9 +1688,16 @@ textarea.input-lg, .input-group-lg > textarea.form-control,
   border: 1px solid #ddd;
 }
 .btn-gray:hover, .btn-gray:active, .btn-gray:focus {
+  -webkit-border-radius: 4px;
+  -webkit-background-clip: padding-box;
+  -moz-border-radius: 4px;
+  -moz-background-clip: padding;
+  border-radius: 4px;
+  background-clip: padding-box;
     text-decoration: none;
     background: #fff;
-    color: #333;
+    color: #000;
+    border: 1px solid #000;
 }
 
 .btn-primary {

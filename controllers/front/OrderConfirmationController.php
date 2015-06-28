@@ -94,7 +94,8 @@ class OrderConfirmationControllerCore extends FrontController
 		{
 			$this->context->smarty->assign('order', $order);
 			
-			$sql = "SELECT sum(ord.`total_products`) as `total_products`, sum(ord.`total_shipping`) as `total_shipping`, sum(ord.`total_paid`) as `total_paid` from `" . _DB_PREFIX_ . "orders` ord where ord.`reference`='".$order->reference."'";
+			$sql = "SELECT sum(ord.`total_products`) as `total_products`, sum(ord.`total_shipping`) as `total_shipping`, sum(ord.`total_paid`) as `total_paid` 
+			from `" . _DB_PREFIX_ . "orders` ord where ord.`reference`='".$order->reference."'";
 			
 			$orderheader =  Db::getInstance()->executeS($sql);
 			
@@ -105,7 +106,7 @@ class OrderConfirmationControllerCore extends FrontController
 			$this->context->smarty->assign('currency_sign', $currency->sign);	
 								
 			$sql = "SELECT ord.`id_order` as `id_order`, ordd.`id_order_detail` as `id_order_detail`,ordd.`product_name` as `ordered_product_name`,
-			ordd.`product_price` as total_price,ordd.`product_quantity` as qty, ordd.`id_order` as id_order, p.`price` as unit_price,
+			ordd.`total_price_tax_excl` as total_price,ordd.`product_quantity` as qty, ordd.`id_order` as id_order, p.`price` as unit_price,
 			ord.`id_customer` as order_by_cus,  ord.`payment` as payment_mode,ord.`date_add`,ord.`id_currency` as `id_currency`, ord.`reference` as `ref`, 
 			ords.`name`as order_status , cus.`website` as website , cus.`firstname` as name, msi.`shop_name` as shop_name
 					from `" . _DB_PREFIX_ . "orders` ord

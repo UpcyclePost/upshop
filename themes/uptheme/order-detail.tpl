@@ -26,7 +26,9 @@
 <div class="login-panel">
 	<div class="login-panel-header">
 		<h1 class="">{l s='Purchase details'}</h1>
-			Order reference : {$order->reference}
+			Order reference : {$order->reference}	
+			<a class="btn btn-gray" style="float:right;margin:-10px 10px 0 0" href="http://{$smarty.server.SERVER_NAME}/profile/messages/send/{$website}"><i class="fa fa-envelope icon-only"></i> Contact Seller</a>
+			<a class="btn btn-default button button-medium" style="float:right;margin:-10px 10px 0 0" href="http://{$smarty.server.SERVER_NAME}/shops/{$website}"><i class="fa up-shop-1 icon-only"></i>Go to {$seller_shop_name} Shop</a>
 	</div>
 {if isset($reorderingAllowed) && $reorderingAllowed}
 <div class="box box-small clearfix">
@@ -398,80 +400,6 @@
 			{/foreach}
 		</tbody>
 	</table>
-{/if}
-{if !$is_guest}
-	{if count($messages)}
-	<h3 class="page-heading">{l s='Messages'}</h3>
-	 <div class="table_block">
-		<table class="detail_step_by_step table table-bordered">
-			<thead>
-				<tr>
-					<th class="first_item" style="width:150px;">{l s='From'}</th>
-					<th class="last_item">{l s='Message'}</th>
-				</tr>
-			</thead>
-			<tbody>
-			{foreach from=$messages item=message name="messageList"}
-				<tr class="{if $smarty.foreach.messageList.first}first_item{elseif $smarty.foreach.messageList.last}last_item{/if} {if $smarty.foreach.messageList.index % 2}alternate_item{else}item{/if}">
-					<td>
-						<strong class="dark">
-							{if isset($message.elastname) && $message.elastname}
-								{$message.efirstname|escape:'html':'UTF-8'} {$message.elastname|escape:'html':'UTF-8'}
-							{elseif $message.clastname}
-								{$message.cfirstname|escape:'html':'UTF-8'} {$message.clastname|escape:'html':'UTF-8'}
-							{else}
-								{$shop_name|escape:'html':'UTF-8'}
-							{/if}
-						</strong>
-						<br />
-						{dateFormat date=$message.date_add full=1}
-					</td>
-					<td>{$message.message|escape:'html':'UTF-8'|nl2br}</td>
-				</tr>
-			{/foreach}
-			</tbody>
-		</table>
-	</div>
-	{/if}
-	{if isset($errors) && $errors}
-		<div class="alert alert-danger">
-			<p>{if $errors|@count > 1}{l s='There are %d errors' sprintf=$errors|@count}{else}{l s='There is %d error' sprintf=$errors|@count}{/if}</p>
-			<ol>
-			{foreach from=$errors key=k item=error}
-				<li>{$error}</li>
-			{/foreach}
-			</ol>
-		</div>
-	{/if}
-	{if isset($message_confirmation) && $message_confirmation}
-	<p class="alert alert-success">
-		{l s='Message successfully sent'}
-	</p>
-	{/if}
-	<form action="{$link->getPageLink('order-detail', true)|escape:'html':'UTF-8'}" method="post" class="std" id="sendOrderMessage">
-		<h3 class="page-heading bottom-indent">{l s='Add a message'}</h3>
-		<p>{l s='If you would like to add a comment about your order, please write it in the field below.'}</p>
-		<p class="form-group">
-		<label for="id_product">{l s='Product'}</label>
-			<select name="id_product" class="form-control">
-				<option value="0">{l s='-- Choose --'}</option>
-				{foreach from=$products item=product name=products}
-					<option value="{$product.product_id}">{$product.product_name}</option>
-				{/foreach}
-			</select>
-		</p>
-		<p class="form-group">
-			<textarea class="form-control" cols="67" rows="3" name="msgText"></textarea>
-		</p>
-		<div class="submit">
-			<input type="hidden" name="id_order" value="{$order->id|intval}" />
-			<input type="submit" class="unvisible" name="submitMessage" value="{l s='Send'}"/>
-			<button type="submit" name="submitMessage" class="button btn btn-default button-medium"><span>{l s='Send'}<i class="icon-chevron-right right"></i></span></button>
-		</div>
-	</form>
-	<!--<h2><a class="btn btn-gray" style="float:right;margin:-5px 100px 0 0" href="http://{$smarty.server.SERVER_NAME}/profile/messages/send/{$dashboard[0]['ws']}"><i class="fa fa-envelope icon-only"></i> Contact customer</a></h2>--></a>
-{else}
-<p class="alert alert-info"><i class="icon-info-sign"></i>{l s='You cannot return merchandise with a guest account'}</p>
 {/if}
 </div>
 {/if}
