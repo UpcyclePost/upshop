@@ -172,6 +172,17 @@ class OrderDetailControllerCore extends FrontController
 				OrderReturn::addReturnedQuantity($products, $order->id);
 				$order_status = new OrderState((int)$id_order_state, (int)$order->id_lang);
 
+				// Get the Seller ID and Shop name
+				$sql = 'SELECT cus.`website`, msi.`shop_name` AS seller_shop_name FROM `'._DB_PREFIX_.'order_detail` as ordd
+				Join `'._DB_PREFIX_.'orders` as ord on ordd.`id_order` = ord.`id_order`
+				join `'._DB_PREFIX_.'customer` as cus on cus.`id_customer` = ord.`id_customer`
+				INNER JOIN `'._DB_PREFIX_.'marketplace_shop_product` AS msp ON (msp.id_product = ordd.product_id)
+				INNER JOIN `'._DB_PREFIX_.'marketplace_seller_product` AS msep ON (msep.id = msp.marketplace_seller_id_product)
+				INNER JOIN `'._DB_PREFIX_.'marketplace_seller_info` AS msi ON (msi.id = msep.id_seller)
+				WHERE ord.`id_order` = '.$id_order;
+				
+				$results = Db::getInstance()->executeS($sql);
+				
 				$customer = new Customer($order->id_customer);
 				$this->context->smarty->assign(array(
 					'shop_name' => strval(Configuration::get('PS_SHOP_NAME')),
@@ -204,7 +215,9 @@ class OrderDetailControllerCore extends FrontController
 					/* DEPRECATED: customizedDatas @since 1.5 */
 					'customizedDatas' => $customizedDatas,
 					/* DEPRECATED: customizedDatas @since 1.5 */
-					'reorderingAllowed' => !(int)Configuration::get('PS_DISALLOW_HISTORY_REORDERING')
+					'reorderingAllowed' => !(int)Configuration::get('PS_DISALLOW_HISTORY_REORDERING'),
+					'website'=>$results[0]['website'],
+					'seller_shop_name'=>$results[0]['seller_shop_name']
 				));
 
 				if ($carrier->url && $order->shipping_number)
