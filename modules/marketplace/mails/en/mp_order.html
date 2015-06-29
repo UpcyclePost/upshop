@@ -118,17 +118,17 @@
 					</tr>
 				</tbody>
 				<tfoot>
-				<tr style="border:1px solid #D6D4D4;background-color:#fbfbfb;font-family:Arial;color:#333;font-size:13px;padding:10px">
-					<td colspan="3"><strong>Items</strong></td>
-					<td>{total_products}</td>
+				<tr>
+					<td colspan="3" style="border:1px solid #D6D4D4;background-color:#fbfbfb;font-family:Arial;color:#333;font-size:13px;padding:10px">Items</td>
+					<td style="border:1px solid #D6D4D4;background-color:#fbfbfb;font-family:Arial;color:#333;font-size:13px;padding:10px">{total_products}</td>
 				</tr>
-				<tr style="border:1px solid #D6D4D4;background-color:#fbfbfb;font-family:Arial;color:#333;font-size:13px;padding:10px">
-					<td colspan="3"><strong>Shipping & Handling</strong></td>
-					<td>{total_shipping}</td>
+				<tr>
+					<td colspan="3" style="border:1px solid #D6D4D4;background-color:#fbfbfb;font-family:Arial;color:#333;font-size:13px;padding:10px">Shipping & Handling</td>
+					<td style="border:1px solid #D6D4D4;background-color:#fbfbfb;font-family:Arial;color:#333;font-size:13px;padding:10px">{total_shipping}</td>
 				</tr>
-				<tr style="border:1px solid #D6D4D4;background-color:#fbfbfb;font-family:Arial;color:#333;font-size:13px;padding:10px">
-					<td colspan="3"><strong>Total</strong></td>
-					<td>{total_paid}</td>
+				<tr>
+					<td colspan="3" style="border:1px solid #D6D4D4;background-color:#fbfbfb;font-family:Arial;color:#333;font-size:13px;padding:10px">Total</td>
+					<td style="border:1px solid #D6D4D4;background-color:#fbfbfb;font-family:Arial;color:#333;font-size:13px;padding:10px">{total_paid}</td>
 				</tr>
 				</tfoot>				
 			</table>
@@ -175,7 +175,7 @@
 	<td class="linkbelow" style="padding:7px 0">
 		<font size="2" face="Open-sans, sans-serif" color="#555454">
 			<span>
-				You can review orders you have received here: <a href="http{if Tools::usingSecureMode()}s{/if}://{$smarty.server.SERVER_NAME}/shop/module/marketplace/marketplaceaccount?shop={seller_shop_id}" style="color:#337ff1">"My Orders Received"</a>.</span>
+				You can review orders you have received here: <a href="{my_orders_received_link}" style="color:#337ff1">"My Orders Received"</a>.</span>
 		</font>
 	</td>
 </tr>

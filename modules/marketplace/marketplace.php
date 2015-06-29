@@ -556,9 +556,10 @@ class MarketPlace extends Module
                                           '{country}' => $country,
                                           '{zipcode}' =>$shipping_details['postcode'],
                                           '{phone}' => $shipping_details['phone_mobile'],
-                                          '{total_products}' => $m_orderheader[0]['total_products'],
-                                          '{total_shipping}' => $m_orderheader[0]['total_shipping'],                                          
-                                          '{total_paid}' => $m_orderheader[0]['total-paid'],
+                                          '{total_products}' => number_format($m_orderheader[0]['total_products'],2),
+                                          '{total_shipping}' => number_format($m_orderheader[0]['total_shipping'],2),                                          
+                                          '{total_paid}' => number_format($m_orderheader[0]['total_paid'],2),
+                                          '{my_orders_received_link}' => "https://".$smarty.server.SERVER_NAME."/shop/module/marketplace/marketplaceaccount?shop=".$seller_shop_id,
                                           '{product_html}' => $product_html
                                           );
 
