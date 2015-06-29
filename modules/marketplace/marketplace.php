@@ -572,7 +572,7 @@ class MarketPlace extends Module
                     $subject = 'Order Received : Reference # '. $reference;
                     $to = $seller_info['email'];
                     $temp_path = _PS_MODULE_DIR_.'marketplace/mails/';
-                    Mail::Send($id_lang, $template, $subject, $templateVars, $to, null, null, 'Marketplace',
+                    Mail::Send($id_lang, $template, $subject, $templateVars, $to, null, null, 'UpcyclePost.com',
                                 null, null, $temp_path, false, null, null);
                 }
             }
