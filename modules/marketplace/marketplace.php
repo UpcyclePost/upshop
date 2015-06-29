@@ -501,7 +501,9 @@ class MarketPlace extends Module
                     $state = $obj_mp_prod->getState($shipping_details['id_state']);
                     $country = $obj_mp_prod->getCountry($shipping_details['id_country']);
                     $customer_id = $obj_mp_prod->getCustomerIdBySellerId($key);
-                    $seller_shop_name = $obj_mp_prod->getShopNameBySellerId($key);
+                    $seller_shop = $obj_mp_prod->getShopBySellerId($key);
+                    $seller_shop_id = $seller_shop['id']; 
+                    $seller_shop_name = $seller_shop['shop_name'];
                     $seller_info = $obj_mp_prod->getSellerInfo($customer_id);
 
                     echo "<pre>$seller_shop_name";
@@ -530,6 +532,7 @@ class MarketPlace extends Module
                                           '{seller_lastname}' => $seller_info['lastname'],
                                           '{website}' => $seller_info['website'],                                          
                                           '{seller_shop_name}' => $seller_shop_name,
+                                          '{seller_shop_id}' => $seller_shop_id,
                                           '{customer_name}' => $customer_name,
                                           '{customer_email}' => $customer_info['email'],
                                           '{ship_address_name}' => $ship_address_name,

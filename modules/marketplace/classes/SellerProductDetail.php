@@ -382,15 +382,15 @@ class SellerProductDetail extends ObjectModel
            return false;		  
 		}
 		
-		public function getShopNameBySellerId($id)
+		public function getShopBySellerId($id)
 		{
 		  $sql = "select ms.*  
 		  from `"._DB_PREFIX_."marketplace_shop` as ms 
 		  Join `"._DB_PREFIX_."marketplace_customer` as mc on ms.id = mc.marketplace_seller_id 
 		  where mc.`marketplace_seller_id`=".$id."";
-		  $shop_name = Db::getInstance()->getRow($sql);
-		  if($shop_name)
-		   return $shop_name['shop_name'];
+		  $shop = Db::getInstance()->getRow($sql);
+		  if($shop)
+		   return $shop;
           else
            return false;		  
 		}
