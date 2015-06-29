@@ -397,7 +397,7 @@ abstract class PaymentModule extends PaymentModuleCore
 						'{invoice_phone}' => ($invoice->phone) ? $invoice->phone : $invoice->phone_mobile,
 						'{invoice_other}' => $invoice->other,
 						'{order_name}' => $order->getUniqReference(),
-						'{date}' => Tools::displayDate(date('Y-m-d H:i:s'),null , 1),
+						'{date}' => Tools::displayDate(date('Y-m-d h:i:s A'),null , 1),
 						'{carrier}' => $virtual_product ? Tools::displayError('No carrier') : $carrier->name,
 						'{payment}' => Tools::substr($order->payment, 0, 32),
 						'{products}' => $this->formatProductAndVoucherForEmail($products_list),
