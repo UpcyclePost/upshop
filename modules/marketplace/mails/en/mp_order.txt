@@ -3,7 +3,7 @@
 
 Hi {seller_firstname} {seller_lastname},
 
-New order created on your shop {shop_name}! 
+New order created on your shop {seller_shop_name}! 
 
 Name: {customer_name}
 
@@ -18,7 +18,13 @@ QUANTITY
 TOTAL PRICE
 
 {product_html} 
-   
+ 
+ 
+Items : {total_products}
+
+Shipping & Handling : {total_shipping}
+
+Total : {total_paid}
 
 Delivery address 		 
 
@@ -29,4 +35,4 @@ Delivery address
 Phone: {phone}
 
 You can review order details in my order by log in to your
-seller account by clicking [{my_account_url}] "My account" on our shop.
+seller account by clicking [{my_orders_received_link}] "My account" on our shop.

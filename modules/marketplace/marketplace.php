@@ -446,43 +446,19 @@ class MarketPlace extends Module
 			$sql = "SELECT sum(ord.`total_products`) as `total_products`, sum(ord.`total_shipping`) as `total_shipping`, sum(ord.`total_paid`) as `total_paid` 
 			from `" . _DB_PREFIX_ . "orders` ord where ord.`reference`='".$reference."'";
 			
-                    echo "<pre>$seller_shop_name";
-                    print_r($sql);
-                    echo "</pre>";
-
 			$m_orderheader =  Db::getInstance()->executeS($sql);
 			
-                    echo "<pre>m_orderheader";
-                    print_r($m_orderheader);
-                    echo "</pre>";
-
-
             $seller_list = array();
-
-                    echo "<pre>product_details : ";
-                    print_r($product_details);
-                    echo "</pre>";
-
 
             foreach($product_details as $product)
             {
                 $mp_product_id = $obj_mp_prod->checkProduct($product['product_id']);
 
-                    echo "<pre>mp_product_id : ";
-                    print_r($mp_product_id);
-                    echo "</pre>";
-
-
                 if($mp_product_id)
                 {
 
-
                    $mp_seller_id = $obj_mp_prod->getSellerIdByProduct($mp_product_id);
 
-                    echo "<pre>mp_seller_id : ";
-                    print_r($mp_seller_id);
-                    echo "</pre>";
-                   
                    if(!array_key_exists($mp_seller_id, $seller_list))
                    {
                         $seller_list[$mp_seller_id]['products'][] = $product['product_id'];
@@ -501,10 +477,6 @@ class MarketPlace extends Module
                 }
             }
 
-                    echo "<pre>count";
-                    print_r(count($seller_list));
-                    echo "</pre>";
-
             if(count($seller_list))
             {
                 foreach($seller_list  as $key => $value)
@@ -519,11 +491,6 @@ class MarketPlace extends Module
                     $seller_shop_id = $seller_shop['id']; 
                     $seller_shop_name = $seller_shop['shop_name'];
                     $seller_info = $obj_mp_prod->getSellerInfo($customer_id);
-
-                    echo "<pre>$seller_shop_name";
-                    print_r($seller_shop_name);
-                    echo "</pre>";
-
 
                     $produst_details = array();
                     $i = 0;
@@ -562,11 +529,6 @@ class MarketPlace extends Module
                                           '{my_orders_received_link}' => "https://".$_SERVER["SERVER_NAME"]."/shop/module/marketplace/marketplaceaccount?shop=".$seller_shop_id,
                                           '{product_html}' => $product_html
                                           );
-
-                    echo "<pre>templateVars";
-                    print_r($templateVars);
-                    echo "</pre>";
-
 
                     $template = 'mp_order';
                     $subject = 'Order Received : Reference # '. $reference;
