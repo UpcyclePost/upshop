@@ -450,11 +450,10 @@ class MarketPlace extends Module
                     print_r($sql);
                     echo "</pre>";
 
-			$orderheader =  Db::getInstance()->executeS($sql);
-
+			$m_orderheader =  Db::getInstance()->executeS($sql);
 			
-                    echo "<pre>$seller_shop_name";
-                    print_r($seller_shop_name);
+                    echo "<pre>m_orderheader";
+                    print_r($m_orderheader);
                     echo "</pre>";
 
 
@@ -557,9 +556,9 @@ class MarketPlace extends Module
                                           '{country}' => $country,
                                           '{zipcode}' =>$shipping_details['postcode'],
                                           '{phone}' => $shipping_details['phone_mobile'],
-                                          '{total_products}' => $orderheader['total_products'],
-                                          '{total_shipping}' => $orderheader['total_shipping'],                                          
-                                          '{total_paid}' => $orderheader['total-paid'],
+                                          '{total_products}' => $m_orderheader['total_products'],
+                                          '{total_shipping}' => $m_orderheader['total_shipping'],                                          
+                                          '{total_paid}' => $m_orderheader['total-paid'],
                                           '{product_html}' => $product_html
                                           );
 
