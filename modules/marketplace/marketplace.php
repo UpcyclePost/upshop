@@ -537,8 +537,14 @@ class MarketPlace extends Module
                                           '{phone}' => $shipping_details['phone_mobile'],
                                           '{product_html}' => $product_html);
 
+
+                    echo "<pre>templateVars";
+                    print_r($templateVars);
+                    echo "</pre>";
+
+
                     $template = 'mp_order';
-                    $subject = 'Order Received : Reference # {$reference}';
+                    $subject = 'Order Received : Reference # '. $reference;
                     $to = $seller_info['email'];
                     $temp_path = _PS_MODULE_DIR_.'marketplace/mails/';
                     Mail::Send($id_lang, $template, $subject, $templateVars, $to, null, null, 'Marketplace',
