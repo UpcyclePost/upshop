@@ -117,6 +117,20 @@
 						</td>
 					</tr>
 				</tbody>
+				<tfoot>
+				<tr>
+					<td colspan="4"><strong>Items</strong></td>
+					<td>{displayWtPriceWithCurrency price=$orderheader[0]['total_products'] currency=$currency }</td>
+				</tr>
+				<tr>
+					<td colspan="4"><strong>Shipping & Handling</strong></td>
+					<td>{displayWtPriceWithCurrency price=$orderheader[0]['total_shipping'] currency=$currency }</td>
+				</tr>
+				<tr>
+					<td colspan="4"><strong>Total</strong></td>
+					<td>{displayWtPriceWithCurrency price=$orderheader[0]['total_paid'] currency=$currency }</td>
+				</tr>
+				</tfoot>				
 			</table>
 		</font>
 	</td>
@@ -161,7 +175,7 @@
 	<td class="linkbelow" style="padding:7px 0">
 		<font size="2" face="Open-sans, sans-serif" color="#555454">
 			<span>
-				You can review orders you have received here: <a href="{http{if Tools::usingSecureMode()}s{/if}://{$smarty.server.SERVER_NAME}/shop/module/marketplace/marketplaceaccount?shop=}{seller_shop_id}" style="color:#337ff1">"My Orders Received"</a>.</span>
+				You can review orders you have received here: <a href="http{if Tools::usingSecureMode()}s{/if}://{$smarty.server.SERVER_NAME}/shop/module/marketplace/marketplaceaccount?shop={seller_shop_id}" style="color:#337ff1">"My Orders Received"</a>.</span>
 		</font>
 	</td>
 </tr>
