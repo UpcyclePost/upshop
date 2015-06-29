@@ -423,7 +423,7 @@ abstract class PaymentModule extends PaymentModuleCore
 							Mail::Send(
 								(int)$order->id_lang,
 								'order_conf',
-								'Order confirmation : Reference # '. $order_name,
+								'Order confirmation : Reference # '. $data['order_name'],
 								$data,
 								$this->context->customer->email,
 								$this->context->customer->firstname.' '.$this->context->customer->lastname,
