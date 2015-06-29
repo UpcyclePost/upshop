@@ -442,12 +442,30 @@ class MarketPlace extends Module
 			$product_details = $obj_order_detail->getList($data['id_order']);
             $obj_mp_prod = new SellerProductDetail();
             $obj_mp_seller = new SellerInfoDetail();
+
             $seller_list = array();
+
+                    echo "<pre>product_details : ";
+                    print_r($product_details);
+                    echo "</pre>";
+
+
             foreach($product_details as $product)
             {
                 $mp_product_id = $obj_mp_prod->checkProduct($product['product_id']);
+
+                    echo "<pre>mp_product_id : ";
+                    print_r($mp_product_id);
+                    echo "</pre>";
+
+
                 if($mp_product_id)
                 {
+                    echo "<pre>Hello world : ";
+
+                    echo "</pre>";
+
+
                    $mp_seller_id = $obj_mp_prod->getSellerIdByProduct($mp_product_id);
                    if(!array_key_exists($mp_seller_id, $seller_list))
                    {
@@ -467,6 +485,10 @@ class MarketPlace extends Module
                 }
             }
 
+                    echo "<pre>count";
+                    print_r(count($seller_list));
+                    echo "</pre>";
+
             if(count($seller_list))
             {
                 foreach($seller_list  as $key => $value)
@@ -478,6 +500,11 @@ class MarketPlace extends Module
                     $country = $obj_mp_prod->getCountry($shipping_details['id_country']);
                     $customer_id = $obj_mp_prod->getCustomerIdBySellerId($key);
                     $seller_info = $obj_mp_prod->getSellerInfo($customer_id);
+
+                    echo "<pre>seller_info";
+                    print_r($seller_info);
+                    echo "</pre>";
+
 
                     $produst_details = array();
                     $i = 0;
@@ -498,6 +525,7 @@ class MarketPlace extends Module
 
                     $templateVars = array('{seller_firstname}' => $seller_info['firstname'],
                                           '{seller_lastname}' => $seller_info['lastname'],
+                                          '{seller_shop_name}' => $seller_info['shop_name'],
                                           '{customer_name}' => $customer_name,
                                           '{customer_email}' => $customer_info['email'],
                                           '{ship_address_name}' => $ship_address_name,
@@ -510,7 +538,7 @@ class MarketPlace extends Module
                                           '{product_html}' => $product_html);
 
                     $template = 'mp_order';
-                    $subject = 'Order Created';
+                    $subject = 'Order Received : Reference # {$reference}';
                     $to = $seller_info['email'];
                     $temp_path = _PS_MODULE_DIR_.'marketplace/mails/';
                     Mail::Send($id_lang, $template, $subject, $templateVars, $to, null, null, 'Marketplace',
