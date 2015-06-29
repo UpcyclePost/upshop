@@ -461,12 +461,14 @@ class MarketPlace extends Module
 
                 if($mp_product_id)
                 {
-                    echo "<pre>Hello world : ";
-
-                    echo "</pre>";
 
 
                    $mp_seller_id = $obj_mp_prod->getSellerIdByProduct($mp_product_id);
+
+                    echo "<pre>mp_seller_id : ";
+                    print_r($mp_seller_id);
+                    echo "</pre>";
+                   
                    if(!array_key_exists($mp_seller_id, $seller_list))
                    {
                         $seller_list[$mp_seller_id]['products'][] = $product['product_id'];
@@ -499,10 +501,11 @@ class MarketPlace extends Module
                     $state = $obj_mp_prod->getState($shipping_details['id_state']);
                     $country = $obj_mp_prod->getCountry($shipping_details['id_country']);
                     $customer_id = $obj_mp_prod->getCustomerIdBySellerId($key);
+                    $seller_shop_name = $obj_mp_prod->getShopNameBySellerId($key);
                     $seller_info = $obj_mp_prod->getSellerInfo($customer_id);
 
-                    echo "<pre>seller_info";
-                    print_r($seller_info);
+                    echo "<pre>$seller_shop_name";
+                    print_r($seller_shop_name);
                     echo "</pre>";
 
 
@@ -525,7 +528,8 @@ class MarketPlace extends Module
 
                     $templateVars = array('{seller_firstname}' => $seller_info['firstname'],
                                           '{seller_lastname}' => $seller_info['lastname'],
-                                          '{seller_shop_name}' => $seller_info['shop_name'],
+                                          '{website}' => $seller_info['website'],                                          
+                                          '{seller_shop_name}' => $seller_shop_name,
                                           '{customer_name}' => $customer_name,
                                           '{customer_email}' => $customer_info['email'],
                                           '{ship_address_name}' => $ship_address_name,
