@@ -112,7 +112,7 @@
 				</thead>
 				<tbody>
 					<tr>
-						<td colspan="5" style="border:1px solid #D6D4D4;color:#777;padding:7px 0">
+						<td colspan="4" style="border:1px solid #D6D4D4;color:#777;padding:7px 0">
 							&nbsp;&nbsp;{product_html} 
 						</td>
 					</tr>
@@ -120,15 +120,15 @@
 				<tfoot>
 				<tr>
 					<td colspan="4"><strong>Items</strong></td>
-					<td>{displayWtPriceWithCurrency price=$orderheader[0]['total_products'] currency=$currency }</td>
+					<td>{total_products}</td>
 				</tr>
 				<tr>
 					<td colspan="4"><strong>Shipping & Handling</strong></td>
-					<td>{displayWtPriceWithCurrency price=$orderheader[0]['total_shipping'] currency=$currency }</td>
+					<td>{total_shipping}</td>
 				</tr>
 				<tr>
 					<td colspan="4"><strong>Total</strong></td>
-					<td>{displayWtPriceWithCurrency price=$orderheader[0]['total_paid'] currency=$currency }</td>
+					<td>{total_paid}</td>
 				</tr>
 				</tfoot>				
 			</table>

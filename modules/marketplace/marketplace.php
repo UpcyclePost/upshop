@@ -443,6 +443,11 @@ class MarketPlace extends Module
             $obj_mp_prod = new SellerProductDetail();
             $obj_mp_seller = new SellerInfoDetail();
 
+			$sql = "SELECT sum(ord.`total_products`) as `total_products`, sum(ord.`total_shipping`) as `total_shipping`, sum(ord.`total_paid`) as `total_paid` 
+			from `" . _DB_PREFIX_ . "orders` ord where ord.`reference`='".$reference."'";
+			
+			$orderheader =  Db::getInstance()->executeS($sql);
+			
             $seller_list = array();
 
                     echo "<pre>product_details : ";
@@ -542,8 +547,11 @@ class MarketPlace extends Module
                                           '{country}' => $country,
                                           '{zipcode}' =>$shipping_details['postcode'],
                                           '{phone}' => $shipping_details['phone_mobile'],
-                                          '{product_html}' => $product_html);
-
+                                          '{product_html}' => $product_html,
+                                          '{total_products}' => $orderheader['total_products'],
+                                          '{total_shipping}' => $orderheader['total_shipping'],                                          
+                                          '{total_paid}' => $orderheader['total-paid']
+                                          );
 
                     echo "<pre>templateVars";
                     print_r($templateVars);
