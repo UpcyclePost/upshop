@@ -559,7 +559,7 @@ class MarketPlace extends Module
                                           '{total_products}' => Tools::displayPrice($m_orderheader[0]['total_products'], $this->context->currency, false),
                                           '{total_shipping}' => Tools::displayPrice($m_orderheader[0]['total_shipping'], $this->context->currency, false),                                          
                                           '{total_paid}' => Tools::displayPrice($m_orderheader[0]['total_paid'], $this->context->currency, false),
-                                          '{my_orders_received_link}' => "https://".$smarty->server->SERVER_NAME."/shop/module/marketplace/marketplaceaccount?shop=".$seller_shop_id,
+                                          '{my_orders_received_link}' => "https://".$_SERVER["SERVER_NAME"]."/shop/module/marketplace/marketplaceaccount?shop=".$seller_shop_id,
                                           '{product_html}' => $product_html
                                           );
 
