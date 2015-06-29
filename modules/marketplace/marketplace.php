@@ -556,9 +556,9 @@ class MarketPlace extends Module
                                           '{country}' => $country,
                                           '{zipcode}' =>$shipping_details['postcode'],
                                           '{phone}' => $shipping_details['phone_mobile'],
-                                          '{total_products}' => $m_orderheader['total_products'],
-                                          '{total_shipping}' => $m_orderheader['total_shipping'],                                          
-                                          '{total_paid}' => $m_orderheader['total-paid'],
+                                          '{total_products}' => $m_orderheader[0]['total_products'],
+                                          '{total_shipping}' => $m_orderheader[0]['total_shipping'],                                          
+                                          '{total_paid}' => $m_orderheader[0]['total-paid'],
                                           '{product_html}' => $product_html
                                           );
 
