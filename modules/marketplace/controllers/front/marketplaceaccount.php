@@ -242,7 +242,7 @@ class marketplaceMarketplaceaccountModuleFrontController extends ModuleFrontCont
 							/*************Get Stripe manage account details*******************/
 							include_once(_PS_MODULE_DIR_.'stripepro/lib/Stripe.php');
 							\Stripe\Stripe::setApiKey(Configuration::get('STRIPE_MODE') ? Configuration::get('STRIPE_PRIVATE_KEY_LIVE') : Configuration::get('STRIPE_PRIVATE_KEY_TEST'));
-							$account_id = Db::getInstance()->getValue('select `stripe_seller_id` from '._DB_PREFIX_.'stripepro_sellers where `id_customer` = '.$customer_id);
+							$account_id = Db::getInstance()->getValue('select `stripe_seller_id` from '._DB_PREFIX_.'stripepro_sellers where `id_customer` = '.$customer_id, false);
 						    if(trim($account_id)!=''){
 						    $account = \Stripe\Account::retrieve($account_id);
 							$this->context->smarty->assign('stripestatus',$account->legal_entity->verification->status);

@@ -99,10 +99,6 @@ $(document).ready(function() {
 	{/if}
 
         {capture name=path}
-        <a href="{$link->getPageLink('my-account', true)|escape:'html':'UTF-8'}">
-                {l s='Marketplace account'}
-        </a>
-        <span class="navigation-pipe">{$navigationPipe}</span>
         <span class="navigation_page">{l s='Add Product' mod='marketplace'}</span>
         {/capture}
 

@@ -20,7 +20,6 @@
 			<tr class="first last">
 			<th>{l s='Edit' mod='mpshipping'}</th>
 			<th>{l s='Shipping Profile' mod='mpshipping'}</th>
-			<th>{l s='Shipping Method' mod='mpshipping'}</th>
 			<th>{l s='Shipping time' mod='mpshipping'}</th>
 			<th>{l s='Delete' mod='mpshipping'}</th>
 			</tr>
@@ -35,17 +34,6 @@
 							</a>
 						</td>
 						<td>{$mp_sp_det['mp_shipping_name']}</td>
-						<td>
-							{if $mp_sp_det['is_free'] == 1}
-								{l s='Free Shipping' mod='mpshipping'}
-							{else}
-								{if $mp_sp_det['shipping_method'] == 2}
-									{l s='Shipping charge on price' mod='mpshipping'}
-								{elseif $mp_sp_det['shipping_method'] == 1}
-									{l s='Shipping charge on weight' mod='mpshipping'}
-								{/if}
-							{/if}
-						</td>
 						<td>
 							{$mp_sp_det['transit_delay']}
 						</td>

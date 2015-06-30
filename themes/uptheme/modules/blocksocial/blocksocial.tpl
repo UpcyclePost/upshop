@@ -28,7 +28,7 @@
         <nav class="slug clearfix">
             <li class="f-logo">
 				<a href="http://{$smarty.server.SERVER_NAME}">
-				<img src="http://{$smarty.server.SERVER_NAME}/img/footer-logo.png"/></a>
+				<img src="http{if Tools::usingSecureMode()}s{/if}://{$smarty.server.SERVER_NAME}/img/footer-logo.png"/></a>
 				</li>
             <li class="copyright">&copy {$smarty.now|date_format:"%Y"} UpcyclePost. All rights reserved.</li>
             <li id="social_block">
