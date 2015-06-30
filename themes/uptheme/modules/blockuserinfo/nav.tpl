@@ -29,6 +29,7 @@
 						<li><a href="{$product_list|addslashes}"><i class="fa fa-fw fa-list"></i> Product List</a></li>
 						<li><a href="{$my_order|addslashes}"><i class="fa fa-fw fa-tasks"></i> Orders{if $m_number_orders > 0 } <font class="items pull-right">{$m_number_orders}</font>{/if}</a></li>
 						<li class="divider"></li>
+						<li><a href="http://{$smarty.server.SERVER_NAME}/shops/my/customize"><i class="fa fa-fw fa-pencil"></i> Customize Shop</a></li>
 						<li><a href="{$edit_profile|addslashes}"><i class="fa fa-fw fa-gears"></i> Shop Profile</a></li>
 						<li><a href="{$my_shop|addslashes}"><i class="fa fa-fw fa-eye"></i> View Shop</a></li>
 					</ul>
@@ -40,11 +41,11 @@
 				</button>
 				<ul class="dropdown-menu dropdown-menu-right" role="menu">
 					<li><a href="http{if Tools::usingSecureMode()}s{/if}://{$smarty.server.SERVER_NAME}/shop/order-history"><i class="fa fa-fw fa-tags"></i> Purchases</a></li>
-					<li><a href="http{if Tools::usingSecureMode()}s{/if}://{$smarty.server.SERVER_NAME}/profile/view"><i class="fa fa-fw fa-user"></i> Profile</a></li>
+					<li><a href="http://{$smarty.server.SERVER_NAME}/profile/view"><i class="fa fa-fw fa-user"></i> Profile</a></li>
 					<li><a href="http{if Tools::usingSecureMode()}s{/if}://{$smarty.server.SERVER_NAME}/profile/settings"><i class="fa fa-fw fa-gears"></i> Account</a></li>
-					<li><a href="http{if Tools::usingSecureMode()}s{/if}://{$smarty.server.SERVER_NAME}/profile/messages">
+					<li><a href="http://{$smarty.server.SERVER_NAME}/profile/messages">
 						<i class="fa fa-fw fa-envelope" {if $m_number_messages > 0}style="color:orange;"{/if}></i> Messages {if $m_number_messages > 0}({$m_number_messages}){/if}</a></li>
-					<li><a href="http{if Tools::usingSecureMode()}s{/if}://{$smarty.server.SERVER_NAME}/profile/feed"><i class="fa fa-fw fa-rss"></i> Feed</a></li>
+					<li><a href="http://{$smarty.server.SERVER_NAME}/profile/feed"><i class="fa fa-fw fa-rss"></i> Feed</a></li>
 					<li class="divider"></li>
 					<li><a href="http{if Tools::usingSecureMode()}s{/if}://{$smarty.server.SERVER_NAME}/profile/logout"><i class="fa fa-fw fa-sign-out"></i> Sign Out</a></li>
 				</ul>

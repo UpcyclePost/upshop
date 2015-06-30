@@ -286,15 +286,6 @@
 					{/if}
 				</div> <!-- end delivery_options_address -->
 				<div id="extra_carrier" style="display: none;"></div>
-				{if $opc}
-					<p class="carrier_title">{l s='Leave a message'}</p>
-					<div>
-						<p>{l s='If you would like to add a comment about your order, please write it in the field below.'}</p>
-						<textarea class="form-control" cols="120" rows="2" name="message" id="message">{strip}
-							{if isset($oldMessage)}{$oldMessage|escape:'html':'UTF-8'}{/if}
-						{/strip}</textarea>
-					</div>
-				{/if}
 				{if $recyclablePackAllowed}
 					<div class="checkbox recyclable">
 						<label for="recyclable">

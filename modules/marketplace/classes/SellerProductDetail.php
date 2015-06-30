@@ -318,7 +318,6 @@ class SellerProductDetail extends ObjectModel
 		}
 		
 		//join marketplace shop product
-		
 		public function findAllProductInMarketPlaceShop($id_shop,$orderby=false,$orderway=false) {
 			if(!$orderby) {
 				$orderby = 'product_name';
@@ -383,9 +382,23 @@ class SellerProductDetail extends ObjectModel
            return false;		  
 		}
 		
+		public function getShopBySellerId($id)
+		{
+		  $sql = "select ms.*  
+		  from `"._DB_PREFIX_."marketplace_shop` as ms 
+		  Join `"._DB_PREFIX_."marketplace_customer` as mc on ms.id = mc.marketplace_seller_id 
+		  where mc.`marketplace_seller_id`=".$id."";
+		  $shop = Db::getInstance()->getRow($sql);
+		  if($shop)
+		   return $shop;
+          else
+           return false;		  
+		}
+		
+		
 		public function getSellerInfo($id)
 		{
-		  $customer_info = Db::getInstance()->getRow("select `firstname`,`lastname`,`email`  from `"._DB_PREFIX_."customer` where `id_customer`=".$id."");
+		  $customer_info = Db::getInstance()->getRow("select `firstname`,`lastname`,`email`,`website`  from `"._DB_PREFIX_."customer` where `id_customer`=".$id."");
 		  if($customer_info)
 		   return $customer_info;
 		  else

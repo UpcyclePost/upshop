@@ -438,16 +438,27 @@ class MarketPlace extends Module
             //for seller email
 
             $obj_order_detail = new OrderDetail();
-            $product_details = $obj_order_detail->getList($params['objOrder']->id);
+            //$product_details = $obj_order_detail->getList($params['objOrder']->id);
+			$product_details = $obj_order_detail->getList($data['id_order']);
             $obj_mp_prod = new SellerProductDetail();
             $obj_mp_seller = new SellerInfoDetail();
+
+			$sql = "SELECT sum(ord.`total_products`) as `total_products`, sum(ord.`total_shipping`) as `total_shipping`, sum(ord.`total_paid`) as `total_paid` 
+			from `" . _DB_PREFIX_ . "orders` ord where ord.`reference`='".$reference."'";
+			
+			$m_orderheader =  Db::getInstance()->executeS($sql);
+			
             $seller_list = array();
+
             foreach($product_details as $product)
             {
                 $mp_product_id = $obj_mp_prod->checkProduct($product['product_id']);
+
                 if($mp_product_id)
                 {
+
                    $mp_seller_id = $obj_mp_prod->getSellerIdByProduct($mp_product_id);
+
                    if(!array_key_exists($mp_seller_id, $seller_list))
                    {
                         $seller_list[$mp_seller_id]['products'][] = $product['product_id'];
@@ -476,6 +487,9 @@ class MarketPlace extends Module
                     $state = $obj_mp_prod->getState($shipping_details['id_state']);
                     $country = $obj_mp_prod->getCountry($shipping_details['id_country']);
                     $customer_id = $obj_mp_prod->getCustomerIdBySellerId($key);
+                    $seller_shop = $obj_mp_prod->getShopBySellerId($key);
+                    $seller_shop_id = $seller_shop['id']; 
+                    $seller_shop_name = $seller_shop['shop_name'];
                     $seller_info = $obj_mp_prod->getSellerInfo($customer_id);
 
                     $produst_details = array();
@@ -497,6 +511,9 @@ class MarketPlace extends Module
 
                     $templateVars = array('{seller_firstname}' => $seller_info['firstname'],
                                           '{seller_lastname}' => $seller_info['lastname'],
+                                          '{website}' => $seller_info['website'],                                          
+                                          '{seller_shop_name}' => $seller_shop_name,
+                                          '{seller_shop_id}' => $seller_shop_id,
                                           '{customer_name}' => $customer_name,
                                           '{customer_email}' => $customer_info['email'],
                                           '{ship_address_name}' => $ship_address_name,
@@ -506,13 +523,18 @@ class MarketPlace extends Module
                                           '{country}' => $country,
                                           '{zipcode}' =>$shipping_details['postcode'],
                                           '{phone}' => $shipping_details['phone_mobile'],
-                                          '{product_html}' => $product_html);
+                                          '{total_products}' => Tools::displayPrice($m_orderheader[0]['total_products'], $this->context->currency, false),
+                                          '{total_shipping}' => Tools::displayPrice($m_orderheader[0]['total_shipping'], $this->context->currency, false),                                          
+                                          '{total_paid}' => Tools::displayPrice($m_orderheader[0]['total_paid'], $this->context->currency, false),
+                                          '{my_orders_received_link}' => "https://".$_SERVER["SERVER_NAME"]."/shop/module/marketplace/marketplaceaccount?shop=".$seller_shop_id,
+                                          '{product_html}' => $product_html
+                                          );
 
                     $template = 'mp_order';
-                    $subject = 'Order Created';
+                    $subject = 'Order Received : Reference # '. $reference;
                     $to = $seller_info['email'];
                     $temp_path = _PS_MODULE_DIR_.'marketplace/mails/';
-                    Mail::Send($id_lang, $template, $subject, $templateVars, $to, null, null, 'Marketplace',
+                    Mail::Send($id_lang, $template, $subject, $templateVars, $to, null, null, 'UpcyclePost.com',
                                 null, null, $temp_path, false, null, null);
                 }
             }
