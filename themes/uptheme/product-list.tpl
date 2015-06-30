@@ -54,7 +54,7 @@
 						<a class="product_img_link" href="{$product.link|escape:'html':'UTF-8'}" title="{$product.name|escape:'html':'UTF-8'}" itemprop="url">
 							<img class="replace-2x img-responsive" src="{$link->getImageLink($product.link_rewrite, $product.id_image, 'medium_default')|escape:'html':'UTF-8'}" alt="{if !empty($product.legend)}{$product.legend|escape:'html':'UTF-8'}{else}{$product.name|escape:'html':'UTF-8'}{/if}" title="{if !empty($product.legend)}{$product.legend|escape:'html':'UTF-8'}{else}{$product.name|escape:'html':'UTF-8'}{/if}" {if isset($mediumSize)} width="{$mediumSize.width}" height="{$mediumSize.height}"{/if} itemprop="image" />
 						</a>
-						{if isset($quick_view) && $quick_view}
+						{if isset($quick_view) && $quick_view && false}
 							<div class="quick-view-wrapper-mobile">
 							<a class="quick-view-mobile" href="{$product.link|escape:'html':'UTF-8'}" rel="{$product.link|escape:'html':'UTF-8'}">
 								<i class="icon-eye-open"></i>
@@ -196,7 +196,7 @@
 						{/if}
 					{/if}
 				</div>
-				{if $page_name != 'index'}
+				{if $page_name != 'index' &&false}
 	 				<div class="functional-buttons clearfix">
 						{hook h='displayProductListFunctionalButtons' product=$product}
 						{if isset($comparator_max_item) && $comparator_max_item}
