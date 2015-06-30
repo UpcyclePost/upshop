@@ -93,6 +93,42 @@ class OrderHistoryCore extends ObjectModel
 
 		$new_os = new OrderState((int)$new_order_state, $order->id_lang);
 		$old_os = $order->getCurrentOrderState();
+		
+		if($new_order_state==4){
+			$id_transaction = Db::getInstance()->getValue('select id_transaction from `'._DB_PREFIX_.'stripepro_transaction` where status = "uncaptured" && id_order='.(int)$order->id);
+		   if($id_transaction!=''){
+			include_once('../modules/stripepro/lib/Stripe.php');
+			\Stripe\Stripe::setApiKey(Configuration::get('STRIPE_MODE') ? Configuration::get('STRIPE_PRIVATE_KEY_LIVE') : Configuration::get('STRIPE_PRIVATE_KEY_TEST'));
+			$charge = \Stripe\Charge::retrieve($id_transaction);
+			$result_json = $charge->capture();
+		    if($result_json->captured==true)
+		   Db::getInstance()->Execute('UPDATE `'. _DB_PREFIX_ .'stripepro_transaction` SET `status` = \'paid\' WHERE `id_transaction` = \''. pSQL($id_transaction).'\'');
+		   }
+	     }elseif($new_order_state==7){
+			 $original_transaction = Db::getInstance()->getRow('select * from `'._DB_PREFIX_.'stripepro_transaction` where status = "paid" && id_order='.(int)$order->id);
+		   if($original_transaction['id_transaction']!=''){
+			include_once('../modules/stripepro/lib/Stripe.php');
+			\Stripe\Stripe::setApiKey(Configuration::get('STRIPE_MODE') ? Configuration::get('STRIPE_PRIVATE_KEY_LIVE') : Configuration::get('STRIPE_PRIVATE_KEY_TEST'));
+			try
+		    {
+			$charge = \Stripe\Charge::retrieve($original_transaction['id_transaction']);
+			$result_json = $charge->refunds->create();
+			}
+			catch (Exception $e)
+			{
+				$this->_errors['stripe_refund_error'] = $e->getMessage();
+			}
+			if(!isset($this->_errors['stripe_refund_error']))
+			Db::getInstance()->Execute('
+			INSERT INTO `'._DB_PREFIX_.'stripepro_transaction` (`type`, `source`,`btc_address`, `id_stripe_customer`, `id_cart`, `id_order`,
+			`id_transaction`, `amount`, `status`, `currency`, `cc_type`, `cc_exp`, `cc_last_digits`, `fee`, `mode`, `date_add`)
+			VALUES (\'refund\',\''.$original_transaction['source'].'\',"", '.(int)$original_transaction['id_stripe_customer'].', '.(int)$original_transaction['id_cart'].', '.(int)$original_transaction['id_order'].', \''.pSQL($original_transaction['id_transaction']).'\',
+			\''.(float)$original_transaction['amount'].'\', \'paid\', \''.pSQL($result_json->currency).'\',
+			\'\', \'\', 0, 0, \''.(Configuration::get('STRIPE_MODE') ? 'live' : 'test').'\', NOW())');
+		   }
+				
+				
+		}
 
 		// executes hook
 		if (in_array($new_os->id, array(Configuration::get('PS_OS_PAYMENT'), Configuration::get('PS_OS_WS_PAYMENT'))))
