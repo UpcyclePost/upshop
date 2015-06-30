@@ -7,6 +7,26 @@ abstract class PaymentModule extends PaymentModuleCore
 	* date: 2015-06-10 15:02:14
 	* version: 1.6
 	*/
+	public function getShopByReference($id)
+		{
+		  $sql = "SELECT cus.`website` as website, msi.`shop_name` as shop_name
+			from `"._DB_PREFIX_."orders` ord
+			join `"._DB_PREFIX_."order_detail` ordd on (ord.`id_order`= ordd.`id_order`) 
+			left join `"._DB_PREFIX_."marketplace_shop_product` msp on (ordd.`product_id`= msp.`id_product`)
+			left join `"._DB_PREFIX_."marketplace_seller_product` msep on (msep.`id` = msp.`marketplace_seller_id_product`) 
+			left join `"._DB_PREFIX_."marketplace_customer` mkc on (msep.`id_seller` = mkc.`marketplace_seller_id`) 
+			left join `"._DB_PREFIX_."customer` cus on (mkc.`id_customer`= cus.`id_customer`) 
+			left join `"._DB_PREFIX_."marketplace_seller_info` msi on (msep.`id_seller` = msi.`id`)
+			where ord.`reference`='".$id."'";  
+
+		  $shop = Db::getInstance()->getRow($sql);
+		  if($shop)
+		   return $shop;
+          else
+           return false;		  
+		}
+	
+	
 	public function validateOrder($id_cart, $id_order_state, $amount_paid, $payment_method = 'Unknown', $message = null, $extra_vars = array(), $currency_special = null, $dont_touch_amount = false, $secure_key = false, Shop $shop = null)
 	{
 		$this->context->cart = new Cart($id_cart);
@@ -47,7 +67,7 @@ abstract class PaymentModule extends PaymentModuleCore
 				foreach ($delivery_option_list[$id_address][$key_carriers]['carrier_list'] as $id_carrier => $data)
 					foreach ($data['package_list'] as $id_package)
 					{
-												$package_list[$id_address][$id_package]['id_warehouse'] = (int)$this->context->cart->getPackageIdWarehouse($package_list[$id_address][$id_package], (int)$id_carrier);
+						$package_list[$id_address][$id_package]['id_warehouse'] = (int)$this->context->cart->getPackageIdWarehouse($package_list[$id_address][$id_package], (int)$id_carrier);
 						$package_list[$id_address][$id_package]['id_carrier'] = $id_carrier;
 					}
 						CartRule::cleanCache();
@@ -138,16 +158,16 @@ abstract class PaymentModule extends PaymentModuleCore
 					$order->invoice_date = '0000-00-00 00:00:00';
 					$order->delivery_date = '0000-00-00 00:00:00';
 					
-																				$result = $order->add();
+					$result = $order->add();
 					if (!$result)
 						throw new PrestaShopException('Can\'t save Order');
-																									if ($order_status->logable && number_format($cart_total_paid, 2) != number_format($amount_paid, 2))
-						$id_order_state = Configuration::get('PS_OS_ERROR');
+					if ($order_status->logable && number_format($cart_total_paid, 2) != number_format($amount_paid, 2))
+					$id_order_state = Configuration::get('PS_OS_ERROR');
 					$order_list[] = $order;
-										$order_detail = new OrderDetail(null, null, $this->context);
+					$order_detail = new OrderDetail(null, null, $this->context);
 					$order_detail->createList($order, $this->context->cart, $id_order_state, $order->product_list, 0, true, $package_list[$id_address][$id_package]['id_warehouse']);
 					$order_detail_list[] = $order_detail;
-										if (!is_null($carrier))
+					if (!is_null($carrier))
 					{
 						$order_carrier = new OrderCarrier();
 						$order_carrier->id_order = (int)$order->id;
@@ -159,11 +179,11 @@ abstract class PaymentModule extends PaymentModuleCore
 					}
 				}
 			
-						if (Configuration::get('PS_TAX_ADDRESS_TYPE') == 'id_address_delivery')
+				if (Configuration::get('PS_TAX_ADDRESS_TYPE') == 'id_address_delivery')
 				$this->context->country = $context_country;
-						if ($order_status->logable)
+			if ($order_status->logable)
 			{
-																if (isset($extra_vars['transaction_id']))
+				if (isset($extra_vars['transaction_id']))
 					$transaction_id = $extra_vars['transaction_id'];
 				else
 					$transaction_id = null;
@@ -171,12 +191,12 @@ abstract class PaymentModule extends PaymentModuleCore
 				if (!$order->addOrderPayment($amount_paid, null, $transaction_id))
 					throw new PrestaShopException('Can\'t save Order Payment');
 			}
-						$only_one_gift = false;
+			$only_one_gift = false;
 			$cart_rule_used = array();
 			$products = $this->context->cart->getProducts();
 			$cart_rules = $this->context->cart->getCartRules();
 			
-						CartRule::cleanCache();
+			CartRule::cleanCache();
 			
 			foreach ($order_detail_list as $key => $order_detail)
 			{
@@ -268,7 +288,7 @@ abstract class PaymentModule extends PaymentModuleCore
 							$voucher->free_shipping = 0;
 							if ($voucher->add())
 							{
-																CartRule::copyConditions($cart_rule['obj']->id, $voucher->id);
+								CartRule::copyConditions($cart_rule['obj']->id, $voucher->id);
 								$params = array(
 									'{voucher_amount}' => Tools::displayPrice($voucher->reduction_amount, $this->context->currency, false),
 									'{voucher_num}' => $voucher->code,
@@ -306,7 +326,7 @@ abstract class PaymentModule extends PaymentModuleCore
 							<td style="padding:0.6em 0.4em;text-align:right">'.($values['tax_incl'] != 0.00 ? '-' : '').Tools::displayPrice($values['tax_incl'], $this->context->currency, false).'</td>
 						</tr>';
 					}
-										$old_message = Message::getMessageByCartId((int)$this->context->cart->id);
+					$old_message = Message::getMessageByCartId((int)$this->context->cart->id);
 					if ($old_message)
 					{
 						$update_message = new Message((int)$old_message['id_message']);
@@ -330,7 +350,7 @@ abstract class PaymentModule extends PaymentModuleCore
 						if (!$customer_message->add())
 							$this->errors[] = Tools::displayError('An error occurred while saving message');
 					}
-										Hook::exec('actionValidateOrder', array(
+						Hook::exec('actionValidateOrder', array(
 						'cart' => $this->context->cart,
 						'order' => $order,
 						'customer' => $this->context->customer,
@@ -347,22 +367,30 @@ abstract class PaymentModule extends PaymentModuleCore
 						$history->changeIdOrderState(Configuration::get('PS_OS_OUTOFSTOCK'), $order, true);
 						$history->addWithemail();
 					}
-															$new_history = new OrderHistory();
+					$new_history = new OrderHistory();
 					$new_history->id_order = (int)$order->id;
 					$new_history->changeIdOrderState((int)$id_order_state, $order, true);
 					$new_history->addWithemail(true, $extra_vars);
 					unset($order_detail);
-										$order = new Order($order->id);
-										if ($id_order_state != Configuration::get('PS_OS_ERROR') && $id_order_state != Configuration::get('PS_OS_CANCELED') && $this->context->customer->id)
+					$order = new Order($order->id);
+					if ($id_order_state != Configuration::get('PS_OS_ERROR') && $id_order_state != Configuration::get('PS_OS_CANCELED') && $this->context->customer->id)
 					{
 						$invoice = new Address($order->id_address_invoice);
 						$delivery = new Address($order->id_address_delivery);
 						$delivery_state = $delivery->id_state ? new State($delivery->id_state) : false;
 						$invoice_state = $invoice->id_state ? new State($invoice->id_state) : false;
+	                    
+						$seller_shop = $this->getShopByReference($reference);
+	                    $seller_shop_website = $seller_shop['website']; 
+    	                $seller_shop_name = $seller_shop['shop_name'];
+						
 						$data = array(
 						'{firstname}' => $this->context->customer->firstname,
 						'{lastname}' => $this->context->customer->lastname,
 						'{email}' => $this->context->customer->email,
+						'{website}' => $seller_shop_website,
+						'{seller_shop_name}' => $seller_shop_name,
+
 						'{delivery_block_txt}' => $this->_getFormatedAddress($delivery, "\n"),
 						'{invoice_block_txt}' => $this->_getFormatedAddress($invoice, "\n"),
 						'{delivery_block_html}' => $this->_getFormatedAddress($delivery, '<br />', array(
@@ -409,8 +437,8 @@ abstract class PaymentModule extends PaymentModuleCore
 						'{total_wrapping}' => Tools::displayPrice($order->total_wrapping, $this->context->currency, false),
 						'{total_tax_paid}' => Tools::displayPrice(($order->total_products_wt - $order->total_products) + ($order->total_shipping_tax_incl - $order->total_shipping_tax_excl), $this->context->currency, false));
 						if (is_array($extra_vars))
-							$data = array_merge($data, $extra_vars);
-												if ((int)Configuration::get('PS_INVOICE') && $order_status->invoice && $order->invoice_number)
+						$data = array_merge($data, $extra_vars);
+						if ((int)Configuration::get('PS_INVOICE') && $order_status->invoice && $order->invoice_number)
 						{
 							$pdf = new PDF($order->getInvoicesCollection(), PDF::TEMPLATE_INVOICE, $this->context->smarty);
 							$file_attachement['content'] = $pdf->render(false);
@@ -419,11 +447,12 @@ abstract class PaymentModule extends PaymentModuleCore
 						}
 						else
 							$file_attachement = null;
+							
 						if (Validate::isEmail($this->context->customer->email))
 							Mail::Send(
 								(int)$order->id_lang,
 								'order_conf',
-								'Order confirmation : Reference # '. $data['order_name'],
+								'Order confirmation : Reference # '. $reference,
 								$data,
 								$this->context->customer->email,
 								$this->context->customer->firstname.' '.$this->context->customer->lastname,
@@ -433,7 +462,7 @@ abstract class PaymentModule extends PaymentModuleCore
 								null, _PS_MAIL_DIR_, false, (int)$order->id_shop
 							);
 					}
-										if (Configuration::get('PS_ADVANCED_STOCK_MANAGEMENT'))
+					if (Configuration::get('PS_ADVANCED_STOCK_MANAGEMENT'))
 					{
 						$product_list = $order->getProducts();
 						foreach ($product_list as $product)
