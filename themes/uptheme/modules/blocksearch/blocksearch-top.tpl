@@ -24,27 +24,21 @@
 *}
 <!-- block search mobile -->
 {if isset($hook_mobile)}
-<div class="input_search" data-role="fieldcontain">
-	<form method="get" action="{$link->getPageLink('search', true)|escape:'html'}" id="searchbox">
-		<input type="hidden" name="controller" value="search" />
-		<input type="hidden" name="orderby" value="position" />
-		<input type="hidden" name="orderway" value="desc" />
-		<input class="search_query" type="search" id="search_query_top" name="search_query" placeholder="{l s='Find Products' mod='blocksearch'}" value="{$search_query|escape:'html':'UTF-8'|stripslashes}" />
-	</form>
-</div>
+<div class="col-xs-6 col-md-5 search-container">
+<form class="search-form form-inline" method="post" action="http://{$smarty.server.SERVER_NAME}/gallery">
+<input type="search" name="term" class="form-control search" placeholder="Find Inspiration">
+<button type="submit" class="search-icon"><img src="http://{$smarty.server.SERVER_NAME}/img/icons/search-icon.png"></button>
+</form>
+</div>	
 {else}
 <!-- Block search module TOP -->
-<div id="search_block_top" class="col-xs-6 col-md-5 search-container">
-	<form id="searchbox" method="get" action="{$link->getPageLink('search', null, null, null, false, null, true)|escape:'html':'UTF-8'}" >
-		<input type="hidden" name="controller" value="search" />
-		<input type="hidden" name="orderby" value="position" />
-		<input type="hidden" name="orderway" value="desc" />
-		<input class="search_query form-control search" type="text" id="search_query_top" name="search_query" placeholder="{l s='Find Products' mod='blocksearch'}" value="{$search_query|escape:'htmlall':'UTF-8'|stripslashes}" />
-		<button type="submit" name="submit_search" class="btn btn-default button-search">
-			<span>{l s='Search' mod='blocksearch'}</span>
-		</button>
-	</form>
-</div>
+
+<div class="col-xs-6 col-md-5 search-container">
+<form class="search-form form-inline" method="post" action="http://{$smarty.server.SERVER_NAME}/gallery">
+<input type="search" name="term" class="form-control search" placeholder="Find Inspiration">
+<button type="submit" class="search-icon"><img src="http://{$smarty.server.SERVER_NAME}/img/icons/search-icon.png"></button>
+</form>
+</div>	
 <!-- /Block search module TOP -->
 {/if}
 <!-- center the logo by moving this code from header.tpl -->
