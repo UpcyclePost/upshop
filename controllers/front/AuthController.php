@@ -106,6 +106,9 @@ class AuthControllerCore extends FrontController
 		else
 			$this->context->smarty->assign('back', Tools::safeOutput($back));
 
+		header(sprintf('Location:http://www.upcyclepost.com/profile/login?back=%s', $back));
+		die();
+
 		if (Tools::getValue('display_guest_checkout'))
 		{
 			if (Configuration::get('PS_RESTRICT_DELIVERED_COUNTRIES'))
