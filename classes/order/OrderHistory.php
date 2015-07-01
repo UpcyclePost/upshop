@@ -97,7 +97,8 @@ class OrderHistoryCore extends ObjectModel
 		if($new_order_state==4){
 			$id_transaction = Db::getInstance()->getValue('select id_transaction from `'._DB_PREFIX_.'stripepro_transaction` where status = "uncaptured" && id_order='.(int)$order->id);
 		   if($id_transaction!=''){
-			include_once('../modules/stripepro/lib/Stripe.php');
+
+		    include_once($_SERVER['DOCUMENT_ROOT']._MODULE_DIR_.'stripepro/lib/Stripe.php');
 			\Stripe\Stripe::setApiKey(Configuration::get('STRIPE_MODE') ? Configuration::get('STRIPE_PRIVATE_KEY_LIVE') : Configuration::get('STRIPE_PRIVATE_KEY_TEST'));
 			$charge = \Stripe\Charge::retrieve($id_transaction);
 			$result_json = $charge->capture();
@@ -105,9 +106,10 @@ class OrderHistoryCore extends ObjectModel
 		   Db::getInstance()->Execute('UPDATE `'. _DB_PREFIX_ .'stripepro_transaction` SET `status` = \'paid\' WHERE `id_transaction` = \''. pSQL($id_transaction).'\'');
 		   }
 	     }elseif($new_order_state==7){
-			 $original_transaction = Db::getInstance()->getRow('select * from `'._DB_PREFIX_.'stripepro_transaction` where status = "paid" && id_order='.(int)$order->id);
+				 
+			$original_transaction = Db::getInstance()->getRow('select * from `'._DB_PREFIX_.'stripepro_transaction` where status = "paid" && id_order='.(int)$order->id);
 		   if($original_transaction['id_transaction']!=''){
-			include_once('../modules/stripepro/lib/Stripe.php');
+			include_once($_SERVER['DOCUMENT_ROOT']._MODULE_DIR_.'stripepro/lib/Stripe.php');
 			\Stripe\Stripe::setApiKey(Configuration::get('STRIPE_MODE') ? Configuration::get('STRIPE_PRIVATE_KEY_LIVE') : Configuration::get('STRIPE_PRIVATE_KEY_TEST'));
 			try
 		    {
