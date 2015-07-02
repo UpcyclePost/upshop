@@ -106,7 +106,10 @@ class AuthControllerCore extends FrontController
 		else
 			$this->context->smarty->assign('back', Tools::safeOutput($back));
 
-		header(sprintf('Location:http://www.upcyclepost.com/profile/login?back=%s', $back));
+		$redirectURL = sprintf('http://'.$_SERVER['HTTP_HOST'].'/profile/login?back=%s',$back);
+
+		header('Location:'.$redirectURL);	
+		
 		die();
 
 		if (Tools::getValue('display_guest_checkout'))
