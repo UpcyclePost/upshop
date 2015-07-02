@@ -68,7 +68,7 @@
 		<meta property="og:image" content="{$img_ps_dir}logo.jpg" />
 		{else}
 			<script type="text/javascript">var switchTo5x=true;</script>
-			<script type="text/javascript" src="http://w.sharethis.com/button/buttons.js"></script>
+			<script type="text/javascript" src="http{if Tools::usingSecureMode()}s{/if}://w{if Tools::usingSecureMode()}s{/if}.sharethis.com/button/buttons.js"></script>
 			<script type="text/javascript">
 				stLight.options(
 				{
