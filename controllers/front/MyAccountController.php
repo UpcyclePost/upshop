@@ -52,6 +52,50 @@ class MyAccountControllerCore extends FrontController
 			'returnAllowed' => (int)Configuration::get('PS_ORDER_RETURN')
 		));
 		$this->context->smarty->assign('HOOK_CUSTOMER_ACCOUNT', Hook::exec('displayCustomerAccount'));
+		
+		$customer_id     = $this->context->customer->id;
+		// get the number of messages for the customers
+		If (isset($customer_id)){
+			// get the up customer - website field
+			$sql = 'SELECT website from `'._DB_PREFIX_.'customer` c Where c.id_customer = '.$customer_id;
+			$c_website = Db::getInstance()->getValue($sql);
+			
+			If (isset($c_website)){
+				$sql = 'SELECT count(*) FROM up.message m WHERE m.to_user_ik = '.$c_website.' and m.read is null';
+				$m_number_messages = Db::getInstance()->getValue($sql,false);
+		       	$this->context->smarty->assign("m_number_messages", $m_number_messages);
+			}
+		}
+		
+		$obj_marketplace_seller = new SellerInfoDetail();
+		if (isset($customer_id)){
+			$already_request = $obj_marketplace_seller->getMarketPlaceSellerIdByCustomerId($customer_id);
+		}
+		else{
+			$already_request = null;
+		}
+		if ($already_request) {
+			$is_seller = $already_request['is_seller'];
+			
+
+			if ($is_seller == 1)
+			{
+	
+				//get the # of orders for the seller
+				$sql = 'SELECT count(*) AS total from `'._DB_PREFIX_.'marketplace_shop_product` msp
+				join  `'._DB_PREFIX_.'order_detail` ordd on (ordd.`product_id`=msp.`id_product`)
+				join  `'._DB_PREFIX_.'orders` ord on (ordd.`id_order`=ord.`id_order`)
+				join  `'._DB_PREFIX_.'marketplace_seller_product` msep on (msep.`id` = msp.`marketplace_seller_id_product`)
+				join  `'._DB_PREFIX_.'marketplace_customer` mkc on (mkc.`marketplace_seller_id` = msep.`id_seller`)
+				join  `'._DB_PREFIX_.'customer` cus on (mkc.`id_customer`=cus.`id_customer`)
+				join  `'._DB_PREFIX_.'order_state_lang` ords on (ord.`current_state`=ords.`id_order_state`)
+				where ords.id_lang=1 and cus.`id_customer`= '.$customer_id.' and ord.current_state in (2)';
+			
+				$m_number_orders = Db::getInstance()->getValue($sql);			
+					
+	           	$this->context->smarty->assign("m_number_orders", $m_number_orders);
+			}
+		}
 
 		$this->setTemplate(_PS_THEME_DIR_.'my-account.tpl');
 	}

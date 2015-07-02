@@ -6,22 +6,24 @@
   #my-account ul.myaccount-link-list li a {
     display: block;
     overflow: hidden;
-    font: 600 16px/20px "Open Sans", sans-serif;
-    color: #ffffff;
+    font: inherit;
+    color: #0187d0;
     text-shadow: 0px 1px white;
-    text-transform: uppercase;
     text-decoration: none;
     position: relative;
     border: 1px solid;
     border-color: #0187d0;
-    background: #bbb;
+    background: #fff;
     background-size: 100%;
     -moz-border-radius: 4px;
     -webkit-border-radius: 4px;
-    border-radius: 4px; }
+    border-radius: 4px; 
+    margin-left:15px;
+    margin-right:15px;    
+    }
     #my-account ul.myaccount-link-list li a i {
       font-size: 25px;
-      color: #ffffff;
+      color: #0187d0;
       position: absolute;
       left: 0;
       top: 0;
@@ -51,7 +53,8 @@
       border-bottom-right-radius: 5px; }
     #my-account ul.myaccount-link-list li a:hover {
       filter: none;
-      background: #0187d0;
-      border-color: #89c226; }
+      background: #fff;
+      border-color: #89c226;
+      text-decoration:underline; }
 
 /*# sourceMappingURL=my-account.css.map */

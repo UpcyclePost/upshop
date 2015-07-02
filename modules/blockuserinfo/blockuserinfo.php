@@ -130,7 +130,7 @@ class BlockUserInfo extends Module
 				where ords.id_lang=1 and cus.`id_customer`= '.$customer_id.' and ord.current_state in (2)';
 			
 				$m_number_orders = Db::getInstance()->getValue($sql);
-				
+			
 					
 				$this->context->smarty->assign("account_dashboard", $account_dashboard);
                 $this->context->smarty->assign("add_product", $add_product);
