@@ -106,7 +106,7 @@ class AuthControllerCore extends FrontController
 		else
 			$this->context->smarty->assign('back', Tools::safeOutput($back));
 
-		$redirectURL = sprintf((Configuration::get('PS_SSL_ENABLED') ? 'https' : 'http').'://'.$_SERVER['HTTP_HOST'].'/profile/login?back=%s',$back);
+		$redirectURL = sprintf('http://'.$_SERVER['HTTP_HOST'].'/profile/login?back=%s',$back);
 
 		header('Location:'.$redirectURL);	
 		
