@@ -479,6 +479,7 @@ class MarketPlace extends Module
 
             if(count($seller_list))
             {
+                $j = 0;
                 foreach($seller_list  as $key => $value)
                 {
                     $customer_info = $obj_mp_prod->getCustomerInfo($this->context->customer->id);
@@ -492,8 +493,15 @@ class MarketPlace extends Module
                     $seller_shop_name = $seller_shop['shop_name'];
                     $seller_info = $obj_mp_prod->getSellerInfo($customer_id);
 
+                    // ALL SELLER INFO FOR ADMIN EMAIL
+                    
+                    $all_produst_details[$j]['seller_firstname'] = $seller_info['firstname'];
+                    $all_produst_details[$j]['seller_lastname'] = $seller_info['lastname'];
+                    $all_produst_details[$j]['seller_email'] = $seller_info['email'];
+
                     $produst_details = array();
                     $i = 0;
+                    $k = 0;
                     foreach ($value['products'] as $id_product)
                     {
                         $obj_prod = new Product($id_product, false, $id_lang);
@@ -501,8 +509,17 @@ class MarketPlace extends Module
                         $produst_details[$i]['qty'] = $value['quantity'][$i];
                         $produst_details[$i]['unit_price'] = $value['unit_price'][$i];
                         $produst_details[$i]['total_price'] = $value['total_price'][$i];
+
+                        // ALL PRODUCT LIST FOR ADMIN EMAIL
+                        
+                        $all_produst_details[$j]['product'][$k]['name'] = $obj_prod->name;
+                        $all_produst_details[$j]['product'][$k]['qty'] = $value['quantity'][$i];
+                        $all_produst_details[$j]['product'][$k]['unit_price'] = $value['unit_price'][$i];
+                        $all_produst_details[$j]['product'][$k]['total_price'] = $value['total_price'][$i];
+                        $k++;
                         $i++;
                     }
+                    $j++;
 
                     $customer_name = $customer_info['firstname'].' '.$customer_info['lastname'];
                     $ship_address_name = $shipping_details['firstname'].' '.$shipping_details['lastname'];
@@ -539,6 +556,16 @@ class MarketPlace extends Module
                 }
             }
         }
+
+        $all_product_html = $obj_mp_seller->getMpEmailTemplateContent('order_creation_mail_for_admin.tpl', Mail::TYPE_HTML, $all_produst_details);
+
+        $templateVars = array('{all_product_html}' => $all_product_html);
+        $template = 'order_creation_mail_for_admin';
+        $subject = 'Order Created Admin';
+        $to = Tools::getValue('MP_SUPERADMIN_EMAIL', Configuration::get('MP_SUPERADMIN_EMAIL'));
+        $temp_path = _PS_MODULE_DIR_.'marketplace/mails/';
+        Mail::Send($id_lang, $template, $subject, $templateVars, $to, null, null, 'Marketplace',
+                                null, null, $temp_path, false, null, null);
             
     }
     public function hookDisplayCustomerAccount()
