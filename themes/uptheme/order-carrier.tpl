@@ -336,10 +336,10 @@
 				{/if}
 				<script type="text/javascript">
 					{literal}
-					$(document).ready(function(){
-						
+					$(document).ready(function(){					
 						acceptCGV();
-						$('#opc_payment_methods-overlay').fadeIn('slow');			
+						$('#opc_payment_methods-overlay').show();
+						updatePaymentMethodsDisplay();
 					});
 					{/literal}
 					</script>
