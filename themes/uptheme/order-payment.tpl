@@ -335,8 +335,8 @@
 							</table>
 						</div> <!-- end order-detail-content -->
 					{/if}
-					{if $opc}<div id="opc_payment_methods-content" style="padding: 0 0 15px 30px">{/if}
-					<div id="HOOK_PAYMENT">
+					{if $opc}<div id="opc_payment_methods-content" style="padding:15px">{/if}
+					<div id="HOOK_PAYMENT" st>
 						{$HOOK_PAYMENT}
 					</div>
 					{if $opc}</div> <!-- end opc_payment_methods-content -->{/if}
