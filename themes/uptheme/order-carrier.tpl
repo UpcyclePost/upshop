@@ -334,10 +334,19 @@
 				{if $opc}
 					<hr style="" />
 				{/if}
+				<script type="text/javascript">
+					{literal}
+					$(document).ready(function(){
+						
+						acceptCGV();
+						$('#opc_payment_methods-overlay').fadeIn('slow');			
+					});
+					{/literal}
+					</script>
 				<p class="carrier_title">{l s='Terms of service'}</p>
 				<p class="checkbox">
-					<input type="checkbox" name="cgv" id="cgv" value="1" {if $checkedTOS}checked="checked"{/if} />
-					<label for="cgv">{l s='I agree to the terms of service and will adhere to them unconditionally.'}</label>
+					<input type="checkbox" name="cgv" id="cgv" value="1" checked="checked" />
+					<label for="cgv">{l s='By placing an order you agree to the UpcyclePost.com terms of service.'}</label>
 					<a href="{$link_conditions|escape:'html':'UTF-8'}" class="iframe" rel="nofollow">{l s='(Read the Terms of Service)'}</a>
 				</p>
 			{/if}
