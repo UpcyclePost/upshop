@@ -36,11 +36,8 @@
 	{/if}
 <div itemscope itemtype="http://schema.org/Product">
 	<div class="primary_block row">
-		{if !$content_only}
-			<div class="container">
-				<div class="top-hr"></div>
-			</div>
-		{/if}
+		<section class="post-details-container">
+		<div class="post-details-panel clearfix">
 		{if isset($adminActionDisplay) && $adminActionDisplay}
 			<div id="admin-action">
 				<p>{l s='This product is not visible to your customers.'}
@@ -57,9 +54,29 @@
 			</p>
 		{/if}
 		<!-- left infos-->
-		<div class="pb-left-column col-xs-12 col-sm-4 col-md-5">
+		<div class="post-details-body">
+		<div class="post-details-panel-header">
+			<h1>
+			{$product->name|escape:'html':'UTF-8'}
+			</h1>
+		</div>
+		<div class="post-details-crumbs">
+			<ol class="breadcrumb" style="float:right;" >
+				<li style="float:right;" class="attr-content">
+						<span class='st_facebook'></span>
+						<span class='st_twitter'></span>
+						<span class='st_linkedin'></span>
+						<span class='st_googleplus'></span>
+						<span class='st_pinterest'></span>
+						<span class='st_stumbleupon'></span>
+						<span class='st_email'></span>
+						<span class='st_sharethis'></span>
+				</li>
+			</ol>
+		</div>
+
 			<!-- product img-->
-			<div id="image-block" class="clearfix">
+			<div id="image-block" class="post-details-img-container" style="position:relatve;float:left;">
 				{if $product->new}
 					<span class="new-box">
 						<span class="new-label">{l s='New'}</span>
@@ -72,6 +89,9 @@
 				{elseif $product->specificPrice && $product->specificPrice.reduction && $productPriceWithoutReduction > $productPrice}
 					<span class="discount">{l s='Reduced price!'}</span>
 				{/if}
+
+		
+
 				{if $have_image}
 					<span id="view_full_size">
 						{if $jqZoomEnabled && $have_image && !$content_only}
@@ -79,7 +99,7 @@
 								<img itemprop="image" src="{$link->getImageLink($product->link_rewrite, $cover.id_image, 'large_default')|escape:'html':'UTF-8'}" title="{if !empty($cover.legend)}{$cover.legend|escape:'html':'UTF-8'}{else}{$product->name|escape:'html':'UTF-8'}{/if}" alt="{if !empty($cover.legend)}{$cover.legend|escape:'html':'UTF-8'}{else}{$product->name|escape:'html':'UTF-8'}{/if}"/>
 							</a>
 						{else}
-							<img id="bigpic" itemprop="image" src="{$link->getImageLink($product->link_rewrite, $cover.id_image, 'large_default')|escape:'html':'UTF-8'}" title="{if !empty($cover.legend)}{$cover.legend|escape:'html':'UTF-8'}{else}{$product->name|escape:'html':'UTF-8'}{/if}" alt="{if !empty($cover.legend)}{$cover.legend|escape:'html':'UTF-8'}{else}{$product->name|escape:'html':'UTF-8'}{/if}" width="{$largeSize.width}" height="{$largeSize.height}"/>
+							<img id="bigpic" style="float:left;" itemprop="image" src="{$link->getImageLink($product->link_rewrite, $cover.id_image, 'large_default')|escape:'html':'UTF-8'}" title="{if !empty($cover.legend)}{$cover.legend|escape:'html':'UTF-8'}{else}{$product->name|escape:'html':'UTF-8'}{/if}" alt="{if !empty($cover.legend)}{$cover.legend|escape:'html':'UTF-8'}{else}{$product->name|escape:'html':'UTF-8'}{/if}" width="{$largeSize.width}" height="{$largeSize.height}"/>
 							{if !$content_only}
 								<!--<span class="span_link no-print">{l s='View larger'}</span>-->
 							{/if}
@@ -95,7 +115,13 @@
 						{/if}
 					</span>
 				{/if}
+		<!-- begin short_description_block -->
+		{if $product->description_short}
+			<span style="display:inline;">{$product->description_short}</span>
+		{/if}
+		<!-- end short_description_block -->
 			</div> <!-- end image-block -->
+
 			{if isset($images) && count($images) > 0}
 				<!-- thumbnails -->
 				<div id="views_block" class="clearfix {if isset($images) && count($images) < 2}hidden{/if}">
@@ -149,30 +175,26 @@
 					</span>
 				</p>
 			{/if}
-		</div> <!-- end pb-left-column -->
+		<!-- end pb-left-column -->
 		<!-- end left infos-->
+
 		<!-- center infos -->
-		<div class="pb-center-column col-xs-12 col-sm-4">
+		<div class="">
 			{if $product->online_only}
 				<p class="online_only">{l s='Online only'}</p>
 			{/if}
 			<h4 itemprop="shop">
-			<label>{l s='By' mod='marketplace'} - </label>
-			<a class="product-name" title="Go to shop" href="{$link_store|addslashes}">
-				{$mkt_seller_info['shop_name']|escape:'html':'UTF-8'}
-			</a>
 			</h4>
-			<h1 itemprop="name">{$product->name|escape:'html':'UTF-8'}</h1>
+			<h1 itemprop="name"></h1>
 			<p id="product_reference"{if empty($product->reference) || !$product->reference} style="display: none;"{/if}>
 				<label>{l s='Reference:'} </label>
 				<span class="editable" itemprop="sku">{if !isset($groups)}{$product->reference|escape:'html':'UTF-8'}{/if}</span>
 			</p>
 
+<!--
 			{if $product->description_short || $packItems|@count > 0}
 				<div id="short_description_block">
-					{if $product->description_short}
-						<div id="short_description_content" class="rte align_justify" itemprop="description">{$product->description_short}</div>
-					{/if}
+
 
 					{if $product->description}
 						<p class="buttons_bottom_block">
@@ -181,7 +203,8 @@
 							</a>
 						</p>
 					{/if}
-					<!--{if $packItems|@count > 0}
+
+					{if $packItems|@count > 0}
 						<div class="short_description_pack">
 						<h3>{l s='Pack content'}</h3>
 							{foreach from=$packItems item=packItem}
@@ -192,19 +215,10 @@
 							</div>
 							{/foreach}
 						</div>
-					{/if}-->
-				</div> <!-- end short_description_block -->
+					{/if}
+				</div> 
+-->
 			{/if}
-					<div style="padding:5px 0 10px 0">
-						<span class='st_facebook_large' displayText='Facebook'></span>
-						<span class='st_twitter_large' displayText='Tweet'></span>
-						<span class='st_linkedin_large' displayText='LinkedIn'></span>
-						<span class='st_googleplus_large' displayText='Google +'></span>
-						<span class='st_pinterest_large' displayText='Pinterest'></span>
-						<span class='st_stumbleupon_large' displayText='StumbleUpon'></span>
-						<span class='st_email_large' displayText='Email'></span>
-						<span class='st_sharethis_large' displayText='ShareThis'></span>
-					</div>
 
 			{if ($display_qties == 1 && !$PS_CATALOG_MODE && $PS_STOCK_MANAGEMENT && $product->available_for_order)}
 				<!-- number of item in stock -->
@@ -214,11 +228,6 @@
 					<span {if $product->quantity == 1} style="display: none;"{/if} id="quantityAvailableTxtMultiple">{l s='Items'}</span>
 				</p>
 			{/if}
-			<!-- availability or doesntExist -->
-			<p id="availability_statut"{if !$PS_STOCK_MANAGEMENT || ($product->quantity <= 0 && !$product->available_later && $allow_oosp) || ($product->quantity > 0 && !$product->available_now) || !$product->available_for_order || $PS_CATALOG_MODE} style="display: none;"{/if}>
-				{*<span id="availability_label">{l s='Availability:'}</span>*}
-				<span id="availability_value" class="label{if $product->quantity <= 0 && !$allow_oosp} label-danger{elseif $product->quantity <= 0} label-warning{else} label-success{/if}">{if $product->quantity <= 0}{if $PS_STOCK_MANAGEMENT && $allow_oosp}{$product->available_later}{else}{l s='This product is no longer in stock'}{/if}{elseif $PS_STOCK_MANAGEMENT}{$product->available_now}{/if}</span>
-			</p>
 			{if $PS_STOCK_MANAGEMENT}
 				{hook h="displayProductDeliveryTime" product=$product}
 				<!--<p class="warning_inline" id="last_quantities"{if ($product->quantity > $last_qties || $product->quantity <= 0) || $allow_oosp || !$product->available_for_order || $PS_CATALOG_MODE} style="display: none"{/if} >{l s='Warning: Last items in stock!'}</p>-->
@@ -231,19 +240,6 @@
 			<div id="oosHook"{if $product->quantity > 0} style="display: none;"{/if}>
 				{$HOOK_PRODUCT_OOS}
 			</div>
-			{if isset($HOOK_EXTRA_RIGHT) && $HOOK_EXTRA_RIGHT}{$HOOK_EXTRA_RIGHT}{/if}
-			{if !$content_only}
-				<!-- usefull links-->
-				<ul id="usefull_link_block" class="clearfix no-print">
-					{if $HOOK_EXTRA_LEFT}{$HOOK_EXTRA_LEFT}{/if}
-					<li class="print">
-						<a href="javascript:print();" style="font-size:120%">
-							{l s='Print'}
-						</a>
-					</li>
-					{if $have_image && !$jqZoomEnabled}{/if}
-				</ul>
-			{/if}
 			{if $product->description}
 			<!-- More info -->
 			<section class="page-product-box">
@@ -254,10 +250,61 @@
 			</section>
 			<!--end  More info -->
 		{/if}
-		</div>
+
 		<!-- end center infos-->
+		</div>
+		<!-- end post details-->
+		</div>
 		<!-- pb-right-column-->
-		<div class="pb-right-column col-xs-12 col-sm-4 col-md-3">
+		<aside class="post-sidebar">
+		<div class="">
+			
+
+			<div class="post-author clearfix">
+			<div class="avatar">
+			</div>
+			<div class="author-name"><span>Post By</span><a href="{$link_store|addslashes}">{$mkt_seller_info['shop_name']|escape:'html':'UTF-8'}</a></div>
+			</div>
+			<ul class="post-actions col-2 clearfix">
+			<li><a href="http://www.upcyclepost.com/profile/login"><i class="fa fa-heart"></i> Log in to Up this</a></li>
+			<li class="dropdown">
+			<a href="#" class="dropdown-toggle" type="button" data-toggle="dropdown" id="share"><i class="fa fa-send"></i> Send it</a>
+			<ul class="dropdown-menu dropdown-menu-right send" role="menu">
+			<form role="form" id="share-form" data-url="http://www.upcyclepost.com/gallery/sporting-goods/haroshi-s-recycled-skateboard-deck-art-teddy-bear-196761/share">
+			<div class="send-panel">
+			<div class="send-panel-header">
+			<h4>Send this post to a friend</h4>
+			</div>
+			<div class="send-panel-body">
+			<div class="form-group">
+			<label for="exampleInputEmail1">What is your friends email?</label>
+			<input type="email" class="form-control" id="shareEmail" placeholder="Enter email" required="">
+			</div>
+			<div class="form-group">
+			<label>Add a message</label>
+			<textarea class="form-control" rows="3" id="shareMessage"></textarea>
+			</div>
+			</div>
+			<div class="send-panel-footer">
+			<button type="submit" class="btn btn-green btn-block"><i class="fa fa-envelope"></i> Send Post</button>
+			</div>
+			</div>
+			</form>
+			</ul>
+			</li>
+			</ul>
+			<div class="post-sidebar-container engage">
+			<h5>Engagement</h5>
+			<ul class="post-engagement clearfix">
+			<li><i class="fa fa-eye"></i> Views <span>4,251</span></li>
+			<li><i class="fa fa-heart"></i> Ups <span id="ups">0</span></li>
+			</ul>
+			</div>
+			<div class="post-sidebar-container last">
+			<ul class="post-report clearfix">
+			<li><a id="report-it" data-url="http://www.upcyclepost.com/gallery/sporting-goods/haroshi-s-recycled-skateboard-deck-art-teddy-bear-196761/report"><i class="fa fa-warning"></i> Report This Post</a></li>
+			</ul>
+			</div>
 			{if ($product->show_price && !isset($restricted_country_mode)) || isset($groups) || $product->reference || (isset($HOOK_PRODUCT_ACTIONS) && $HOOK_PRODUCT_ACTIONS)}
 			<!-- add to cart form-->
 			<form id="buy_block"{if $PS_CATALOG_MODE && !isset($groups) && $product->quantity > 0} class="hidden"{/if} action="{$link->getPageLink('cart')|escape:'html':'UTF-8'}" method="post">
@@ -328,6 +375,15 @@
 						{hook h="displayProductPriceBlock" product=$product type="weight"}
 						<div class="clear"></div>
 					</div> <!-- end content_prices -->
+					{if $product->quantity <= 0}
+						<!-- availability or doesntExist -->
+					<div class="content_prices clearfix">
+						<p id="availability_statut"{if !$PS_STOCK_MANAGEMENT || ($product->quantity <= 0 && !$product->available_later && $allow_oosp) || ($product->quantity > 0 && !$product->available_now) || !$product->available_for_order || $PS_CATALOG_MODE} style="display: none;"{/if}>
+							{*<span id="availability_label">{l s='Availability:'}</span>*}
+							<span id="availability_value" class="label{if $product->quantity <= 0 && !$allow_oosp} label-danger{elseif $product->quantity <= 0} label-warning{else} label-success{/if}">{if $product->quantity <= 0}{if $PS_STOCK_MANAGEMENT && $allow_oosp}{$product->available_later}{else}{l s='This product is no longer in stock'}{/if}{elseif $PS_STOCK_MANAGEMENT}{$product->available_now}{/if}</span>
+						</p>
+					</div>
+					{else}
 					<div class="product_attributes clearfix">
 						<!-- quantity wanted -->
 						{if !$PS_CATALOG_MODE}
@@ -398,6 +454,7 @@
 							</div> <!-- end attributes -->
 						{/if}
 					</div> <!-- end product_attributes -->
+					{/if}
 					<div class="box-cart-bottom">
 						<div{if (!$allow_oosp && $product->quantity <= 0) || !$product->available_for_order || (isset($restricted_country_mode) && $restricted_country_mode) || $PS_CATALOG_MODE} class="unvisible"{/if}>
 							<p id="add_to_cart" class="buttons_bottom_block no-print">
@@ -412,7 +469,24 @@
 			</form>
 			{/if}
 		</div> <!-- end pb-right-column-->
+			{if isset($HOOK_EXTRA_RIGHT) && $HOOK_EXTRA_RIGHT}{$HOOK_EXTRA_RIGHT}{/if}
+			{if !$content_only}
+				<!-- usefull links-->
+				<ul id="usefull_link_block" class="clearfix no-print">
+					{if $HOOK_EXTRA_LEFT}{$HOOK_EXTRA_LEFT}{/if}
+					<li class="print">
+						<a href="javascript:print();" style="font-size:120%">
+							{l s='Print'}
+						</a>
+					</li>
+					{if $have_image && !$jqZoomEnabled}{/if}
+				</ul>
+			{/if}
+		
+		</aside>
+		</div>
 	</div> <!-- end primary_block -->
+</section>
 	{if !$content_only}
 {if (isset($quantity_discounts) && count($quantity_discounts) > 0)}
 			<!-- quantity discount -->
@@ -661,6 +735,7 @@
 			{/if}
 		{/if}
 	{/if}
+
 </div> <!-- itemscope product wrapper -->
 {strip}
 {if isset($smarty.get.ad) && $smarty.get.ad}
