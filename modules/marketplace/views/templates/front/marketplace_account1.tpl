@@ -14,16 +14,19 @@
     padding: 15px;
     background: #fff;
     -webkit-border-radius: 0;
-    -webkit-background-clip: none;
     -moz-border-radius: 0;
-    -moz-background-clip: padding;
     border-radius: 0;
-    background-clip: none;
     -webkit-box-shadow: none ;
     -moz-box-shadow: none ;
     box-shadow: none ;
 	border-bottom: 1px solid #D5D5D5;
 	margin-bottom: 10px;
+  }
+  
+@media(max-width:768px){
+	  #checkimages{
+		  display:none;
+		  }
   }
 </style>
 {/if}
@@ -200,12 +203,12 @@
 	</div>
 	{else if $logic==2}
      <script type="text/javascript">
-     function show_load_msg(){
+     function show_load_msg()
+	 {
 					$('#update_profile').attr('disabled','disabled');
-					$('#loadin_msg').show();
-					
-					}
-			</script>
+					$('#loadin_msg').show();				
+	}
+	</script>
 	{capture name=path}
         <a href="{$account_dashboard|addslashes}">
                 {l s='My Dashboard'}
@@ -357,7 +360,8 @@
 							</div>
 						</div>			
 					</div>
-					<div class="col-sm-6">
+					
+					<div class="col-sm-6" id="checkimages">
 						<div class="container" style="margin-top:20px;">
 						<h4>{l s='Bank account and Routing number information' mod='marketplace'}</h4>
 						<div>
