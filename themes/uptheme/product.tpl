@@ -76,7 +76,8 @@
 		</div>
 
 			<!-- product img-->
-			<div id="image-block" class="post-details-img-container" style="position:relatve;float:left;">
+			<div id="image-block" class="post-details-img-container" style="position:relative;">
+
 				{if $product->new}
 					<span class="new-box">
 						<span class="new-label">{l s='New'}</span>
@@ -89,8 +90,6 @@
 				{elseif $product->specificPrice && $product->specificPrice.reduction && $productPriceWithoutReduction > $productPrice}
 					<span class="discount">{l s='Reduced price!'}</span>
 				{/if}
-
-		
 
 				{if $have_image}
 					<span id="view_full_size">
@@ -249,7 +248,7 @@
 					<div>{$product->description}</div>
 			</section>
 			<!--end  More info -->
-		{/if}
+			{/if}
 
 		<!-- end center infos-->
 		</div>
@@ -264,46 +263,6 @@
 			<div class="avatar">
 			</div>
 			<div class="author-name"><span>Post By</span><a href="{$link_store|addslashes}">{$mkt_seller_info['shop_name']|escape:'html':'UTF-8'}</a></div>
-			</div>
-			<ul class="post-actions col-2 clearfix">
-			<li><a href="http://www.upcyclepost.com/profile/login"><i class="fa fa-heart"></i> Log in to Up this</a></li>
-			<li class="dropdown">
-			<a href="#" class="dropdown-toggle" type="button" data-toggle="dropdown" id="share"><i class="fa fa-send"></i> Send it</a>
-			<ul class="dropdown-menu dropdown-menu-right send" role="menu">
-			<form role="form" id="share-form" data-url="http://www.upcyclepost.com/gallery/sporting-goods/haroshi-s-recycled-skateboard-deck-art-teddy-bear-196761/share">
-			<div class="send-panel">
-			<div class="send-panel-header">
-			<h4>Send this post to a friend</h4>
-			</div>
-			<div class="send-panel-body">
-			<div class="form-group">
-			<label for="exampleInputEmail1">What is your friends email?</label>
-			<input type="email" class="form-control" id="shareEmail" placeholder="Enter email" required="">
-			</div>
-			<div class="form-group">
-			<label>Add a message</label>
-			<textarea class="form-control" rows="3" id="shareMessage"></textarea>
-			</div>
-			</div>
-			<div class="send-panel-footer">
-			<button type="submit" class="btn btn-green btn-block"><i class="fa fa-envelope"></i> Send Post</button>
-			</div>
-			</div>
-			</form>
-			</ul>
-			</li>
-			</ul>
-			<div class="post-sidebar-container engage">
-			<h5>Engagement</h5>
-			<ul class="post-engagement clearfix">
-			<li><i class="fa fa-eye"></i> Views <span>4,251</span></li>
-			<li><i class="fa fa-heart"></i> Ups <span id="ups">0</span></li>
-			</ul>
-			</div>
-			<div class="post-sidebar-container last">
-			<ul class="post-report clearfix">
-			<li><a id="report-it" data-url="http://www.upcyclepost.com/gallery/sporting-goods/haroshi-s-recycled-skateboard-deck-art-teddy-bear-196761/report"><i class="fa fa-warning"></i> Report This Post</a></li>
-			</ul>
 			</div>
 			{if ($product->show_price && !isset($restricted_country_mode)) || isset($groups) || $product->reference || (isset($HOOK_PRODUCT_ACTIONS) && $HOOK_PRODUCT_ACTIONS)}
 			<!-- add to cart form-->
@@ -384,9 +343,10 @@
 						</p>
 					</div>
 					{else}
-					<div class="product_attributes clearfix">
+					<div class="{if $product->quantity > 1}product_attributes clearfix{/if}">
 						<!-- quantity wanted -->
 						{if !$PS_CATALOG_MODE}
+						{if $product->quantity > 1}
 						<p id="quantity_wanted_p"{if (!$allow_oosp && $product->quantity <= 0) || !$product->available_for_order || $PS_CATALOG_MODE} style="display: none;"{/if}>
 							<label>{l s='Quantity'}</label>
 							<input type="text" name="qty" id="quantity_wanted" class="text" value="{if isset($quantityBackup)}{$quantityBackup|intval}{else}{if $product->minimal_quantity > 1}{$product->minimal_quantity}{else}1{/if}{/if}" />
@@ -398,6 +358,9 @@
 							</a>
 							<span class="clearfix"></span>
 						</p>
+						{else}
+							<input type="hidden" name="qty" id="quantity_wanted" class="text" value="{if isset($quantityBackup)}{$quantityBackup|intval}{else}{if $product->minimal_quantity > 1}{$product->minimal_quantity}{else}1{/if}{/if}" />
+						{/if}						
 						{/if}
 						<!-- minimal quantity wanted -->
 						<p id="minimal_quantity_wanted_p"{if $product->minimal_quantity <= 1 || !$product->available_for_order || $PS_CATALOG_MODE} style="display: none;"{/if}>
@@ -453,8 +416,9 @@
 								{/foreach}
 							</div> <!-- end attributes -->
 						{/if}
-					</div> <!-- end product_attributes -->
+					</div>
 					{/if}
+					 <!-- end product_attributes -->
 					<div class="box-cart-bottom">
 						<div{if (!$allow_oosp && $product->quantity <= 0) || !$product->available_for_order || (isset($restricted_country_mode) && $restricted_country_mode) || $PS_CATALOG_MODE} class="unvisible"{/if}>
 							<p id="add_to_cart" class="buttons_bottom_block no-print">
@@ -464,9 +428,61 @@
 							</p>
 						</div>
 						{if isset($HOOK_PRODUCT_ACTIONS) && $HOOK_PRODUCT_ACTIONS}{$HOOK_PRODUCT_ACTIONS}{/if}
-					</div> <!-- end box-cart-bottom -->
+					</div> <!-- end box-cart-bottom -->			
 				</div> <!-- end box-info-product -->
 			</form>
+
+			<!--
+			<ul class="post-actions col-2 clearfix">
+			<li><a href="http://www.upcyclepost.com/profile/login"><i class="fa fa-heart"></i> Log in to Up this</a></li>
+			<li class="dropdown">
+			<a href="#" class="dropdown-toggle" type="button" data-toggle="dropdown" id="share"><i class="fa fa-send"></i> Send it</a>
+			<ul class="dropdown-menu dropdown-menu-right send" role="menu">
+			<form role="form" id="share-form" data-url="http://www.upcyclepost.com/gallery/sporting-goods/haroshi-s-recycled-skateboard-deck-art-teddy-bear-196761/share">
+			<div class="send-panel">
+			<div class="send-panel-header">
+			<h4>Send this post to a friend</h4>
+			</div>
+			<div class="send-panel-body">
+			<div class="form-group">
+			<label for="exampleInputEmail1">What is your friends email?</label>
+			<input type="email" class="form-control" id="shareEmail" placeholder="Enter email" required="">
+			</div>
+			<div class="form-group">
+			<label>Add a message</label>
+			<textarea class="form-control" rows="3" id="shareMessage"></textarea>
+			</div>
+			</div>
+			<div class="send-panel-footer">
+			<button type="submit" class="btn btn-green btn-block"><i class="fa fa-envelope"></i> Send Post</button>
+			</div>
+			</div>
+			</form>
+			</ul>
+			</li>
+			</ul>
+			<div class="post-sidebar-container engage">
+			<h5>Engagement</h5>
+			<ul class="post-engagement clearfix">
+			<li><i class="fa fa-eye"></i> Views <span>4,251</span></li>
+			<li><i class="fa fa-heart"></i> Ups <span id="ups">0</span></li>
+			</ul>
+			</div>
+			<div class="post-sidebar-container tags">
+			<h5>Post Tags</h5>
+			<ul class="post-tags clearfix">
+			<li><a href="">game</a></li>
+			<li><a href="">metal</a></li>
+			<li><a href="">art</a></li>
+			<li><a href="">home</a></li>
+			</ul>
+			</div>
+			<div class="post-sidebar-container last">
+			<ul class="post-report clearfix">
+			<li><a id="report-it" data-url="http://www.upcyclepost.com/gallery/sporting-goods/haroshi-s-recycled-skateboard-deck-art-teddy-bear-196761/report"><i class="fa fa-warning"></i> Report This Post</a></li>
+			</ul>
+			</div>
+			-->
 			{/if}
 		</div> <!-- end pb-right-column-->
 			{if isset($HOOK_EXTRA_RIGHT) && $HOOK_EXTRA_RIGHT}{$HOOK_EXTRA_RIGHT}{/if}
