@@ -13,6 +13,11 @@
 		width:100%;
 	}
 }
+@media(max-width:768px){
+	  #checkimages{
+		  display:none;
+		  }
+  }
 
 .fcevrt{}
 </style>
@@ -149,7 +154,7 @@
 
 
 			</div>
-			<div class="col-sm-6">
+			<div class="col-sm-6" id="checkimages">
 				<div class="container" style="margin-top:20px;">
 				<h4>{l s='Bank account and Routing number information' mod='marketplace'}</h4>
 				<div>
