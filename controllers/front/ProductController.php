@@ -721,4 +721,12 @@ class ProductControllerCore extends FrontController
 	{
 	    return $this->category;
 	}
+	
+	public static function getTotalViewed($id_product){ 
+		$view1 = Db::getInstance()->getRow('SELECT SUM(pv.counter) AS total FROM '._DB_PREFIX_.'page_viewed pv 
+		LEFT JOIN '._DB_PREFIX_.'page p ON pv.id_page = p.id_page 
+		LEFT JOIN '._DB_PREFIX_.'page_type pt ON p.id_page_type = pt.id_page_type 
+		WHERE pt.name = \'product\' AND p.`id_object` = '.intval($id_product).' group by pv.id_page'); 
+		return isset($view1['total']) ? $view1['total'] : 0; 
+		}
 }

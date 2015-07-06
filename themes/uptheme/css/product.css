@@ -399,9 +399,9 @@ span.view_scroll_spacer {
 
 .box-info-product {
   background: #fff;
-  border: 1px solid #d2d0d0;
-  border-top: 1px solid #b0afaf;
-  border-bottom: 1px solid #b0afaf; }
+//  border: 1px solid #d2d0d0;
+//  border-top: 1px solid #b0afaf;
+  border-bottom: 1px solid #ddd; }
   .box-info-product p {
     margin-bottom: 7px; }
   .box-info-product .exclusive {
