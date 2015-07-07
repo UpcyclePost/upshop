@@ -9,6 +9,27 @@ $(document).ready(function()
 		var product_price = $('#product_price').val().trim();
 		var product_quantity = $('#product_quantity').val().trim();
 		var checkbox_length = $('.product_category:checked').length;
+		var hasUploadImageLength = $('#testImg').attr('src').length;	
+		
+		// Other image
+		var hasOtherImage = false;
+		if (typeof $('#showimg2').attr('src') != 'undefined')
+			hasOtherImage = true;
+		 	
+		//product_image <= 1 
+		var hasUploadImage;
+		if (hasUploadImageLength <= 1)
+			{
+			hasUploadImage = false;
+			}
+		else
+			{
+			hasUploadImage = true;
+			}
+
+		//alert ('hasUploadImage : '+ hasUploadImage);		
+		//alert ('hasOtherImage : '+ hasOtherImage);
+		//alert ('alreadyHasImage : '+ alreadyHasImage);
 		
 		var special_char = /^[^<>;=#{}]*$/;
 		if(product_name == '')
@@ -78,8 +99,12 @@ $(document).ready(function()
 			$('#check').focus();
 			return false;
 		}
-
-
+		else if (!(hasUploadImage || hasOtherImage || alreadyHasImage ))
+			{
+				alert(req_img);
+				$('#uploader').focus();
+				return false;
+			}
 	});
 
 	//Seller registration form validation

@@ -164,7 +164,7 @@ div.uploader
 					<div class="form-group">
 						<label for="prod_price"><sup style="color:#f00;">*&nbsp;</sup>{l s='Price :' mod='marketplace'}</label>&nbsp;Numbers and decimal point only (e.g. 1234.56)
 						<div class="input-group">
-							<input type="text" id="product_price" name="product_price" value="{$pro_info['price']|number_format:2|escape:'html':'UTF-8'}"  class="form-control" />
+							<input type="text" id="product_price" name="product_price" value="{$pro_info['price']|number_format:2|escape:'html':'UTF-8'}"  class="form-control"  onblur="javascript:this.value=Number(this.value).toFixed(2)"/>
 							<span class="input-group-addon">{$currency_sign|escape:'html':'UTF-8'}</span>
 						</div>
 					</div>
@@ -200,6 +200,11 @@ div.uploader
 
 			<label for="prod_quantity">{l s='Product Images ' mod='marketplace'}</label>
 			<div style="float:left;width:100%;margin-bottom:20px;">
+			 	<!-- set hasimage to false to start -->
+				<script type="text/javascript">
+					var alreadyHasImage = false;
+				</script>
+
 				{if $is_approve==1}
 			    <div id="image_details">
 					<table>
@@ -209,7 +214,16 @@ div.uploader
 						  <th>{l s='Cover' mod='marketplace'}</th>
 						  <th>{l s='Action' mod='marketplace'}</th>
 					 </tr>
+
 					 {if {$count} > 0}
+					 
+        			 {if isset($img_info)}
+						<!-- if we have an image set hasimage true -->
+						<script type="text/javascript">
+							var alreadyHasImage = true;
+						</script>
+					 {/if}
+					 
 					  {foreach from=$img_info item=foo}
 					   <tr class="unactiveimageinforow{$foo.id_image|escape:'html':'UTF-8'}">
 					    <td><a class="fancybox" href="http://{$foo.image_link|escape:'html':'UTF-8'}">
@@ -240,6 +254,7 @@ div.uploader
 					<div id="image_details" style="float:left;margin-top:10px;">
 						<table>
 						<tr><th>Image</th></tr>
+
 						{if isset($mp_pro_image) && $mp_pro_image}
 						{foreach $mp_pro_image as $mp_pro_ima}
 						<tr>
@@ -300,6 +315,7 @@ div.uploader
 	var num_qty = '{l s='Product quantity should be numeric.' js=1 mod='marketplace'}';
 	var req_catg = '{l s='Please select at least one category.' js=1 mod='marketplace'}';
 	var img_remove = '{l s='Remove' js=1 mod='marketplace'}';
+	var req_img = '{l s='At least one image is required.' js=1 mod='marketplace'}';	
 
 	var i = 2;
 	function showOtherImage()

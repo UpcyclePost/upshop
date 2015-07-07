@@ -11,9 +11,9 @@
 				<span>Browse</span> <i class="fa fa-camera"></i>
 			</button>
 			<ul class="dropdown-menu dropdown-menu-right" role="menu">
-				<li><a href="/shops"><i class="fa up-shop-1"></i> Shops</a></li>
-				<li><a href="/gallery"><i class="fa fa-fw fa-lightbulb-o"></i> Ideas</a></li>
-				<li><a href="/search/users"><i class="fa fa-fw fa-users"></i> Users</a></li>
+				<li><a href="http://{$smarty.server.SERVER_NAME}/shops"><i class="fa up-shop-1"></i> Shops</a></li>
+				<li><a href="http://{$smarty.server.SERVER_NAME}/gallery"><i class="fa fa-fw fa-lightbulb-o"></i> Ideas</a></li>
+				<li><a href="http://{$smarty.server.SERVER_NAME}/search/users"><i class="fa fa-fw fa-users"></i> Users</a></li>
 			</ul>
 		</div>
 		{if $is_logged}
