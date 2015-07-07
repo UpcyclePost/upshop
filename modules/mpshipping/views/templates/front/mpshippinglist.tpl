@@ -21,6 +21,7 @@
 			<th>{l s='Edit' mod='mpshipping'}</th>
 			<th>{l s='Shipping Profile' mod='mpshipping'}</th>
 			<th>{l s='Shipping time' mod='mpshipping'}</th>
+			<th>{l s='Price' mod='mpshipping'}</th>			
 			<th>{l s='Delete' mod='mpshipping'}</th>
 			</tr>
 		</thead>
@@ -36,6 +37,9 @@
 						<td>{$mp_sp_det['mp_shipping_name']}</td>
 						<td>
 							{$mp_sp_det['transit_delay']}
+						</td>
+						<td>
+							{displayPrice price=$mp_sp_det['base_price'] currency=$currency->id}
 						</td>
 						<td>
 							<a href="{$link->getModuleLink('mpshipping','sellershippinglist',['shop'=>{$mp_id_shop},'id_shipping'=>{$mp_sp_det['id']},'delete'=>1])}" id="delete_shipping">

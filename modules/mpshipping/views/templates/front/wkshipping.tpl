@@ -148,7 +148,7 @@
 											<td>
 												<div class="input-group input-group-sm">
 													<span class="input-group-addon" id="sizing-addon1">{$currency_details['sign']}</span>
-													<input type="text" class="form-control ship_cost" name="n_america_ship" {if isset($mp_shipping_id)}value="{$price_by_range[$ranges['0']['id_range']]['2']|number_format:2}"{/if} aria-describedby="sizing-addon1">
+													<input type="text" class="form-control ship_cost" name="n_america_ship" {if isset($mp_shipping_id)}value="{$price_by_range[$ranges['0']['id_range']]['2']|number_format:2}"{/if} aria-describedby="sizing-addon1"  onblur="javascript:this.value=Number(this.value).toFixed(2)">
 												</div>
 											</td>
 										</tr>

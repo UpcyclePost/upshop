@@ -384,9 +384,9 @@ class SellerProductDetail extends ObjectModel
 		
 		public function getShopBySellerId($id)
 		{
-		  $sql = "select ms.*  
-		  from `"._DB_PREFIX_."marketplace_shop` as ms 
-		  Join `"._DB_PREFIX_."marketplace_customer` as mc on ms.id = mc.marketplace_seller_id 
+		  $sql = "select msi.*  
+		  from `"._DB_PREFIX_."marketplace_sellerinfo` as msi 
+		  Join `"._DB_PREFIX_."marketplace_customer` as mc on msi.id = mc.marketplace_seller_id 
 		  where mc.`marketplace_seller_id`=".$id."";
 		  $shop = Db::getInstance()->getRow($sql);
 		  if($shop)
