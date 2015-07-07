@@ -52,6 +52,7 @@
 			),
 		);
 	
+	
 		public function add($autodate = true, $null_values = false)
 		{
 			if (!parent::add($autodate, $null_values))
@@ -113,7 +114,7 @@
 		
 		public function getAllShippingMethodNotDelete($mp_id_shop,$delete,$is_done=1) {
 			$mp_shipping_detail = Db::getInstance()->executeS('
-			SELECT *, msd.base_price FROM `'._DB_PREFIX_.'mp_shipping_method` as msm
+			SELECT msm.*, msd.base_price FROM `'._DB_PREFIX_.'mp_shipping_method` as msm
 			JOIN `'._DB_PREFIX_.'mp_shipping_delivery` msd on (msd.mp_shipping_id = msm.id)
 			WHERE `mp_id_shop` = '.(int)$mp_id_shop.' and msd.id_zone = 2 and deleted='.$delete.' and is_done='.$is_done		
 			);
