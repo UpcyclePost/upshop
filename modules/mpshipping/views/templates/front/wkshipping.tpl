@@ -133,7 +133,7 @@
 					</div>
 					<div class="row margin-top-30">
 						<div class="col-sm-3">
-							<p class="pro_sub_text">{l s='Shipping costs' mod='mpshipping'}</p>
+							<p class="pro_sub_text">{l s='Shipping cost' mod='mpshipping'}</p>
 						</div>
 						<div class="col-sm-9">
 							<div class="ship_cost_cont">

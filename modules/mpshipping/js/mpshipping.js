@@ -13,12 +13,14 @@ $(document).ready(function() {
 		{
 			e.preventDefault();
 			alert(shipping_name_error);
+			$('#shipping_name').focus();
 			return false;
 		}
 
 		if(shipping_time == 'Select a value')
 		{
 			e.preventDefault();
+			$('#ship_transit_time').focus();
 			alert(shipping_time_error);
 			return false;
 		}
@@ -26,10 +28,10 @@ $(document).ready(function() {
 		if(shipping_cost_length == 0 || isNaN(shipping_cost))
 		{
 			e.preventDefault();
+			$('#n_america_ship').focus();
 			alert(shipping_cost_error);
 			return false;
 		}
-		
 		
 	});
 });
