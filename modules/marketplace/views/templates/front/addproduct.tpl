@@ -162,7 +162,7 @@ $(document).ready(function() {
 						<div class="form-group">
 							<label for="product_price" class="control-label required">{l s='Price :' mod='marketplace'}</label>&nbsp;Numbers and decimal point only (e.g. 1234.56)
 							<div class="input-group">
-						  		<input type="text" id="product_price" name="product_price" value="{$c_mp_product_price|escape:'html':'UTF-8'}"  class="account_input form-control" placeholder="{l s='Enter product price' mod='marketplace'}"/>
+						  		<input type="text" id="product_price" name="product_price" value="{$c_mp_product_price|escape:'html':'UTF-8'}"  class="account_input form-control" placeholder="{l s='Enter product price' mod='marketplace'}" onblur="javascript:this.value=Number(this.value).toFixed(2)"/>
 						  		<span class="input-group-addon">{$currency_sign|escape:'html':'UTF-8'}</span>
 						  	</div>
 						</div>
@@ -212,6 +212,7 @@ $(document).ready(function() {
 {/if}
 
 <script type="text/javascript">
+	var alreadyHasImage = false;
 	var req_prod_name = '{l s='Product name is required.' js=1 mod='marketplace'}';
 	var char_prod_name = '{l s='Product name cannot contain special characters.' js=1 mod='marketplace'}';
 	var char_prod_name_length = '{l s='Product name should be less than 120 characters.' js=1 mod='marketplace'}';
@@ -224,6 +225,7 @@ $(document).ready(function() {
 	var num_qty = '{l s='Product quantity should be numeric.' js=1 mod='marketplace'}';
 	var req_catg = '{l s='Please select at least one category.' js=1 mod='marketplace'}';
 	var img_remove = '{l s='Remove' js=1 mod='marketplace'}';
+	var req_img = '{l s='At least one image is required.' js=1 mod='marketplace'}';
 
 	var i = 2;
 	function showOtherImage()
