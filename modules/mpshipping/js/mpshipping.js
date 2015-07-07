@@ -1,7 +1,13 @@
 $(document).ready(function() {
 	$("#buttonNext").on('click', function(e){
 		var shipping_name_length = $('#shipping_name').val().length;
+		var shipping_time = $('#ship_transit_time').val();
+		var shipping_cost = $('#n_america_ship').val();	
+		var shipping_cost_length = $('#n_america_ship').val().length;
+		
 		var shipping_name_error = 'Shipping Profile name is required';
+		var shipping_time_error = 'Shipping Time is required';		
+		var shipping_cost_error = 'Shipping cost is required or is not a valid amount';
 
 		if(shipping_name_length == 0)
 		{
@@ -9,6 +15,22 @@ $(document).ready(function() {
 			alert(shipping_name_error);
 			return false;
 		}
+
+		if(shipping_time == 'Select a value')
+		{
+			e.preventDefault();
+			alert(shipping_time_error);
+			return false;
+		}
+
+		if(shipping_cost_length == 0 || isNaN(shipping_cost))
+		{
+			e.preventDefault();
+			alert(shipping_cost_error);
+			return false;
+		}
+		
+		
 	});
 });
 
