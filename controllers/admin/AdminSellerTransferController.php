@@ -67,7 +67,7 @@ class AdminSellerTransferControllerCore extends AdminController
 			  $commission =  Db::getInstance()->getValue('select SUM(a.`commision`) from `'._DB_PREFIX_.'marketplace_commision_calc` a, 
 			  `'._DB_PREFIX_.'marketplace_customer` b where a.`customer_id`=b.`id_customer` && b.`marketplace_seller_id`='.Tools::getValue('id_seller'));
 			}
-			$sellers =  Db::getInstance()->executeS('select * from `'._DB_PREFIX_.'marketplace_seller_info` order by id desc');
+			$sellers =  Db::getInstance()->executeS('select * from `'._DB_PREFIX_.'marketplace_seller_info` order by shop_name asc');
 		
 			$currency ='USD';
 

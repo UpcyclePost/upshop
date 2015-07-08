@@ -65,8 +65,8 @@
 										<div class="input-group col-lg-4">
                                         <select name="id_seller" id="id_seller" style="width:250px;">
                                           <option value="">{l s='choose a seller...'}</option>
-											{foreach from=$sellers item=v}
-                                               <option value="{$v.id}" {if $id_seller==$v.id}selected="selected"{/if}>{$v.shop_name} {if $v.seller_name!=''} - {$v.seller_name}{/if}</option>
+											                     {foreach from=$sellers item=v}
+                                               <option value="{$v.id}" {if $id_seller==$v.id}selected="selected"{/if}>{$v.shop_name} {if $v.seller_name!=''} - {$v.seller_name} - {$v.business_email}{/if}</option>
                                            {/foreach}
                                            </select>
 										</div>
