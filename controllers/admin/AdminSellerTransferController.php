@@ -58,16 +58,16 @@ class AdminSellerTransferControllerCore extends AdminController
 			}
 			
 			if(Tools::getValue('id_seller')!=''){
-			  $transfers = Db::getInstance()->executeS('select * from `'._DB_PREFIX_.'seller_transfer` where `id_seller`='.Tools::getValue('id_seller'));
-			  $transferred = Db::getInstance()->getValue('select SUM(`amount`) from `'._DB_PREFIX_.'seller_transfer` where `id_seller`='.Tools::getValue('id_seller'));
+			  $transfers = Db::getInstance()->executeS('select * from `'._DB_PREFIX_.'seller_transfer` where `id_seller`='.Tools::getValue('id_seller'),false);
+			  $transferred = Db::getInstance()->getValue('select SUM(`amount`) from `'._DB_PREFIX_.'seller_transfer` where `id_seller`='.Tools::getValue('id_seller'),false);
 			  $turnover =  Db::getInstance()->getValue('select SUM(a.`price`) from `'._DB_PREFIX_.'marketplace_commision_calc` a, 
-			  `'._DB_PREFIX_.'marketplace_customer` b where a.`customer_id`=b.`id_customer` && b.`marketplace_seller_id`='.Tools::getValue('id_seller'));
+			  `'._DB_PREFIX_.'marketplace_customer` b where a.`customer_id`=b.`id_customer` && b.`marketplace_seller_id`='.Tools::getValue('id_seller'),false);
 			  $seller_turnover =  Db::getInstance()->getValue('select SUM(a.`price`-a.`commision`) from `'._DB_PREFIX_.'marketplace_commision_calc` a, 
-			  `'._DB_PREFIX_.'marketplace_customer` b where a.`customer_id`=b.`id_customer` && b.`marketplace_seller_id`='.Tools::getValue('id_seller'));
+			  `'._DB_PREFIX_.'marketplace_customer` b where a.`customer_id`=b.`id_customer` && b.`marketplace_seller_id`='.Tools::getValue('id_seller'),false);
 			  $commission =  Db::getInstance()->getValue('select SUM(a.`commision`) from `'._DB_PREFIX_.'marketplace_commision_calc` a, 
-			  `'._DB_PREFIX_.'marketplace_customer` b where a.`customer_id`=b.`id_customer` && b.`marketplace_seller_id`='.Tools::getValue('id_seller'));
+			  `'._DB_PREFIX_.'marketplace_customer` b where a.`customer_id`=b.`id_customer` && b.`marketplace_seller_id`='.Tools::getValue('id_seller'),false);
 			}
-			$sellers =  Db::getInstance()->executeS('select * from `'._DB_PREFIX_.'marketplace_seller_info` order by shop_name asc');
+			$sellers =  Db::getInstance()->executeS('select * from `'._DB_PREFIX_.'marketplace_seller_info` order by shop_name asc',false);
 		
 			$currency ='USD';
 
