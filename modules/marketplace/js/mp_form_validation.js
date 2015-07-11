@@ -103,13 +103,13 @@ $(document).ready(function()
 		}
 		else if(seo_title.length > 120)
 		{
-			alert(seo_title + ' : Currently ' + seo_title.length + ' characters');
+			alert(char_seo_title_length + ' : Currently ' + seo_title.length + ' characters');
 			$('#meta_title').focus();
 			return false;
 		}
 		else if(seo_description.length > 120)
 		{
-			alert(seo_description + ' : Currently ' + seo_description.length + ' characters');
+			alert(char_seo_description_length + ' : Currently ' + seo_description.length + ' characters');
 			$('#meta_description').focus();
 			return false;
 		}
