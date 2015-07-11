@@ -10,8 +10,8 @@ $(document).ready(function()
 		var product_quantity = $('#product_quantity').val().trim();
 		var checkbox_length = $('.product_category:checked').length;
 		var hasUploadImageLength = $('#testImg').attr('src').length;
-		var seo_title = ('meta_title').val().trim();
-		var seo_description = ('meta_desc').val().trim();	
+		var seo_title = ('#meta_title').val().trim();
+		var seo_description = ('#meta_desc').val().trim();	
 		
 		// Other image
 		var hasOtherImage = false;
