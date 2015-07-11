@@ -9,7 +9,9 @@ $(document).ready(function()
 		var product_price = $('#product_price').val().trim();
 		var product_quantity = $('#product_quantity').val().trim();
 		var checkbox_length = $('.product_category:checked').length;
-		var hasUploadImageLength = $('#testImg').attr('src').length;	
+		var hasUploadImageLength = $('#testImg').attr('src').length;
+		var seo_title = ('meta_title').val().trim();
+		var seo_description = ('meta_desc').val().trim();	
 		
 		// Other image
 		var hasOtherImage = false;
@@ -97,6 +99,18 @@ $(document).ready(function()
 		{
 			alert(req_catg);
 			$('#check').focus();
+			return false;
+		}
+		else if(seo_title.length > 120)
+		{
+			alert(seo_title + ' : Currently ' + seo_title.length + ' characters');
+			$('#meta_title').focus();
+			return false;
+		}
+		else if(seo_description.length > 120)
+		{
+			alert(seo_description + ' : Currently ' + seo_description.length + ' characters');
+			$('#meta_description').focus();
 			return false;
 		}
 		else if (!(hasUploadImage || hasOtherImage || alreadyHasImage ))
