@@ -316,7 +316,9 @@ div.uploader
 	var req_catg = '{l s='Please select at least one category.' js=1 mod='marketplace'}';
 	var img_remove = '{l s='Remove' js=1 mod='marketplace'}';
 	var req_img = '{l s='At least one image is required.' js=1 mod='marketplace'}';	
-
+	var char_seo_title_length = '{l s='SEO title should be less than 120 characters.' js=1 mod='marketplace'}';
+	var char_seo_description_length = '{l s='SEO description should be less than 120 characters.' js=1 mod='marketplace'}';
+		
 	var i = 2;
 	function showOtherImage()
 	{
