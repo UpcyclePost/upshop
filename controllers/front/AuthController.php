@@ -108,9 +108,9 @@ class AuthControllerCore extends FrontController
 
 		$redirectURL = sprintf('http://'.$_SERVER['HTTP_HOST'].'/profile/login?back=%s',$back);
 
-		header('Location:'.$redirectURL);	
+		//header('Location:'.$redirectURL);	
 		
-		die();
+		//die();
 
 		if (Tools::getValue('display_guest_checkout'))
 		{

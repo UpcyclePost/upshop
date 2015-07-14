@@ -29,21 +29,21 @@ a.fancybox-nav {
   outline: 0; }
 
 /* .pb-left-column ***************************************************************************** */
-.pb-left-column #image-block {
+#image-block {
   position: relative;
+  width:100%;
   display: block;
   cursor: pointer;
   padding: 5px;
-  border: 1px solid #dbdbdb;
   background: #fff; }
   @media (max-width: 767px) {
-    .pb-left-column #image-block {
+    #image-block {
       width: 280px;
       margin: 0 auto; } }
-  .pb-left-column #image-block img {
-    background: #fbfbfb;
-    width: 100%; }
-  .pb-left-column #image-block #view_full_size .span_link {
+  #image-block img {
+    background: #fff;
+    /*width: 100%;*/ }
+  #image-block #view_full_size .span_link {
     position: absolute;
     bottom: 20px;
     left: 50%;
@@ -56,43 +56,43 @@ a.fancybox-nav {
     width: 136px;
     text-align: center;
     font-weight: 700;
-    background: rgba(255, 255, 255, 0.5);
+    background: rgba(255, 255, 255, 0.8);
     -moz-box-shadow: 0 2px 8px rgba(0, 0, 0, 0.16);
     -webkit-box-shadow: 0 2px 8px rgba(0, 0, 0, 0.16);
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.16); }
-    .pb-left-column #image-block #view_full_size .span_link:after {
+    #image-block #view_full_size .span_link:after {
       font-family: "FontAwesome";
-      color: #c0c0c0;
+      color: #777676;
       font-size: 20px;
       line-height: 22px;
       content: "\f00e";
       font-weight: normal;
       margin: 0 0 0 4px; }
-    .pb-left-column #image-block #view_full_size .span_link:hover:after {
+    #image-block #view_full_size .span_link:hover:after {
       color: #333; }
-  .pb-left-column #image-block a.jqzoom div div img {
+  #image-block a.jqzoom div div img {
     width: auto;
     max-width: 10000px; }
-  .pb-left-column #image-block a.jqzoom div div .zoomWrapper {
+  #image-block a.jqzoom div div .zoomWrapper {
     border: none; }
-  .pb-left-column #image-block .zoomPad {
+  #image-block .zoomPad {
     z-index: auto !important; }
-  .pb-left-column #image-block .new-box,
-  .pb-left-column #image-block .sale-box {
+  #image-block .new-box,
+  #image-block .sale-box {
     z-index: 5002; }
 
 /* miniatures */
-.pb-left-column #views_block {
+#views_block {
   margin-top: 10px; }
   @media (max-width: 767px) {
-    .pb-left-column #views_block {
+    #views_block {
       width: 280px;
       margin-left: 10px auto 0px auto; } }
 
 #thumbs_list {
   overflow: hidden;
   float: left;
-  width: 392px; }
+  //width: 392px; }
   @media (min-width: 992px) and (max-width: 1199px) {
     #thumbs_list {
       width: 294px; } }
@@ -106,7 +106,7 @@ a.fancybox-nav {
     list-style-type: none;
     padding-left: 0;
     overflow: hidden;
-    height: 90px; }
+    height: 100px; }
   #thumbs_list li {
     float: left;
     height: 90px;
@@ -215,16 +215,15 @@ span.view_scroll_spacer {
       border: none;
       padding: 0; }
     #usefull_link_block li a {
-      color: #777676;
-      font-weight: 700;
+      color: #555;
       position: relative;
-      padding-left: 30px;
+      padding-left: 25px;
       line-height: 22px;
       display: inline-block; }
       #usefull_link_block li a:before {
         font-family: "FontAwesome";
-        color: #333;
-        font-size: 19px;
+        color: #555;
+        font-size: 16px;
         line-height: 24px;
         position: absolute;
         top: -2px;
@@ -751,8 +750,8 @@ table.table-product-discounts {
   font-weight: 600;
   font-size: 29px;
   line-height: 32px;
-  font-family: "Open Sans", sans-serif;
-  color: #333; }
+  font-family: inherit;
+  color: #0187d0; }
   @media (max-width: 991px) {
     .our_price_display {
       font-size: 26px;
@@ -761,7 +760,8 @@ table.table-product-discounts {
     font-weight: 600;
     font-size: 29px;
     line-height: 32px;
-    color: #333; }
+    color: #0187d0;
+    text-align:center; }
     @media (max-width: 991px) {
       .our_price_display .price {
         font-size: 26px;
@@ -997,7 +997,7 @@ Quick View Styles
     #product.content_only div.primary_block div.pb-left-column #thumbs_list li,
     #product.content_only section.primary_block div.pb-left-column #thumbs_list li {
       width: 90px;
-      height: 90px; }
+      height: 100px; }
       #product.content_only div.primary_block div.pb-left-column #thumbs_list li img,
       #product.content_only section.primary_block div.pb-left-column #thumbs_list li img {
         width: 82px;

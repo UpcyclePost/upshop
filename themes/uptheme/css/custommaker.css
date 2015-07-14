@@ -63,7 +63,7 @@ header .nav, #languages-block-top ul, #currencies-block-top ul, #currencies-bloc
 
 
 
-ul.product_list.list > li .product-image-container, ul.product_list.list .color-list-container ul li, #subcategories ul li .subcategory-image a, #subcategories ul li:hover .subcategory-image a, .pb-left-column #image-block, #thumbs_list li a:hover, #thumbs_list li a.shown, #thumbs_list li, .block .products-block li .products-block-image{
+ul.product_list.list > li .product-image-container, ul.product_list.list .color-list-container ul li, #subcategories ul li .subcategory-image a, #subcategories ul li:hover .subcategory-image a, .pb-left-column #image-block, .block .products-block li .products-block-image{
     border-color: #0187d0;
 }
 

@@ -23,6 +23,7 @@
 *  International Registered Trademark & Property of PrestaShop SA
 *}
 
+{if $page_name != 'product'}
 <!-- Breadcrumb -->
 {if isset($smarty.capture.path)}{assign var='path' value=$smarty.capture.path}{/if}
 <div class="breadcrumb clearfix">
@@ -47,3 +48,4 @@
 </div>
 {/if}
 <!-- /Breadcrumb -->
+{/if}
