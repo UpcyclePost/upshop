@@ -203,6 +203,14 @@
 	</div>
 	{else if $logic==2}
      <script type="text/javascript">
+	  $(document).ready(function(e) {
+        $('body').on('click', 'input#update_bank',function() {
+            if ($(this).prop('checked')==true){ 
+			  $('input#bank, input#routing').removeAttr('disabled');
+             }else
+			 $('#bank, #routing').attr('disabled','disabled');
+        });
+    });
      function show_load_msg()
 	 {
 					$('#update_profile').attr('disabled','disabled');
@@ -317,7 +325,11 @@
 									<textarea class="required form-control"  name="update_address" id="update_address">{$marketplace_address|escape:'html':'UTF-8'}</textarea>
 								</div>
                                  {if $stripestatus=='verified'}
-                                <p class="alert alert-success">{l s='Account Verified. Contact customer service if you need to change your banking information.' mod='marketplace'}</p>
+                                  <p class="alert alert-success">{l s='Account Verified.' mod='marketplace'}</p>
+                                   <div id="update_bank" class="form-group" >
+                                  <label class="control-label" for="update_bank">{l s='Check box to add a new bank account:' mod='marketplace'}</label>
+                                  <input class="form-control" type="checkbox" name="update_bank" id="update_bank" value="1" />
+                                  </div>
                                 {/if}
                                  <fieldset style="">
                                  <div id="bank" class="form-group" >

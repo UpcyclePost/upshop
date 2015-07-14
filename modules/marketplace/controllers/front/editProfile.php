@@ -47,13 +47,22 @@ class marketplaceEditProfileModuleFrontController extends ModuleFrontController
 		\Stripe\Stripe::setApiKey(Configuration::get('STRIPE_MODE') ? Configuration::get('STRIPE_PRIVATE_KEY_LIVE') : Configuration::get('STRIPE_PRIVATE_KEY_TEST'));
 		
 		$account_id = Db::getInstance()->getValue('select `stripe_seller_id` from '._DB_PREFIX_.'stripepro_sellers where `id_customer` = '.$customer_id);
-		if(trim($account_id)!=''){
+		
+		if($bank!='')
+		if(trim($account_id)!='' && $bank!=''){
 			
 			try
 			{
 			   $account = \Stripe\Account::retrieve($account_id);
 			  $dob = Tools::getValue('day').'-'.Tools::getValue('month').'-'.Tools::getValue('year');
 			  $stripe_dob = $account->legal_entity->dob->day.'-'.$account->legal_entity->dob->month.'-'.$account->legal_entity->dob->year;
+			  if(Tools::getValue('update_bank')==1){
+
+				  $new_bank = array('object'=>'bank_account','country'=> 'US','currency' => 'usd','routing_number' => $routing, 'account_number' => $bank);
+				  $account->external_accounts->create(array("external_account" => $new_bank,'default_for_currency'=> true));
+				  
+				  
+				  }else
 			  if(substr($bank,0,2)!="**" || substr($ssn,0,2)!="**" || $account->legal_entity->type != Tools::getValue('type') || $account->legal_entity->first_name != Tools::getValue('fname') || $account->legal_entity->last_name != Tools::getValue('lname') || $stripe_dob != $dob){
 
 				  $account->business_name = $shop_name;
@@ -78,6 +87,11 @@ class marketplaceEditProfileModuleFrontController extends ModuleFrontController
 					Logger::addLog('Stripe - profile update failed - '.$e->getMessage(), 1, null, 'Customer', $customer_id, true);
 				
 				}
+				
+			if(Tools::getValue('update_bank')==1 && !isset($this->_errors['stripe_error'])){
+			$account = \Stripe\Account::retrieve($account_id);
+			$account->external_accounts->retrieve($account->bank_accounts->data[1]->id)->delete();
+			}
 			  
 		}else{
 			
