@@ -189,7 +189,7 @@ window._fbq.push(['track', '6025947566399',
 										</div>
 										<div class="col-sm-6" style="margin-top: 15px;">
 											<ul>
-												<a href="/search/users"><li><i class="fa fa-users"></i> Visit Profile Gallery</a>
+												<li><a href="/search/users"><i class="fa fa-users"></i> Visit Profile Gallery</a></li>
 											</ul>
 										</div>
 									</div>
