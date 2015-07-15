@@ -390,15 +390,42 @@ class marketplaceMarketplaceaccountModuleFrontController extends ModuleFrontCont
 							$this->context->smarty->assign('imageediturl',$imageediturl);
                             $this->setTemplate('marketplace_account1.tpl');
                         }
-                        elseif ($logic == 4)
-                        {
-						
-                            $customer_id    = $this->context->customer->id;
+                        elseif ($logic == 4) // for seller's my order
+                        {						
+                            $customer_id = $this->context->customer->id;							
+                            $dashboard = Db::getInstance()->executeS("SELECT ordd.`id_order_detail` as `id_order_detail`,
+                            	ordd.`product_name` as `ordered_product_name`,
+                            	ordd.`product_price` as total_price,
+                            	ordd.`product_quantity` as qty,
+                            	ordd.`id_order` as id_order,
+                            	ord.`id_customer` as order_by_cus,
+                            	ord.`payment` as payment_mode,
+                            	ord.`reference` AS ref,
+                            	cus.`firstname` as name,
+                            	ord.`date_add`,
+                            	ords.`name`as order_status,
+                            	ord.`id_currency` as `id_currency`
+                            	FROM `"._DB_PREFIX_."marketplace_commision_calc` mcc
+                            	JOIN `" . _DB_PREFIX_ . "order_detail` ordd on (ordd.`product_id`= mcc.`product_id`)
+                            	JOIN `"._DB_PREFIX_."orders` ord on (ordd.`id_order`=ord.`id_order`)
+                            	JOIN `"._DB_PREFIX_."marketplace_customer` mkc on (mkc.`id_customer` = mcc.`customer_id`)
+                            	JOIN `" . _DB_PREFIX_ . "customer` cus on (mkc.`id_customer`=cus.`id_customer`)
+                            	JOIN `" . _DB_PREFIX_ . "order_state_lang` ords on (ord.`current_state`=ords.`id_order_state`) 
+                            	WHERE ords.id_lang=".$id_lang." and cus.`id_customer`=" . $customer_id . "  GROUP BY ordd.`id_order` order by ordd.`id_order` desc");
 							
-                            $dashboard      = Db::getInstance()->executeS("SELECT ordd.`id_order_detail` as `id_order_detail`,ordd.`product_name` as `ordered_product_name`,ordd.`product_price` as total_price,ordd.`product_quantity` as qty, ordd.`id_order` as id_order,ord.`id_customer` as order_by_cus,ord.`payment` as payment_mode,cus.`firstname` as name,ord.`date_add`,ords.`name`as order_status,ord.`id_currency` as `id_currency`, ord.`reference` as `ref` from `" . _DB_PREFIX_ . "marketplace_shop_product` msp join `" . _DB_PREFIX_ . "order_detail` ordd on (ordd.`product_id`=msp.`id_product`) join `"._DB_PREFIX_."orders` ord on (ordd.`id_order`=ord.`id_order`) join `"._DB_PREFIX_."marketplace_seller_product` msep on (msep.`id` = msp.`marketplace_seller_id_product`) join `"._DB_PREFIX_."marketplace_customer` mkc on (mkc.`marketplace_seller_id` = msep.`id_seller`) join `" . _DB_PREFIX_ . "customer` cus on (mkc.`id_customer`=cus.`id_customer`) join `" . _DB_PREFIX_ . "order_state_lang` ords on (ord.`current_state`=ords.`id_order_state`) where ords.id_lang=".$id_lang." and cus.`id_customer`=" . $customer_id . "  GROUP BY ordd.`id_order` order by ord.`current_state` asc, ord.`date_add` desc");
-							
-							$message = Db::getInstance()->executeS("SELECT ordd.`product_name` as product_name,cusmsg.`message` as message,cus.`firstname` as firstname,cusmsg.`date_add` as date_add,ord.`id_currency` as `id_currency`, ord.`reference` as `ref` FROM `"._DB_PREFIX_."marketplace_shop_product` msp JOIN `"._DB_PREFIX_."marketplace_seller_product` mspro ON (mspro.`id` = msp.`marketplace_seller_id_product`) JOIN `"._DB_PREFIX_."marketplace_customer` mkc ON (mkc.`marketplace_seller_id` = mspro.`id_seller`) JOIN  `"._DB_PREFIX_."order_detail` ordd ON ( ordd.`product_id` = msp.`id_product`) JOIN  `"._DB_PREFIX_."orders` ord ON ( ordd.`id_order` = ord.`id_order`) JOIN `"._DB_PREFIX_."customer_thread` custh ON (custh.`id_order` = ord.`id_order`) join `"._DB_PREFIX_."customer_message` cusmsg ON (custh.`id_customer_thread` = cusmsg.`id_customer_thread`) join `"._DB_PREFIX_."customer` cus ON (cus.`id_customer` = custh.`id_customer`) where mkc.`id_customer` =".$customer_id);
-					
+							$message = Db::getInstance()->executeS("SELECT ordd.`product_name` as product_name,cusmsg.`message` as message,
+								cus.`firstname` as firstname,
+								cusmsg.`date_add` as date_add,
+								ord.`id_currency` as `id_currency` 
+								FROM `"._DB_PREFIX_."marketplace_commision_calc` mcc 
+								JOIN `"._DB_PREFIX_."marketplace_customer` mkc ON (mkc.`marketplace_seller_id` = mcc.`id_seller_order`)
+								JOIN  `"._DB_PREFIX_."order_detail` ordd ON ( ordd.`product_id` = mcc.`product_id`)
+								JOIN  `"._DB_PREFIX_."orders` ord ON ( ordd.`id_order` = ord.`id_order`)
+								JOIN `"._DB_PREFIX_."customer_thread` custh ON (custh.`id_order` = ord.`id_order`)
+								JOIN `"._DB_PREFIX_."customer_message` cusmsg ON (custh.`id_customer_thread` = cusmsg.`id_customer_thread`)
+								JOIN `"._DB_PREFIX_."customer` cus ON (cus.`id_customer` = custh.`id_customer`) 
+								WHERE mkc.`id_customer` =".$customer_id);
+
 							$count_msg =count($message);
 							 							 
 							$a=0;
@@ -412,22 +439,21 @@ class marketplaceMarketplaceaccountModuleFrontController extends ModuleFrontCont
 								$a++;
 							}
 							 
-								if(isset($order_by_cus))
-								{
+							if(isset($order_by_cus))
+							{
 								if(is_array($order_by_cus))
-									{
+								{
 									$this->context->smarty->assign("order_by_cus", $order_by_cus);
 									$this->context->smarty->assign("order_currency", $order_currency);
-									}
 								}
+							}
 							
-							 $link     = new link();
-                              $param = array('flag'=>'1');
-									$order_view_link = $link->getModuleLink('marketplace', 'marketplaceaccount',$param);
+							$link = new link();
+                        	$param = array('flag'=>'1');
+							$order_view_link = $link->getModuleLink('marketplace','marketplaceaccount',$param);
 							$this->context->smarty->assign("order_view_link", $order_view_link);
 		
-		
-                            $count          = count($dashboard);
+                            $count = count($dashboard);
                      
                            	$this->context->smarty->assign("id_customer", $customer_id);
 							$this->context->smarty->assign("id_shop", $id_shop);
@@ -437,8 +463,7 @@ class marketplaceMarketplaceaccountModuleFrontController extends ModuleFrontCont
 							
                             $this->context->smarty->assign("count", $count);
                             $this->setTemplate('marketplace_account1.tpl');
-                        }
-						
+                        }						
 						elseif($logic == 5)						
 						{
 							$link = new link();
@@ -461,19 +486,85 @@ class marketplaceMarketplaceaccountModuleFrontController extends ModuleFrontCont
 						
 						elseif($logic == 6)
 						{
-
 							$id_order = Tools::getValue('id_order');
 							if (!$id_order)
 								$id_order = "";
 
 							$id_shop = Tools::getValue('shop');
 							//$id_order_detail = $_GET['id_order_detail'];
-							$dashboard   = Db::getInstance()->executeS("SELECT cntry.`name` as `country`,stat.`name` as `state`,ads.`postcode` as `postcode`,ads.`city` as `city`,ads.`phone` as `phone`,ads.`phone_mobile` as `mobile`,ordd.`id_order_detail` as `id_order_detail`,ordd.`product_name` as `ordered_product_name`,ordd.`product_price` as total_price,ordd.`product_quantity` as qty, ordd.`id_order` as id_order,ord.`id_customer` as order_by_cus,ord.`payment` as payment_mode,ord.`current_state` as current_state, ord.`total_products` as total_products, ord.`total_shipping` as total_shipping, ord.`total_paid_tax_incl` as total_paid, cus.`firstname` as name,cus.`lastname` as lastname,cus.email as email, cus.`website` as ws, ord.`date_add` as `date`, ord.`reference` as `ref`, ord.`secure_key` as `secure_key`, ords.`name`as order_status,ads.`address1` as `address1`,ads.`address2` as `address2` from  `"._DB_PREFIX_."order_detail` ordd join `"._DB_PREFIX_."orders` ord ON (ord.`id_order` = ordd.`id_order`) join `"._DB_PREFIX_."customer` cus on (cus.`id_customer`= ord.`id_customer`) join `"._DB_PREFIX_."order_state_lang` ords on (ord.`current_state`= ords.`id_order_state`) join `"._DB_PREFIX_."address` ads on (ads.`id_customer`= cus.`id_customer`) join `"._DB_PREFIX_."state` stat on (stat.`id_state`= ads.`id_state`) join `"._DB_PREFIX_."country_lang` cntry on (cntry.`id_country`= ads.`id_country`) where ordd.`id_order`=".$id_order." and cntry.`id_lang`=".$id_lang);  
-
-						if(empty($dashboard))
+							$dashboard   = Db::getInstance()->executeS("SELECT cntry.`name` as `country`,
+								cntry.`name` as `country`,
+								stat.`name` as `state`,
+								ads.`postcode` as `postcode`,
+								ads.`city` as `city`,
+								ads.`phone` as `phone`,
+								ads.`phone_mobile` as `mobile`,
+								ordd.`id_order_detail` as `id_order_detail`,
+								ordd.`product_name` as `ordered_product_name`,
+								ordd.`product_price` as total_price,
+								ordd.`product_quantity` as qty, 
+								ordd.`id_order` as id_order,
+								ord.`id_customer` as order_by_cus,
+								ord.`payment` as payment_mode,
+								ord.`current_state` as current_state, 
+								ord.`total_products` as total_products, 
+								ord.`total_shipping` as total_shipping, 
+								ord.`total_paid_tax_incl` as total_paid, 
+								cus.`firstname` as name,
+								cus.`lastname` as lastname,
+								cus.`email` as email, 
+								cus.`website` as ws, 
+								ord.`date_add` as `date`, 
+								ord.`reference` as `ref`, 
+								ord.`secure_key` as `secure_key`, 
+								ords.`name`as order_status,
+								ads.`address1` as `address1`,
+								ads.`address2` as `address2` 
+								FROM  `"._DB_PREFIX_."order_detail` ordd 
+								JOIN `"._DB_PREFIX_."orders` ord ON (ord.`id_order` = ordd.`id_order`) 
+								JOIN `"._DB_PREFIX_."customer` cus on (cus.`id_customer`= ord.`id_customer`)
+								JOIN `"._DB_PREFIX_."order_state_lang` ords on (ord.`current_state`= ords.`id_order_state`) 
+								JOIN `"._DB_PREFIX_."address` ads on (ads.`id_customer`= cus.`id_customer`)
+								JOIN `"._DB_PREFIX_."state` stat on (stat.`id_state`= ads.`id_state`) 
+								JOIN `"._DB_PREFIX_."country_lang` cntry on (cntry.`id_country`= ads.`id_country`) 
+								WHERE ordd.`id_order`=".$id_order." and cntry.`id_lang`=".$id_lang);
+							if(empty($dashboard))
 							{
-								$dashboard   = Db::getInstance()->executeS("SELECT cntry.`name` as `country`,ads.`postcode` as `postcode`,ads.`city` as `city`,ads.`phone` as `phone`,ads.`phone_mobile` as `mobile`,ordd.`id_order_detail` as `id_order_detail`,ordd.`product_name` as `ordered_product_name`,ordd.`product_price` as total_price,ordd.`product_quantity` as qty, ordd.`id_order` as id_order,ord.`id_customer` as order_by_cus,ord.`payment` as payment_mode,ord.`current_state` as current_state,cus.`firstname` as name,cus.`lastname` as lastname,cus.email as email,cus.`website` as ws, ord.`date_add` as `date`, ord.`reference` as `ref`, ord.`secure_key` as `secure_key`, ord.`total_products` as total_products, ord.`total_shipping` as total_shipping, ord.`total_paid_tax_incl` as total_paid, ords.`name`as order_status,ads.`address1` as `address1`,ads.`address2` as `address2` from  `"._DB_PREFIX_."order_detail` ordd join `"._DB_PREFIX_."orders` ord ON (ord.`id_order` = ordd.`id_order`) join `"._DB_PREFIX_."customer` cus on (cus.`id_customer`= ord.`id_customer`) join `"._DB_PREFIX_."order_state_lang` ords on (ord.`current_state`= ords.`id_order_state`) join `"._DB_PREFIX_."address` ads on (ads.`id_customer`= cus.`id_customer`) join `"._DB_PREFIX_."country_lang` cntry on (cntry.`id_country`= ads.`id_country`) where ordd.`id_order`=".$id_order." and cntry.`id_lang`=".$id_lang);  
-								
+								$dashboard   = Db::getInstance()->executeS("SELECT 
+									cntry.`name` as `country`,
+									ads.`postcode` as `postcode`,
+									ads.`city` as `city`,
+									ads.`phone` as `phone`,
+									ads.`phone_mobile` as `mobile`,
+									ordd.`id_order_detail` as `id_order_detail`,
+									ordd.`product_name` as `ordered_product_name`,
+									ordd.`product_price` as total_price,
+									ordd.`product_quantity` as qty, 
+									ordd.`id_order` as id_order,
+									ord.`id_customer` as order_by_cus,
+									ord.`payment` as payment_mode,
+									ord.`current_state` as current_state,
+									ord.`date_add` as `date`,
+									ord.`reference` as `ref`, 
+									ord.`secure_key` as `secure_key`, 
+									ord.`total_products` as total_products, 
+									ord.`total_shipping` as total_shipping, 
+									ord.`total_paid_tax_incl` as total_paid, 
+									cus.`firstname` as name,
+									cus.`lastname` as lastname,
+									cus.`email` as email,
+									cus.`website` as ws,
+									ords.`name`as order_status,
+									ads.`address1` as `address1`,
+									ads.`address2` as `address2` 
+									FROM  `"._DB_PREFIX_."order_detail` ordd 
+									JOIN `"._DB_PREFIX_."orders` ord ON (ord.`id_order` = ordd.`id_order`) 
+									JOIN `"._DB_PREFIX_."customer` cus on (cus.`id_customer`= ord.`id_customer`) 
+									JOIN `"._DB_PREFIX_."order_state_lang` ords on (ord.`current_state`= ords.`id_order_state`) 
+									JOIN `"._DB_PREFIX_."address` ads on (ads.`id_customer`= cus.`id_customer`) 
+									JOIN `"._DB_PREFIX_."country_lang` cntry on (cntry.`id_country`= ads.`id_country`) 
+									WHERE ordd.`id_order`=".$id_order." and cntry.`id_lang`=".$id_lang);
+
 								$dashboard_state = "N/A";
 							}
 							else
@@ -487,25 +578,20 @@ class marketplaceMarketplaceaccountModuleFrontController extends ModuleFrontCont
 								$a++;
 							}
 							$param = array(
-											'flag' => (Tools::getValue('flag')) ? (Tools::getValue('flag')) : "",
-											'shop' => (Tools::getValue('shop')) ? (Tools::getValue('shop')) : "",
-											'l' => (Tools::getValue('l')) ? (Tools::getValue('l')) : "",
-											'id_order' => (Tools::getValue('id_order')) ? (Tools::getValue('id_order')) : "");
+								'flag' => (Tools::getValue('flag')) ? (Tools::getValue('flag')) : "",
+								'shop' => (Tools::getValue('shop')) ? (Tools::getValue('shop')) : "",
+								'l' => (Tools::getValue('l')) ? (Tools::getValue('l')) : "",
+								'id_order' => (Tools::getValue('id_order')) ? (Tools::getValue('id_order')) : "");
 						
 							$shipping_link = $link->getModuleLink('finalshipping','shippingdetails',$param);
 						
-							//$current_state = Db::getInstance(_PS_USE_SQL_SLAVE_)->getRow("SELECT `current_state` from `"._DB_PREFIX_."orders` where id_order=".$id_order);
 							$id_customer = $this->context->customer->id;
-                           	$sql = 'SELECT * FROM `'._DB_PREFIX_.'order_detail` od 
-							   JOIN `'._DB_PREFIX_.'product` p ON (p.id_product = od.product_id) 
-							   JOIN `'._DB_PREFIX_.'product_shop` ps ON (ps.id_product = p.id_product AND ps.id_shop = od.id_shop) 
-							   join `'._DB_PREFIX_.'marketplace_shop_product` msp ON (msp.`id_product`=p.`id_product`) 
-							   join `'._DB_PREFIX_.'marketplace_shop` ms ON (ms.`id`=msp.`id_shop`) WHERE od.`id_order` = '.$id_order.' and ms.id_customer='.$id_customer;
-							   
-							$order_info = Db::getInstance(_PS_USE_SQL_SLAVE_)->executeS($sql);
-							
+	                       	$order_info = Db::getInstance(_PS_USE_SQL_SLAVE_)->executeS('SELECT * 
+	                       		FROM `'._DB_PREFIX_.'order_detail` od 
+	                       		JOIN `'._DB_PREFIX_.'marketplace_commision_calc` mcc ON (mcc.`product_id`= od.`product_id`) 
+	                       		WHERE od.`id_order` = '.$id_order.' and mcc.customer_id ='.$id_customer);
+	                       	//$order_info = Db::getInstance(_PS_USE_SQL_SLAVE_)->executeS($order_info);
 							$this->context->smarty->assign("order_info",$order_info);
-							
 							//$this->context->smarty->assign("current_state",$current_state['current_state']);
 							$count_dashboard = count($dashboard);
 							$this->context->smarty->assign("shipping_link",$shipping_link); 
@@ -515,7 +601,7 @@ class marketplaceMarketplaceaccountModuleFrontController extends ModuleFrontCont
 							$this->context->smarty->assign("dashboard_state",$dashboard_state);
 							$this->context->smarty->assign("id_shop",$id_shop);
 							$this->setTemplate('marketplace_account1.tpl');  
-					}	
+						}
                     }
                 }
                 elseif ($is_seller == 0)
