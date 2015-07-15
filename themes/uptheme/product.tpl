@@ -441,7 +441,7 @@
 				</div> <!-- end box-info-product -->
 			</form>
 
-
+			<!--
 			<ul class="post-actions col-2 clearfix">
 			<li class="dropdown">
 				<a href="#" class="dropdown-toggle" data-toggle="dropdown" id="share"><i class="fa fa-send"></i> Send it</a>
@@ -471,6 +471,7 @@
 				</ul>
 			</li>
 			</ul>
+			-->
 			<div class="post-sidebar-container engage">
 				<h5>Engagement</h5>
 					<ul class="post-engagement clearfix">
@@ -488,13 +489,13 @@
 				</ul>
 			</div>
 			{/if}
-
+			<!--
 			<div class="post-sidebar-container">
 				<ul class="post-report clearfix">
 				<li><i class="fa fa-warning"></i>&nbsp;&nbsp;&nbsp;<a style="cursor:pointer;" id="report-it" data-url="{$link->getProductLink($product)|escape:'html':'UTF-8'}">Report This Post</a></li>
 				</ul>
 			</div>
-
+			-->
 			{if isset($HOOK_EXTRA_RIGHT) && $HOOK_EXTRA_RIGHT}			
 			<div class="post-sidebar-container">
 				<ul class="post-report clearfix">
