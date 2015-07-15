@@ -420,6 +420,7 @@ function deleteProductFromSummary(id)
 			{
 				if (jsonData.refresh)
 					location.reload();
+				
 				if (parseInt(jsonData.summary.products.length) == 0)
 				{
 					if (typeof(orderProcess) == 'undefined' || orderProcess !== 'order-opc')
@@ -427,19 +428,26 @@ function deleteProductFromSummary(id)
 					else
 					{
 						$('#center_column').children().each(function() {
-							if ($(this).attr('id') !== 'emptyCartWarning' && $(this).attr('class') !== 'breadcrumb' && $(this).attr('id') !== 'cart_title')
+							if ($(this).attr('id') !== 'emptyCartWarning' && $(this).attr('class') !== 'breadcrumb' && $(this).attr('id') !== 'cart_title' && $(this).attr('id') !== 'login-panel-summary')
 							{
 								$(this).fadeOut('slow', function () {
 									$(this).remove();
 								});
 							}
 						});
+						$('#order-detail-content').remove();
+						$('.cart_last_product').remove();						
 						$('#summary_products_label').remove();
 						$('#emptyCartWarning').fadeIn('slow');
 					}
+				//Let's try to change the quantity shown in the cart in the header
+				// TOFIX : there could be more than quantity 1
+				$('#header_cart_items').html('');			
+
 				}
 				else
 				{
+					
 					$('#product_' + id).fadeOut('slow', function() {
 						$(this).remove();
 						cleanSelectAddressDelivery();
@@ -486,6 +494,9 @@ function deleteProductFromSummary(id)
 					getCarrierListAndUpdate();
 				if (typeof(updatePaymentMethodsDisplay) !== 'undefined')
 					updatePaymentMethodsDisplay();
+				//Let's try to change the quantity shown in the cart in the header
+				// TOFIX : there could be more than quantity 1
+				$('#header_cart_items').text(jsonData.summary.products.length);			
 			}
 		},
 		error: function(XMLHttpRequest, textStatus, errorThrown) {

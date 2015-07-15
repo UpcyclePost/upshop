@@ -60,7 +60,6 @@
 				{$product->name|escape:'html':'UTF-8'}
 				</h1>
 			</div>
-			<!--<pre>{$product|@print_r}</pre>-->
 			<div class="post-details-crumbs clearfix">
 				<ol class="breadcrumbs" style="width:100%;" >
 					<li class=""><a href="/shops">Shops</a></li>
@@ -77,15 +76,23 @@
 					</li>
 				</ol>
 			</div>
+			<span>
+				{if $prev_product}
+				<a title="{$prev_product.name}" href="{$link->getProductLink($prev_product.id_product, $prev_product.link_rewrite)}">
+				<img src="http{if Tools::usingSecureMode()}s{/if}://{$smarty.server.SERVER_NAME}/img/left.png" style="float:left;position:relative; left: 10px; z-index:99" alt="Previous Post" class="no-print arrow-next">
+				</a>
+				{/if}
+			</span>
+			<span>
+				{if $next_product}
+				<a title="{$next_product.name}" href="{$link->getProductLink($next_product.id_product, $next_product.link_rewrite)}">
+				<img src="http{if Tools::usingSecureMode()}s{/if}://{$smarty.server.SERVER_NAME}/img/right.png" style="float:right;position:relative; right: 10px; z-index:99" alt="Next Post" class="no-print arrow-next">
+				</a>
+			{/if}
+			</span>
 
 			<!-- product img-->
 			<div id="image-block" class="post-details-img-container clearfix" style="position:relative;">
-				{if $prev_product}
-				<a title="{$prev_product.name}" href="{$link->getProductLink($prev_product.id_product, $prev_product.link_rewrite)}">
-				<img src="http{if Tools::usingSecureMode()}s{/if}://{$smarty.server.SERVER_NAME}/img/left.png" style="position:absolute; left: 10px; z-index:99" alt="Previous Post" class="no-print">
-				</a>
-				{/if}
-
 				{if $product->new}
 					<span class="new-box">
 						<span class="new-label">{l s='New'}</span>
@@ -122,19 +129,13 @@
 						{/if}
 					</span>
 				{/if}
-			{if $next_product}
-			<a title="{$next_product.name}" href="{$link->getProductLink($next_product.id_product, $next_product.link_rewrite)}">
-			<img src="http{if Tools::usingSecureMode()}s{/if}://{$smarty.server.SERVER_NAME}/img/right.png" style="position:absolute; right: 10px; z-index:99" alt="Next Post" class="no-print">
-			</a>
-			{/if}
-
 			</div> <!-- end image-block -->
 						
 			{if isset($images) && count($images) > 0}
 				<!-- thumbnails -->
 				<div id="views_block" class="clearfix {if isset($images) && count($images) < 2}hidden{/if}">
 				<div class="post-details-description">
-				<h5>{l s='More images (Hover over to view)'}</h4>
+				<h5>{l s='More images'}</h4>
 				</div>
 
 					{if isset($images) && count($images) > 2}
@@ -253,14 +254,23 @@
 			<div class="author-name"><span>Post By</span><a href="{$link_store|addslashes}">{$mkt_seller_info['shop_name']|escape:'html':'UTF-8'}</a></div>
 			</div>
 
+			{if $logged}
 			<ul class="post-actions col-2 clearfix">
 			<li>
-			<a style="height:36px;" class="follow" data-url="http://www.upcyclepost.com/follow/user/{$mkt_seller_info['seller_customer_id']}">
+			<a style="height:36px;" class="follow" data-url="http{if Tools::usingSecureMode()}s{/if}://{$smarty.server.SERVER_NAME}/follow/user/{$seller_customer_id}">
 			<i class="fa fa-plus"></i>
 			Follow {$mkt_seller_info['shop_name']|escape:'html':'UTF-8'}</a>
 			</li>
 			</ul>
-			
+			{else}
+			<ul class="post-actions col-2 clearfix">
+			<li>
+			<a style="height:36px;" class="follow" data-url="http{if Tools::usingSecureMode()}s{/if}://{$smarty.server.SERVER_NAME}/profile/login">
+			<i class="fa fa-plus"></i>
+			Log in to follow {$mkt_seller_info['shop_name']|escape:'html':'UTF-8'}</a>
+			</li>
+			</ul>
+			{/if}
 			{if ($product->show_price && !isset($restricted_country_mode)) || isset($groups) || $product->reference || (isset($HOOK_PRODUCT_ACTIONS) && $HOOK_PRODUCT_ACTIONS)}
 			<!-- add to cart form-->
 			<form id="buy_block"{if $PS_CATALOG_MODE && !isset($groups) && $product->quantity > 0} class="hidden"{/if} action="{$link->getPageLink('cart')|escape:'html':'UTF-8'}" method="post">
@@ -433,7 +443,6 @@
 
 
 			<ul class="post-actions col-2 clearfix">
-			<!--<li><a href="http://www.upcyclepost.com/profile/login"><i class="fa fa-heart"></i> Log in to Up this</a></li>-->
 			<li class="dropdown">
 				<a href="#" class="dropdown-toggle" data-toggle="dropdown" id="share"><i class="fa fa-send"></i> Send it</a>
 				<ul class="dropdown-menu dropdown-menu-right send" role="menu">
@@ -471,7 +480,7 @@
 			</div>
 			{if $product->tags}
 			<div class="post-sidebar-container tags">
-				<h5>Post Tags</h5>
+				<h5>Tags</h5>
 				<ul class="post-tags clearfix">
 				{foreach from=$product->tags[1] item=tag}
 				<li><a href="">{$tag}</a></li>
@@ -482,7 +491,7 @@
 
 			<div class="post-sidebar-container">
 				<ul class="post-report clearfix">
-				<li><i class="fa fa-warning"></i>&nbsp;&nbsp;&nbsp;<a id="report-it" data-url="{$link->getProductLink($product)|escape:'html':'UTF-8'}">Report This Post</a></li>
+				<li><i class="fa fa-warning"></i>&nbsp;&nbsp;&nbsp;<a style="cursor:pointer;" id="report-it" data-url="{$link->getProductLink($product)|escape:'html':'UTF-8'}">Report This Post</a></li>
 				</ul>
 			</div>
 

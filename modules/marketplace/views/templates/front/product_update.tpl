@@ -164,7 +164,7 @@ div.uploader
 					<div class="form-group">
 						<label for="prod_price"><sup style="color:#f00;">*&nbsp;</sup>{l s='Price :' mod='marketplace'}</label>&nbsp;Numbers and decimal point only (e.g. 1234.56)
 						<div class="input-group">
-							<input type="text" id="product_price" name="product_price" value="{$pro_info['price']|number_format:2|escape:'html':'UTF-8'}"  class="form-control"  onblur="javascript:this.value=Number(this.value).toFixed(2)"/>
+							<input type="text" id="product_price" name="product_price" value="{$pro_info['price']|number_format:2:'.':''|escape:'html':'UTF-8'}"  class="form-control"  onblur="javascript:this.value=Number(this.value).toFixed(2)"/>
 							<span class="input-group-addon">{$currency_sign|escape:'html':'UTF-8'}</span>
 						</div>
 					</div>
