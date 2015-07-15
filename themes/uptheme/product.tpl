@@ -484,7 +484,7 @@
 				<h5>Tags</h5>
 				<ul class="post-tags clearfix">
 				{foreach from=$product->tags[1] item=tag}
-				<li><a href="">{$tag}</a></li>
+				<li><a href="javascript:post('http{if Tools::usingSecureMode()}s{/if}://{$smarty.server.SERVER_NAME}/gallery',{literal}{{/literal}term:'{$tag}'{literal}}{/literal});">{$tag}</a></li>
 				{/foreach}
 				</ul>
 			</div>
