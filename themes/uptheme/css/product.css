@@ -109,7 +109,7 @@ a.fancybox-nav {
     list-style-type: none;
     padding-left: 0;
     overflow: hidden;
-    height: 140px; }
+}
   #thumbs_list li {
     float: left;
     // height: 90px;
