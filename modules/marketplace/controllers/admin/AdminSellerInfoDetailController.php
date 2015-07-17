@@ -88,6 +88,12 @@
 											'text' => $this->l('Disable selection'),
 											'icon' => 'icon-power-off text-danger'),
 									);
+	  if ($_GET['submitFiltermarketplace_seller_info']!='')
+		{
+			$_POST['submitFilter'] = '';
+			$_POST['submitFiltermarketplace_seller_info'] = 1;
+			$_POST['marketplace_seller_infoFilter_shop_name'] = Tools::getValue('marketplace_seller_infoFilter_shop_name');
+		}
 			parent::__construct();
 			
 		}
