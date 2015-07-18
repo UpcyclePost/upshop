@@ -1,5 +1,4 @@
-﻿
-<table id="orderitems" class="table table-bordered">
+﻿<table id="orderitems" class="table table-bordered">
 	<thead>
 	<tr>
 		<th><label>{l s='Product Name -' mod='marketplace'}</label></th>
@@ -8,7 +7,7 @@
 		<th>Total Price</th>	
 	</tr>
 	</thead>
-{foreach $order_info as $ord_info}	
+{foreach $order_info as $ord_info}
 	<tr>
 		<td>{$ord_info['product_name']|escape:'html':'UTF-8'}</td>
 		<td>{$ord_info['product_quantity']|escape:'html':'UTF-8'}</td>
