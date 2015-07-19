@@ -29,6 +29,7 @@ class AdminSellerOrdersController extends ModuleAdminController
             'id_order' => array(
                 'title' => $this->l('Id Order'),
                 'align' => 'text-center',
+				'havingFilter' => true,
 				'remove_onclick' => true
             ),
 			'date_add' => array(
@@ -137,7 +138,10 @@ class AdminSellerOrdersController extends ModuleAdminController
 		{
 			$_POST['submitFilter'] = '';
 			$_POST['submitFiltermarketplace_order_commision'] = 1;
+			if(Tools::getValue('marketplace_order_commisionFilter_sllr_c!id_customer')!='')
 			$_POST['marketplace_order_commisionFilter_sllr_c!id_customer'] = Tools::getValue('marketplace_order_commisionFilter_sllr_c!id_customer');
+			elseif(Tools::getValue('marketplace_order_commisionFilter_id_order')!='')
+			$_POST['marketplace_order_commisionFilter_id_order'] = Tools::getValue('marketplace_order_commisionFilter_id_order');
 		}
 		
         $this->identifier  = 'id';

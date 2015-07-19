@@ -796,6 +796,27 @@ class stripepro extends PaymentModule
 
 			$this->smarty->assign('stripe_order', array('reference' => isset($params['objOrder']->reference) ? $params['objOrder']->reference : '#'.sprintf('%06d', $params['objOrder']->id), 'valid' => $params['objOrder']->valid));
 
+      
+	  $stripe_charges = Db::getInstance()->ExecuteS('
+			SELECT a.`id_transaction`,a.`id_order`,b.`id_customer` FROM `'._DB_PREFIX_.'stripepro_transaction` a,`'._DB_PREFIX_.'stripepro_customer` b  WHERE a.`id_stripe_customer`=b.`id_customer` && a.`id_cart` = '.(int)Tools::getValue('id_cart'),false);
+		
+		include(dirname(__FILE__).'/lib/Stripe.php');
+		\Stripe\Stripe::setApiKey(Configuration::get('STRIPE_MODE') ? Configuration::get('STRIPE_PRIVATE_KEY_LIVE') : Configuration::get('STRIPE_PRIVATE_KEY_TEST'));
+
+        foreach($stripe_charges as $charge){
+		  $mp_seller = Db::getInstance()->getValue('SELECT `customer_id` FROM `'._DB_PREFIX_.'marketplace_commision_calc` WHERE `id_order`= '.(int)$charge['id_order'],false);
+		  try
+		  {
+			  $ch = \Stripe\Charge::retrieve($charge['id_transaction']);
+			  $ch->description = "PS Cus: ".$charge['id_customer']." – MP Seller: ".$mp_seller." – MP Order: ".$charge['id_order']." – Ord Ref: ".$params['objOrder']->reference;
+			  $ch->save();
+		  }
+		catch (Exception $e)
+				{
+						Logger::addLog($this->l('Stripe - charge update failed'.$e->getMessage()), 1, null, 'Cart', (int)Tools::getValue('id_cart'), true);
+				}
+		  
+		}
 			// added this so we could present a better/meaningful message to the customer when the charge suceeds, but verifications have failed.
 			$pendingOrderStatus = (int)Configuration::get('STRIPE_PENDING_ORDER_STATUS');
 			$currentOrderStatus = (int)$params['objOrder']->getCurrentState();
@@ -1011,7 +1032,7 @@ class stripepro extends PaymentModule
 		/* Create the PrestaShop order in database */
 		$this->validateOrder((int)$this->context->cart->id, (int)$order_status, $this->context->cart->getOrderTotal(), $this->displayName, null, array(), null, false, $this->context->customer->secure_key);
        
-	   $currentOrders = Db::getInstance()->ExecuteS('select id_order as id from '._DB_PREFIX_.'orders where id_cart='.(int)$this->context->cart->id.' order by id_order asc');
+	   $currentOrders = Db::getInstance()->ExecuteS('select id_order as id from '._DB_PREFIX_.'orders where id_cart='.(int)$this->context->cart->id.' order by id_order asc',false);
 	   		
 	   foreach($currentOrders as $key=>$order){
 		   

@@ -10,7 +10,7 @@
 		    $this->context     = Context::getContext();			
 			
 			$this->_join .= 'LEFT JOIN `'._DB_PREFIX_.'marketplace_customer` mpc ON (mpc.`marketplace_seller_id` = a.`id`)';
-			$this->_select = 'mpc.`is_seller`,mpc.`id_customer`';
+			$this->_select = 'mpc.`is_seller`,mpc.`id_customer`,a.id as view,a.id as products,mpc.id_customer as orders, a.shop_name as view_products';
 			$hook_res = Hook::exec('displayAdminSellerInfoJoin', array('flase' => 1));
 			if($hook_res) 
 			{	
@@ -23,7 +23,8 @@
 			$this->fields_list['id'] = array(
 				'title' => $this->l('ID'),
 				'align' => 'center',
-				'class' => 'fixed-width-xs'
+				'class' => 'fixed-width-xs',
+				'remove_onclick' => true
 			);
 			
 			$this->fields_list['id_customer'] = array(
@@ -35,36 +36,67 @@
 				'remove_onclick' => true
 			);
 			
+			$this->fields_list['orders'] = array(
+				'title' => $this->l('View Orders'),
+				'align' => 'center',
+				'callback' => 'printOrdersIcons',
+				'orderby' => false,
+				'search' => false,
+				'remove_onclick' => true
+			);
+			
+			$this->fields_list['view_products'] = array(
+				'title' => $this->l('View Products'),
+				'align' => 'center',
+				'callback' => 'printProductsIcons',
+				'orderby' => false,
+				'search' => false,
+				'remove_onclick' => true
+			);
+			
 			$this->fields_list['business_email'] = array(
 				'title' => $this->l('Business email'),
-				'align' => 'center'
+				'align' => 'center',
+				'remove_onclick' => true
 			);
 			
 			$this->fields_list['seller_name'] = array(
 				'title' => $this->l('Seller Name'),
-				'align' => 'center'
+				'align' => 'center',
+				'remove_onclick' => true
 			);
 			
 			$this->fields_list['shop_name'] = array(
 				'title' => $this->l('Shop name'),
-				'align' => 'center'
+				'align' => 'center',
+				'remove_onclick' => true
 			);
 			
 			$this->fields_list['phone'] = array(
 				'title' => $this->l('Phone'),
-				'align' => 'center'
+				'align' => 'center',
+				'remove_onclick' => true
+			);
+			
+			$this->fields_list['products'] = array(
+				'title' => $this->l('No of Products'),
+				'align' => 'center',
+				'callback' => 'no_of_products',
+				'remove_onclick' => true
 			);
 
 			$this->fields_list['date_add'] = array(
 				'title' => $this->l('Registration'),
 				'type' => 'date',
-				'align' => 'center'
+				'align' => 'center',
+				'remove_onclick' => true
 			);
 			
 			if($hook_res) {	
 				$this->fields_list['plan_name'] = array(
 					'title' => $this->l('Plan Name'),
-					'align' => 'center'
+					'align' => 'center',
+					'remove_onclick' => true
 				);
 			}
 			
@@ -73,7 +105,16 @@
 					'active' => 'status',
 					'align' => 'center',
 					'type' => 'bool',
-					'orderby' => false
+					'orderby' => false,
+					'remove_onclick' => true
+				);
+			$this->fields_list['view'] =array(
+					'title' => $this->l('View'),
+					'align' => 'center',
+					'callback' => 'printViewIcons',
+					'orderby' => false,
+					'search' => false,
+					'remove_onclick' => true
 				);
 			
 			$this->identifier  = 'id';
@@ -97,6 +138,67 @@
 			parent::__construct();
 			
 		}
+	
+	public function no_of_products($products, $tr)
+	{
+		
+        return Db::getInstance()->getValue("SELECT count(a.id) FROM `"._DB_PREFIX_."marketplace_seller_product` a,`"._DB_PREFIX_."marketplace_shop_product` b,`"._DB_PREFIX_."stock_available` c where c.quantity>0 && c.id_product=b.id_product && a.id=b.marketplace_seller_id_product && a.id_seller=".$products,false);
+
+	}
+	
+	public function printProductsIcons($products, $tr)
+	{
+		
+		$link = new Link();
+		$link = $link->getAdminLink('AdminSellerProductDetail').'&amp;submitFiltermarketplace_seller_product=1&amp;marketplace_seller_productFilter_shop_name='.$products;
+		
+		$html = '<span class="btn-group-action">
+	<span class="btn-group">
+		<a class="btn btn-default" href="'.$link.'">
+			<i class="icon-search-plus"></i> &nbsp;View Products
+		</a>
+	</span>
+</span>';
+        return $html;
+
+
+	}
+	
+	public function printOrdersIcons($id_customer, $tr)
+	{
+		
+		$link = new Link();
+		$link = $link->getAdminLink('AdminSellerOrders').'&amp;submitFiltermarketplace_order_commision=1&amp;marketplace_order_commisionFilter_sllr_c!id_customer='.$id_customer;
+		
+		$html = '<span class="btn-group-action">
+	<span class="btn-group">
+		<a class="btn btn-default" href="'.$link.'">
+			<i class="icon-search-plus"></i> &nbsp;View Orders
+		</a>
+	</span>
+</span>';
+        return $html;
+
+
+	}
+	
+	public function printViewIcons($view, $tr)
+	{
+		
+		$link = new Link();
+		$link = $link->getAdminLink('AdminSellerInfoDetail').'&amp;viewmarketplace_seller_info&amp;id='.$view;
+		
+		$html = '<span class="btn-group-action">
+	<span class="btn-group">
+		<a class="btn btn-default" href="'.$link.'">
+			<i class="icon-search-plus"></i> &nbsp;View
+		</a>
+	</span>
+</span>';
+        return $html;
+
+	}
+	
 	public function printSellerIcons($id_customer, $tr)
 	{
 		
