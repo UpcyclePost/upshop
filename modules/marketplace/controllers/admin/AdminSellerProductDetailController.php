@@ -21,13 +21,16 @@
 			//$this->_join .= 'LEFT JOIN `'._DB_PREFIX_.'marketplace_shop` mps ON (mps.`id` = a.`id_shop`)';
 			$this->_join .= 'LEFT JOIN `'._DB_PREFIX_.'marketplace_seller_info` mpsin ON (mpsin.`id` = a.`id_seller`)';
 			$this->_join .= 'LEFT JOIN `'._DB_PREFIX_.'marketplace_customer` mpc ON (mpc.`marketplace_seller_id` = a.`id_seller`)';
-			$this->_select = 'mpsin.`shop_name`,mpsin.`seller_name`,mpc.`id_customer`';
+			$this->_join .= 'LEFT JOIN `'._DB_PREFIX_.'marketplace_shop_product` msp ON (msp.`marketplace_seller_id_product` = a.`id`)';
+			$this->_join .= 'LEFT JOIN `'._DB_PREFIX_.'product` p ON (p.`id_product` = msp.`id_product`)';
+			$this->_select = 'mpsin.`shop_name`,mpsin.`seller_name`,mpc.`id_customer`,msp.id_product plink,msp.id_product orders,msp.id_product shipping,msp.id_product pp,p.price';
 			
 			$this->fields_list = array();
 			$this->fields_list['id'] = array(
 				'title' => $this->l('ID'),
 				'align' => 'center',
-				'class' => 'fixed-width-xs'
+				'class' => 'fixed-width-xs',
+				'remove_onclick' => true
 			);
 			
 			$this->fields_list['id_customer'] = array(
@@ -43,6 +46,22 @@
 				'title' => $this->l('Seller Name'),
 				'align' => 'center',
 				'callback' => 'printSellerIcons',
+				'remove_onclick' => true
+			);
+			
+			$this->fields_list['pp'] = array(
+				'title' => $this->l('Prestashop Link'),
+				'align' => 'center',
+				'callback' => 'printPPIcons',
+				'orderby' => false,
+				'search' => false,
+				'remove_onclick' => true
+			);
+			
+			$this->fields_list['plink'] = array(
+				'title' => $this->l('Product page (Link)'),
+				'align' => 'center',
+				'callback' => 'printPLinkIcons',
 				'orderby' => false,
 				'search' => false,
 				'remove_onclick' => true
@@ -50,12 +69,39 @@
 			
 			$this->fields_list['product_name'] = array(
 				'title' => $this->l('Product Name'),
-				'align' => 'center'
+				'align' => 'center',
+				'remove_onclick' => true
+			);
+			
+			$this->fields_list['orders'] = array(
+				'title' => $this->l('Orders(Y/N)'),
+				'align' => 'center',
+				'callback' => 'printOrders',
+				'orderby' => false,
+				'search' => false,
+				'remove_onclick' => true
+			);
+			
+			$this->fields_list['shipping'] = array(
+				'title' => $this->l('Shipping(Y/N)'),
+				'align' => 'center',
+				'callback' => 'printShipping',
+				'orderby' => false,
+				'search' => false,
+				'remove_onclick' => true
 			);
 			
 			$this->fields_list['shop_name'] = array(
 				'title' => $this->l('Shop Name'),
-				'align' => 'center'
+				'align' => 'center',
+				'remove_onclick' => true
+			);
+			
+			$this->fields_list['price'] = array(
+				'title' => $this->l('Price (tax excl.)'),
+				'align' => 'center',
+				'type' => 'price',
+				'remove_onclick' => true
 			);
 			
 			$hook_column = Hook::exec('addColumnInSellerProductTable', array('flase' => 1));
@@ -77,9 +123,18 @@
 				'active' => 'status',
 				'align' => 'center',
 				'type' => 'bool',
-				'orderby' => false
+				'orderby' => false,
+				'remove_onclick' => true
 			);	
 			
+			  // $this->list_no_link = true;
+      if ($_GET['submitFiltermarketplace_seller_product']!='')
+		{
+			$_POST['submitFilter'] = '';
+			$_POST['submitFiltermarketplace_seller_product'] = 1;
+			$_POST['marketplace_seller_productFilter_shop_name'] = Tools::getValue('marketplace_seller_productFilter_shop_name');
+		}
+		
 			$this->identifier  = 'id';
 			$this->bulk_actions = array('delete' => array('text' => $this->l('Delete selected'), 'confirm' => $this->l('Delete selected items?')));
 			parent::__construct();
@@ -102,6 +157,52 @@
         return $html;
 
 	}
+	
+	public function printPPIcons($pp, $tr)
+	{
+		
+		$link = new Link();
+		$link = $link->getAdminLink('AdminProducts').'&amp;updateproduct&amp;id_product='.$pp;
+		
+		$html = '<span class="btn-group-action">
+	<span class="btn-group">
+		<a class="btn btn-default" href="'.$link.'">
+			<i class="icon-edit"></i> &nbsp;'.$pp.'
+		</a>
+	</span>
+</span>';
+        return $html;
+
+	}
+	
+	public function printShipping($shipping, $tr)
+	{
+		$carriers = Db::getInstance()->getValue("SELECT count(id_product) FROM `"._DB_PREFIX_."product_carrier` where id_product=".(int)$shipping,false);
+        return ($carriers>0?'YES':'NO');
+
+	}
+	public function printOrders($orders, $tr)
+	{
+		$Orders = Db::getInstance()->getValue("SELECT count(id_order) FROM `"._DB_PREFIX_."order_detail` where product_id=".(int)$orders,false);
+        return ($Orders>0?'YES':'NO');
+
+	}
+	public function printPLinkIcons($plink, $tr)
+	{
+		$link = new Link();
+		$link = $link->getProductLink((int)$plink);
+		
+		$html = '<span class="btn-group-action">
+	<span class="btn-group">
+		<a class="btn btn-default" href="'.$link.'" target="_blank">
+			<i class="icon-search-plus"></i> &nbsp;'.$plink.'
+		</a>
+	</span>
+</span>';
+        return $html;
+
+	}
+	
 	
 	public function printSellerIcons($seller_name, $tr)
 	{
