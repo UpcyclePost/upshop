@@ -26,6 +26,14 @@ class AdminSellerOrdersController extends ModuleAdminController
 		
 
         $this->fields_list = array(
+		     'id' => array(
+                'title' => $this->l('View'),
+                'align' => 'text-center',
+				'callback' => 'printViewIcons',
+				'orderby' => false,
+				'search' => false,
+				'remove_onclick' => true
+            ),
             'id_order' => array(
                 'title' => $this->l('Id Order'),
                 'align' => 'text-center',
@@ -148,6 +156,21 @@ class AdminSellerOrdersController extends ModuleAdminController
         parent::__construct();
     }
 	
+	public function printViewIcons($id, $tr)
+	{
+		$link = new Link();
+		$link = $link->getAdminLink('AdminSellerOrders').'&amp;viewmarketplace_order_commision&amp;id='.$id;
+		
+		$html = '<span class="btn-group-action">
+	<span class="btn-group">
+		<a class="btn btn-default" href="'.$link.'">
+			<i class="icon-search-plus"></i> &nbsp;View
+		</a>
+	</span>
+</span>';
+        return $html;
+
+	}
 	public function printEditIcons($id_customer, $tr)
 	{
 		

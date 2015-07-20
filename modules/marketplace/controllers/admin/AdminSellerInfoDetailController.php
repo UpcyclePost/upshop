@@ -20,6 +20,14 @@
 			}
 			
 			$this->fields_list = array();
+			$this->fields_list['view'] =array(
+					'title' => $this->l('View'),
+					'align' => 'center',
+					'callback' => 'printViewIcons',
+					'orderby' => false,
+					'search' => false,
+					'remove_onclick' => true
+				);
 			$this->fields_list['id'] = array(
 				'title' => $this->l('ID'),
 				'align' => 'center',
@@ -106,14 +114,6 @@
 					'align' => 'center',
 					'type' => 'bool',
 					'orderby' => false,
-					'remove_onclick' => true
-				);
-			$this->fields_list['view'] =array(
-					'title' => $this->l('View'),
-					'align' => 'center',
-					'callback' => 'printViewIcons',
-					'orderby' => false,
-					'search' => false,
 					'remove_onclick' => true
 				);
 			

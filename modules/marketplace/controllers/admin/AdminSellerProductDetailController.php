@@ -23,9 +23,21 @@
 			$this->_join .= 'LEFT JOIN `'._DB_PREFIX_.'marketplace_customer` mpc ON (mpc.`marketplace_seller_id` = a.`id_seller`)';
 			$this->_join .= 'LEFT JOIN `'._DB_PREFIX_.'marketplace_shop_product` msp ON (msp.`marketplace_seller_id_product` = a.`id`)';
 			$this->_join .= 'LEFT JOIN `'._DB_PREFIX_.'product` p ON (p.`id_product` = msp.`id_product`)';
-			$this->_select = 'mpsin.`shop_name`,mpsin.`seller_name`,mpc.`id_customer`,msp.id_product plink,msp.id_product orders,msp.id_product shipping,msp.id_product pp,p.price';
+			//$this->_join .= 'LEFT JOIN `'._DB_PREFIX_.'product_carrier` pc ON (p.id_product=pc.id_product)';
+			//$this->_join .= 'LEFT JOIN `'._DB_PREFIX_.'order_detail` od ON (p.id_product=od.product_id)';
+			$this->_select = 'mpsin.`shop_name`,mpsin.`seller_name`,mpc.`id_customer`,msp.id_product plink,msp.id_product pp,p.price,a.id as view,p.`id_product` as orders, p.`id_product` as shipping';
 			
 			$this->fields_list = array();
+			$this->fields_list['view'] = array(
+				'title' => $this->l('View'),
+				'align' => 'center',
+				'class' => 'fixed-width-xs',
+				'orderby' => false,
+				'search' => false,
+				'callback' => 'printViewIcons',
+				'remove_onclick' => true
+			);
+			
 			$this->fields_list['id'] = array(
 				'title' => $this->l('ID'),
 				'align' => 'center',
@@ -76,18 +88,16 @@
 			$this->fields_list['orders'] = array(
 				'title' => $this->l('Orders(Y/N)'),
 				'align' => 'center',
-				'callback' => 'printOrders',
-				'orderby' => false,
 				'search' => false,
+				'callback' => 'printOrders',
 				'remove_onclick' => true
 			);
 			
 			$this->fields_list['shipping'] = array(
 				'title' => $this->l('Shipping(Y/N)'),
 				'align' => 'center',
-				'callback' => 'printShipping',
-				'orderby' => false,
 				'search' => false,
+				'callback' => 'printShipping',
 				'remove_onclick' => true
 			);
 			
@@ -141,6 +151,22 @@
 
 		}
 		
+	public function printViewIcons($view, $tr)
+	{
+		$link = new Link();
+		$link = $link->getAdminLink('AdminSellerProductDetail').'&amp;viewmarketplace_seller_product&amp;id='.$view;
+		
+		$html = '<span class="btn-group-action">
+	<span class="btn-group">
+		<a class="btn btn-default" href="'.$link.'">
+			<i class="icon-search-plus"></i> &nbsp;View
+		</a>
+	</span>
+</span>';
+        return $html;
+
+	}
+	
 	public function editCustomerlink($id_customer, $tr)
 	{
 		
