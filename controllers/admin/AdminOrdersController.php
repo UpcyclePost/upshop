@@ -61,7 +61,9 @@ class AdminOrdersControllerCore extends AdminController
 		os.`color`,
 		IF((SELECT so.id_order FROM `'._DB_PREFIX_.'orders` so WHERE so.id_customer = a.id_customer AND so.id_order < a.id_order LIMIT 1) > 0, 0, 1) as new,
 		country_lang.name as cname,
-		IF(a.valid, 1, 0) badge_success';
+		IF(a.valid, 1, 0) badge_success,
+		ms.shop_name as shop_name,
+		a.id_order AS id_order_link';
 
 		$this->_join = '
 		LEFT JOIN `'._DB_PREFIX_.'customer` c ON (c.`id_customer` = a.`id_customer`)
@@ -69,7 +71,8 @@ class AdminOrdersControllerCore extends AdminController
 		INNER JOIN `'._DB_PREFIX_.'country` country ON address.id_country = country.id_country
 		INNER JOIN `'._DB_PREFIX_.'country_lang` country_lang ON (country.`id_country` = country_lang.`id_country` AND country_lang.`id_lang` = '.(int)$this->context->language->id.')
 		LEFT JOIN `'._DB_PREFIX_.'order_state` os ON (os.`id_order_state` = a.`current_state`)
-		LEFT JOIN `'._DB_PREFIX_.'order_state_lang` osl ON (os.`id_order_state` = osl.`id_order_state` AND osl.`id_lang` = '.(int)$this->context->language->id.')';
+		LEFT JOIN `'._DB_PREFIX_.'order_state_lang` osl ON (os.`id_order_state` = osl.`id_order_state` AND osl.`id_lang` = '.(int)$this->context->language->id.')
+		LEFT JOIN `'._DB_PREFIX_.'marketplace_shop` ms ON (ms.`id_customer` = (select `customer_id` from `'._DB_PREFIX_.'marketplace_commision_calc` mcc where mcc.`id_order` = a.`id_order` limit 1))';
 		$this->_orderBy = 'id_order';
 		$this->_orderWay = 'DESC';
 
@@ -97,6 +100,17 @@ class AdminOrdersControllerCore extends AdminController
 			'customer' => array(
 				'title' => $this->l('Customer'),
 				'havingFilter' => true,
+			),
+			'id_order_link' => array(
+				'title' => $this->l('MP Order'),
+				'havingFilter' => true,
+				'filter_key' => 'a!id_order',
+				'callback' => 'printMPOrder'
+			),
+			'shop_name' => array(
+				'title' => $this->l('Seller'),
+				'havingFilter' => true,
+				'callback' => 'printShopIcons'
 			),
 		);
 
@@ -191,6 +205,43 @@ class AdminOrdersControllerCore extends AdminController
 		);
 
 		parent::__construct();
+	}
+	
+	public function printMPOrder($id_order, $tr)
+	{
+		
+		$link = new Link();
+		//$link = $link->getAdminLink('AdminSellerInfoDetail').'&amp;updatemarketplace_seller_info&amp;id='.$tr['id_seller'];
+		$link = $link->getAdminLink('AdminSellerOrders').'&amp;submitFiltermarketplace_order_commision=1&amp;marketplace_order_commisionFilter_id_order='.$id_order;
+		
+		$html = '<span class="btn-group-action">
+	<span class="btn-group">
+		<a class="btn btn-default" href="'.$link.'">
+			<i class="icon-search-plus"></i> &nbsp;'.$id_order.'
+		</a>
+	</span>
+</span>';
+        return $html;
+
+	}
+
+
+	public function printShopIcons($shop_name, $tr)
+	{
+		
+		$link = new Link();
+		//$link = $link->getAdminLink('AdminSellerInfoDetail').'&amp;updatemarketplace_seller_info&amp;id='.$tr['id_seller'];
+		$link = $link->getAdminLink('AdminSellerInfoDetail').'&amp;submitFiltermarketplace_seller_info=1&amp;marketplace_seller_infoFilter_shop_name='.$shop_name;
+		
+		$html = '<span class="btn-group-action">
+	<span class="btn-group">
+		<a class="btn btn-default" href="'.$link.'">
+			<i class="icon-search-plus"></i> &nbsp;'.$shop_name.'
+		</a>
+	</span>
+</span>';
+        return $html;
+
 	}
 
 	public static function setOrderCurrency($echo, $tr)

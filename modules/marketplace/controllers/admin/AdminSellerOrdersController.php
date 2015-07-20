@@ -26,9 +26,18 @@ class AdminSellerOrdersController extends ModuleAdminController
 		
 
         $this->fields_list = array(
+		     'id' => array(
+                'title' => $this->l('View'),
+                'align' => 'text-center',
+				'callback' => 'printViewIcons',
+				'orderby' => false,
+				'search' => false,
+				'remove_onclick' => true
+            ),
             'id_order' => array(
                 'title' => $this->l('Id Order'),
                 'align' => 'text-center',
+				'havingFilter' => true,
 				'remove_onclick' => true
             ),
 			'date_add' => array(
@@ -137,13 +146,31 @@ class AdminSellerOrdersController extends ModuleAdminController
 		{
 			$_POST['submitFilter'] = '';
 			$_POST['submitFiltermarketplace_order_commision'] = 1;
+			if(Tools::getValue('marketplace_order_commisionFilter_sllr_c!id_customer')!='')
 			$_POST['marketplace_order_commisionFilter_sllr_c!id_customer'] = Tools::getValue('marketplace_order_commisionFilter_sllr_c!id_customer');
+			elseif(Tools::getValue('marketplace_order_commisionFilter_id_order')!='')
+			$_POST['marketplace_order_commisionFilter_id_order'] = Tools::getValue('marketplace_order_commisionFilter_id_order');
 		}
 		
         $this->identifier  = 'id';
         parent::__construct();
     }
 	
+	public function printViewIcons($id, $tr)
+	{
+		$link = new Link();
+		$link = $link->getAdminLink('AdminSellerOrders').'&amp;viewmarketplace_order_commision&amp;id='.$id;
+		
+		$html = '<span class="btn-group-action">
+	<span class="btn-group">
+		<a class="btn btn-default" href="'.$link.'">
+			<i class="icon-search-plus"></i> &nbsp;View
+		</a>
+	</span>
+</span>';
+        return $html;
+
+	}
 	public function printEditIcons($id_customer, $tr)
 	{
 		
