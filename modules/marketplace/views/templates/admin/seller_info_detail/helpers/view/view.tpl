@@ -47,7 +47,7 @@
 	<form class="form-horizontal">
 		<div class="row">	
 			<label class="col-lg-3 control-label required">{l s='Shop Name' mod='marketplace'}</label>	
-			<div class="col-lg-5"><input type="text" id="shop_name1" name="shop_name" value="{$market_place_seller_info['shop_name']|escape:'html':'UTF-8'}" disabled/></div>	
+			<div class="col-lg-5"><input type="text" id="shop_name1" name="shop_name" value="{$market_place_seller_info['shop_name']|escape:'html':'UTF-8'}" readonly="readonly"/></div>	
 		</div>	
 		<div class="row">
 			<label class="col-lg-3 control-label">{l s='Shop Description' mod='marketplace'}</label>
@@ -58,37 +58,37 @@
 		 
 		<div id="person_name" class="row" >
 			<label class="col-lg-3 control-label required">{l s=' Seller Name' mod='marketplace'}</label>
-			<div class="col-lg-5"><input class="reg_sel_input"  type="text" name="person_name" id="person_name1" value="{$seller_name|escape:'html':'UTF-8'}" disabled/></div>
+			<div class="col-lg-5"><input class="reg_sel_input"  type="text" name="person_name" id="person_name1" value="{$seller_name|escape:'html':'UTF-8'}" readonly="readonly"/></div>
 		</div> 
 		
 		<div class="row">
 			<label class="col-lg-3 control-label required">{l s='Phone' mod='marketplace'}</label>
-			<div class="col-lg-5"><input class="reg_sel_input" type="text" name="phone" id="phone1" maxlength="10" value="{$phone|escape:'html':'UTF-8'}" disabled/></div>
+			<div class="col-lg-5"><input class="reg_sel_input" type="text" name="phone" id="phone1" maxlength="10" value="{$phone|escape:'html':'UTF-8'}" readonly="readonly"/></div>
 		</div>	 
 				
 		<div class="row">
 			<label class="col-lg-3 control-label required">{l s='Fax' mod='marketplace'}</label>
-			<div class="col-lg-5"><input class="reg_sel_input" type="text" name="fax"  id="fax1" maxlength="10" value="{$fax|escape:'html':'UTF-8'}" disabled/></div>
+			<div class="col-lg-5"><input class="reg_sel_input" type="text" name="fax"  id="fax1" maxlength="10" value="{$fax|escape:'html':'UTF-8'}" readonly="readonly"/></div>
 		</div>
 		
 		<div class="row">	
 			<label class="col-lg-3 control-label">{l s='Business Email' mod='marketplace'}</label>
-			<div class="col-lg-5"><input class="reg_sel_input" type="text" name="business_email_id" id="business_email_id1"  value="{$business_email|escape:'html':'UTF-8'}" style="height:25px;" disabled/></div>
+			<div class="col-lg-5"><input class="reg_sel_input" type="text" name="business_email_id" id="business_email_id1"  value="{$business_email|escape:'html':'UTF-8'}" style="height:25px;" readonly="readonly"/></div>
 		</div>
 					
 		<div class="row">	
 			<label class="col-lg-3 control-label">{l s='Address' mod='marketplace'}</label>
-			<div class="col-lg-5"><input class="reg_sel_input" type="text" name="address" id="address" maxlength="10" value="{$address|escape:'html':'UTF-8'}" disabled/></div>
+			<div class="col-lg-5"><input class="reg_sel_input" type="text" name="address" id="address" maxlength="10" value="{$address|escape:'html':'UTF-8'}" readonly="readonly"/></div>
 		</div>
 		
 		<div id="facebook" class="row" >
 				<label class="col-lg-3 control-label">{l s='Facebook Id' mod='marketplace'}</label>
-				<div class="col-lg-5"><input class="reg_sel_input"  type="text" name="fb_id" id="fb_id1" value="{$facebook_id|escape:'html':'UTF-8'}" disabled/></div>
+				<div class="col-lg-5"><input class="reg_sel_input"  type="text" name="fb_id" id="fb_id1" value="{$facebook_id|escape:'html':'UTF-8'}" readonly="readonly"/></div>
 			</div>
 			
 		<div id="twitter" class="row" >
 				<label class="col-lg-3 control-label">{l s='Twitter Id' mod='marketplace'}</label>
-				<div class="col-lg-5"><input class="reg_sel_input"  type="text" name="tw_id" id="tw_id1" value="{$twitter_id|escape:'html':'UTF-8'}" disabled/></div>
+				<div class="col-lg-5"><input class="reg_sel_input"  type="text" name="tw_id" id="tw_id1" value="{$twitter_id|escape:'html':'UTF-8'}" readonly="readonly"/></div>
 		</div>	
 		
 		<div class="row">  
@@ -111,13 +111,13 @@
 			<div class="row">  
 				<label class="col-lg-3 control-label">{l s='Payment Mode' mod='marketplace'}</label>
 				<div class="col-lg-5" style="float:left;">
-					<input class="reg_sel_input"  type="text" name="" id="" value="{$payment_detail['payment_mode']|escape:'html':'UTF-8'}" disabled/>
+					<input class="reg_sel_input"  type="text" name="" id="" value="{$payment_detail['payment_mode']|escape:'html':'UTF-8'}" readonly="readonly"/>
 				</div>
 			</div>
 			<div class="row">  
 				<label class="col-lg-3 control-label">{l s='Payment Detail' mod='marketplace'}</label>
 				<div class="col-lg-5" style="float:left;">
-					<input class="reg_sel_input"  type="text" name="" id="" value="{$payment_detail['payment_detail']|escape:'html':'UTF-8'}" disabled/>
+					<input class="reg_sel_input"  type="text" name="" id="" value="{$payment_detail['payment_detail']|escape:'html':'UTF-8'}" readonly="readonly"/>
 					
 				</div>
 			</div>
