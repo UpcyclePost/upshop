@@ -95,7 +95,7 @@ a.fancybox-nav {
 #thumbs_list {
   overflow: hidden;
   float: left;
-  //width: 392px; }
+  padding-left: 25px; }
   @media (min-width: 992px) and (max-width: 1199px) {
     #thumbs_list {
       width: 294px; } }
