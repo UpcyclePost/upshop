@@ -484,9 +484,6 @@ function deleteProductFromSummary(id)
 							refreshOddRow();
 						});
 				}
-				//Let's try to change the quantity shown in the cart in the header
-				// TOFIX : there could be more than quantity 1
-				$('#header_cart_items').text(jsonData.summary.products.length);			
 
 				updateCartSummary(jsonData.summary);
 				if (window.ajaxCart != undefined)
@@ -498,6 +495,9 @@ function deleteProductFromSummary(id)
 					getCarrierListAndUpdate();
 				if (typeof(updatePaymentMethodsDisplay) !== 'undefined')
 					updatePaymentMethodsDisplay();
+				//Let's try to change the quantity shown in the cart in the header
+				// TOFIX : there could be more than quantity 1
+				$('#header_cart_items').text(jsonData.summary.products.length);			
 			}
 		},
 		error: function(XMLHttpRequest, textStatus, errorThrown) {
