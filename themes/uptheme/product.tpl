@@ -54,6 +54,7 @@
 				{$confirmation}
 			</p>
 		{/if}
+		<!-- {$product|@print_r} -->
 		<!-- left infos-->
 		<div class="post-details-body">
 			<div class="post-details-panel-header">
@@ -64,7 +65,7 @@
 			<div class="post-details-crumbs clearfix">
 				<ol class="breadcrumbs" style="width:100%;" >
 					<li class=""><a href="/shops">Shops</a></li>
-					<li class=""><a href="http{if Tools::usingSecureMode()}s{/if}://{$smarty.server.SERVER_NAME}/shop/{$product->id_category_default}-{$product->category}">{$product->category|@ucfirst}</a></li>
+					<li class=""><a href="http://{$smarty.server.SERVER_NAME}/gallery/{$product->category}">{$product->category|@ucfirst}</a></li>
 					<li class="attr-content" style="float:right;">
 							<span class='st_sharethis' style="float:right;"></span>
 							<span class='st_email' style="float:right;"></span>
@@ -266,10 +267,10 @@
 			{else}
 			<ul class="post-actions col-2 clearfix">
 			<li>
-			<a class="follow" data-url="http{if Tools::usingSecureMode()}s{/if}://{$smarty.server.SERVER_NAME}/profile/login">
-			<i class="fa fa-plus"></i>
-			Sign in to follow {$mkt_seller_info['shop_name']|escape:'html':'UTF-8'}
-			</a>
+				<a class="follow" data-url="http{if Tools::usingSecureMode()}s{/if}://{$smarty.server.SERVER_NAME}/profile/login">
+				<i class="fa fa-sign-in"></i>
+				Sign in to follow {$mkt_seller_info['shop_name']|escape:'html':'UTF-8'}
+				</a>
 			</li>
 			</ul>
 			{/if}
