@@ -10,7 +10,7 @@
 		    $this->context     = Context::getContext();			
 			
 			$this->_join .= 'LEFT JOIN `'._DB_PREFIX_.'marketplace_customer` mpc ON (mpc.`marketplace_seller_id` = a.`id`)';
-			$this->_select = 'mpc.`is_seller`,mpc.`id_customer`,a.id as view,a.id as products,mpc.id_customer as orders, a.shop_name as view_products';
+			$this->_select = 'mpc.`is_seller`,mpc.`id_customer`,a.id as view,a.id as products,a.business_email as orders, a.shop_name as view_products';
 			$hook_res = Hook::exec('displayAdminSellerInfoJoin', array('flase' => 1));
 			if($hook_res) 
 			{	
@@ -18,6 +18,8 @@
 				$hook_sel_res = Hook::exec('displayAdminSellerInfoSelect', array('flase' => 1));
 				$this->_select .= $hook_sel_res;
 			}
+			$this->_orderBy = 'a.id';
+		    $this->_orderWay = 'DESC';
 			
 			$this->fields_list = array();
 			$this->fields_list['view'] =array(
@@ -164,11 +166,11 @@
 
 	}
 	
-	public function printOrdersIcons($id_customer, $tr)
+	public function printOrdersIcons($orders, $tr)
 	{
 		
 		$link = new Link();
-		$link = $link->getAdminLink('AdminSellerOrders').'&amp;submitFiltermarketplace_order_commision=1&amp;marketplace_order_commisionFilter_sllr_c!id_customer='.$id_customer;
+		$link = $link->getAdminLink('AdminSellerOrders').'&amp;submitFiltermarketplace_order_commision=1&amp;marketplace_order_commisionFilter_seller_email='.$orders;
 		
 		$html = '<span class="btn-group-action">
 	<span class="btn-group">
