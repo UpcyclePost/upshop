@@ -267,7 +267,7 @@
 			{else}
 			<ul class="post-actions col-2 clearfix">
 			<li>
-				<a href="http{if Tools::usingSecureMode()}s{/if}://{$smarty.server.SERVER_NAME}/profile/login">
+				<a href="http{if Tools::usingSecureMode()}s{/if}://{$smarty.server.SERVER_NAME}/profile/login?back={$link->getProductLink($product)|escape:'html':'UTF-8'}">
 				<i class="fa fa-sign-in"></i>
 				Sign in to follow {$mkt_seller_info['shop_name']|escape:'html':'UTF-8'}
 				</a>
