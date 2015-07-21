@@ -19,6 +19,8 @@ class AdminSellerOrdersController extends ModuleAdminController
 		$this->_join .= 'LEFT JOIN `'._DB_PREFIX_.'orders` o ON (o.`id_order` = a.`id_order`) ';
 		$this->_join .= 'LEFT JOIN `'._DB_PREFIX_.'order_state` os ON (os.`id_order_state` = o.`current_state`)';
 		$this->_join .= 'LEFT JOIN `'._DB_PREFIX_.'order_state_lang` osl ON (os.`id_order_state` = osl.`id_order_state` AND osl.`id_lang` = '.(int)$this->context->language->id.')';
+		$this->_orderBy = 'a.id';
+		$this->_orderWay = 'DESC';
 		
 		$statuses = OrderState::getOrderStates((int)$this->context->language->id);
 		foreach ($statuses as $status)
@@ -146,8 +148,8 @@ class AdminSellerOrdersController extends ModuleAdminController
 		{
 			$_POST['submitFilter'] = '';
 			$_POST['submitFiltermarketplace_order_commision'] = 1;
-			if(Tools::getValue('marketplace_order_commisionFilter_sllr_c!id_customer')!='')
-			$_POST['marketplace_order_commisionFilter_sllr_c!id_customer'] = Tools::getValue('marketplace_order_commisionFilter_sllr_c!id_customer');
+			if(Tools::getValue('marketplace_order_commisionFilter_seller_email')!='')
+			$_POST['marketplace_order_commisionFilter_seller_email'] = Tools::getValue('marketplace_order_commisionFilter_seller_email');
 			elseif(Tools::getValue('marketplace_order_commisionFilter_id_order')!='')
 			$_POST['marketplace_order_commisionFilter_id_order'] = Tools::getValue('marketplace_order_commisionFilter_id_order');
 		}
