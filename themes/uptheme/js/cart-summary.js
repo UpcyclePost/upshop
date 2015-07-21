@@ -484,6 +484,10 @@ function deleteProductFromSummary(id)
 							refreshOddRow();
 						});
 				}
+				//Let's try to change the quantity shown in the cart in the header
+				// TOFIX : there could be more than quantity 1
+				$('#header_cart_items').text(jsonData.summary.products.length);			
+
 				updateCartSummary(jsonData.summary);
 				if (window.ajaxCart != undefined)
 					ajaxCart.updateCart(jsonData);
@@ -494,9 +498,6 @@ function deleteProductFromSummary(id)
 					getCarrierListAndUpdate();
 				if (typeof(updatePaymentMethodsDisplay) !== 'undefined')
 					updatePaymentMethodsDisplay();
-				//Let's try to change the quantity shown in the cart in the header
-				// TOFIX : there could be more than quantity 1
-				$('#header_cart_items').text(jsonData.summary.products.length);			
 			}
 		},
 		error: function(XMLHttpRequest, textStatus, errorThrown) {
@@ -946,7 +947,11 @@ function updateCartSummary(json)
 	else
 	{
 		if (json.carrier.id != null)
-			$('#total_shipping').html(freeShippingTranslation);
+			{
+				if (typeof(freeShippingTranslation) != 'undefined')
+				$('#total_shipping').html(freeShippingTranslation);
+			}
+			
 		else if (!hasDeliveryAddress)
 			$('.cart_total_delivery').hide();
 	}
