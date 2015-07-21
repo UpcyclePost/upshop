@@ -255,11 +255,10 @@
 			</div>
 			<div class="author-name"><span>Post By</span><a href="{$link_store|addslashes}">{$mkt_seller_info['shop_name']|escape:'html':'UTF-8'}</a></div>
 			</div>
-
 			{if $logged}
 			<ul class="post-actions col-2 clearfix">
 			<li>
-			<a style="height:36px;" class="follow" data-url="http{if Tools::usingSecureMode()}s{/if}://{$smarty.server.SERVER_NAME}/follow/user/{$seller_customer_id}">
+			<a class="follow" data-url="http{if Tools::usingSecureMode()}s{/if}://{$smarty.server.SERVER_NAME}/follow/user/{$seller_customer_id}">
 			<i class="fa fa-plus"></i>
 			Follow {$mkt_seller_info['shop_name']|escape:'html':'UTF-8'}</a>
 			</li>
