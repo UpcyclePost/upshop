@@ -34,6 +34,7 @@
 		{assign var='productPrice' value=$product->getPrice(false, $smarty.const.NULL, $priceDisplayPrecision)}
 		{assign var='productPriceWithoutReduction' value=$product->getPriceWithoutReduct(true, $smarty.const.NULL, $priceDisplayPrecision)}
 	{/if}
+
 <div itemscope itemtype="http://schema.org/Product">
 	<div class="primary_block row">
 		<section class="post-details-container">
@@ -265,9 +266,10 @@
 			{else}
 			<ul class="post-actions col-2 clearfix">
 			<li>
-			<a style="height:36px;" class="follow" data-url="http{if Tools::usingSecureMode()}s{/if}://{$smarty.server.SERVER_NAME}/profile/login">
+			<a class="follow" data-url="http{if Tools::usingSecureMode()}s{/if}://{$smarty.server.SERVER_NAME}/profile/login">
 			<i class="fa fa-plus"></i>
-			Log in to follow {$mkt_seller_info['shop_name']|escape:'html':'UTF-8'}</a>
+			Sign in to follow {$mkt_seller_info['shop_name']|escape:'html':'UTF-8'}
+			</a>
 			</li>
 			</ul>
 			{/if}
