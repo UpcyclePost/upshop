@@ -23,9 +23,9 @@
 			$this->_join .= 'LEFT JOIN `'._DB_PREFIX_.'marketplace_customer` mpc ON (mpc.`marketplace_seller_id` = a.`id_seller`)';
 			$this->_join .= 'LEFT JOIN `'._DB_PREFIX_.'marketplace_shop_product` msp ON (msp.`marketplace_seller_id_product` = a.`id`)';
 			$this->_join .= 'LEFT JOIN `'._DB_PREFIX_.'product` p ON (p.`id_product` = msp.`id_product`)';
-			//$this->_join .= 'LEFT JOIN `'._DB_PREFIX_.'product_carrier` pc ON (p.id_product=pc.id_product)';
-			//$this->_join .= 'LEFT JOIN `'._DB_PREFIX_.'order_detail` od ON (p.id_product=od.product_id)';
 			$this->_select = 'mpsin.`shop_name`,mpsin.`seller_name`,mpc.`id_customer`,msp.id_product plink,msp.id_product pp,p.price,a.id as view,p.`id_product` as orders, p.`id_product` as shipping';
+			$this->_orderBy = 'a.id';
+		    $this->_orderWay = 'DESC';
 			
 			$this->fields_list = array();
 			$this->fields_list['view'] = array(
