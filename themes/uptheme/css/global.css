@@ -369,7 +369,7 @@ h1, h2, h3, h4, h5, h6,
 h1,
 h2,
 h3 {
-  margin-top: 18px;
+  margin-top: 10px;
   margin-bottom: 9px; }
 
 h4,
@@ -6221,7 +6221,7 @@ table.table_block td {
 .box {
   background: #fbfbfb;
   border: 1px solid #d6d4d4;
-  padding: 14px 18px 13px;
+  padding: 10px 18px 10px;
   margin: 0 0 30px 0;
   line-height: 23px; }
   .box p {
@@ -6459,7 +6459,7 @@ table.table_block td {
   text-transform: none;
   color: #555454;
   font-size: 18px;
-  padding: 0 0 15px;
+  padding: 0 0 10px;
   line-height: normal;
   margin-bottom: 12px;
   border-bottom: 1px solid #d6d4d4; }
