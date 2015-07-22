@@ -80,14 +80,14 @@
 			<span>
 				{if $prev_product}
 				<a title="{$prev_product.name}" href="{$link->getProductLink($prev_product.id_product, $prev_product.link_rewrite)}">
-				<img src="http{if Tools::usingSecureMode()}s{/if}://{$smarty.server.SERVER_NAME}/img/left.png" style="float:left;position:relative; left: 10px; z-index:99" alt="Previous Post" class="no-print arrow-next">
+				<img src="http{if Tools::usingSecureMode()}s{/if}://{$smarty.server.SERVER_NAME}/img/left_sm.png" style="float:left;position:relative; left: 10px; z-index:99" alt="Previous Post" class="no-print arrow-next">
 				</a>
 				{/if}
 			</span>
 			<span>
 				{if $next_product}
 				<a title="{$next_product.name}" href="{$link->getProductLink($next_product.id_product, $next_product.link_rewrite)}">
-				<img src="http{if Tools::usingSecureMode()}s{/if}://{$smarty.server.SERVER_NAME}/img/right.png" style="float:right;position:relative; right: 10px; z-index:99" alt="Next Post" class="no-print arrow-next">
+				<img src="http{if Tools::usingSecureMode()}s{/if}://{$smarty.server.SERVER_NAME}/img/right_sm.png" style="float:right;position:relative; right: 10px; z-index:99" alt="Next Post" class="no-print arrow-next">
 				</a>
 			{/if}
 			</span>
@@ -247,8 +247,7 @@
 		<!-- end post details-->
 		</div>
 		<!-- pb-right-column-->
-		<aside class="post-sidebar">
-		<!--<aside class="post-sidebar" data-spy="affix" data-offset-top="25">-->
+		<aside class="post-sidebar" data-spy="affix" data-offset-top="25">
 		<div class="">
 			<div class="post-author clearfix">
 			<div class="avatar">

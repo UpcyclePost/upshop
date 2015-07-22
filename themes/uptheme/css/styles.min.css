@@ -1797,8 +1797,8 @@ a:focus {
 }
 @media(max-width:525px) {
 .arrow-next {
-    width:33px;
-    height:83px;
+    width:18px;
+    height:68px;
     }
 }
 
@@ -1869,6 +1869,12 @@ a:focus {
     display: inline-block;
     top:60px;
 }
+@media(max-width:824px) {
+    .affix {
+        position: static;}
+}
+
+
 @media(max-width:824px) {
     .post-sidebar {
         width: 100%}
