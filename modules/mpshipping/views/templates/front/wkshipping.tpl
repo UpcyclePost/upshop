@@ -125,7 +125,7 @@
 				<div class="col-sm-12">
 					<div class="row">
 						<div class="col-sm-3">
-							<h2 class=" pro_head_text">{l s='Shipping Cost' mod='mpshipping'}</h2>
+							<p class=" pro_head_text">{l s='Shipping Cost' mod='mpshipping'}</p>		
 						</div>
 						<div class="col-sm-9">
 							<p >{l s='Specify the shipping costs that you would like added to an order. If you have any handling charges include those as part of your shipping cost. If you would like to offer free shipping set the cost to 0.' mod='mpshipping'}</p>
@@ -134,6 +134,7 @@
 					<div class="row margin-top-30">
 						<div class="col-sm-3">
 							<p class="pro_sub_text">{l s='Shipping cost' mod='mpshipping'}</p>
+							<p class="">{l s='Numbers and decimal point only (e.g. 1234.56)' mod='mpshipping'}</p>
 						</div>
 						<div class="col-sm-9">
 							<div class="ship_cost_cont">
@@ -148,7 +149,7 @@
 											<td>
 												<div class="input-group input-group-sm">
 													<span class="input-group-addon" id="sizing-addon1">{$currency_details['sign']}</span>
-													<input type="text" class="form-control ship_cost" name="n_america_ship" id="n_america_ship" {if isset($mp_shipping_id)}value="{$price_by_range[$ranges['0']['id_range']]['2']|number_format:2}"{/if} aria-describedby="sizing-addon1"  onblur="javascript:this.value=Number(this.value).toFixed(2)">
+													<input type="text" class="form-control ship_cost" name="n_america_ship" id="n_america_ship" {if isset($mp_shipping_id)}value="{$price_by_range[$ranges['0']['id_range']]['2']|number_format:2:'.':''}"{/if} aria-describedby="sizing-addon1"  onblur="javascript:this.value=Number(this.value).toFixed(2)">
 												</div>
 											</td>
 										</tr>

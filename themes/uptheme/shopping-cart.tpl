@@ -25,11 +25,11 @@
 
 {capture name=path}{l s='Your shopping cart'}{/capture}
 <!-- open the shopping cart login panel -->
-<div class="login-panel">
+<div class="login-panel" id="login-panel-summary">
 	<div class="login-panel-header">
-	<h1 id="cart_title" class="">{l s='Shopping-cart summary'}
+	<h1 id="cart_title" class="">{l s='Shopping cart summary'}
 		{if !isset($empty) && !$PS_CATALOG_MODE}
-			<span class="heading-counter pull-right">{l s='Your shopping cart contains:'}
+			<span class="heading-counter pull-right">{l s='Your shopping cart contains :'}
 				<span id="summary_products_quantity">{$productNumber} {if $productNumber == 1}{l s='product'}{else}{l s='products'}{/if}</span>
 			</span>
 		{/if}
@@ -47,10 +47,25 @@
 
 {if isset($empty)}
 	<p class="alert alert-warning">{l s='Your shopping cart is empty.'}</p>
+		<a href="{$link->getPageLink('index')}" class="button button-medium btn btn-default" title="{l s='Continue shopping'}">
+			<i class="icon-chevron-left"></i>&nbsp;{l s='Continue shopping'}
+		</a>
+
 {elseif $PS_CATALOG_MODE}
 	<p class="alert alert-warning">{l s='This store has not accepted your new order.'}</p>
+		<a href="{$link->getPageLink('index')}" class="button button-medium btn btn-default" title="{l s='Continue shopping'}">
+			<i class="icon-chevron-left"></i>&nbsp;{l s='Continue shopping'}
+		</a>
+
 {else}
-	<p id="emptyCartWarning" class="alert alert-warning unvisible">{l s='Your shopping cart is empty.'}</p>
+	<div id="emptyCartWarning" class="unvisible" style="padding: 10px 0px 20px 30px">
+	<p class="alert">{l s='Your shopping cart is empty.'}</p>
+        <a href="{$link->getPageLink('index')}" class="button button-medium btn btn-default" title="{l s='Continue shopping'}">
+                <i class="icon-chevron-left"></i>&nbsp;{l s='Continue shopping'}
+        </a>
+	</div>
+
+	
 	{if isset($lastProductAdded) AND $lastProductAdded}
 		<div class="cart_last_product">
 			<div class="cart_last_product_header">
@@ -81,7 +96,7 @@
 	{* eu-legal *}
 	{hook h="displayBeforeShoppingCartBlock"}
 	<div id="order-detail-content" class="table_block table-responsive" style="padding:15px">
-		<table id="cart_summary" class="table table-bordered {if $PS_STOCK_MANAGEMENT}stock-management-on{else}stock-management-off{/if}">
+		<table id="cart_summary" class="table table-bordered {if $PS_STOCK_MANAGEMENT}stock-management-on{else}stock-management-off{/if}" style="margin-bottom:0;">
 			<thead>
 				<tr>
 					<th class="cart_product first_item">{l s='Product'}</th>
@@ -563,15 +578,12 @@
 		</div>
 	{/if}
 	<div id="HOOK_SHOPPING_CART">{$HOOK_SHOPPING_CART}</div>
-	<p class="clearfix" style="padding:0 0 25px 15px">
+	<p class="clearfix" style="padding:0 0 0 15px">
 		{if !$opc}
 			<a  href="{if $back}{$link->getPageLink('order', true, NULL, 'step=1&amp;back={$back}')|escape:'html':'UTF-8'}{else}{$link->getPageLink('order', true, NULL, 'step=1')|escape:'html':'UTF-8'}{/if}" class="button btn btn-default standard-checkout button-medium" title="{l s='Proceed to checkout'}">
 				<span>{l s='Proceed to checkout'}<i class="icon-chevron-right right"></i></span>
 			</a>
 		{/if}
-		<a href="{$link->getPageLink('index')}" class="button button-medium btn btn-default" title="{l s='Continue shopping'}">
-			<i class="icon-chevron-left"></i>&nbsp;{l s='Continue shopping'}
-		</a>
 	</p>
 	{if !empty($HOOK_SHOPPING_CART_EXTRA)}
 		<div class="clear"></div>
