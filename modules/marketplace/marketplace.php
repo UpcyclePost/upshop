@@ -622,6 +622,13 @@ class MarketPlace extends Module
             $link_profile       = $link->getModuleLink('marketplace', 'sellerprofile',$param);
             $link_ask_que       = $link->getModuleLink('marketplace', 'shopaskque',$param);
 
+            // we know the customers id is the last few characters of link store
+            // e.g. http://www.upcyclepost.com/shops/nnn
+            // we need the nnn part as it is the customerid (stored in the website field of up_customer table)
+            $seller_customer_id = substr($link_store,strrpos($link_store,'/')+1,strlen($link_store));
+            
+            $this->context->smarty->assign("seller_customer_id", $seller_customer_id);            
+            
             if (isset($this->context->cookie->id_customer))
             {
                 $id_customer = $this->context->cookie->id_customer;

@@ -86,6 +86,10 @@
 		<link href="{$css_dir}upcyclepost/libraries/mobile-slide-menu/jquery.mmenu.positioning.css" rel="stylesheet">
 
 		<script type="text/javascript" src="http{if Tools::usingSecureMode()}s{/if}://{$smarty.server.SERVER_NAME}/js/libraries/tagmanager/tagmanager.js"></script>
+		
+		{if $page_name=='product'}
+		<script type="text/javascript" src="http{if Tools::usingSecureMode()}s{/if}://{$smarty.server.SERVER_NAME}/js/social/follow.js"></script>			
+		{/if}
 		<!--[if IE 8]>
 		<script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
 		<script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
@@ -189,7 +193,7 @@ window._fbq.push(['track', '6025947566399',
 										</div>
 										<div class="col-sm-6" style="margin-top: 15px;">
 											<ul>
-												<a href="/search/users"><li><i class="fa fa-users"></i> Visit Profile Gallery</a>
+												<li><a href="/search/users"><i class="fa fa-users"></i> Visit Profile Gallery</a></li>
 											</ul>
 										</div>
 									</div>

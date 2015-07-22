@@ -31,7 +31,8 @@
 
 {if $PS_CATALOG_MODE}
 	{capture name=path}{l s='Your shopping cart'}{/capture}
-	<h2 id="cart_title">{l s='Your shopping cart'}</h2>
+	<h1 id="cart_title">{l s='Your shopping cart'}</h1>
+	</div>
 	<p class="alert alert-warning">{l s='Your new order was not accepted.'}</p>
 {else}
 	{if $productNumber}
@@ -48,17 +49,28 @@
 		<!-- Carrier -->
 		{include file="$tpl_dir./order-carrier.tpl"}
 		<!-- END Carrier -->
-	
-	
+
 		<!-- Payment -->
 		{include file="$tpl_dir./order-payment.tpl"}
 		<!-- END Payment -->
 	{else}
-		{capture name=path}{l s='Your shopping cart'}{/capture}
-		<h2 class="page-heading">{l s='Your shopping cart'}</h2>
+		<div class="login-panel" id="login-panel-summary">
+			<div class="login-panel-header">
+			<h1 id="cart_title" class="">{l s='Your shopping cart'}</h1>
+			</h1>
+			</div>
 		{include file="$tpl_dir./errors.tpl"}
-		<p class="alert alert-warning">{l s='Your shopping cart is empty.'}</p>
+			<div style="padding: 10px 0px 20px 30px">
+			<p class="alert">{l s='Your shopping cart is empty.'}</p>
+	        <a href="{$link->getPageLink('index')}" class="button button-medium btn btn-default" title="{l s='Continue shopping'}">
+	                <i class="icon-chevron-left"></i>&nbsp;{l s='Continue shopping'}
+	        </a>
+			</div>
+		</div>
 	{/if}
+	</div>
+</div>
+
 {strip}
 {addJsDef imgDir=$img_dir}
 {addJsDef authenticationUrl=$link->getPageLink("authentication", true)|escape:'quotes':'UTF-8'}
