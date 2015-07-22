@@ -54,7 +54,6 @@
 				{$confirmation}
 			</p>
 		{/if}
-		<!-- {$product|@print_r} -->
 		<!-- left infos-->
 		<div class="post-details-body">
 			<div class="post-details-panel-header">
@@ -248,7 +247,7 @@
 		<!-- end post details-->
 		</div>
 		<!-- pb-right-column-->
-		<aside class="post-sidebar">
+		<aside class="post-sidebar" data-spy="affix" data-offset-top="20">
 		<div class="">
 			<div class="post-author clearfix">
 			<div class="avatar">
