@@ -182,7 +182,7 @@ $(document).ready(function() {
 							<label for="product_image" style="display:block">{l s='Upload Image :' mod='marketplace'}</label>
 							<input type="file" id="product_image" name="product_image" value="" class="account_input form-control" size="chars"  />
 							<img style="display:none;" id="testImg" src="#" alt="" height="40px" width="40px" />
-							<p class="help-block">{l s='Valid image extensions are jpg, jpeg, and png.' mod='marketplace'}</p>
+							<p class="help-block">{l s='Images should be less than 2MB and ideally less than 1000px. Valid image extensions are jpg, jpeg, and png.' mod='marketplace'}</p>
 						</div>
 
 						<div class="form-group">
@@ -199,6 +199,7 @@ $(document).ready(function() {
 					<button type="submit" id="SubmitProduct" class="btn btn-default button button-medium">
 						<span>{l s='Add Product' mod='marketplace'}</span>
 					</button>
+	                <span id="loadin_msg" style="display:none;margin-left:15px;margin-top:30px;font-size: 15px;color: orangered;position: absolute;">{l s='Please wait while we add your product...' mod='marketplace'}</span>
 				</div>
 			</div>
 		</form>
@@ -274,6 +275,12 @@ $(document).ready(function() {
 	        reader.readAsDataURL(input.files[0]);
 	    }
 	}
+	
+    $('#create-account').submit(function (e){
+		$('#SubmitCreate').attr('disabled','disabled');
+		$('#loadin_msg').show();	
+	});
+
 
 	$('#testImg').on('load',function(){
 		$('#testImg').css('display', 'inline-block');

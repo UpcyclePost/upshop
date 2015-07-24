@@ -419,6 +419,12 @@
 				<div class="page-title login-panel-header">
 					<h1>{l s='Product List' mod='marketplace'}</h1>
 				</div>
+				{if $product_lists|@count < 3}
+				<div class="page-title login-panel-header">
+					<p>{l s='Your shop will appear in the Shop Gallery after you have loaded at least three products.
+' mod='marketplace'}</p>
+				</div>
+				{/if}
 				<div class="wk_right_col">
 					<!-- sorting code start -->
 					{if $product_lists!=0}
@@ -473,6 +479,7 @@
 									<th>{l s='Quantity' mod='marketplace'}</th>
 									<th>{l s='Shipping' mod='marketplace'}</th>
 									<th>{l s='Status' mod='marketplace'}</th>
+									<th>{l s='Views' mod='marketplace'}</th>
 									<th>{l s='Delete' mod='marketplace'}</th>
 								</tr>
 							</thead>
@@ -527,6 +534,9 @@
 											{l s='Approved' mod='marketplace'}
 										</td>
 									{/if}
+									<td>
+									{ProductController::getTotalViewed($product['id_product'])}
+									</td>
 									<td>
 										<img id="{$product['id']|escape:'html':'UTF-8'}" class="delete_img" src="{$img_ps_dir|escape:'html':'UTF-8'}admin/delete.gif"/>
 										{hook h="PriceDisplay" id_product=$product['id']|escape:'html':'UTF-8'}

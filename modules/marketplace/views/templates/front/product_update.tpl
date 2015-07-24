@@ -183,11 +183,11 @@ div.uploader
 					{hook h="DisplayMpupdateproductfooterhook"}
                     <div class="form-group">
                             <label for="upload_image" style="display:block">
-                                    {l s='Upload Image :' mod='marketplace'}
+                                    {l s='Upload Image : ' mod='marketplace'}
                             </label>
                             <input type="file" id="product_image" name="product_image" value="" class="account_input form-control" size="chars" />
                             <img style="display:none;" id="testImg" src="#" alt="" height="40px" width="40px" />
-                            <p class="img_validate">{l s='Valid image extensions are jpg, jpeg, and png.' mod='marketplace'}</p>
+                            <p class="img_validate">{l s='Images should be less than 2MB and ideally less than 1000px. Valid image extensions are jpg, jpeg, and png.' mod='marketplace'}</p>
                     </div>
 					<div class="form-group">
 						<a onclick="showOtherImage(); return false;" class="btn btn-default button button-small">
@@ -281,6 +281,7 @@ div.uploader
 				<button type="submit" id="SubmitCreate" class="btn btn-default button button-medium">
 					<span>{l s='Update' mod='marketplace'}</span>
 				</button>
+                <span id="loadin_msg" style="display:none;margin-left:15px;margin-top: 12px;font-size: 15px;color: orangered;position: absolute;">{l s='Please wait while we update your product...' mod='marketplace'}</span>				
 			</div>
 		</div>
 	</form>
@@ -371,6 +372,12 @@ div.uploader
 	        reader.readAsDataURL(input.files[0]);
 	    }
 	}
+
+    $('#updateproduct').submit(function (e){
+		$('#SubmitCreate').attr('disabled','disabled');
+		$('#loadin_msg').show();	
+	});
+
 
 	$('#testImg').on('load',function(){
 		$('#testImg').css('display', 'inline-block');
