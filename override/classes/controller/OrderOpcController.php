@@ -32,7 +32,14 @@ class OrderOpcController extends OrderOpcControllerCore
         parent::init();
         if (!$this->context->customer->isLogged())
         {
-            Tools::redirect('index.php?controller=authentication?back=order-opc');
+		$back = 'order-opc';
+
+		$redirectURL = sprintf('http://'.$_SERVER['HTTP_HOST'].'/profile/login?back=%s',$back);
+
+		header('Location:'.$redirectURL);	
+		
+		die();
+
         }
     }
 
