@@ -9,8 +9,11 @@
 			$this->lang        = false;
 		    $this->context     = Context::getContext();			
 			
+			$this->_select = 'mpc.`is_seller`,mpc.`id_customer`,a.id as view,count(msp.id_seller) as products,a.business_email as orders, a.shop_name as view_products';
 			$this->_join .= 'LEFT JOIN `'._DB_PREFIX_.'marketplace_customer` mpc ON (mpc.`marketplace_seller_id` = a.`id`)';
-			$this->_select = 'mpc.`is_seller`,mpc.`id_customer`,a.id as view,a.id as products,a.business_email as orders, a.shop_name as view_products';
+			$this->_join .= 'LEFT JOIN `'._DB_PREFIX_.'marketplace_seller_product` msp ON (msp.`id_seller`=a.`id`)';
+			
+			$this->_group .= 'GROUP BY a.`id`';
 			$hook_res = Hook::exec('displayAdminSellerInfoJoin', array('flase' => 1));
 			if($hook_res) 
 			{	
@@ -91,7 +94,8 @@
 			$this->fields_list['products'] = array(
 				'title' => $this->l('No of Products'),
 				'align' => 'center',
-				'callback' => 'no_of_products',
+				'havingFilter' => true,
+				'filterKey' => 'count(msp.id_seller)',
 				'remove_onclick' => true
 			);
 
@@ -139,14 +143,8 @@
 		}
 			parent::__construct();
 			
+			
 		}
-	
-	public function no_of_products($products, $tr)
-	{
-		
-        return Db::getInstance()->getValue("SELECT count(a.id) FROM `"._DB_PREFIX_."marketplace_seller_product` a,`"._DB_PREFIX_."marketplace_shop_product` b,`"._DB_PREFIX_."stock_available` c where c.quantity>0 && c.id_product=b.id_product && a.id=b.marketplace_seller_id_product && a.id_seller=".$products,false);
-
-	}
 	
 	public function printProductsIcons($products, $tr)
 	{
