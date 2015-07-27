@@ -6,7 +6,6 @@
   font-size: 12px;
   font-style: italic;
   text-align: left;
-  width: 500px;
 }
 .tm-tag {
   color: #fff;
@@ -35,7 +34,7 @@
 	<span>
     <input type="text" id="tags" name="tags" value="" placeholder="Type a tag and press enter or tab key..." class="account_input form-control tm-input" />
   </span>
-  <p class="tag_validate">Tags separated by commas (e.g. steampunk, boho, shabby chic, trashion, vintage, metal, wood)</p>
+  <p class="tag_validate">Type a tag then hit the tab or enter key. (Tag Examples : steampunk, boho, shabby chic, trashion, vintage, metal, wood)</p>
 </div>
 <div class="tags-container">
 
