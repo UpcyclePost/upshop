@@ -101,10 +101,14 @@ class OrderHistoryCore extends ObjectModel
 		    include_once($_SERVER['DOCUMENT_ROOT']._MODULE_DIR_.'stripepro/lib/Stripe.php');
 			\Stripe\Stripe::setApiKey(Configuration::get('STRIPE_MODE') ? Configuration::get('STRIPE_PRIVATE_KEY_LIVE') : Configuration::get('STRIPE_PRIVATE_KEY_TEST'));
 			$charge = \Stripe\Charge::retrieve($id_transaction);
+			if($charge->refunded)
+			 $this->_errors[] = 'This charge has been expired.';
+			else{
 			$result_json = $charge->capture();
 		    if($result_json->captured==true)
-		   Db::getInstance()->Execute('UPDATE `'. _DB_PREFIX_ .'stripepro_transaction` SET `status` = \'paid\' WHERE `id_transaction` = \''. pSQL($id_transaction).'\'');
-		   }
+		     Db::getInstance()->Execute('UPDATE `'. _DB_PREFIX_ .'stripepro_transaction` SET `status` = \'paid\' WHERE `id_transaction` = \''. pSQL($id_transaction).'\'');
+			}
+		}
 	     }elseif($new_order_state==7){
 				 
 			$original_transaction = Db::getInstance()->getRow('select * from `'._DB_PREFIX_.'stripepro_transaction` where status = "paid" && id_order='.(int)$order->id);
