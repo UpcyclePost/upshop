@@ -122,8 +122,9 @@ $(document).ready(function()
 	});
 
 	//Seller registration form validation
-	$('#seller_save').click(function()
+	$('#createaccountform').submit(function(e)
 	{
+		e.stopPropagation();
 		var shop_name = $('#shop_name1').val().trim();
 		var person_name = $('#person_name1').val().trim();
 		var phone = $('#phone1').val().trim();
@@ -186,6 +187,10 @@ $(document).ready(function()
 			alert(inv_email);
 			$('#business_email_id1').focus();
 			return false;
+		}
+		else 
+		{
+			return true;
 		}
 	});
 
