@@ -127,10 +127,10 @@ $(document).ready(function()
 		var shop_name = $('#shop_name1').val().trim();
 		var person_name = $('#person_name1').val().trim();
 		var phone = $('#phone1').val().trim();
-		var fax = $('#fax1').val().trim();
+		//var fax = $('#fax1').val().trim();
 		var business_email = $('#business_email_id1').val().trim();
-		var fb_id = $('#fb_id1').val().trim();
-		var tw_id = $('#tw_id1').val().trim();
+		//var fb_id = $('#fb_id1').val().trim();
+		//var tw_id = $('#tw_id1').val().trim();
 		var reg = /^([a-zA-Z0-9_.-])+@([a-zA-Z0-9_.-])+\.([a-zA-Z])+([a-zA-Z])+/;
 		var special_char = /^[^<>;=#{}]*$/;
 		if(shop_name == '')
@@ -196,9 +196,9 @@ $(document).ready(function()
 		var update_shop_name = $('#update_shop_name').val().trim();
 		var update_business_email = $('#update_business_email').val().trim();
 		var update_phone = $('#update_phone').val().trim();
-		var update_fax = $('#update_fax').val().trim();
-		var update_facbook_id = $('#update_facbook_id').val().trim();
-		var update_twitter_id = $('#update_twitter_id').val().trim();
+		//var update_fax = $('#update_fax').val().trim();
+		//var update_facbook_id = $('#update_facbook_id').val().trim();
+		//var update_twitter_id = $('#update_twitter_id').val().trim();
 		var reg = /^([a-zA-Z0-9_.-])+@([a-zA-Z0-9_.-])+\.([a-zA-Z])+([a-zA-Z])+/;
 		var special_char = /^[^<>;=#{}]*$/;
 		if(update_seller_name == '')
