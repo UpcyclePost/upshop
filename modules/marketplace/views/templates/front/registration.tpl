@@ -200,8 +200,6 @@ var req_phone = '{l s='Phone is required.' js=1 mod='marketplace'}';
 var inv_phone = '{l s='Invalid phone number.' js=1 mod='marketplace'}'; 
 
 function show_load_msg(){
-					$('#update_profile').attr('disabled','disabled');
-					$('#loadin_msg').show();
 					
 					}
 </script>

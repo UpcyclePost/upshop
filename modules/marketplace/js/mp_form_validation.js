@@ -121,10 +121,21 @@ $(document).ready(function()
 			}
 	});
 
+	function disablecontinue(){
+		$('#update_profile').attr('disabled','disabled');
+		$('#loadin_msg').show();	
+	};
+
+	function enablecontinue(){
+		$('#update_profile').attr('enabled','enabled');
+		$('#loadin_msg').hide();	
+	};
+
 	//Seller registration form validation
-	$('#createaccountform').submit(function(e)
+	$('#seller_save').click(function(e)
 	{
 		e.stopPropagation();
+		disablecontinue();
 		var shop_name = $('#shop_name1').val().trim();
 		var person_name = $('#person_name1').val().trim();
 		var phone = $('#phone1').val().trim();
@@ -138,59 +149,68 @@ $(document).ready(function()
 		{
 			alert(req_shop_name);
 			$('#shop_name1').focus();
+			enablecontinue();
 			return false;
 		}
 		else if(!isNaN(shop_name) || !special_char.test(shop_name))
 		{
 			alert(inv_shop_name);
 			$('#shop_name1').focus();
+			enablecontinue();
 			return false;
 		}
 		else if(person_name == '')
 		{
 			alert(req_seller_name);
 			$('#person_name1').focus();
+			enablecontinue();
 			return false;
 		}
 		else if(!isNaN(person_name) || !special_char.test(person_name))
 		{
 			alert(inv_seller_name);
 			$('#person_name1').focus();
+			enablecontinue();
 			return false;
 		}
 		else if(phone == '')
 		{
 			alert(req_phone);
 			$('#phone1').focus();
+			enablecontinue();
 			return false;
 		}
 		else if(isNaN(phone))
 		{
 			alert(inv_phone);
 			$('#phone1').focus();
+			enablecontinue();
 			return false;
 		}
 		else if(phone.length != phone_digit)
 		{
 			alert(inv_phone);
 			$('#update_phone').focus();
+			enablecontinue();
 			return false;
 		}
 		else if(business_email == '')
 		{
 			alert(req_email);
 			$('#business_email_id1').focus();
+			enablecontinue();
 			return false;
 		}
 		else if(!reg.test(business_email))
 		{
 			alert(inv_email);
 			$('#business_email_id1').focus();
+			enablecontinue();
 			return false;
 		}
 		else 
 		{
-			return true;
+			$('#createaccountform').submit();
 		}
 	});
 
