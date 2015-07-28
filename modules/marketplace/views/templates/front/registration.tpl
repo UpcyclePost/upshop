@@ -189,6 +189,7 @@
 {/if}
 
 <script type="text/javascript">
+var phone_digit = '{$phone_digit|escape:'html':'UTF-8'}';
 var req_seller_name = '{l s='Seller name is required.' js=1 mod='marketplace'}';
 var inv_seller_name = '{l s='Invalid Seller name.' js=1 mod='marketplace'}';
 var req_shop_name = '{l s='Shop name is required.' js=1 mod='marketplace'}';
