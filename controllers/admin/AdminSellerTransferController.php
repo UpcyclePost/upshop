@@ -117,7 +117,7 @@ class AdminSellerTransferControllerCore extends AdminController
 			  `'._DB_PREFIX_.'marketplace_customer` b where a.`customer_id`=b.`id_customer` && b.`marketplace_seller_id`='.$seller_id);
 			  $shop_name =  Db::getInstance()->getValue('select `shop_name` from `'._DB_PREFIX_.'marketplace_seller_info` where `id`='.$seller_id);
 			}
-			$sellers =  Db::getInstance()->executeS('select * from `'._DB_PREFIX_.'marketplace_seller_info` order by id desc');
+			$sellers =  Db::getInstance()->executeS('select * from `'._DB_PREFIX_.'marketplace_seller_info` order by `shop_name` asc');
 		
 			$currency ='USD';
 			$orderIDs = array();
