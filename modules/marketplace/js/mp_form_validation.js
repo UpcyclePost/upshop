@@ -121,71 +121,96 @@ $(document).ready(function()
 			}
 	});
 
+	function disablecontinue(){
+		$('#update_profile').attr('disabled','disabled');
+		$('#loadin_msg').show();	
+	};
+
+	function enablecontinue(){
+		$('#update_profile').attr('enabled','enabled');
+		$('#loadin_msg').hide();	
+	};
+
 	//Seller registration form validation
-	$('#seller_save').click(function()
+	$('#seller_save').click(function(e)
 	{
+		e.stopPropagation();
+		disablecontinue();
 		var shop_name = $('#shop_name1').val().trim();
 		var person_name = $('#person_name1').val().trim();
 		var phone = $('#phone1').val().trim();
-		var fax = $('#fax1').val().trim();
+		//var fax = $('#fax1').val().trim();
 		var business_email = $('#business_email_id1').val().trim();
-		var fb_id = $('#fb_id1').val().trim();
-		var tw_id = $('#tw_id1').val().trim();
+		//var fb_id = $('#fb_id1').val().trim();
+		//var tw_id = $('#tw_id1').val().trim();
 		var reg = /^([a-zA-Z0-9_.-])+@([a-zA-Z0-9_.-])+\.([a-zA-Z])+([a-zA-Z])+/;
 		var special_char = /^[^<>;=#{}]*$/;
 		if(shop_name == '')
 		{
 			alert(req_shop_name);
 			$('#shop_name1').focus();
+			enablecontinue();
 			return false;
 		}
 		else if(!isNaN(shop_name) || !special_char.test(shop_name))
 		{
 			alert(inv_shop_name);
 			$('#shop_name1').focus();
+			enablecontinue();
 			return false;
 		}
 		else if(person_name == '')
 		{
 			alert(req_seller_name);
 			$('#person_name1').focus();
+			enablecontinue();
 			return false;
 		}
 		else if(!isNaN(person_name) || !special_char.test(person_name))
 		{
 			alert(inv_seller_name);
 			$('#person_name1').focus();
+			enablecontinue();
 			return false;
 		}
 		else if(phone == '')
 		{
 			alert(req_phone);
 			$('#phone1').focus();
+			enablecontinue();
 			return false;
 		}
 		else if(isNaN(phone))
 		{
 			alert(inv_phone);
 			$('#phone1').focus();
+			enablecontinue();
 			return false;
 		}
 		else if(phone.length != phone_digit)
 		{
 			alert(inv_phone);
 			$('#update_phone').focus();
+			enablecontinue();
 			return false;
 		}
 		else if(business_email == '')
 		{
 			alert(req_email);
 			$('#business_email_id1').focus();
+			enablecontinue();
 			return false;
 		}
 		else if(!reg.test(business_email))
 		{
 			alert(inv_email);
 			$('#business_email_id1').focus();
+			enablecontinue();
 			return false;
+		}
+		else 
+		{
+			$('#createaccountform').submit();
 		}
 	});
 
@@ -196,9 +221,9 @@ $(document).ready(function()
 		var update_shop_name = $('#update_shop_name').val().trim();
 		var update_business_email = $('#update_business_email').val().trim();
 		var update_phone = $('#update_phone').val().trim();
-		var update_fax = $('#update_fax').val().trim();
-		var update_facbook_id = $('#update_facbook_id').val().trim();
-		var update_twitter_id = $('#update_twitter_id').val().trim();
+		//var update_fax = $('#update_fax').val().trim();
+		//var update_facbook_id = $('#update_facbook_id').val().trim();
+		//var update_twitter_id = $('#update_twitter_id').val().trim();
 		var reg = /^([a-zA-Z0-9_.-])+@([a-zA-Z0-9_.-])+\.([a-zA-Z])+([a-zA-Z])+/;
 		var special_char = /^[^<>;=#{}]*$/;
 		if(update_seller_name == '')
