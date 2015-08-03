@@ -442,7 +442,10 @@ class SellerProductDetail extends ObjectModel
 		 return $country['name'];
        }
 	
-	public function deleteMarketPlaceSellerProduct($id) {
+	public function deleteMarketPlaceSellerProduct($id) 
+	{
+		Db::getInstance()->delete('marketplace_shop_product','marketplace_seller_id_product='.$id);
+		
 		$is_delete = Db::getInstance()->Execute("DELETE from`"._DB_PREFIX_."marketplace_seller_product` where id=".$id);
 		
 		if($is_delete) {

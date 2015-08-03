@@ -90,13 +90,13 @@ class AdminSellerTransferControllerCore extends AdminController
 				 LEFT JOIN `'._DB_PREFIX_.'order_state_lang` b ON (b.`id_order_state`=a.`current_state` && b.`id_lang`=1)
 				 LEFT JOIN `'._DB_PREFIX_.'customer` c ON (c.`id_customer`=a.`id_customer`)
 				 LEFT JOIN `'._DB_PREFIX_.'marketplace_order_commision` o ON (o.`id_order`=a.`id_order`)
-				 where a.`current_state` IN (2,4) && a.`id_order`='.Tools::getValue('id_order').' group by a.`id_order`');
+				 where a.`current_state` IN (2,4) && a.`id_order`='.Tools::getValue('id_order').' group by a.`id_order` order by a.`id_order` desc');
 				elseif(Tools::getValue('reference')!='')
 				 $orders = Db::getInstance()->executeS('select a.*, b.name as status,CONCAT(c.`firstname`," ",c.`lastname`) as customer,((a.total_products+o.shipping_amt)-(o.admin_commission-o.shipping_amt)) as due,o.shipping_amt,(o.admin_commission-o.shipping_amt) as commission from `'._DB_PREFIX_.'orders` a 
 				 LEFT JOIN `'._DB_PREFIX_.'order_state_lang` b ON (b.`id_order_state`=a.`current_state` && b.`id_lang`=1)
 				 LEFT JOIN `'._DB_PREFIX_.'customer` c ON (c.`id_customer`=a.`id_customer`)
 				 LEFT JOIN `'._DB_PREFIX_.'marketplace_order_commision` o ON (o.`id_order`=a.`id_order`)
-				 where a.`current_state` IN (2,4) && a.`reference`="'.Tools::getValue('reference').'" group by a.`reference`');
+				 where a.`current_state` IN (2,4) && a.`reference`="'.Tools::getValue('reference').'" group by a.`reference` order by a.`id_order` desc');
 				else
 				 $orders = Db::getInstance()->executeS('select a.*, b.name as status,CONCAT(c.`firstname`," ",c.`lastname`) as customer,((a.total_products+o.shipping_amt)-(o.admin_commission-o.shipping_amt)) as due,o.shipping_amt,(o.admin_commission-o.shipping_amt) as commission from `'._DB_PREFIX_.'orders` a 
 				 LEFT JOIN `'._DB_PREFIX_.'order_state_lang` b ON (b.`id_order_state`=a.`current_state` && b.`id_lang`=1)
@@ -104,7 +104,7 @@ class AdminSellerTransferControllerCore extends AdminController
 				 LEFT JOIN `'._DB_PREFIX_.'marketplace_order_commision` o ON (o.`id_order`=a.`id_order`)
 				 LEFT JOIN `'._DB_PREFIX_.'marketplace_commision_calc` mcc ON (mcc.`id_order`=a.`id_order`)
 				 LEFT JOIN `'._DB_PREFIX_.'marketplace_customer` mc ON (mc.`id_customer`=mcc.`customer_id`)
-				 where a.`current_state` IN (2,4) && mc.`marketplace_seller_id`='.$seller_id.' group by a.`id_order`');
+				 where a.`current_state` IN (2,4) && mc.`marketplace_seller_id`='.$seller_id.' group by a.`id_order` order by a.`id_order` desc');
 				 
 				}
 			
@@ -117,7 +117,7 @@ class AdminSellerTransferControllerCore extends AdminController
 			  `'._DB_PREFIX_.'marketplace_customer` b where a.`customer_id`=b.`id_customer` && b.`marketplace_seller_id`='.$seller_id);
 			  $shop_name =  Db::getInstance()->getValue('select `shop_name` from `'._DB_PREFIX_.'marketplace_seller_info` where `id`='.$seller_id);
 			}
-			$sellers =  Db::getInstance()->executeS('select * from `'._DB_PREFIX_.'marketplace_seller_info` order by id desc');
+			$sellers =  Db::getInstance()->executeS('select * from `'._DB_PREFIX_.'marketplace_seller_info` order by `shop_name` asc');
 		
 			$currency ='USD';
 			$orderIDs = array();
@@ -147,19 +147,17 @@ class AdminSellerTransferControllerCore extends AdminController
 	public function sellerTransfer()
 	{	
 	
-	    $orderIDs = explode(',',Tools::getValue('orderIDs'));
-		$orderHistory = new OrderHistory();
-		foreach($orderIDs as $id)
-			$orderHistory->changeIdOrderState(15, $id);
+	    $orderID = (int)Tools::getValue('payOrderID');
 
 	    $details =  Db::getInstance()->getRow('select a.stripe_seller_id,a.`id_customer` from `'._DB_PREFIX_.'stripepro_sellers` a, 
 			`'._DB_PREFIX_.'marketplace_customer` b where a.`id_customer`=b.`id_customer` && b.`marketplace_seller_id`='.Tools::getValue('id_seller'));
+		 $chargeID =  Db::getInstance()->getValue('select `id_transaction` from `'._DB_PREFIX_.'stripepro_transaction` where `type`= "payment" && `id_order`='.$orderID);
 			
 		include_once($_SERVER['DOCUMENT_ROOT']._MODULE_DIR_.'stripepro/lib/Stripe.php'); 
 		\Stripe\Stripe::setApiKey(Configuration::get('STRIPE_MODE') ? Configuration::get('STRIPE_PRIVATE_KEY_LIVE') : Configuration::get('STRIPE_PRIVATE_KEY_TEST'));
 			try
 				{
-				$result_json =  \Stripe\Transfer::create(array('description' => "OrderID(s): ".Tools::getValue('orderIDs'),'amount' => Tools::getValue('amount')*100,'currency' => 'USD','destination' => $details['stripe_seller_id']));
+				$result_json =  \Stripe\Transfer::create(array('description' => "OrderID: ".$orderID.", Charge ID: ".$chargeID,'amount' => Tools::getValue('amount')*100,'currency' => 'USD','destination' => $details['stripe_seller_id']));
 				}
 			catch (Exception $e)
 				{
@@ -168,8 +166,10 @@ class AdminSellerTransferControllerCore extends AdminController
 					
 					return $stripe_transfer_error;
 				}
-	
-			  Db::getInstance()->execute('insert into `'._DB_PREFIX_.'seller_transfer` (`id_seller`,`id_customer`,`destination`,`transaction_id`,`amount`, `currency`, `status`, `date_add`) VALUES ('.Tools::getValue('id_seller').','.$details['id_customer'].',"'.$details['stripe_seller_id'].'","'.$result_json->id.'",'.$result_json->amount*.01.',"'.$result_json->currency.'","'.$result_json->status.'",NOW())');
+			
+	$orderHistory = new OrderHistory();
+	$orderHistory->changeIdOrderState(15, $orderID);
+	Db::getInstance()->execute('insert into `'._DB_PREFIX_.'seller_transfer` (`id_seller`,`id_customer`,`id_order`,`destination`,`transaction_id`,`amount`, `currency`, `status`, `date_add`) VALUES ('.Tools::getValue('id_seller').','.$details['id_customer'].','.$orderID.',"'.$details['stripe_seller_id'].'","'.$result_json->id.'",'.$result_json->amount*.01.',"'.$result_json->currency.'","'.$result_json->status.'",NOW())');
 			 
 			 
 		 return true;
