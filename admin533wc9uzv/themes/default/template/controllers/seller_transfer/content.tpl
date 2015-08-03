@@ -25,15 +25,13 @@
 <script type="text/javascript">
 		$(document).ready(function()  {
 			
-		/*	var redirect = 'index.php?controller=AdminSellerTransfer&token={$token}';
-			$("#id_seller").change(function(){
-				if(this.value!=''){
-					 redirect = redirect+'&id_seller='+this.value;
-					}
-					
-				window.location = redirect;
-				
-			});*/
+			$("#amount").val($("input[name=orderID]:checked").val());
+			$("#payOrderID").val($("input[name=orderID]:checked").attr('title'));
+			$("input[name=orderID]").click(function(){
+					$("#amount").val(this.value);	
+					$("#payOrderID").val(this.title);			
+			});
+			$("input[name=orderID]:first").click();
 		});
 	</script>
  {if isset($confirmation) && $confirmation}
@@ -132,6 +130,9 @@
                 </div> 
                     </fieldset>
     </form>
+     <form action="index.php?controller=AdminSellerTransfer&token={$token}{if $id_seller!=''}&id_seller={$id_seller}{/if}" method="post" class="defaultForm form-horizontal AdminSellerWithdrawals">
+     <input type="hidden" name="available_amt" value="{$available_amt}">
+     <fieldset>
      <div class="panel-heading" style="clear: both;">&nbsp;</div>
   <div class="panel-heading" style="clear: both;"><b>({count($orders)})</b> {l s='Orders Result for'} <b>"{$shop_name}"</b></div>
   <div class="table-responsive clearfix" {if count($orders)>3}style="height:200px;overflow: auto;"{/if}>
@@ -139,6 +140,7 @@
 		<table id="table-buyer" class="table buyer">
         <thead>
               <tr class="">
+                  <td style="border-bottom:1px solid #ccc" align="center">{l s='Choose Order'}</td>
                   <td style="border-bottom:1px solid #ccc">{l s='ID'}</td>
                   <td style="border-bottom:1px solid #ccc">{l s='Reference'}</td>
                   <td style="border-bottom:1px solid #ccc">{l s='Customer'}</td>
@@ -154,6 +156,7 @@
         <tbody>
            {foreach from=$orders key=k item=v}
              <tr class="{if $k % 2 == 0}odd{/if}">
+                <td class="pointer" align="center"><input type="radio" name="orderID" value="{$v.due}" title="{$v.id_order}"></td>
                 <td class="pointer">{$v.id_order}</td>
                 <td class="pointer">{$v.reference}</td>
                 <td class="pointer">{$v.customer}</td>
@@ -197,16 +200,14 @@
             {/if}
             </div>
          </div>
-    <form action="index.php?controller=AdminSellerTransfer&token={$token}{if $id_seller!=''}&id_seller={$id_seller}{/if}" method="post" class="defaultForm form-horizontal AdminSellerWithdrawals">
-     <input type="hidden" name="available_amt" value="{$available_amt}">
-     <input type="hidden" name="orderIDs" value="{$orderIDs}">
-     <fieldset>
-                <div class="form-group">
-				<label class="control-label col-lg-3">{l s='Transfer amount'}:</label>
+                            
+                <div class="form-group" style="height: 70px;">
+				<label class="control-label col-lg-3">{l s='Payment Order ID'}:<br /><br />{l s='Transfer amount'}:</label>
 							<div class="col-lg-5 ">
 	                             <div class="row">
 										<div class="input-group col-lg-4">
-                                       <input style="width:120px;" type="text" name="amount" value="{if $id_seller!=''}{$orders_amt}{else}0.00{/if}" {if $id_seller=='' OR  $orders_amt <= 0.50}disabled="disabled"{/if}> {if $id_seller!=''}<b>&nbsp;{$currency}</b>{/if}
+                                         <input style="width:120px;" type="text" name="payOrderID" id="payOrderID" readonly="readonly"><br /><br />
+                                       <input style="width:120px;" type="text" name="amount" id="amount" value="{if $id_seller!=''}{$orders_amt}{else}0.00{/if}" {if $id_seller=='' OR  $orders_amt <= 0.50}disabled="disabled"{/if}> {if $id_seller!=''}<b>&nbsp;{$currency}</b>{/if}
 										</div>
 									</div>
                                </div>
@@ -240,6 +241,7 @@
                   <td>{l s='Seller'}</td>
                   <td>{l s='Customer'}</td>
                   <td>{l s='Seller account'}</td>
+                  <td>{l s='Order ID'}</td>
                   <td>{l s='Transaction ID'}</td>
                   <td>{l s='Amount'}</td>
                   <td>{l s='Status'}</td>
@@ -254,8 +256,9 @@
                 <td class="pointer">{$v.id_seller}</td>
                 <td class="pointer">{$v.id_customer}</td>
                 <td class="pointer">{$v.destination}</td>
+                <td class="pointer">{$v.id_order}</td>
                 <td class="pointer">{$v.transaction_id}</td>
-                <td class="pointer">{$v.amount} {$v.currency}</td>
+                <td class="pointer">${$v.amount}</td>
                 <td class="pointer">{$v.status}</td>
                 <td class="pointer">{$v.date_add}</td>
             </tr>
