@@ -8,9 +8,10 @@ class AdminPaymentHistoryController extends AdminController
         $this->bootstrap = true;
         $this->table = 'seller_transfer';
         $this->context = Context::getContext();
-		//$this->addRowAction('view');
-        $this->_select = 'DATE_FORMAT(a.date_add,"%m/%d/%Y %H:%i:%s") as date_add,msi.seller_name,msi.shop_name,msi.business_email,';
-        $this->_join .= 'LEFT JOIN `'._DB_PREFIX_.'marketplace_seller_info` msi ON (msi.`id` = a.id_seller) ';    
+        $this->_select = 'DATE_FORMAT(a.date_add,"%m/%d/%Y %H:%i:%s") as date_add,msi.seller_name,msi.shop_name,msi.business_email,o.reference,st.id_transaction';
+        $this->_join .= 'LEFT JOIN `'._DB_PREFIX_.'marketplace_seller_info` msi ON (msi.`id` = a.`id_seller`) ';
+		 $this->_join .= 'LEFT JOIN `'._DB_PREFIX_.'orders` o ON (o.`id_order` = a.`id_order`) ';
+		  $this->_join .= 'LEFT JOIN `'._DB_PREFIX_.'stripepro_transaction` st ON (st.`id_order` != 0 && st.`id_order` = a.`id_order`) ';    
         
 		$this->_orderBy = 'a.id_transfer';
 		$this->_orderWay = 'DESC';
@@ -22,6 +23,24 @@ class AdminPaymentHistoryController extends AdminController
                 'align' => 'text-center',
 				'remove_onclick' => true
             ),
+			'id_order' => array(
+				'title' => $this->l('Order ID'),
+				'align' => 'text-center',
+				'havingFilter' => true,
+				'remove_onclick' => true
+			),
+			'reference' => array(
+				'title' => $this->l('Reference'),
+				'havingFilter' => true,
+				'filter_key' => 'o!reference',
+				'remove_onclick' => true
+			),
+			'id_transaction' => array(
+				'title' => $this->l('Charge ID'),
+				'havingFilter' => true,
+				'filter_key' => 'st!id_transaction',
+				'remove_onclick' => true
+			),
 			'shop_name' => array(
 				'title' => $this->l('Shop'),
 				'callback' => 'printShopIcons',
