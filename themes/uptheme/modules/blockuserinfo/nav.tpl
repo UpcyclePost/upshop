@@ -153,7 +153,7 @@
             <li><a href="http{if Tools::usingSecureMode()}s{/if}://{$smarty.server.SERVER_NAME}/profile/register"><i class="fa fa-sign-in fa-fw fa-rotate-270"></i><span>Sign Up</span></a></li>
         {else}
             {if $is_seller == 1}
-                <li><a href="{$my_shop|addslashes}"><i class="fa fa-fw fa-shopping-cart"></i><span>View your Shop</span></a>
+                <li><a href="{$my_shop|addslashes}"><i class="fa fa-fw fa-shopping-cart"></i><span>View Shop</span></a>
                 </li>
             {else}
                 <li><a href="http://{$smarty.server.SERVER_NAME}/profile/edit"><i class="fa fa-fw fa-shopping-cart"></i><span>Create a Shop</span></a></li>

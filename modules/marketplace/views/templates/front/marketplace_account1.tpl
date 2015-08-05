@@ -90,14 +90,14 @@
 						<table class="table table-bordered data-table footab" id="my-orders-table" style="width:100%;">
 							<thead>
 								<tr class="first last">
-								<th>{l s='View Order' mod='marketplace'}</th>
+								<th data-sort-ignore="true">{l s='View Order' mod='marketplace'}</th>
 								<th>{l s='Order' mod='marketplace'} #</th>
-								<th>{l s='Date' mod='marketplace'}</th>
-								<th data-hide="phone">{l s='Ship To' mod='marketplace'}</th>
+								<th data-type="numeric">{l s='Date' mod='marketplace'}</th>
+								<th data-hide="phone,tablet">{l s='Ship To' mod='marketplace'}</th>
 								<th data-hide="phone">
 									<span class="nobr">{l s='Order Total' mod='marketplace'}</span>
 								</th>
-								<th data-hide="phone">{l s='Status' mod='marketplace'}</th>
+								<th data-hide="phone,tablet">{l s='Status' mod='marketplace'}</th>
 								</tr>
 							</thead>
 							<tbody>
@@ -106,10 +106,10 @@
 									<tr class="even">
 										<td><a class="btn btn-default button button-small" href="{$link->getModuleLink('marketplace','marketplaceaccount',['flag'=>1,'shop'=>{$id_shop|escape:'html':'UTF-8'},'l'=>6,id_order=>{$dashboard[$i]['id_order']|escape:'html':'UTF-8'}])|escape:'html':'UTF-8'}"><span>View</span></a></td>
 										<td>{$dashboard[$i]['ref']|escape:'html':'UTF-8'}</td>
-										<td><span class="nobr">{$dashboard[$i]['date_add']|date_format:"%D %l:%M %p"|escape:'html':'UTF-8'}</span></td>
+										<td data-value="{$dashboard[$i]['date_add']|regex_replace:"/[\-\:\ ]/":""}}"><span class="nobr">{$dashboard[$i]['date_add']|date_format:"%D %l:%M %p"|escape:'html':'UTF-8'}</span></td>
 										<!-- <td>{$dashboard[$i]['name']|escape:'html':'UTF-8'}</td> -->
 										<td>{$order_by_cus[$i]['firstname']|escape:'html':'UTF-8'}</td>
-										<td><span class="price">{$currency->prefix}{$dashboard[$i]['total_price']|string_format:"%.2f"}{$currency->suffix}</span></td>
+										<td data-value="{$dashboard[$i]['total_price']}"><span class="price">{$currency->prefix}{$dashboard[$i]['total_price']|string_format:"%.2f"}{$currency->suffix}</span></td>
 										<td><em>{$dashboard[$i]['order_status']|escape:'html':'UTF-8'}</em></td>
 									</tr>
 								{assign var=i value=$i+1}
@@ -472,16 +472,16 @@
 						<table class="data-table footab" id="my-orders-table" style="width:100%;">
 							<thead>
 								<tr class="first last">
-									<th>{l s='Edit' mod='marketplace'}</th>
-									<th>{l s='Image' mod='marketplace'}</th>
+									<th data-sort-ignore="true">{l s='Edit' mod='marketplace'}</th>
+									<th  data-sort-ignore="true">{l s='Image' mod='marketplace'}</th>
 									<th>{l s='Name' mod='marketplace'}</th>
 									<!--<th>{l s='Description' mod='marketplace'}</th>-->
-									<th data-hide="phone">{l s='Price' mod='marketplace'}</th>
-									<th data-hide="phone">{l s='Quantity' mod='marketplace'}</th>
-									<th data-hide="phone">{l s='Shipping' mod='marketplace'}</th>
-									<th data-hide="phone">{l s='Status' mod='marketplace'}</th>
-									<th data-hide="phone">{l s='Views' mod='marketplace'}</th>
-									<th data-hide="phone">{l s='Delete' mod='marketplace'}</th>
+									<th data-hide="phone" data-type="numeric">{l s='Price' mod='marketplace'}</th>
+									<th data-hide="phone" data-type="numeric">{l s='Quantity' mod='marketplace'}</th>
+									<th data-hide="phone" data-sort-ignore="true">{l s='Shipping' mod='marketplace'}</th>
+									<th data-hide="phone,tablet">{l s='Status' mod='marketplace'}</th>
+									<th data-hide="phone,tablet">{l s='Views' mod='marketplace'}</th>
+									<th data-hide="phone" data-sort-ignore="true">{l s='Delete' mod='marketplace'}</th>
 								</tr>
 							</thead>
 						<tbody>
@@ -511,7 +511,7 @@
 										{$product['short_description']|strip_tags|truncate:30|escape:'html':'UTF-8'}
 									</td>
 									-->
-									<td nowrap>
+									<td nowrap data-value="{$product['price']}">
 										{$currency->prefix}{$product['price']|string_format:"%.2f"}{$currency->suffix}
 									</td>
 									<td>
@@ -690,12 +690,12 @@
 					<table class="data-table footab" id="my-orders-table">
 						<thead>
 							<tr class="first last">
-								<th>{l s='View Order' mod='marketplace'}</th>
+								<th data-sort-ignore="true">{l s='View Order' mod='marketplace'}</th>
 								<th>{l s='Order #' mod='marketplace'}</th>
-								<th>{l s='Date' mod='marketplace'}</th>
-								<th data-hide="phone">{l s='Ship To' mod='marketplace'}</th>
-								<th data-hide="phone"><span class="nobr">{l s='Order Total' mod='marketplace'}</span></th>
-								<th data-hide="phone">{l s='Status' mod='marketplace'}</th>
+								<th data-type="numeric">{l s='Date' mod='marketplace'}</th>
+								<th data-hide="phone,tablet">{l s='Ship To' mod='marketplace'}</th>
+								<th data-hide="phone" data-type="numeric"><span class="nobr">{l s='Order Total' mod='marketplace'}</span></th>
+								<th data-hide="phone,tablet">{l s='Status' mod='marketplace'}</th>
 							</tr>
 						</thead>
 						<tbody>
@@ -710,9 +710,9 @@
 								{/if}
 										<td><a class="btn btn-default button button-small" href="{$link->getModuleLink('marketplace','marketplaceaccount',['flag'=>1,'shop'=>{$id_shop|escape:'html':'UTF-8'},'l'=>6,id_order=>{$dashboard[$i]['id_order']|escape:'html':'UTF-8'}])|escape:'html':'UTF-8'}"><span>View</span></a></td>
 										<td>{$dashboard[$i]['ref']|escape:'html':'UTF-8'}</td>
-										<td><span class="nobr">{$dashboard[$i]['date_add']|date_format:"%D %l:%M %p"|escape:'html':'UTF-8'}</span></td>
+										<td data-value="{$dashboard[$i]['date_add']|regex_replace:"/[\-\:\ ]/":""}}"><span class="nobr">{$dashboard[$i]['date_add']|date_format:"%D %l:%M %p"|escape:'html':'UTF-8'}</span></td>
 										<td>{$order_by_cus[$i]['firstname']|escape:'html':'UTF-8'}</td>
-										<td><span class="price">{$currency->prefix}{$dashboard[$i]['total_price']|string_format:"%.2f"}{$currency->suffix}</span></td>
+										<td data-value="{$dashboard[$i]['total_price']}"><span class="price">{$currency->prefix}{$dashboard[$i]['total_price']|string_format:"%.2f"}{$currency->suffix}</span></td>
 										<td><em>{$dashboard[$i]['order_status']|escape:'html':'UTF-8'}</em></td>
 									</tr>
 							{assign var=i value=$i+1}

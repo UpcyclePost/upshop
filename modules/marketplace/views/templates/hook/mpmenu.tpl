@@ -1,3 +1,11 @@
+<script type="text/javascript">
+if ( $.mobile ) {
+   $( "#list_content-collapsible" ).collapsible();
+   $( "#menutitle-desktop" ).hide();
+   $( "#menutitle-mobile" ).show();   
+} 
+</script>
+
 <div class="menu_item">
 	{if $is_seller==-1}
 		<div class="block_content">
@@ -10,9 +18,10 @@
 			<h3>{l s='Your request to create a shop has been sent for approval' mod='marketplace'}</h3>
 		</div>
 	{else if $is_seller==1}
-		<div class="list_content" data-role="collapsible">
+		<div class="list_content" id="list_content-collapsible" data-role="collapsible" data-collapsed="true" data-inset="false">
+			<h3 id="menutitle-mobile" style="display:none;"><span class="menutitle">{l s='Your Shop' mod='marketplace'}</span></h3>
 			<ul>
-				<li><span class="menutitle">{l s='Marketplace' mod='marketplace'}</span></li>
+				<li id="menutitle-desktop"><span class="menutitle">{l s='Your Shop' mod='marketplace'}</span></li>
 				<li {if $logic==1}class="menu_active"{/if}>
 					<span>
 						<a href="{$account_dashboard|escape:'html':'UTF-8'}" title="My Dashboard">{l s='My Dashboard' mod='marketplace'}</a>

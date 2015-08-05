@@ -517,6 +517,16 @@ class marketplaceProductupdateModuleFrontController extends ModuleFrontControlle
 		$this->addCSS(_MODULE_DIR_.'marketplace/views/js/categorytree/jquery-ui-1.8.12.custom/css/smoothness/jquery-ui-1.8.12.custom.css');
 		$this->addJS(_MODULE_DIR_.'marketplace/views/js/categorytree/jquery.checkboxtree.js');
 		$this->addCSS(_MODULE_DIR_.'marketplace/views/js/categorytree/wk.checkboxtree.css');
+		//Jquery mobile (for the marketplace menu)
+		if ($this->context->getMobileDevice()){
+			$this->addJS(array(
+						_MODULE_DIR_.'marketplace/js/mobile/jquery.mobile.custom.min.js',
+					));
+			$this->addCSS(array(
+						_MODULE_DIR_.'marketplace/js/mobile/jquery.mobile.custom.structure.min.css',
+						_MODULE_DIR_.'marketplace/js/mobile/jquery.mobile.custom.theme.min.css'
+					));
+			}
 
 	}
 
