@@ -416,6 +416,9 @@
 				{else if $is_edited == 1}
 					<p class="alert alert-success">{l s='Updated Successful' mod='marketplace'}</p>
 				{/if}
+                 {if $duplicate_conf == 1}
+					<p class="alert alert-success">{l s='Duplicated Successfully.' mod='marketplace'}</p>
+				{/if}
 				<div class="page-title login-panel-header">
 					<h1>{l s='Product List' mod='marketplace'}</h1>
 				</div>
@@ -472,6 +475,7 @@
 							<thead>
 								<tr class="first last">
 									<th>{l s='Edit' mod='marketplace'}</th>
+                                    <th>{l s='Duplicate' mod='marketplace'}</th>
 									<th>{l s='Image' mod='marketplace'}</th>
 									<th>{l s='Name' mod='marketplace'}</th>
 									<!--<th>{l s='Description' mod='marketplace'}</th>-->
@@ -490,6 +494,12 @@
 								<tr class="even">
 									<td>
 										<a id="{$product['id']|escape:'html':'UTF-8'}" class="btn btn-default button button-small edit_img"><span>Edit</span></a>
+									</td>
+                                     <td>
+                                    <form action="" method="post">
+										 <input type="hidden" name="id_product" value="{$product['id']}" />
+                                        <input class="btn btn-default button" type="submit" name="duplicate" value="Duplicate" />
+                                        </form>
 									</td>
 									<td>
 										{if isset($product.unactive_image)} <!--product is not activated yet-->
