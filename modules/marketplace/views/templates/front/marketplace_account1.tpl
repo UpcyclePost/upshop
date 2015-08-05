@@ -57,6 +57,7 @@
 	var id_lang = '{$id_lang|escape:'html':'UTF-8'}';
 </script>
 
+
 {/if}
 <div class="main_block" >
 	{hook h="DisplayMpmenuhook"}
@@ -86,17 +87,17 @@
 					<div class="wk_border_line"></div>
 					<div class="box-content" >
 					<div class="wk_order_table">
-						<table class="data-table" id="my-orders-table" style="width:100%;">
+						<table class="table table-bordered data-table footab" id="my-orders-table" style="width:100%;">
 							<thead>
 								<tr class="first last">
 								<th>{l s='View Order' mod='marketplace'}</th>
 								<th>{l s='Order' mod='marketplace'} #</th>
 								<th>{l s='Date' mod='marketplace'}</th>
-								<th>{l s='Ship To' mod='marketplace'}</th>
-								<th>
+								<th data-hide="phone">{l s='Ship To' mod='marketplace'}</th>
+								<th data-hide="phone">
 									<span class="nobr">{l s='Order Total' mod='marketplace'}</span>
 								</th>
-								<th>{l s='Status' mod='marketplace'}</th>
+								<th data-hide="phone">{l s='Status' mod='marketplace'}</th>
 								</tr>
 							</thead>
 							<tbody>
@@ -468,19 +469,19 @@
 						<div class="left full">
 							{hook h="DisplayMpproductdetailheaderhook"}
 						</div>
-						<table class="data-table" id="my-orders-table" style="width:100%;">
+						<table class="data-table footab" id="my-orders-table" style="width:100%;">
 							<thead>
 								<tr class="first last">
 									<th>{l s='Edit' mod='marketplace'}</th>
 									<th>{l s='Image' mod='marketplace'}</th>
 									<th>{l s='Name' mod='marketplace'}</th>
 									<!--<th>{l s='Description' mod='marketplace'}</th>-->
-									<th>{l s='Price' mod='marketplace'}</th>
-									<th>{l s='Quantity' mod='marketplace'}</th>
-									<th>{l s='Shipping' mod='marketplace'}</th>
-									<th>{l s='Status' mod='marketplace'}</th>
-									<th>{l s='Views' mod='marketplace'}</th>
-									<th>{l s='Delete' mod='marketplace'}</th>
+									<th data-hide="phone">{l s='Price' mod='marketplace'}</th>
+									<th data-hide="phone">{l s='Quantity' mod='marketplace'}</th>
+									<th data-hide="phone">{l s='Shipping' mod='marketplace'}</th>
+									<th data-hide="phone">{l s='Status' mod='marketplace'}</th>
+									<th data-hide="phone">{l s='Views' mod='marketplace'}</th>
+									<th data-hide="phone">{l s='Delete' mod='marketplace'}</th>
 								</tr>
 							</thead>
 						<tbody>
@@ -686,15 +687,15 @@
 					</div>
 					<div class="box-content">
 					<div class="wk_order_table">		
-					<table class="data-table" id="my-orders-table">
+					<table class="data-table footab" id="my-orders-table">
 						<thead>
 							<tr class="first last">
 								<th>{l s='View Order' mod='marketplace'}</th>
 								<th>{l s='Order #' mod='marketplace'}</th>
 								<th>{l s='Date' mod='marketplace'}</th>
-								<th>{l s='Ship To' mod='marketplace'}</th>
-								<th><span class="nobr">{l s='Order Total' mod='marketplace'}</span></th>
-								<th>{l s='Status' mod='marketplace'}</th>
+								<th data-hide="phone">{l s='Ship To' mod='marketplace'}</th>
+								<th data-hide="phone"><span class="nobr">{l s='Order Total' mod='marketplace'}</span></th>
+								<th data-hide="phone">{l s='Status' mod='marketplace'}</th>
 							</tr>
 						</thead>
 						<tbody>

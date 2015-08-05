@@ -684,7 +684,8 @@ class marketplaceMarketplaceaccountModuleFrontController extends ModuleFrontCont
         
 		$this->addJqueryUI(array('ui.datepicker'));
 		$this->addJqueryPlugin(array('fancybox','tablednd'));
-
+		$this->addJqueryPlugin(array('footable','footable-sort'));
+		
 		Media::addJsDef(array('iso' => $this->context->language->iso_code));
 
 		//datepicker
@@ -696,6 +697,7 @@ class marketplaceMarketplaceaccountModuleFrontController extends ModuleFrontCont
 		$this->addCSS(_MODULE_DIR_.'marketplace/js/jquerydatepicker/jquery-ui-timepicker-addon.css');
 
 		$this->addJS(_MODULE_DIR_.'marketplace/views/js/imageedit.js');
+		
     }
 }
 ?>

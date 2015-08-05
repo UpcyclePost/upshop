@@ -10,7 +10,7 @@
 			<h3>{l s='Your request to create a shop has been sent for approval' mod='marketplace'}</h3>
 		</div>
 	{else if $is_seller==1}
-		<div class="list_content">
+		<div class="list_content" data-role="collapsible">
 			<ul>
 				<li><span class="menutitle">{l s='Marketplace' mod='marketplace'}</span></li>
 				<li {if $logic==1}class="menu_active"{/if}>

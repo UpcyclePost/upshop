@@ -34,7 +34,6 @@
 		{assign var='productPrice' value=$product->getPrice(false, $smarty.const.NULL, $priceDisplayPrecision)}
 		{assign var='productPriceWithoutReduction' value=$product->getPriceWithoutReduct(true, $smarty.const.NULL, $priceDisplayPrecision)}
 	{/if}
-
 <div itemscope itemtype="http://schema.org/Product">
 	<div class="primary_block row">
 		<section class="post-details-container">
@@ -66,8 +65,6 @@
 					<li class=""><a href="/shops">Shops</a></li>
 					<li class=""><a href="http://{$smarty.server.SERVER_NAME}/gallery/{$product->category}">{$product->category|@ucfirst}</a></li>
 					<li class="attr-content" style="float:right;">
-							<span class='st_sharethis' style="float:right;"></span>
-							<span class='st_email' style="float:right;"></span>
 							<span class='st_stumbleupon' style="float:right;"></span>
 							<span class='st_pinterest' style="float:right;"></span>
 							<span class='st_googleplus' style="float:right;"></span>
@@ -473,6 +470,14 @@
 			</li>
 			</ul>
 			-->
+			{if $m_shippingmethods|count > 0}
+			<div class="post-sidebar-container">
+				<h5>Shipping Method(s)</h5>
+				{foreach from=$m_shippingmethods item=shipmethod}
+					<p>{$shipmethod['mp_shipping_name']} : {convertPrice price=$shipmethod['base_price']}</p>
+				{/foreach}
+			</div>
+			{/if}
 			<div class="post-sidebar-container engage">
 				<h5>Engagement</h5>
 					<ul class="post-engagement clearfix">
