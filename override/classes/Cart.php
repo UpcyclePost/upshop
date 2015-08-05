@@ -345,6 +345,13 @@ class Cart extends CartCore{
 							$delivery_option_list[$id_address][$key]['carrier_list'][$id_carrier]['logo'] = _THEME_SHIP_DIR_.$id_carrier.'.jpg';
 						else
 							$delivery_option_list[$id_address][$key]['carrier_list'][$id_carrier]['logo'] = false;
+							
+							$shipping_policy = Db::getInstance()->getValue(
+						'SELECT a.`shipping_policy`
+						FROM `'._DB_PREFIX_.'mp_shipping_method` a, `'._DB_PREFIX_.'mp_shipping_map` b
+						WHERE a.`id`=b.`mp_shipping_id` && b.`ps_id_carriers` = '.(int)$id_carrier
+					);
+					$delivery_option_list[$id_address][$key]['carrier_list'][$id_carrier]['shipping_policy'] = $shipping_policy;
 						
 						$position += $carrier_collection[$id_carrier]->position;
 					}		

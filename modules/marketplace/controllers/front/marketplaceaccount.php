@@ -317,6 +317,33 @@ class marketplaceMarketplaceaccountModuleFrontController extends ModuleFrontCont
                         }
                         elseif ($logic == 3)
                         {
+							if (Tools::isSubmit('duplicate'))
+							{
+							$id_product = (int)Tools::getValue('id_product');
+							$p = Db::getInstance()->getRow("select * from `". _DB_PREFIX_."marketplace_seller_product` where `id`=".$id_product,false);
+							Db::getInstance()->execute('INSERT INTO `'. _DB_PREFIX_.'marketplace_seller_product`
+							 (`id_seller`,`price`,`quantity`,`product_name`,`id_category`,`short_description`,`description`,`ps_id_shop`,`id_shop`,`date_add`,`date_upd`) 
+							VALUES('.$p['id_seller'].',"'.$p['price'].'","'.$p['quantity'].'","'.$p['product_name'].'",'.$p['id_category'].',"'.$p['short_description'].'","'.$p['description'].'",'.$p['ps_id_shop'].','.$p['id_shop'].',NOW(),NOW())');
+							$new_id_product = Db::getInstance()->Insert_ID();
+							$cat = Db::getInstance()->executeS("select * from `". _DB_PREFIX_."marketplace_seller_product_category` where `id_seller_product`=".$id_product,false);
+							foreach($cat as $c)
+								Db::getInstance()->execute('INSERT INTO `'. _DB_PREFIX_.'marketplace_seller_product_category`
+								 (`id_category`,`id_seller_product`,`is_default`) values('.$c['id_category'].','.$new_id_product.','.$c['is_default'].')');
+							
+							$img = Db::getInstance()->executeS("select * from `". _DB_PREFIX_."marketplace_product_image` where `seller_product_id`=".$id_product,false);
+							foreach($img as $i)
+								Db::getInstance()->execute('INSERT INTO `'. _DB_PREFIX_.'marketplace_product_image`
+								 (`seller_product_id`,`seller_product_image_id`,`active`) values('.$new_id_product.',"'.$i['seller_product_image_id'].'",0)');
+								
+							$ship = Db::getInstance()->getRow("select * from `". _DB_PREFIX_."mp_shipping_product_map` where `mp_product_id`=".$id_product,false);
+							if(isset($ship['mp_shipping_id']))
+							Db::getInstance()->execute('INSERT INTO `'. _DB_PREFIX_.'mp_shipping_product_map`
+								 (`mp_shipping_id`,`ps_id_carriers`,`mp_product_id`,`date_add`,`date_upd`) 
+								 values('.$ship['mp_shipping_id'].','.$ship['ps_id_carriers'].','.$new_id_product.', NOW(),NOW())');
+								 
+							 $this->context->smarty->assign("duplicate_conf", 1);
+								}
+								
 							if(Tools::getIsset('del'))
 							{
 								$is_deleted   = Tools::getValue('del');
