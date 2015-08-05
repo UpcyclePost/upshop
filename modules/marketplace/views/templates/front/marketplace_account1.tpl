@@ -57,6 +57,7 @@
 	var id_lang = '{$id_lang|escape:'html':'UTF-8'}';
 </script>
 
+
 {/if}
 <div class="main_block" >
 	{hook h="DisplayMpmenuhook"}
@@ -86,17 +87,17 @@
 					<div class="wk_border_line"></div>
 					<div class="box-content" >
 					<div class="wk_order_table">
-						<table class="data-table" id="my-orders-table" style="width:100%;">
+						<table class="table table-bordered data-table footab" id="my-orders-table" style="width:100%;">
 							<thead>
 								<tr class="first last">
-								<th>{l s='View Order' mod='marketplace'}</th>
+								<th data-sort-ignore="true">{l s='View Order' mod='marketplace'}</th>
 								<th>{l s='Order' mod='marketplace'} #</th>
-								<th>{l s='Date' mod='marketplace'}</th>
-								<th>{l s='Ship To' mod='marketplace'}</th>
-								<th>
+								<th data-type="numeric">{l s='Date' mod='marketplace'}</th>
+								<th data-hide="phone,tablet">{l s='Ship To' mod='marketplace'}</th>
+								<th data-hide="phone">
 									<span class="nobr">{l s='Order Total' mod='marketplace'}</span>
 								</th>
-								<th>{l s='Status' mod='marketplace'}</th>
+								<th data-hide="phone,tablet">{l s='Status' mod='marketplace'}</th>
 								</tr>
 							</thead>
 							<tbody>
@@ -105,10 +106,10 @@
 									<tr class="even">
 										<td><a class="btn btn-default button button-small" href="{$link->getModuleLink('marketplace','marketplaceaccount',['flag'=>1,'shop'=>{$id_shop|escape:'html':'UTF-8'},'l'=>6,id_order=>{$dashboard[$i]['id_order']|escape:'html':'UTF-8'}])|escape:'html':'UTF-8'}"><span>View</span></a></td>
 										<td>{$dashboard[$i]['ref']|escape:'html':'UTF-8'}</td>
-										<td><span class="nobr">{$dashboard[$i]['date_add']|date_format:"%D %l:%M %p"|escape:'html':'UTF-8'}</span></td>
+										<td data-value="{$dashboard[$i]['date_add']|regex_replace:"/[\-\:\ ]/":""}}"><span class="nobr">{$dashboard[$i]['date_add']|date_format:"%D %l:%M %p"|escape:'html':'UTF-8'}</span></td>
 										<!-- <td>{$dashboard[$i]['name']|escape:'html':'UTF-8'}</td> -->
 										<td>{$order_by_cus[$i]['firstname']|escape:'html':'UTF-8'}</td>
-										<td><span class="price">{$currency->prefix}{$dashboard[$i]['total_price']|string_format:"%.2f"}{$currency->suffix}</span></td>
+										<td data-value="{$dashboard[$i]['total_price']}"><span class="price">{$currency->prefix}{$dashboard[$i]['total_price']|string_format:"%.2f"}{$currency->suffix}</span></td>
 										<td><em>{$dashboard[$i]['order_status']|escape:'html':'UTF-8'}</em></td>
 									</tr>
 								{assign var=i value=$i+1}
@@ -429,62 +430,24 @@
 				</div>
 				{/if}
 				<div class="wk_right_col">
-					<!-- sorting code start -->
-					{if $product_lists!=0}
-						<div id="refine_search">
-							<div class="sortPagiBar clearfix">
-								<form id="productsSortForm" action="{$sorting_link|escape:'html':'UTF-8'}&p={$page_no|escape:'html':'UTF-8'}">
-									<label for="selectPrductSort">{l s='Sort by' mod='marketplace'}</label>
-									<select id="selectPrductSort" class="selectSortProduct">
-										<option value="position:asc" selected="selected">--</option>
-										<option value="price:asc">{l s='Price: lowest first' mod='marketplace'}</option>
-										<option value="price:desc">{l s='Price: highest first' mod='marketplace'}</option>
-										<option value="name:asc">{l s='Product Name: A to Z' mod='marketplace'}</option>
-										<option value="name:desc">{l s='Product Name: Z to A' mod='marketplace'}</option>
-										<option value="date_add:asc">{l s='Creation Date: asc' mod='marketplace'}</option>
-										<option value="date_add:desc">{l s='Creation Date: desc' mod='marketplace'}</option>
-										<option value="quantity:desc">{l s='Quantity: desc' mod='marketplace'}</option>
-										<option value="quantity:asc">{l s='Quantity: asc' mod='marketplace'}</option>
-									</select>
-								</form>
-
-								<script type="text/javascript">
-									var min_item = 'Please select at least one product';
-									var max_item = "You cannot add more than 3 product(s) to the product comparison";
-									$(document).ready(function(){
-									$('.selectSortProduct').change(function()
-										{
-										
-											var requestSortProducts = '{$sorting_link|escape:'intval'}';
-											var splitData = $(this).val().split(':');
-											
-											document.location.href = requestSortProducts + ((requestSortProducts.indexOf('?') < 0) ? '?' : '&') + 'orderby=' + splitData[0] + '&orderway=' + splitData[1];
-											
-										});
-									});
-								</script>
-							</div>
-						</div>
-					{/if}
-					<!-- sorting code end -->
 					<div class="wk_product_list">
 						<div class="left full">
 							{hook h="DisplayMpproductdetailheaderhook"}
 						</div>
-						<table class="data-table" id="my-orders-table" style="width:100%;">
+						<table class="data-table footab" id="my-orders-table" style="width:100%;">
 							<thead>
 								<tr class="first last">
-									<th>{l s='Edit' mod='marketplace'}</th>
-                                    <th>{l s='Duplicate' mod='marketplace'}</th>
-									<th>{l s='Image' mod='marketplace'}</th>
+									<th data-sort-ignore="true">{l s='Edit' mod='marketplace'}</th>
+                                    <th data-hide="phone,tablet" data-sort-ignore="true">{l s='Duplicate' mod='marketplace'}</th>
+									<th data-sort-ignore="true">{l s='Image' mod='marketplace'}</th>
 									<th>{l s='Name' mod='marketplace'}</th>
 									<!--<th>{l s='Description' mod='marketplace'}</th>-->
-									<th>{l s='Price' mod='marketplace'}</th>
-									<th>{l s='Quantity' mod='marketplace'}</th>
-									<th>{l s='Shipping' mod='marketplace'}</th>
-									<th>{l s='Status' mod='marketplace'}</th>
-									<th>{l s='Views' mod='marketplace'}</th>
-									<th>{l s='Delete' mod='marketplace'}</th>
+									<th data-hide="phone" data-type="numeric">{l s='Price' mod='marketplace'}</th>
+									<th data-hide="phone" data-type="numeric">{l s='Quantity' mod='marketplace'}</th>
+									<th data-hide="phone" data-sort-ignore="true">{l s='Shipping' mod='marketplace'}</th>
+									<th data-hide="phone,tablet">{l s='Status' mod='marketplace'}</th>
+									<th data-hide="phone,tablet">{l s='Views' mod='marketplace'}</th>
+									<th data-hide="phone" data-sort-ignore="true">{l s='Delete' mod='marketplace'}</th>
 								</tr>
 							</thead>
 						<tbody>
@@ -497,8 +460,8 @@
 									</td>
                                      <td>
                                     <form action="" method="post">
-										 <input type="hidden" name="id_product" value="{$product['id']}" />
-                                        <input class="btn btn-default button" type="submit" name="duplicate" value="Duplicate" />
+										<input type="hidden" name="id_product" value="{$product['id']}" />
+                                        <input class="btn btn-default button button-small" type="submit" name="duplicate" value="Duplicate" style="background-color:#89c226;padding:3px 8px;"/>
                                         </form>
 									</td>
 									<td>
@@ -520,7 +483,7 @@
 										{$product['short_description']|strip_tags|truncate:30|escape:'html':'UTF-8'}
 									</td>
 									-->
-									<td nowrap>
+									<td nowrap data-value="{$product['price']}">
 										{$currency->prefix}{$product['price']|string_format:"%.2f"}{$currency->suffix}
 									</td>
 									<td>
@@ -696,15 +659,15 @@
 					</div>
 					<div class="box-content">
 					<div class="wk_order_table">		
-					<table class="data-table" id="my-orders-table">
+					<table class="data-table footab" id="my-orders-table">
 						<thead>
 							<tr class="first last">
-								<th>{l s='View Order' mod='marketplace'}</th>
+								<th data-sort-ignore="true">{l s='View Order' mod='marketplace'}</th>
 								<th>{l s='Order #' mod='marketplace'}</th>
-								<th>{l s='Date' mod='marketplace'}</th>
-								<th>{l s='Ship To' mod='marketplace'}</th>
-								<th><span class="nobr">{l s='Order Total' mod='marketplace'}</span></th>
-								<th>{l s='Status' mod='marketplace'}</th>
+								<th data-type="numeric">{l s='Date' mod='marketplace'}</th>
+								<th data-hide="phone,tablet">{l s='Ship To' mod='marketplace'}</th>
+								<th data-hide="phone" data-type="numeric"><span class="nobr">{l s='Order Total' mod='marketplace'}</span></th>
+								<th data-hide="phone,tablet">{l s='Status' mod='marketplace'}</th>
 							</tr>
 						</thead>
 						<tbody>
@@ -719,9 +682,9 @@
 								{/if}
 										<td><a class="btn btn-default button button-small" href="{$link->getModuleLink('marketplace','marketplaceaccount',['flag'=>1,'shop'=>{$id_shop|escape:'html':'UTF-8'},'l'=>6,id_order=>{$dashboard[$i]['id_order']|escape:'html':'UTF-8'}])|escape:'html':'UTF-8'}"><span>View</span></a></td>
 										<td>{$dashboard[$i]['ref']|escape:'html':'UTF-8'}</td>
-										<td><span class="nobr">{$dashboard[$i]['date_add']|date_format:"%D %l:%M %p"|escape:'html':'UTF-8'}</span></td>
+										<td data-value="{$dashboard[$i]['date_add']|regex_replace:"/[\-\:\ ]/":""}}"><span class="nobr">{$dashboard[$i]['date_add']|date_format:"%D %l:%M %p"|escape:'html':'UTF-8'}</span></td>
 										<td>{$order_by_cus[$i]['firstname']|escape:'html':'UTF-8'}</td>
-										<td><span class="price">{$currency->prefix}{$dashboard[$i]['total_price']|string_format:"%.2f"}{$currency->suffix}</span></td>
+										<td data-value="{$dashboard[$i]['total_price']}"><span class="price">{$currency->prefix}{$dashboard[$i]['total_price']|string_format:"%.2f"}{$currency->suffix}</span></td>
 										<td><em>{$dashboard[$i]['order_status']|escape:'html':'UTF-8'}</em></td>
 									</tr>
 							{assign var=i value=$i+1}

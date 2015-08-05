@@ -30,7 +30,7 @@
 				<a href="http://{$smarty.server.SERVER_NAME}">
 				<img src="http{if Tools::usingSecureMode()}s{/if}://{$smarty.server.SERVER_NAME}/img/footer-logo.png"/></a>
 				</li>
-            <li class="copyright">&copy {$smarty.now|date_format:"%Y"} UpcyclePost. All rights reserved.</li>
+            <li class="copyright">&copy; {$smarty.now|date_format:"%Y"} UpcyclePost. All rights reserved.</li>
             <li id="social_block">
                 <ul>
 				{if isset($rss_url) && $rss_url != ''}

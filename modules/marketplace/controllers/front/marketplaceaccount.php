@@ -711,7 +711,8 @@ class marketplaceMarketplaceaccountModuleFrontController extends ModuleFrontCont
         
 		$this->addJqueryUI(array('ui.datepicker'));
 		$this->addJqueryPlugin(array('fancybox','tablednd'));
-
+		$this->addJqueryPlugin(array('footable','footable-sort'));
+		
 		Media::addJsDef(array('iso' => $this->context->language->iso_code));
 
 		//datepicker
@@ -723,6 +724,18 @@ class marketplaceMarketplaceaccountModuleFrontController extends ModuleFrontCont
 		$this->addCSS(_MODULE_DIR_.'marketplace/js/jquerydatepicker/jquery-ui-timepicker-addon.css');
 
 		$this->addJS(_MODULE_DIR_.'marketplace/views/js/imageedit.js');
+
+		//Jquery mobile (for the marketplace menu)
+		if ($this->context->getMobileDevice()){
+			$this->addJS(array(
+						_MODULE_DIR_.'marketplace/js/mobile/jquery.mobile.custom.min.js',
+					));
+			$this->addCSS(array(
+						_MODULE_DIR_.'marketplace/js/mobile/jquery.mobile.custom.structure.min.css',
+						_MODULE_DIR_.'marketplace/js/mobile/jquery.mobile.custom.theme.min.css'
+					));
+			}
+		
     }
 }
 ?>

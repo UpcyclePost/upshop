@@ -626,8 +626,19 @@ class MarketPlace extends Module
             // e.g. http://www.upcyclepost.com/shops/nnn
             // we need the nnn part as it is the customerid (stored in the website field of up_customer table)
             $seller_customer_id = substr($link_store,strrpos($link_store,'/')+1,strlen($link_store));
-            
+                  
             $this->context->smarty->assign("seller_customer_id", $seller_customer_id);            
+            
+            // get the available shipping methods
+            $sql = "SELECT msm.`id`, msm.`mp_shipping_name`, msm.`transit_delay`, msd.`base_price` from `" . _DB_PREFIX_ . "mp_shipping_method` msm
+                    JOIN `" . _DB_PREFIX_ . "mp_shipping_delivery` msd on msm.`id` = msd.`mp_shipping_id`
+                    JOIN `" . _DB_PREFIX_ . "mp_shipping_product_map` msmp on msm.`id` = msmp.`mp_shipping_id`
+                    JOIN `" . _DB_PREFIX_ . "marketplace_shop_product` msp on msmp.`mp_product_id` = msp.`marketplace_seller_id_product`
+                    WHERE msd.`id_zone` = 2
+                    AND msp.`id_product` =". $id_product;
+
+			$m_shippingmethods =  Db::getInstance()->executeS($sql);
+            
             
             if (isset($this->context->cookie->id_customer))
             {
@@ -635,7 +646,7 @@ class MarketPlace extends Module
                 $this->context->smarty->assign("id_customer", $id_customer);
             }
             
-            
+            $this->context->smarty->assign("m_shippingmethods", $m_shippingmethods);            
             $this->context->smarty->assign("mkt_seller_info", $mkt_seller_info);
             $this->context->smarty->assign("product_name", $product_name);
             $this->context->smarty->assign("id_shop", $id_shop);
