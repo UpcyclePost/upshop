@@ -438,13 +438,13 @@
 							<thead>
 								<tr class="first last">
 									<th data-sort-ignore="true">{l s='Edit' mod='marketplace'}</th>
-                                    <th data-hide="phone,tablet" data-sort-ignore="true">{l s='Duplicate' mod='marketplace'}</th>
+                                    <th data-hide="phone" data-sort-ignore="true">{l s='Duplicate' mod='marketplace'}</th>
 									<th data-sort-ignore="true">{l s='Image' mod='marketplace'}</th>
 									<th>{l s='Name' mod='marketplace'}</th>
 									<!--<th>{l s='Description' mod='marketplace'}</th>-->
 									<th data-hide="phone" data-type="numeric">{l s='Price' mod='marketplace'}</th>
 									<th data-hide="phone" data-type="numeric">{l s='Quantity' mod='marketplace'}</th>
-									<th data-hide="phone" data-sort-ignore="true">{l s='Shipping' mod='marketplace'}</th>
+									<th data-hide="phone,tablet" data-sort-ignore="true">{l s='Shipping' mod='marketplace'}</th>
 									<th data-hide="phone,tablet">{l s='Status' mod='marketplace'}</th>
 									<th data-hide="phone,tablet">{l s='Views' mod='marketplace'}</th>
 									<th data-hide="phone" data-sort-ignore="true">{l s='Delete' mod='marketplace'}</th>
@@ -460,7 +460,7 @@
 									</td>
                                      <td>
                                     <form action="" method="post">
-										<input type="hidden" name="id_product" value="{$product['id']}" />
+										 <input type="hidden" name="id_product" value="{$product['id']}" />
                                         <input class="btn btn-default button button-small" type="submit" name="duplicate" value="Duplicate" style="background-color:#89c226;padding:3px 8px;"/>
                                         </form>
 									</td>
