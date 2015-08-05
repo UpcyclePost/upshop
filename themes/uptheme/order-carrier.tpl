@@ -106,6 +106,11 @@
 														{/if}
 													{/if}
 												</td>
+                                                <td style="width: 100%; overflow: auto; display: block; max-height: 80px; min-height: 60px; min-width: 325px;">
+													{foreach $option.carrier_list as $carrier}
+															{$carrier.shipping_policy|escape:'htmlall':'UTF-8'}
+													{/foreach}
+												</td>
 												<td class="delivery_option_price">
 													<div class="delivery_option_price">
 														{if $option.total_price_with_tax && !$option.is_free && (!isset($free_shipping) || (isset($free_shipping) && !$free_shipping))}
@@ -184,6 +189,9 @@
 															{/foreach}
 														{/if}
 													</td>
+                                                    <td style="width: 100%; overflow: auto; display: block; max-height: 75px;min-height: 56px;">
+															{$first.shipping_policy|escape:'htmlall':'UTF-8'}
+												   </td>
 													<td rowspan="{$option.carrier_list|@count}" class="delivery_option_price">
 														<div class="delivery_option_price">
 															{if $option.total_price_with_tax && !$option.is_free && (!isset($free_shipping) || (isset($free_shipping) && !$free_shipping))}
@@ -255,6 +263,13 @@
 																{/foreach}
 															{/if}
 														</td>
+                                                        <td style="width: 100%; overflow: auto; display: block; max-height: 75px;min-height: 56px;">
+                                                    {foreach $option.carrier_list as $carrier}
+															{if $carrier@iteration != 1}
+                                                            {$carrier.shipping_policy|escape:'htmlall':'UTF-8'}
+															{/if}
+														{/foreach}
+												   </td>
 													</tr>
 													{/if}
 												{/foreach}
