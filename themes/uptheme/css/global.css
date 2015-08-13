@@ -573,8 +573,8 @@ pre {
   .row:after {
     clear: both; }
 
-@media (min-width: 992px) {
-  .row {
+@media (max-width: 992px) {
+  .footer-container {
     margin-bottom: 50px; 
     }
 }
