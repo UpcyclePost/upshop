@@ -15,7 +15,7 @@ $(document).ready(function()
 		
 		// Other image
 		var hasOtherImage = false;
-		if (typeof $('#showimg2').attr('src') != 'undefined')
+		if (typeof $('#showimg2').attr('src') != 'undefined' && $('#showimg2').attr('src') != '#')
 			hasOtherImage = true;
 		 	
 		//product_image <= 1 
