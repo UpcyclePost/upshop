@@ -65,11 +65,13 @@
 <nav id="mobile-slide-menu" class="hidden">
 	<ul>
 		<li><a href="/"><i class="fa fa-home fa-fw"></i> Home</a></li>
+		{if $is_logged && $is_seller ==0}
 		<li><a href="http://{$smarty.server.SERVER_NAME}/profile/edit"><i class="fa fa-fw fa-shopping-cart"></i>Create a Shop</a></li>
+		{/if}
 		<li><a href="http://{$smarty.server.SERVER_NAME}/gallery"><i class="fa fa-camera fa-fw"></i> Browse</a>
 			<ul>
 				<li><a href="http://{$smarty.server.SERVER_NAME}/shops"><i class="fa fa-fw fa-tags"></i> Shops</a></li>
-				<li><a href="http://{$smarty.server.SERVER_NAME}/gallery"><i class="fa fa-fw fa-lightbulb-o"></i> Ideas</a></li>
+				<li><a href="http://{$smarty.server.SERVER_NAME}/gallery"><i class="fa fa-fw fa-lightbulb-o"></i> Products</a></li>
 				<li><a href="http://{$smarty.server.SERVER_NAME}/search/users"><i class="fa fa-fw fa-users"></i> Users</a></li>
 			</ul>
 		</li>

@@ -2,11 +2,11 @@ tinymce.init({
     selector: "textarea.wk_tinymce",
     theme: "modern",
     plugins: [
-         "advlist autolink link image lists charmap print preview hr anchor pagebreak spellchecker",
-         "searchreplace wordcount visualblocks visualchars code fullscreen insertdatetime media nonbreaking",
+         "advlist autolink lists charmap hr anchor pagebreak spellchecker",
+         "searchreplace visualblocks visualchars code fullscreen insertdatetime nonbreaking",
          "save table directionality emoticons template paste textcolor"
    	],
-   	toolbar : "code,|,bold,italic,underline,strikethrough,|,justifyleft,justifycenter,justifyright,justifyfull,formatselect,|,blockquote,colorpicker,pasteword,|,bullist,numlist,|,outdent,indent,|,link,unlink,|,cleanup",
+   	toolbar : "code,|,bold,italic,underline,|,formatselect,|,bullist,numlist,|,outdent,indent,|,cleanup",
 	statusbar: false,
 	relative_urls : false,
 	language: iso,
@@ -14,11 +14,8 @@ tinymce.init({
 	browser_spellcheck : true,
   	menu: {
 		edit: {title: 'Edit', items: 'undo redo | cut copy paste | selectall'},
-		insert: {title: 'Insert', items: 'media image link | pagebreak'},
-		view: {title: 'View', items: 'visualaid'},
 		format: {title: 'Format', items: 'bold italic underline strikethrough superscript subscript | formats | removeformat'},
 		table: {title: 'Table', items: 'inserttable tableprops deletetable | cell row column'},
-		tools: {title: 'Tools', items: 'code'}
 	},
     setup : function(ed) {
 		//peform this action every time a key is pressed

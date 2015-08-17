@@ -322,8 +322,8 @@ class marketplaceMarketplaceaccountModuleFrontController extends ModuleFrontCont
 							$id_product = (int)Tools::getValue('id_product');
 							$p = Db::getInstance()->getRow("select * from `". _DB_PREFIX_."marketplace_seller_product` where `id`=".$id_product,false);
 							Db::getInstance()->execute('INSERT INTO `'. _DB_PREFIX_.'marketplace_seller_product`
-							 (`id_seller`,`price`,`quantity`,`product_name`,`id_category`,`short_description`,`description`,`ps_id_shop`,`id_shop`,`date_add`,`date_upd`) 
-							VALUES('.$p['id_seller'].',"'.$p['price'].'","'.$p['quantity'].'","'.$p['product_name'].'",'.$p['id_category'].',"'.$p['short_description'].'","'.$p['description'].'",'.$p['ps_id_shop'].','.$p['id_shop'].',NOW(),NOW())');
+							 (`id_seller`,`price`,`quantity`,`product_name`,`id_category`,`short_description`,`description`,`active`,`ps_id_shop`,`id_shop`,`date_add`,`date_upd`) 
+							VALUES('.$p['id_seller'].',"'.$p['price'].'","'.$p['quantity'].'","Copy of '.$p['product_name'].'",'.$p['id_category'].',"'.$p['short_description'].'","'.$p['description'].'",'.$p['active'].','.$p['ps_id_shop'].','.$p['id_shop'].',NOW(),NOW())');
 							$new_id_product = Db::getInstance()->Insert_ID();
 							$cat = Db::getInstance()->executeS("select * from `". _DB_PREFIX_."marketplace_seller_product_category` where `id_seller_product`=".$id_product,false);
 							foreach($cat as $c)
@@ -341,10 +341,31 @@ class marketplaceMarketplaceaccountModuleFrontController extends ModuleFrontCont
 								 (`mp_shipping_id`,`ps_id_carriers`,`mp_product_id`,`date_add`,`date_upd`) 
 								 values('.$ship['mp_shipping_id'].','.$ship['ps_id_carriers'].','.$new_id_product.', NOW(),NOW())');
 								 
+							// if active, then entry of a product in ps_product table...
+							if($p['active'])
+							{
+								$obj_seller_product = new SellerProductDetail();
+								$image_dir = "modules/marketplace/img/product_img";
+								// creating ps_product when admin setting is default
+								$ps_product_id = $obj_seller_product->createPsProductByMarketplaceProduct($new_id_product,$image_dir, $p['active']);
+								if($ps_product_id)
+								{
+									// mapping of ps_product and mp_product id
+									$mps_product_obj = new MarketplaceShopProduct();
+									$mps_product_obj->id_shop = $p['id_shop'];
+									$mps_product_obj->marketplace_seller_id_product = $new_id_product;
+									$mps_product_obj->id_product = $ps_product_id;
+									$mps_product_obj->add();
+								}
+								if(isset($ship['mp_shipping_id']))
+							     Db::getInstance()->execute('INSERT INTO `'. _DB_PREFIX_.'product_carrier`
+								 (`id_product`,`id_carrier_reference`,`id_shop`) 
+								 values('.$ps_product_id.','.$ship['ps_id_carriers'].',1)');
+							}
 							 $this->context->smarty->assign("duplicate_conf", 1);
 								}
 								
-							if(Tools::getIsset('del'))
+							if(Tools::getIsset('del') && !Tools::isSubmit('duplicate'))
 							{
 								$is_deleted   = Tools::getValue('del');
 							}
