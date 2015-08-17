@@ -71,7 +71,7 @@
 		<li><a href="http://{$smarty.server.SERVER_NAME}/gallery"><i class="fa fa-camera fa-fw"></i> Browse</a>
 			<ul>
 				<li><a href="http://{$smarty.server.SERVER_NAME}/shops"><i class="fa fa-fw fa-tags"></i> Shops</a></li>
-				<li><a href="http://{$smarty.server.SERVER_NAME}/gallery"><i class="fa fa-fw fa-lightbulb-o"></i> Ideas</a></li>
+				<li><a href="http://{$smarty.server.SERVER_NAME}/gallery"><i class="fa fa-fw fa-lightbulb-o"></i> Products</a></li>
 				<li><a href="http://{$smarty.server.SERVER_NAME}/search/users"><i class="fa fa-fw fa-users"></i> Users</a></li>
 			</ul>
 		</li>
