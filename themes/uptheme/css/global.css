@@ -573,6 +573,12 @@ pre {
   .row:after {
     clear: both; }
 
+@media (max-width: 992px) {
+  .footer-container {
+    margin-bottom: 50px; 
+    }
+}
+
 .col-xs-1,
 .col-xs-2,
 .col-xs-3,
