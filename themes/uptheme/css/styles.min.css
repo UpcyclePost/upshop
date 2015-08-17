@@ -1451,7 +1451,7 @@ html.mm-top.mm-opening .mm-fixed-bottom {
 }
 
 .mm-menu.mm-right {
-    width: 60%
+    width: 224px;
 }
 
 html.mm-right.mm-opening .mm-page, html.mm-right.mm-opening #mm-blocker, html.mm-right.mm-opening .mm-fixed-top, html.mm-right.mm-opening .mm-fixed-bottom {
