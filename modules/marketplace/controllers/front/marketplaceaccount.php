@@ -323,7 +323,7 @@ class marketplaceMarketplaceaccountModuleFrontController extends ModuleFrontCont
 							$p = Db::getInstance()->getRow("select * from `". _DB_PREFIX_."marketplace_seller_product` where `id`=".$id_product,false);
 							Db::getInstance()->execute('INSERT INTO `'. _DB_PREFIX_.'marketplace_seller_product`
 							 (`id_seller`,`price`,`quantity`,`product_name`,`id_category`,`short_description`,`description`,`active`,`ps_id_shop`,`id_shop`,`date_add`,`date_upd`) 
-							VALUES('.$p['id_seller'].',"'.$p['price'].'","'.$p['quantity'].'","Copy of '.$p['product_name'].'",'.$p['id_category'].',"'.$p['short_description'].'","'.$p['description'].'",'.$p['active'].','.$p['ps_id_shop'].','.$p['id_shop'].',NOW(),NOW())');
+							VALUES('.$p['id_seller'].',"'.$p['price'].'","'.$p['quantity'].'","Copy of '.addslashes($p['product_name']).'",'.$p['id_category'].',"'.addslashes($p['short_description']).'","'.addslashes($p['description']).'",'.$p['active'].','.$p['ps_id_shop'].','.$p['id_shop'].',NOW(),NOW())');
 							$new_id_product = Db::getInstance()->Insert_ID();
 							$cat = Db::getInstance()->executeS("select * from `". _DB_PREFIX_."marketplace_seller_product_category` where `id_seller_product`=".$id_product,false);
 							foreach($cat as $c)

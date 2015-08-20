@@ -357,7 +357,7 @@
                                     <input class="form-control"  type="text" name="lname" id="lname" style="width:100px;display: inline;" value="{$lname}" {if $stripestatus=='verified'}disabled="disabled"{/if} />
                                 </div>
                                 <div id="ssn" class="form-group" >
-                                    <label for="ssn" class="control-label required">{l s='SSN last 4 digits' mod='marketplace'}</label>
+                                    <label for="ssn" class="control-label required">{l s='SSN/EIN last 4 digits' mod='marketplace'}</label>
                                     <input class="form-control"  type="text" name="ssn" id="ssn" style="width:50px;display: inline;" value="{if $type!=''}****{/if}" maxlength="4" {if $stripestatus=='verified'}disabled="disabled"{/if} />
                                 </div>
                                 <div id="routing" class="form-group" >
