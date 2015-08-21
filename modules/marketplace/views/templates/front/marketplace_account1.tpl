@@ -431,6 +431,7 @@
 				{/if}
 				<div class="wk_right_col">
 					<div class="wk_product_list">
+		                <span id="loadin_msg" style="display:none;margin-left:5px;margin-top: 5px;font-size: 15px;color: orangered;position: absolute;">{l s='Please wait while we create a duplicate...' mod='marketplace'}</span>
 						<div class="left full">
 							{hook h="DisplayMpproductdetailheaderhook"}
 						</div>
@@ -459,9 +460,9 @@
 										<a id="{$product['id']|escape:'html':'UTF-8'}" class="btn btn-default button button-small edit_img"><span>Edit</span></a>
 									</td>
                                      <td>
-                                    <form action="" method="post">
+                                    <form action="" method="post" id="form_{$product['id']}">
 										 <input type="hidden" name="id_product" value="{$product['id']}" />
-                                        <input class="btn btn-default button button-small" type="submit" name="duplicate" value="Duplicate" style="background-color:#89c226;padding:3px 8px;"/>
+                                        <input id="{$product['id']}" class="btn btn-default button button-small duplicate" type="submit" name="duplicate" value="Duplicate" style="background-color:#89c226;padding:3px 8px;"/>
                                         </form>
 									</td>
 									<td>
@@ -899,6 +900,16 @@ $(document).ready(function(){
 			window.location.href = url;
 		}
 	});
+
+	$(".duplicate").click(function (e)
+	{
+		var id = $(this).attr("id").toString(); 
+		alert(id);
+		$('.duplicate').attr('disabled','disabled');
+		$('#loadin_msg').show();
+		$("#form_"+id).submit();
+	});
+
 });
 </script>
 {/if}

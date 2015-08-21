@@ -317,6 +317,7 @@ class marketplaceMarketplaceaccountModuleFrontController extends ModuleFrontCont
                         }
                         elseif ($logic == 3)
                         {
+							echo "<br>post <pre>" .print_r($_POST) . "</pre>";
 							if (Tools::isSubmit('duplicate'))
 							{
 							$id_product = (int)Tools::getValue('id_product');
