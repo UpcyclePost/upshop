@@ -137,7 +137,7 @@
 					<input class="form-control"  type="text" name="lname" id="lname" style="width:100px;display: inline;" />
 				</div>
                 <div id="ssn" class="form-group" >
-					<label for="ssn"><sup>*</sup>{l s='SSN last 4 digits' mod='marketplace'}</label>
+					<label for="ssn"><sup>*</sup>{l s='SSN/EIN last 4 digits' mod='marketplace'}</label>
 					<input class="form-control"  type="text" name="ssn" id="ssn" style="width:50px;display: inline;" maxlength="4"/>
 				</div>
                 <div id="routing" class="form-group" >
