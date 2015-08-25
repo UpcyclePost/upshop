@@ -15,14 +15,14 @@
 	</div>
 	<div class="wk_right_col">
 	<div class="box-content" id="wk_shipping_list" style="text-align:center;">
-	<table class="data-table" style="width:90%;">
+	<table class="data-table footab" style="width:90%;">
 		<thead>
 			<tr class="first last">
-			<th>{l s='Edit' mod='mpshipping'}</th>
+			<th data-sort-ignore="true">{l s='Edit' mod='mpshipping'}</th>
 			<th>{l s='Shipping Profile' mod='mpshipping'}</th>
-			<th>{l s='Shipping time' mod='mpshipping'}</th>
+			<th data-hide="phone">{l s='Shipping time' mod='mpshipping'}</th>
 			<th>{l s='Price' mod='mpshipping'}</th>			
-			<th>{l s='Delete' mod='mpshipping'}</th>
+			<th data-sort-ignore="true">{l s='Delete' mod='mpshipping'}</th>
 			</tr>
 		</thead>
 		<tbody>

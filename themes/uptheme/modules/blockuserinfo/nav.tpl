@@ -149,7 +149,7 @@
 <!-- Begin Mobile Footer -->
 <nav class="mobile-footer mm-fixed-bottom hidden-lg hidden-md">
     <ul class="clearfix">
-        {if !is_logged}
+        {if !$is_logged}
             <li><a href="http://{$smarty.server.SERVER_NAME}/profile/edit"><i class="fa fa-fw fa-shopping-cart"></i><span>Create a Shop</span></a></li>
             <li><a href="http{if Tools::usingSecureMode()}s{/if}://{$smarty.server.SERVER_NAME}/profile/login"><i class="fa fa-sign-in"></i><span>Sign In</span></a></li>
             <li><a href="http{if Tools::usingSecureMode()}s{/if}://{$smarty.server.SERVER_NAME}/profile/register"><i class="fa fa-sign-in fa-fw fa-rotate-270"></i><span>Sign Up</span></a></li>
