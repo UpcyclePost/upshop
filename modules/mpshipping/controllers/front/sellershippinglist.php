@@ -109,8 +109,21 @@
 		
 		public function setMedia() {
 			parent::setMedia();
+			
+			$this->addJqueryPlugin(array('footable','footable-sort'));			
 			$this->addCSS(_MODULE_DIR_.'mpshipping/css/sellershippinglist.css');
 			$this->addCSS(_MODULE_DIR_.'marketplace/css/marketplace_account.css');
+
+			//Jquery mobile (for the marketplace menu)
+			if ($this->context->getMobileDevice()){
+				$this->addJS(array(
+						_MODULE_DIR_.'marketplace/js/mobile/jquery.mobile.custom.min.js',
+					));
+				$this->addCSS(array(
+						_MODULE_DIR_.'marketplace/js/mobile/jquery.mobile.custom.structure.min.css',
+						_MODULE_DIR_.'marketplace/js/mobile/jquery.mobile.custom.theme.min.css'
+					));
+			}
 		}
 	}
 ?>
