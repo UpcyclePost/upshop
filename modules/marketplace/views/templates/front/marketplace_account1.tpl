@@ -412,10 +412,10 @@
         <span class="navigation_page">{l s='Product List' mod='marketplace'}</span>
         {/capture}
 			<div class="dashboard_content login-panel">
-				{if $is_deleted == 1}
-					<p class="alert alert-success">{l s='Deleted Successful' mod='marketplace'}</p>
+				{if $is_deleted == 1 && $duplicate_conf != 1}
+					<p class="alert alert-success">{l s='Deleted Successfully' mod='marketplace'}</p>
 				{else if $is_edited == 1}
-					<p class="alert alert-success">{l s='Updated Successful' mod='marketplace'}</p>
+					<p class="alert alert-success">{l s='Updated Successfully' mod='marketplace'}</p>
 				{/if}
                  {if $duplicate_conf == 1}
 					<p class="alert alert-success">{l s='Duplicated Successfully.' mod='marketplace'}</p>
@@ -432,6 +432,7 @@
 				<div class="wk_right_col">
 					<div class="wk_product_list">
 		                <span id="loadin_msg" style="display:none;margin-left:5px;margin-top: 5px;font-size: 15px;color: orangered;position: absolute;">{l s='Please wait while we create a duplicate...' mod='marketplace'}</span>
+		                <span id="delete_msg" style="display:none;margin-left:5px;margin-top: 5px;font-size: 15px;color: orangered;position: absolute;">{l s='Please wait while we delete the product...' mod='marketplace'}</span>						
 						<div class="left full">
 							{hook h="DisplayMpproductdetailheaderhook"}
 						</div>
@@ -461,6 +462,7 @@
 									</td>
                                      <td>
                                     <form action="" method="post" id="form_{$product['id']}">
+										 <input type="hidden" name="do_duplicate" value="duplicate" />
 										 <input type="hidden" name="id_product" value="{$product['id']}" />
                                         <input id="{$product['id']}" class="btn btn-default button button-small duplicate" type="submit" name="duplicate" value="Duplicate" style="background-color:#89c226;padding:3px 8px;"/>
                                         </form>
@@ -889,10 +891,13 @@ $(document).ready(function(){
 	});
 	$(".delete_img").click(function()
 	{			
+		$('#delete_msg').show();
 		var confirm_msg = '{l s='Are you sure?' js=1 mod='marketplace'}';  
 		var con = confirm(confirm_msg);
 		if(con == false)
-		{}
+		{
+			$('#delete_msg').hide();
+		}
 		else
 		{
 			var id=$(this).attr("id");
@@ -904,7 +909,6 @@ $(document).ready(function(){
 	$(".duplicate").click(function (e)
 	{
 		var id = $(this).attr("id").toString(); 
-		alert(id);
 		$('.duplicate').attr('disabled','disabled');
 		$('#loadin_msg').show();
 		$("#form_"+id).submit();
