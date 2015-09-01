@@ -21,7 +21,7 @@
 			<th data-sort-ignore="true">{l s='Edit' mod='mpshipping'}</th>
 			<th>{l s='Shipping Profile' mod='mpshipping'}</th>
 			<th data-hide="phone">{l s='Shipping time' mod='mpshipping'}</th>
-			<th>{l s='Price' mod='mpshipping'}</th>			
+			<th data-type="numeric">{l s='Price' mod='mpshipping'}</th>			
 			<th data-sort-ignore="true">{l s='Delete' mod='mpshipping'}</th>
 			</tr>
 		</thead>
@@ -38,7 +38,7 @@
 						<td>
 							{$mp_sp_det['transit_delay']}
 						</td>
-						<td>
+						<td data-value="{$mp_sp_det['base_price']}">
 							{displayPrice price=$mp_sp_det['base_price'] currency=$currency->id}
 						</td>
 						<td>
