@@ -317,7 +317,8 @@ class marketplaceMarketplaceaccountModuleFrontController extends ModuleFrontCont
                         }
                         elseif ($logic == 3)
                         {
-							if (Tools::isSubmit('duplicate'))
+							if (Tools::getValue('do_duplicate')!='')
+							//if (Tools::isSubmit('duplicate'))
 							{
 							$id_product = (int)Tools::getValue('id_product');
 							$p = Db::getInstance()->getRow("select * from `". _DB_PREFIX_."marketplace_seller_product` where `id`=".$id_product,false);
@@ -443,7 +444,7 @@ class marketplaceMarketplaceaccountModuleFrontController extends ModuleFrontCont
                             $customer_id = $this->context->customer->id;							
                             $dashboard = Db::getInstance()->executeS("SELECT ordd.`id_order_detail` as `id_order_detail`,
                             	ordd.`product_name` as `ordered_product_name`,
-                            	ordd.`product_price` as total_price,
+                            	ord.`total_paid` as total_price,
                             	ordd.`product_quantity` as qty,
                             	ordd.`id_order` as id_order,
                             	ord.`id_customer` as order_by_cus,
@@ -466,7 +467,7 @@ class marketplaceMarketplaceaccountModuleFrontController extends ModuleFrontCont
 								cusmsg.`date_add` as date_add,
 								ord.`id_currency` as `id_currency` 
 								FROM `"._DB_PREFIX_."marketplace_commision_calc` mcc 
-								JOIN `"._DB_PREFIX_."marketplace_customer` mkc ON (mkc.`marketplace_seller_id` = mcc.`id_seller_order`)
+								JOIN `"._DB_PREFIX_."marketplace_customer` mkc ON (mkc.`marketplace_seller_id` = mcc.`customer_id`)
 								JOIN  `"._DB_PREFIX_."order_detail` ordd ON ( ordd.`product_id` = mcc.`product_id`)
 								JOIN  `"._DB_PREFIX_."orders` ord ON ( ordd.`id_order` = ord.`id_order`)
 								JOIN `"._DB_PREFIX_."customer_thread` custh ON (custh.`id_order` = ord.`id_order`)
