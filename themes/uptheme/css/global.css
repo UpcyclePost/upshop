@@ -5527,7 +5527,8 @@ textarea {
 header {
   z-index: 1;
   position: fixed;
-  background: #fff;
+  background: rgba(0, 0, 0, 0.6);
+
   padding-bottom: 5px;
   width: 100%; }
   header .banner {

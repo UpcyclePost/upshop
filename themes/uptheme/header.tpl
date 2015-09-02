@@ -146,9 +146,15 @@ window._fbq.push(['track', '6025947566399',
 					<div>
 						<div class="container">
 							<div class="row">
-								<a id="mobile-menu" class="mobile-menu fa fa-bars visible-lg visible-md"></a>
+								<div id="" style="float:left;">
+									<a href="{if isset($force_ssl) && $force_ssl}{$base_dir_ssl}{else}{$base_dir}{/if}" title="{$shop_name|escape:'html':'UTF-8'}">
+										<img class="logo img-responsive" src="{$logo_url}" alt="{$shop_name|escape:'html':'UTF-8'}"{if isset($logo_image_width) && $logo_image_width} width="{$logo_image_width}"{/if}{if isset($logo_image_height) && $logo_image_height} height="{$logo_image_height}"{/if}/>
+									</a>
+								</div>
+								<a id="mobile-menu" class="mobile-menu fa fa-bars visible-lg visible-md pull-right"></a>
 								{if isset($HOOK_TOP)}{$HOOK_TOP}{/if}
 								{hook h="displayNav"}
+
 							</div>
 						</div>
 					</div>
