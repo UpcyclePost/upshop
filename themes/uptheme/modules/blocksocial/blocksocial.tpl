@@ -23,12 +23,10 @@
 *  @license    http://opensource.org/licenses/afl-3.0.php  Academic Free License (AFL 3.0)
 *  International Registered Trademark & Property of PrestaShop SA
 *}
-<footer class="footer hidden-xs">
-    <div class="">
         <nav class="slug clearfix">
             <li class="f-logo">
 				<a href="http://{$smarty.server.SERVER_NAME}">
-				<img src="http{if Tools::usingSecureMode()}s{/if}://{$smarty.server.SERVER_NAME}/img/footer-logo.png"/></a>
+				<img src="http{if Tools::usingSecureMode()}s{/if}://{$smarty.server.SERVER_NAME}/img/upmod-footer-logo.png"/></a>
 				</li>
             <li class="copyright">&copy; {$smarty.now|date_format:"%Y"} UpcyclePost. All rights reserved.</li>
             <li id="social_block">
@@ -104,5 +102,3 @@
             <li><a href="http://{$smarty.server.SERVER_NAME}/post/idea">Post Ideas</a></li>
 			</div>
         </nav>
-    </div>
-</footer>

@@ -32,17 +32,16 @@
 			</div><!-- .columns-container -->
 			{if isset($HOOK_FOOTER)}
 				<!-- Footer -->
-				<div class="footer-container">
-					<footer id="footer"  class="">
+				<div  id="footer_setfooter" class="footer-container hidden-xs">
+					<div class="container" style="padding-bottom:0;">
+					<footer id="footer"  class="columns-container">
 						{$HOOK_FOOTER}
 					</footer>
+					</div>
 				</div><!-- #footer -->
 			{/if}
 		</div><!-- #page -->
 {/if}
-
-
-
 
 {include file="$tpl_dir./global.tpl"}
 	<!-- Horizontal Dropdown Menu -->

@@ -3,8 +3,8 @@
 <div class="header_user_info">
 	<div class="buttons hidden-xs hidden-sm">
 		{if !$is_logged}
-			<a href="http{if Tools::usingSecureMode()}s{/if}://{$smarty.server.SERVER_NAME}/profile/login" class="btn btn-none"><i class="fa fa-sign-in fa-fw"></i> Sign In</a>
-			<a href="http{if Tools::usingSecureMode()}s{/if}://{$smarty.server.SERVER_NAME}/profile/register" class="btn btn-none"><i class="fa fa-sign-in fa-fw fa-rotate-270"></i> Sign Up</a>
+			<a href="http{if Tools::usingSecureMode()}s{/if}://{$smarty.server.SERVER_NAME}/profile/login" class="">Sign In</a>
+			<a href="http{if Tools::usingSecureMode()}s{/if}://{$smarty.server.SERVER_NAME}/profile/register" class="button button-medium">Sign Up</a>
 		{/if}
 
 		<div class="btn-group">
@@ -53,8 +53,8 @@
 			</div>
 		{/if}
 		{if !$PS_CATALOG_MODE}
-		<div class="pull-right text-center cart">
-			<a style="margin: 0; padding: 0" href="http{if Tools::usingSecureMode()}s{/if}://{$smarty.server.SERVER_NAME}/shop/quick-order"><i class="fa fa-fw fa-shopping-cart"></i><br>Cart{if $cart_qties > 0}<span id="header_cart_items" class="items">{$cart_qties}</span>{/if}</a>
+		<div class="cart pull-right text-center">
+			<a id="cart-link" style="margin: 0; padding: 0" href="http{if Tools::usingSecureMode()}s{/if}://{$smarty.server.SERVER_NAME}/shop/quick-order"><i class="fa fa-fw fa-shopping-cart"></i><br>Cart{if $cart_qties > 0}<span id="header_cart_items" class="items">{$cart_qties}</span>{/if}</a>
 		</div>
 		{/if}
 	</div>
