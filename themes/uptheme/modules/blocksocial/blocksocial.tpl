@@ -91,14 +91,14 @@
 			</ul>
             </li>
 			<div class="policies">
-            <li><a href="{$link->getCMSLink(8)|escape:'html':'UTF-8'}">Policies</a></li>
+            <li><a href="http://{$smarty.server.SERVER_NAME}/policy">Policies</a></li>
             {if !isSeller}
                 <li><a href="http://{$smarty.server.SERVER_NAME}/profile/login">Create a shop</a></li>
             {/if}
             <li><a href="http://{$smarty.server.SERVER_NAME}/contact">Contact Us</a></li>
             <li><a href="http://{$smarty.server.SERVER_NAME}/blog">Blog</a></li>
-            <li><a href="{$link->getCMSLink(6)|escape:'html':'UTF-8'}">FAQ</a></li>
-            <li><a href="{$link->getCMSLink(4)|escape:'html':'UTF-8'}">About Us</a></li>
+            <li><a href="http://{$smarty.server.SERVER_NAME}/faq">FAQ</a></li>
+            <li><a href="http://{$smarty.server.SERVER_NAME}/about">About Us</a></li>
             <li><a href="http://{$smarty.server.SERVER_NAME}/post/idea">Post Ideas</a></li>
 			</div>
         </nav>
