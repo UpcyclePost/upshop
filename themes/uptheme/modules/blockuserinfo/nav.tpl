@@ -1,22 +1,13 @@
 <!-- Block user information module NAV  -->
 
-<div class="header_user_info">
+<div class="header_user_info col-sm-4 col-xs-4 col-md-6">
+	<a id="mobile-menu" class="mobile-menu fa fa-bars visible-lg visible-md pull-right"></a>
+	<a class="slide-menu fa fa-bars hidden-lg hidden-md pull-right" href="#mobile-slide-menu"></a>
 	<div class="buttons hidden-xs hidden-sm">
 		{if !$is_logged}
 			<a href="http{if Tools::usingSecureMode()}s{/if}://{$smarty.server.SERVER_NAME}/profile/login" class="">Sign In</a>
 			<a href="http{if Tools::usingSecureMode()}s{/if}://{$smarty.server.SERVER_NAME}/profile/register" class="button button-medium">Sign Up</a>
 		{/if}
-
-		<div class="btn-group">
-			<button type="button" class="btn btn-user dropdown-toggle" data-toggle="dropdown">
-				<span>Browse</span> <i class="fa fa-camera"></i>
-			</button>
-			<ul class="dropdown-menu dropdown-menu-right" role="menu">
-				<li><a href="http://{$smarty.server.SERVER_NAME}/shops"><i class="fa up-shop-1"></i> Shops</a></li>
-				<li><a href="http://{$smarty.server.SERVER_NAME}/gallery"><i class="fa fa-fw fa-lightbulb-o"></i> Ideas</a></li>
-				<li><a href="http://{$smarty.server.SERVER_NAME}/search/users"><i class="fa fa-fw fa-users"></i> Users</a></li>
-			</ul>
-		</div>
 		{if $is_logged}
 			{if $is_seller == 1}
 				<div class="btn-group">
@@ -58,7 +49,6 @@
 		</div>
 		{/if}
 	</div>
-	<a class="slide-menu fa fa-bars hidden-lg hidden-md" href="#mobile-slide-menu"></a>
 	<!-- <a href="{$link->getPageLink('my-account', true)|escape:'html':'UTF-8'}" title="{l s='View my customer account' mod='blockuserinfo'}" class="account" rel="nofollow"><span>You</span></a> -->
 </div>
 <!-- Begin Mobile Side Menu -->

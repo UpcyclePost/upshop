@@ -143,20 +143,17 @@ window._fbq.push(['track', '6025947566399',
 		<div id="page">
 			<div id="header_setfooter" class="header-container">
 				<header id="header">
-					<div>
 						<div class="container">
 							<div class="row">
-								<div id="" style="float:left;">
+								<div class="col-xs-2 col-sm-2" style="float:left;">
 									<a href="{if isset($force_ssl) && $force_ssl}{$base_dir_ssl}{else}{$base_dir}{/if}" title="{$shop_name|escape:'html':'UTF-8'}">
 										<img class="logo img-responsive" src="{$logo_url}" alt="{$shop_name|escape:'html':'UTF-8'}"{if isset($logo_image_width) && $logo_image_width} width="{$logo_image_width}"{/if}{if isset($logo_image_height) && $logo_image_height} height="{$logo_image_height}"{/if}/>
 									</a>
 								</div>		
 								{if isset($HOOK_TOP)}{$HOOK_TOP}{/if}
 								{hook h="displayNav"}
-								<a id="mobile-menu" class="mobile-menu fa fa-bars visible-lg visible-md"></a>
 							</div>
 						</div>
-					</div>
 				</header>
 				<!-- Nav -->
 				<div class="container">

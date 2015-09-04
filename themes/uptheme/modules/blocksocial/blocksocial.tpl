@@ -90,7 +90,7 @@
 		
 			</ul>
             </li>
-			<div class="policies">
+			<div class="policies hidden-sm">
             <li><a href="http://{$smarty.server.SERVER_NAME}/policy">Policies</a></li>
             {if !isSeller}
                 <li><a href="http://{$smarty.server.SERVER_NAME}/profile/login">Create a shop</a></li>
@@ -99,6 +99,5 @@
             <li><a href="http://{$smarty.server.SERVER_NAME}/blog">Blog</a></li>
             <li><a href="http://{$smarty.server.SERVER_NAME}/faq">FAQ</a></li>
             <li><a href="http://{$smarty.server.SERVER_NAME}/about">About Us</a></li>
-            <li><a href="http://{$smarty.server.SERVER_NAME}/post/idea">Post Ideas</a></li>
 			</div>
         </nav>
