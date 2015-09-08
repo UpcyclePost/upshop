@@ -105,10 +105,7 @@ ul.step li.step_todo span, ul.step li.step_current span{
 ul.step li.step_done a{
     border:none;
 }
-div .box-info-product .exclusive:before, .box-info-product .exclusive span{
-    border: none !important;
-    text-shadow: none !important;
-}
+
 .columns-container .button.lnk_view span{
     border:none !important;
 }
@@ -124,28 +121,12 @@ ul.step li a{
 .box-security{
     background:none;
 }
-.box-info-product .exclusive span{
-    text-shadow: none;
-}
 .button.lnk_view{
     text-shadow: none;
 }
 .btn.button-plus span, .btn.button-minus span{
     border:none;
     background: none;
-}
-.box-info-product .exclusive:after{
-    background:none !important;
-}
-.box-info-product .exclusive:before{
-    text-shadow: none;
-}
-.box-info-product .exclusive span{
-    border:none;
-}
-.button.ajax_add_to_cart_button{
-    text-shadow: none;
-    border:none;
 }
 .button.exclusive-medium{
     text-shadow: none;

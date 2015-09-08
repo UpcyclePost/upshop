@@ -1,6 +1,6 @@
 <!-- Block user information module NAV  -->
 
-<div class="header_user_info col-sm-4 col-xs-4 col-md-6">
+<div class="header_user_info col-xs-2 col-sm-2 col-md-5 col-lg-5">
 	<a id="mobile-menu" class="mobile-menu fa fa-bars visible-lg visible-md pull-right"></a>
 	<a class="slide-menu fa fa-bars hidden-lg hidden-md pull-right" href="#mobile-slide-menu"></a>
 	<div class="buttons hidden-xs hidden-sm">

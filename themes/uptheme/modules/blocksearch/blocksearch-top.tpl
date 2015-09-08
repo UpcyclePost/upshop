@@ -24,7 +24,7 @@
 *}
 <!-- block search mobile -->
 {if isset($hook_mobile)}
-<div class="col-xs-6 col-md-5 search-container">
+<div class="col-xs-6 col-sm-6 col-md-4 col-lg-5 search-container">
 <form class="search-form form-inline" method="post" action="http://{$smarty.server.SERVER_NAME}/gallery">
 <input type="search" name="term" class="form-control search" placeholder="Find Inspiration">
 <button type="submit" class="search-icon"><img src="http://{$smarty.server.SERVER_NAME}/img/icons/search-icon.png" alt="Search"></button>
@@ -33,7 +33,7 @@
 {else}
 <!-- Block search module TOP -->
 
-<div class="col-xs-5 col-md-4 search-container">
+<div class="col-xs-6 col-sm-6 col-md-4 col-lg-5 search-container">
 <form class="search-form form-inline" method="post" action="http://{$smarty.server.SERVER_NAME}/gallery">
 <input type="search" name="term" class="form-control search" placeholder="Search the world's largest upcycle hand-crafted community">
 <button type="submit" class="search-icon"><img src="http://{$smarty.server.SERVER_NAME}/img/icons/search-icon.png" alt="Search"></button>

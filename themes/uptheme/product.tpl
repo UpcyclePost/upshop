@@ -189,17 +189,17 @@
 
 		<!-- end pb-left-column -->
 		<!-- end left infos-->
-		<!-- begin short_description_block -->
+		<!-- begin short_description_block desktop -->
 		{if $product->description_short}
-			<div class="post-details-description">
+			<div class="post-details-description hidden-xs">
 			<h5>{l s='Description'}</h5>
 			<p>{$product->description_short}</p>
 			</div>
 		{/if}
 		<!-- end short_description_block -->
 		{if isset($product) && $product->description}
-		<!-- More info -->
-		<div class="post-details-description">
+		<!-- More info desktop -->
+		<div class="post-details-description hidden-xs">
 		<h5>{l s='More info'}</h4>
 			<!-- full description -->
 			<p>{$product->description}</p>
@@ -477,6 +477,23 @@
 					<p>{$shipmethod['mp_shipping_name']} : {convertPrice price=$shipmethod['base_price']}</p>
 				{/foreach}
 			</div>
+			{/if}
+			<!-- begin short_description_block desktop -->
+			{if $product->description_short}
+				<div class="post-details-description hidden-sm hidden-md hidden-lg">
+				<h5>{l s='Description'}</h5>
+				<p>{$product->description_short}</p>
+				</div>
+			{/if}
+			<!-- end short_description_block -->
+			{if isset($product) && $product->description}
+			<!-- More info desktop -->
+			<div class="post-details-description hidden-sm hidden-md hidden-lg">
+			<h5>{l s='More info'}</h4>
+				<!-- full description -->
+				<p>{$product->description}</p>
+			</div>
+			<!--end  More info -->
 			{/if}
 			<div class="post-sidebar-container engage">
 				<h5>Engagement</h5>
