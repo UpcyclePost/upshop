@@ -23,15 +23,12 @@
 *  International Registered Trademark & Property of PrestaShop SA
 *}
 
-{capture name=path}{l s='Your shopping cart'}{/capture}
 <!-- open the shopping cart login panel -->
 <div class="login-panel" id="login-panel-summary">
 	<div class="login-panel-header">
 	<h1 id="cart_title" class="">{l s='Shopping cart summary'}
 		{if !isset($empty) && !$PS_CATALOG_MODE}
-			<span class="heading-counter pull-right">{l s='Your shopping cart contains :'}
-				<span id="summary_products_quantity">{$productNumber} {if $productNumber == 1}{l s='product'}{else}{l s='products'}{/if}</span>
-			</span>
+				<span id="summary_products_quantity">({$productNumber} {if $productNumber == 1}{l s='product'}{else}{l s='products'}{/if})</span>
 		{/if}
 	</h1>
 	</div>
@@ -344,6 +341,7 @@
 					{assign var='quantityDisplayed' value=0}
 					{assign var='odd' value=($odd+1)%2}
 					{assign var='ignoreProductLast' value=isset($customizedDatas.$productId.$productAttributeId) || count($gift_products)}
+					{assign var='cannotModify' value=1}
 					{* Display the product line *}
 					{include file="$tpl_dir./shopping-cart-product-line.tpl" productLast=$product@last productFirst=$product@first}
 					{* Then the customized datas ones*}
@@ -510,7 +508,7 @@
 	{/if}
 
 	{if ((!empty($delivery_option) AND !isset($virtualCart)) OR $delivery->id OR $invoice->id) AND !$opc}
-		<div class="order_delivery clearfix row">
+		<div class="order_delivery clearfix row" style="padding:10px;">
 			{if !isset($formattedAddresses) || (count($formattedAddresses.invoice) == 0 && count($formattedAddresses.delivery) == 0) || (count($formattedAddresses.invoice.formated) == 0 && count($formattedAddresses.delivery.formated) == 0)}
 				{if $delivery->id}
 					<div class="col-xs-12 col-sm-6"{if !$have_non_virtual_products} style="display: none;"{/if}>
@@ -545,9 +543,9 @@
 							<li>
 								<h3 class="page-subheading">
 									{if $k eq 'invoice'}
-										{l s='Invoice address'}
+										{l s='Billing address'}
 									{elseif $k eq 'delivery' && $delivery->id}
-										{l s='Delivery address'}
+										{l s='Shipping address'}
 									{/if}
 									{if isset($address.object.alias)}
 										<span class="address_alias">({$address.object.alias})</span>
@@ -578,10 +576,10 @@
 		</div>
 	{/if}
 	<div id="HOOK_SHOPPING_CART">{$HOOK_SHOPPING_CART}</div>
-	<p class="clearfix" style="padding:0 0 0 15px">
+	<p class="cart_navigation clearfix">
 		{if !$opc}
-			<a  href="{if $back}{$link->getPageLink('order', true, NULL, 'step=1&amp;back={$back}')|escape:'html':'UTF-8'}{else}{$link->getPageLink('order', true, NULL, 'step=1')|escape:'html':'UTF-8'}{/if}" class="button btn btn-default standard-checkout button-medium" title="{l s='Proceed to checkout'}">
-				<span>{l s='Proceed to checkout'}<i class="icon-chevron-right right"></i></span>
+			<a  href="{if $back}{$link->getPageLink('order', true, NULL, 'step=1&amp;back={$back}')|escape:'html':'UTF-8'}{else}{$link->getPageLink('order', true, NULL, 'step=1')|escape:'html':'UTF-8'}{/if}" class="button btn btn-default standard-checkout button-medium" title="{l s='Continue'}">
+				<span>{l s='Continue'}<i class="icon-chevron-right right"></i></span>
 			</a>
 		{/if}
 	</p>

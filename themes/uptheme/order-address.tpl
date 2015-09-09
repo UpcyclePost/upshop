@@ -26,7 +26,10 @@
 	{assign var='current_step' value='address'}
 	{capture name=path}{l s='Addresses'}{/capture}
 	{assign var="back_order_page" value="order.php"}
-	<h1 class="page-heading">{l s='Addresses'}</h1>
+<div class="login-panel"> 
+	<div class="login-panel-header">
+	<h1 class="">{l s='Addresses'}</h1>
+	</div>
 	{include file="$tpl_dir./order-steps.tpl"}
 	{include file="$tpl_dir./errors.tpl"}
 		<form action="{$link->getPageLink($back_order_page, true)|escape:'html':'UTF-8'}" method="post">
@@ -40,11 +43,11 @@
 	<div id="opc_account" class="opc-main-block">
 		<div id="opc_account-overlay" class="opc-overlay" style="display: none;"></div>
 {/if}
-<div class="addresses clearfix">
+<div class="addresses clearfix" style="padding:15px">
 	<div class="row">
 		<div class="col-xs-12 col-sm-6">
 			<div class="address_delivery select form-group selector1">
-				<label for="id_address_delivery">{if $cart->isVirtualCart()}{l s='Choose a billing address:'}{else}{l s='Choose a delivery address:'}{/if}</label>
+				<label for="id_address_delivery">{if $cart->isVirtualCart()}{l s='Choose a billing address:'}{else}{l s='Choose a shipping address:'}{/if}</label>
 				<select name="id_address_delivery" id="id_address_delivery" class="address_select form-control">
 					{foreach from=$addresses key=k item=address}
 						<option value="{$address.id_address|intval}"{if $address.id_address == $cart->id_address_delivery} selected="selected"{/if}>
@@ -91,11 +94,11 @@
 		</div>
 	</div> <!-- end row -->
 	<p class="address_add submit" style="padding:0 0 25px 15px">
-		<a href="{$link->getPageLink('address', true, NULL, "back={$back_order_page}?step=1{if $back}&mod={$back}{/if}")|escape:'html':'UTF-8'}" title="{l s='Add'}" class="button button-medium btn btn-default">
-			<span>{l s='Add a new address'}<i class="icon-chevron-right right"></i></span>
+		<a href="{$link->getPageLink('address', true, NULL, "back={$back_order_page}?step=1{if $back}&mod={$back}{/if}")|escape:'html':'UTF-8'}" title="{l s='Add'}" class="button button-green btn btn-default">
+			<span>{l s='Add a new address'}&nbsp;<i class="icon-chevron-right right"></i></span>
 		</a>
 	</p>
-	{if !$opc}
+	{if !$opc && false}
 		<div id="ordermsg" class="form-group">
 			<label>{l s='If you would like to add a comment about your order, please write it in the field below.'}</label>
 			<textarea class="form-control" cols="60" rows="6" name="message">{if isset($oldMessage)}{$oldMessage}{/if}</textarea>
@@ -105,16 +108,12 @@
 {if !$opc}
 			<p class="cart_navigation clearfix">
 				<input type="hidden" class="hidden" name="step" value="2" />
-				<input type="hidden" name="back" value="{$back}" />
-				<a href="{$link->getPageLink($back_order_page, true, NULL, "{if $back}back={$back}{/if}")|escape:'html':'UTF-8'}" title="{l s='Previous'}" class="button-exclusive btn btn-default">
-					<i class="icon-chevron-left"></i>
-					{l s='Continue Shopping'}
-				</a>
 				<button type="submit" name="processAddress" class="button btn btn-default button-medium">
-					<span>{l s='Proceed to checkout'}<i class="icon-chevron-right right"></i></span>
+					<span>{l s='Continue'}<i class="icon-chevron-right right"></i></span>
 				</button>
 			</p>
 		</form>
+	</div> <!-- close the order address login panel -->
 {else}
 	</div> <!--  end opc_account -->
 	</div> <!-- close the order address login panel -->
@@ -141,8 +140,8 @@
 {addJsDef opc=$opc|boolval}
 {capture}<h3 class="">{l s='Your billing address' js=1}</h3>{/capture}
 {addJsDefL name=titleInvoice}{$smarty.capture.default|@addcslashes:'\''}{/addJsDefL}
-{capture}<h3 class="">{l s='Your delivery address' js=1}</h3>{/capture}
+{capture}<h3 class="">{l s='Your shipping address' js=1}</h3>{/capture}
 {addJsDefL name=titleDelivery}{$smarty.capture.default|@addcslashes:'\''}{/addJsDefL}
-{capture}<a class="button button-small btn btn-default" href="{$smarty.capture.addressUrlAdd}" title="{l s='Update' js=1}"><span>{l s='Update' js=1}<i class="icon-chevron-right right"></i></span></a>{/capture}
+{capture}<a class="button lnk_view btn btn-default" href="{$smarty.capture.addressUrlAdd}" title="{l s='Update' js=1}"><span>{l s='Update' js=1}&nbsp;<i class="icon-chevron-right right"></i></span></a>{/capture}
 {addJsDefL name=liUpdate}{$smarty.capture.default|@addcslashes:'\''}{/addJsDefL}
 {/strip}

@@ -16,12 +16,19 @@ ul.product_list .availability span {
     border: 2px solid #89c226; 
     border-radius: 4px;}
   ul.product_list .availability span.available-now:before {
+    font-family: fontawesome;
     content: "\f00c";
     color: #89c226;}
   ul.product_list .availability span.out-of-stock {
-    background: #ff6666;
-    border: 1px solid #ff6666;
+    color:#ff6666; 
+    background: #fff;
+    border: 2px solid #ff6666;
     border-radius: 4px; }
+  ul.product_list .availability span.out-of-stock:before {
+    font-family: fontawesome;
+    content: "\f00d";
+    color: #ff6666;}
+
   ul.product_list .availability span.available-dif {
     background: #ff6666;
     border: 1px solid #ff6666; }

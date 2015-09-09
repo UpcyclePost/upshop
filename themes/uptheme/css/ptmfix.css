@@ -106,15 +106,6 @@ ul.step li.step_done a{
     border:none;
 }
 
-.columns-container .button.lnk_view span{
-    border:none !important;
-}
-.columns-container .button.button-medium span{
-    border:none !important;
-}
-.columns-container .button.button-small span{
-    border:none !important;
-}
 ul.step li a{
     text-shadow: none !important;
 }

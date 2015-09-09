@@ -32,7 +32,7 @@
 		{if isset($product.attributes) && $product.attributes}<small><a href="{$link->getProductLink($product.id_product, $product.link_rewrite, $product.category)|escape:'html':'UTF-8'}">{$product.attributes|escape:'html':'UTF-8'}</a></small>{/if}
 	</td>
 	<td class="cart_ref">{if $product.reference}{$product.reference|escape:'html':'UTF-8'}{else}--{/if}</td>
-    <td class="cart_avail">{if $product.stock_quantity > 0}<span class="label label-success">{l s='In Stock'}</span>{else}<span class="label label-warning">{l s='Out of Stock'}</span>{/if}</td>
+    <td class="cart_avail">{if $product.stock_quantity > 0}<<span class="label label-success">{l s='In Stock'}</span>{else}<span class="label label-warning">{l s='Out of Stock'}</span>{/if}</td>
 	<td class="cart_quantity {if isset($customizedDatas.$productId.$productAttributeId) AND $quantityDisplayed == 0} text-center {/if}">
 	{if isset($cannotModify) AND $cannotModify == 1}
 		<span>{if $quantityDisplayed == 0 AND isset($customizedDatas.$productId.$productAttributeId)}{$customizedDatas.$productId.$productAttributeId|@count}{else}{$product.cart_quantity-$quantityDisplayed}{/if}</span>
