@@ -264,11 +264,9 @@
 															{/if}
 														</td>
                                                         <td style="width: 100%; overflow: auto; display: block; max-height: 75px;min-height: 56px;">
-                                                    {foreach $option.carrier_list as $carrier}
-															{if $carrier@iteration != 1}
+                                                    
                                                             {$carrier.shipping_policy|escape:'htmlall':'UTF-8'}
-															{/if}
-														{/foreach}
+															
 												   </td>
 													</tr>
 													{/if}

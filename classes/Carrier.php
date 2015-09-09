@@ -408,11 +408,26 @@ class CarrierCore extends ObjectModel
 	 * @param boolean $active Returns only active carriers when true
 	 * @return array Carriers
 	 */
-	public static function getCarriers($id_lang, $active = false, $delete = false, $id_zone = false, $ids_group = null, $modules_filters = self::PS_CARRIERS_ONLY)
+	public static function getCarriers($id_lang, $active = false, $delete = false, $id_zone = false, $ids_group = null, $modules_filters = self::PS_CARRIERS_ONLY, $id_product = null)
 	{
 		// Filter by groups and no groups => return empty array
 		if ($ids_group && (!is_array($ids_group) || !count($ids_group)))
 			return array();
+			
+			$id_cars = '';
+		if($id_product!=null){
+			$p_carrier = array();
+		$p_carriers =Db::getInstance(_PS_USE_SQL_SLAVE_)->executeS('
+			SELECT c.id_carrier
+			FROM `'._DB_PREFIX_.'product_carrier` pc
+			INNER JOIN `'._DB_PREFIX_.'carrier` c
+				ON (c.`id_reference` = pc.`id_carrier_reference` AND c.`deleted` = 0)
+			WHERE pc.`id_product` = '.$id_product);
+			
+			foreach($p_carriers as $val)
+			$p_carrier[] = $val['id_carrier'];
+			$id_cars = 'c.id_carrier IN ('.implode(',',$p_carrier).') AND';
+		}
 
 		$sql = '
 		SELECT c.*, cl.delay
@@ -421,7 +436,7 @@ class CarrierCore extends ObjectModel
 		LEFT JOIN `'._DB_PREFIX_.'carrier_zone` cz ON (cz.`id_carrier` = c.`id_carrier`)'.
 		($id_zone ? 'LEFT JOIN `'._DB_PREFIX_.'zone` z ON (z.`id_zone` = '.(int)$id_zone.')' : '').'
 		'.Shop::addSqlAssociation('carrier', 'c').'
-		WHERE c.`deleted` = '.($delete ? '1' : '0');
+		WHERE '.$id_cars.' c.`deleted` = '.($delete ? '1' : '0');
 		if ($active)
 			$sql .= ' AND c.`active` = 1 ';
 		if ($id_zone)
@@ -539,7 +554,7 @@ class CarrierCore extends ObjectModel
 	 * @param Array $groups group of the customer
 	 * @return Array
 	 */
-	public static function getCarriersForOrder($id_zone, $groups = null, $cart = null)
+	public static function getCarriersForOrder($id_zone, $groups = null, $cart = null, $id_product = null)
 	{
 		$context = Context::getContext();
 		$id_lang = $context->language->id;
@@ -549,9 +564,9 @@ class CarrierCore extends ObjectModel
 			$id_currency = $context->currency->id;
 
 		if (is_array($groups) && !empty($groups))
-			$result = Carrier::getCarriers($id_lang, true, false, (int)$id_zone, $groups, self::PS_CARRIERS_AND_CARRIER_MODULES_NEED_RANGE);
+			$result = Carrier::getCarriers($id_lang, true, false, (int)$id_zone, $groups, self::PS_CARRIERS_AND_CARRIER_MODULES_NEED_RANGE,$id_product);
 		else
-			$result = Carrier::getCarriers($id_lang, true, false, (int)$id_zone, array(Configuration::get('PS_UNIDENTIFIED_GROUP')), self::PS_CARRIERS_AND_CARRIER_MODULES_NEED_RANGE);
+			$result = Carrier::getCarriers($id_lang, true, false, (int)$id_zone, array(Configuration::get('PS_UNIDENTIFIED_GROUP')), self::PS_CARRIERS_AND_CARRIER_MODULES_NEED_RANGE,$id_product);
 		$results_array = array();
 
 		foreach ($result as $k => $row)
@@ -1226,7 +1241,7 @@ class CarrierCore extends ObjectModel
 
 		$available_carrier_list = array();
 		$customer = new Customer($cart->id_customer);
-		$carriers = Carrier::getCarriersForOrder($id_zone, $customer->getGroups(), $cart);
+		$carriers = Carrier::getCarriersForOrder($id_zone, $customer->getGroups(), $cart, (int)$product->id);
 
 		foreach ($carriers as $carrier)
 			$available_carrier_list[] = $carrier['id_carrier'];
