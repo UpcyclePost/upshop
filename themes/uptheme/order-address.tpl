@@ -28,7 +28,7 @@
 	{assign var="back_order_page" value="order.php"}
 <div class="login-panel"> 
 	<div class="login-panel-header">
-	<h1 class="">{l s='Addresses'}</h1>
+	<h1 class="">{l s='Shipping & Billing Addresses'}</h1>
 	</div>
 	{include file="$tpl_dir./order-steps.tpl"}
 	{include file="$tpl_dir./errors.tpl"}
@@ -73,7 +73,7 @@
 					{/section}
 					</select><span class="waitimage"></span>
 				{else}
-					<a href="{$link->getPageLink('address', true, NULL, "back={$back_order_page}?step=1&select_address=1{if $back}&mod={$back}{/if}")|escape:'html':'UTF-8'}" title="{l s='Add'}" class="button button-small btn btn-default">
+					<a href="{$link->getPageLink('address', true, NULL, "back={$back_order_page}?step=1&select_address=1{if $back}&mod={$back}{/if}")|escape:'html':'UTF-8'}" title="{l s='Add'}" class="button lnk_view btn btn-default">
 						<span>
 							{l s='Add a new address'}
 							<i class="icon-chevron-right right"></i>
@@ -94,7 +94,7 @@
 		</div>
 	</div> <!-- end row -->
 	<p class="address_add submit" style="padding:0 0 25px 15px">
-		<a href="{$link->getPageLink('address', true, NULL, "back={$back_order_page}?step=1{if $back}&mod={$back}{/if}")|escape:'html':'UTF-8'}" title="{l s='Add'}" class="button button-green btn btn-default">
+		<a href="{$link->getPageLink('address', true, NULL, "back={$back_order_page}?step=1{if $back}&mod={$back}{/if}")|escape:'html':'UTF-8'}" title="{l s='Add'}" class="button lnk_view btn btn-default">
 			<span>{l s='Add a new address'}&nbsp;<i class="icon-chevron-right right"></i></span>
 		</a>
 	</p>

@@ -139,33 +139,6 @@
     background-image: linear-gradient(to top, #ccc 50%, #ddd 150%);
 }
 
-.btn-user {
-    display: inline-block;
-    border: 2px solid #ddd;
-    padding: 8px 14px;
-    -webkit-border-radius: 4px;
-    -webkit-background-clip: padding-box;
-    -moz-border-radius: 4px;
-    -moz-background-clip: padding;
-    border-radius: 4px;
-    background-clip: padding-box;
-    text-decoration: none !important;
-    line-height: normal;
-    color: rgba(0,0,0,.6);
-    background: #fff;
-}
-
-.btn-user:hover {
-    cursor: pointer;
-    color: #fff;
-    background: rgba(0,0,0,.5);
-    border: 2px solid #ddd;    
-}
-
-.btn-user .fa {
-    margin: 0;
-}
-
 .btn-group, .btn-group-vertical {
     position: relative;
     display: inline-block;
@@ -374,7 +347,7 @@
     float: left;
     margin: 0;
     padding: 9px 10px;
-    color: #676767;
+    color: #666;
 }
 
 .header-container .buttons .btn-user span:hover {
@@ -383,6 +356,33 @@
     margin: 0;
     padding: 9px 10px;
     color: #fff;
+}
+
+.btn-user {
+    display: inline-block;
+    border: 2px solid #ddd;
+    padding: 8px 14px;
+    -webkit-border-radius: 4px;
+    -webkit-background-clip: padding-box;
+    -moz-border-radius: 4px;
+    -moz-background-clip: padding;
+    border-radius: 4px;
+    background-clip: padding-box;
+    text-decoration: none !important;
+    line-height: normal;
+    color: #666;
+    background: #fff;
+}
+
+.btn-user:hover {
+    cursor: pointer;
+    color: #fff;
+    background: #666;
+    border: 2px solid #ddd;    
+}
+
+.btn-user .fa {
+    margin: 0;
 }
 
 #cart-link:hover {
@@ -704,6 +704,7 @@ header .row #header_logo {
 @media (max-width: 767px) {
     .logo {
         margin-left: auto;
+        margin-right: auto;
         margin-top: 4px;
         width: 32px;
         left: 50%;
@@ -724,6 +725,7 @@ header .row #header_logo {
     height: 37px;
     width: 90%;
 }
+
 @media (max-width: 1024px)
 {
     .feed-table td

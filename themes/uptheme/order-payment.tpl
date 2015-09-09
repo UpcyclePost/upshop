@@ -30,23 +30,23 @@
 	{addJsDefL name=txtProduct}{l s='product' js=1}{/addJsDefL}
 	{addJsDefL name=txtProducts}{l s='products' js=1}{/addJsDefL}
 	{capture name=path}{l s='Your payment method'}{/capture}
-	<h1 class="page-heading">{l s='Please choose your payment method'}
+<div class="login-panel">
+	<div class="login-panel-header">
+	<h1 class="">{l s='Please choose your payment method'}
 		{if !isset($empty) && !$PS_CATALOG_MODE}
-			<span class="heading-counter">{l s='Your shopping cart contains:'}
-				<span id="summary_products_quantity">{$productNumber} {if $productNumber == 1}{l s='product'}{else}{l s='products'}{/if}</span>
+			<span class="heading-counter">
+				<span id="summary_products_quantity">({$productNumber} {if $productNumber == 1}{l s='product'}{else}{l s='products'}{/if})</span>
 			</span>
 		{/if}
 	</h1>
+	</div>
+
 {else}
 <!-- open the payment login panel -->
 <div class="login-panel">
-
 	<div class="login-panel-header">
 	<h1 class="step-num"><span>3.</span> {l s='Please choose your payment method'}</h1>
-
 	</div>
-
-
 {/if}
 
 {if !$opc}
@@ -57,11 +57,11 @@
 	<div id="opc_payment_methods" class="opc-main-block">
 		<div id="opc_payment_methods-overlay" class="opc-overlay" style="display: none;"></div>
 {/if}
-		<div class="paiement_block">
+		<div class="paiement_block" style="padding-bottom:15px">
 			<div id="HOOK_TOP_PAYMENT">{$HOOK_TOP_PAYMENT}</div>
 				{if $HOOK_PAYMENT}
 					{if !$opc}
-						<div id="order-detail-content" class="table_block table-responsive">
+						<div id="order-detail-content" class="table_block table-responsive" style="padding:15px;">
 							<table id="cart_summary" class="table table-bordered">
 								<thead>
 									<tr>
@@ -350,10 +350,16 @@
 							{l s='Continue shopping'}
 						</a>
 					</p>
+
 				{else}
 					</div> <!-- end opc_payment_methods -->
 					</div> <!-- close the payment panel -->	
 				{/if}
+				</div>
+			</div>
+		</div>
+	</div>
+</div> <!-- end HOOK_TOP_PAYMENT -->
 
-			</div> <!-- end HOOK_TOP_PAYMENT -->
+
 

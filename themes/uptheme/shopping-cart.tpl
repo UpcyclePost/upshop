@@ -100,7 +100,7 @@
 					<th class="cart_description item">{l s='Description'}</th>
 					{if $PS_STOCK_MANAGEMENT}
 						{assign var='col_span_subtotal' value='3'}
-						<th class="cart_avail item text-center">{l s='Availability'}</th>
+						<th class="hidden-xs cart_avail item text-center">{l s='Availability'}</th>
 					{else}
 						{assign var='col_span_subtotal' value='2'}
 					{/if}
@@ -537,6 +537,7 @@
 					</div>
 				{/if}
 			{else}
+				{if false}
 				{foreach from=$formattedAddresses key=k item=address}
 					<div class="col-xs-12 col-sm-6"{if $k == 'delivery' && !$have_non_virtual_products} style="display: none;"{/if}>
 						<ul class="address {if $address@last}last_item{elseif $address@first}first_item{/if} {if $address@index % 2}alternate_item{else}item{/if} box">
@@ -572,6 +573,7 @@
 						</ul>
 					</div>
 				{/foreach}
+				{/if}
 			{/if}
 		</div>
 	{/if}
