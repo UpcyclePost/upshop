@@ -413,7 +413,7 @@
 	</div>
 <!-- end order carrier panel -->
 	{/if}
-
+	</div>
 </div> <!-- end carrier_area -->
 
 {strip}

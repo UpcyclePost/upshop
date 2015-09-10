@@ -23,14 +23,13 @@
 *  International Registered Trademark & Property of PrestaShop SA
 *}
 
-{capture name=path}{l s='Order confirmation'}{/capture}
-<div class="dashboard_content login-panel">
+
+<div class="login-panel">
 	<div class="login-panel-header">
 	<h1 class="">{l s='Order confirmation'}</h1>
 	</div>
-	<div class="wk_right_col">
 
-{assign var='current_step' value='payment'}
+{assign var='current_step' value='payment_complete'}
 {include file="$tpl_dir./order-steps.tpl"}
 
 {include file="$tpl_dir./errors.tpl"}
@@ -44,7 +43,7 @@
     </p>
 {else}
 
-<table id="orderitems" class="table table-bordered">
+<table id="orderitems" class="table table-bordered footab" style="margin:15px;max-width:1110px;">
 	<thead>
 	<tr>
 		<th>Product</th>
@@ -65,15 +64,15 @@
 {/foreach}
 	<tfoot>
 	<tr>
-		<td colspan="4"><strong>Items</strong></td>
+		<td colspan="4" class="text-right"><strong>Total Products</strong></td>
 		<td>{displayWtPriceWithCurrency price=$orderheader[0]['total_products'] currency=$currency }</td>
 	</tr>
 	<tr>
-		<td colspan="4"><strong>Shipping & Handling</strong></td>
+		<td colspan="4" class="text-right"><strong>Total Shipping</strong></td>
 		<td>{displayWtPriceWithCurrency price=$orderheader[0]['total_shipping'] currency=$currency }</td>
 	</tr>
 	<tr>
-		<td colspan="4"><strong>Total</strong></td>
+		<td colspan="4" class="text-right"><strong>Total</strong></td>
 		<td>{displayWtPriceWithCurrency price=$orderheader[0]['total_paid'] currency=$currency }</td>
 	</tr>
 	</tfoot>
@@ -91,4 +90,3 @@
 
 {/if}
 	</div>
-</div>

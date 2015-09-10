@@ -23,7 +23,7 @@
 *  International Registered Trademark & Property of PrestaShop SA
 *}
 
-{if $page_name != 'product' && $page_name !='order-opc' && $page_name !='order'}
+{if $page_name != 'product' && $page_name !='order-opc' && $page_name !='order' && $page_name !='order-confirmation'}
 <!-- Breadcrumb -->
 {if isset($smarty.capture.path)}{assign var='path' value=$smarty.capture.path}{/if}
 <div class="breadcrumb clearfix">

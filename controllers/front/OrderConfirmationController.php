@@ -192,6 +192,8 @@ class OrderConfirmationControllerCore extends FrontController
 		$this->addCSS(array(
 				_MODULE_DIR_.'marketplace/css/marketplace_account.css'
 			));
+		$this->addJqueryPlugin(array('footable'));	
+			
 	}
 }
 
