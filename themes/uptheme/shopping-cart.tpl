@@ -42,17 +42,22 @@
 {include file="$tpl_dir./order-steps.tpl"}
 {include file="$tpl_dir./errors.tpl"}
 
+
 {if isset($empty)}
 	<p class="alert alert-warning">{l s='Your shopping cart is empty.'}</p>
-		<a href="{$link->getPageLink('index')}" class="button button-medium btn btn-default" title="{l s='Continue shopping'}">
-			<i class="icon-chevron-left"></i>&nbsp;{l s='Continue shopping'}
+	<div class="center-button-bottom">
+		<a href="{$link->getPageLink('index')}" class="button button-medium" title="{l s='Continue shopping'}">
+			<span><i class="icon-chevron-left left"></i>{l s='Continue shopping'}</span>
 		</a>
+	</div>
 
 {elseif $PS_CATALOG_MODE}
 	<p class="alert alert-warning">{l s='This store has not accepted your new order.'}</p>
+	<div class="center-button-bottom">
 		<a href="{$link->getPageLink('index')}" class="button button-medium btn btn-default" title="{l s='Continue shopping'}">
 			<i class="icon-chevron-left"></i>&nbsp;{l s='Continue shopping'}
 		</a>
+	</div>
 
 {else}
 	<div id="emptyCartWarning" class="unvisible" style="padding: 10px 0px 20px 30px">

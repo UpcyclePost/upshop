@@ -60,7 +60,7 @@
 				<link href="{$css_dir}styles.min.css" type="text/css" rel="stylesheet" />
 		{$HOOK_HEADER}
 		<link rel="stylesheet" href="http{if Tools::usingSecureMode()}s{/if}://fonts.googleapis.com/css?family=Source+Sans+Pro:400,300,700,600" type="text/css" media="all" />
-		{if $page_name!='product'}
+		{if $page_name!='product' && $page_name!='order-confirmation'}
 		<meta property="og:title" content="{$meta_title|escape:'htmlall':'UTF-8'}"/>
 		<meta property="og:url" content="http://{$smarty.server.HTTP_HOST}{$smarty.server.REQUEST_URI}"/>
 		<meta property="og:site_name" content="http://www.upcyclepost.com"/>

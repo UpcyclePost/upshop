@@ -1302,7 +1302,7 @@ table th[class*="col-"] {
     overflow-x: scroll;
     border: 1px solid #d6d4d4; }
     .table-responsive > .table {
-      margin-bottom: 0;
+      margin-bottom: 15px;
       background-color: #fff; }
       .table-responsive > .table > thead > tr > th,
       .table-responsive > .table > thead > tr > td,
@@ -2984,9 +2984,10 @@ a.thumbnail:focus {
     color: #e6e6e6; }
 
 .alert-warning {
-  background-color: #fe9126;
-  border-color: #e4752b;
-  color: #fff; }
+  background-color: #fff;
+  border-color: orange;
+  color: orange;
+  margin:10px; }
   .alert-warning hr {
     border-top-color: #da681c; }
   .alert-warning .alert-link {
@@ -5789,31 +5790,30 @@ span.exclusive {
       border-color: #0187d0; }
 
 .button.button-medium {
-    -webkit-border-radius: 4px;
-    -moz-border-radius: 4px;
-    border-radius: 4px;
     background-color: #0187d0;
     color: #fff;
     font-size: 16px;
-    line-height: 18px;
-    color: #fff;
-    padding: 7px 12px;
     font-weight: normal;
-    border: solid 2px;
-    
+    border: 2px solid #0187d0;   
+    -webkit-border-radius: 4px;
+    -moz-border-radius: 4px;
+    border-radius: 4px;
+
   }
   .button.button-medium span {
+    font-size: 16px;
+    font-weight: normal; 
+    border-color: #0187d0;   
+    padding: 5px 10px;
     display: block;
-    padding: 4px 10px 4px 14px;
-    // border: 1px solid;
-    // border-color: #74d578; }
+    border: 2px solid; }
     @media (max-width: 480px) {
       .button.button-medium span {
-        font-size: 14px;
+        font-size: 16px;
         padding-right: 7px;
         padding-left: 7px; } }
     .button.button-medium span i.left {
-      font-size: 24px;
+      font-size: 18px;
       vertical-align: -2px;
       margin: -4px 10px 0 0;
       display: inline-block; }
@@ -5822,7 +5822,8 @@ span.exclusive {
           margin-right: 5px; } }
     .button.button-medium span i.right {
       margin-right: 0;
-      margin-left: 9px; }
+      margin-left: 9px;
+      margin-top: 3px; }
       @media (max-width: 480px) {
         .button.button-medium span i.right {
           margin-left: 5px; } }
@@ -5980,22 +5981,22 @@ span.exclusive {
       background: #fff;
       color:#89cc26; }
 
-
-
 .button.lnk_view {
-  /*font: 700 17px/21px Arial, Helvetica, sans-serif;*/
-  font: inherit;
   color: #666;
   text-shadow: 1px 1px white;
   padding: 0;
   border: 2px solid;
   border-color: #666; }
   .button.lnk_view span {
+    font-size: 16px;
+    font-weight : normal;
     border-color: #fff;
-    padding: 6px 12px;
+    padding: 8px 12px;
     display: block;
     background: #f7f7f7;
     border-radius: 4px;
+    -webkit-border-radius: 4px;
+    -moz-border-radius: 4px;   
     }
   .button.lnk_view:hover {
     border-color: #666;
@@ -6936,7 +6937,8 @@ div.star a:hover {
 .confirmation {
   margin: 15px;
   padding: 20px;
-  border: 1px solid #89c226;
+  border: 2px solid #89c226;
+  border-radius :4px;
   font-size: 14px;
   background: none repeat scroll 0 0; }
 
@@ -8624,6 +8626,23 @@ header .buttons font.items {
     margin-bottom: 20px;
 }
 
+.order-confirmation-share ul {
+    list-style: none;
+    margin: auto;
+    display:block;
+}
+.order-confirmation-share ul li {
+    float: right;
+    width: 50%;
+    text-align: center;
+}
 
+.center-button-bottom{
+  margin-left:auto;
+  margin-right:auto;
+  padding-top: 20px;
+  padding-bottom: 20px;
+  text-align: center;
+}
 
 /*# sourceMappingURL=global.css.map */

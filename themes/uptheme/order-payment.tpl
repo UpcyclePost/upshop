@@ -66,7 +66,7 @@
 								<thead>
 									<tr>
 										<th class="cart_product first_item">{l s='Product'}</th>
-										<th class="cart_description item">{l s='Description'}</th>
+										<th class="cart_description item">{l s='Name'}</th>
 										{if $PS_STOCK_MANAGEMENT}
 											<th class="cart_availability item text-center">{l s='Availability'}</th>
 										{/if}
@@ -337,7 +337,7 @@
 						</div> <!-- end order-detail-content -->
 					{/if}
 					{if $opc}<div id="opc_payment_methods-content" style="padding:15px">{/if}
-					<div id="HOOK_PAYMENT" style="padding-bottom: 20px;">
+					<div id="HOOK_PAYMENT" style="padding: 0 15px;">
 						{$HOOK_PAYMENT}
 					</div>
 					{if $opc}</div> <!-- end opc_payment_methods-content -->{/if}
