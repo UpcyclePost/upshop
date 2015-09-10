@@ -5937,25 +5937,23 @@ span.exclusive {
         filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#e7e7e7', endColorstr='#e7e7e7',GradientType=0); }
 
 .button.ajax_add_to_cart_button {
-  /*font: 700 17px/21px Arial, Helvetica, sans-serif;*/
   font: inherit;
   color: #fff;
   padding: 0;
+  border: 2px solid;
+  border-color: #0187d0;
   }
   .button.ajax_add_to_cart_button span {
-    border: 2px solid #0187d0;
     padding: 6px 12px;
     display: block;
     background: #0187d0;
-    border-radius: 4px;
     }
   .button.ajax_add_to_cart_button:hover {
-     background: #fff;
-     border-radius: 4px;
-     border-color: #0187d0; }
+     border-color: #0187d0;
+     border-radius : 4px;}
     .button.ajax_add_to_cart_button:hover span {
       filter: none;
-      border-radius: 0px;
+      border-radius: 4px;
       background: #fff;
       color:#0187d0; }
 

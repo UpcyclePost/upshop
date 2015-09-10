@@ -42,26 +42,28 @@
 	<a class="button-exclusive btn btn-default" href="{$link->getPageLink('guest-tracking', true, NULL, "id_order={$reference_order|urlencode}&email={$email|urlencode}")|escape:'html':'UTF-8'}" title="{l s='Follow my order'}"><i class="icon-chevron-left"></i>{l s='Follow my order'}</a>
     </p>
 {else}
-
+<div id="order-detail-content" class="table_block table-responsive" style="padding:15px">
 <table id="orderitems" class="table table-bordered footab" style="margin:15px;max-width:1110px;">
 	<thead>
 	<tr>
-		<th>Product</th>
-		<th>Seller</th>
-		<th>Quantity</th>
-		<th>Unit Price</th>
-		<th>Total Price</th>	
+		<th class="cart_product first_item">Product</th>
+		<th class="cart_description item">Seller</th>
+		<th class="cart_unit item text-right">Unit Price</th>
+		<th class="cart_quantity item text-center">Quantity</th>
+		<th class="cart_total last_item text-right">Total Price</th>	
 	</tr>
 	</thead>
+	<tbody>
 {foreach $orderitems as $orderitem}	
-	<tr>
+	<tr id="" class="cart_item ">
 		<td>{$orderitem['ordered_product_name']}</td>
 		<td>{$orderitem['shop_name']}</td>
-		<td>{$orderitem['qty']}</td>
 		<td>{displayWtPriceWithCurrency price=$orderitem['unit_price'] currency=$currency }</td>
+		<td>{$orderitem['qty']}</td>
 		<td>{displayWtPriceWithCurrency price=$orderitem['total_price'] currency=$currency }</td>
 	</tr>
 {/foreach}
+	</tbody>
 	<tfoot>
 	<tr>
 		<td colspan="4" class="text-right"><strong>Total Products</strong></td>
@@ -77,7 +79,7 @@
 	</tr>
 	</tfoot>
 </table>
-
+</div>
 <p class="exclusive" style="">
 	<a class="button button-medium btn btn-default" href="{$link->getPageLink('history', true)|escape:'html':'UTF-8'}" title="{l s='Go to your order history page'}">
 		<i class="fa fa-fw fa-tasks"></i>&nbsp;{l s='View your order history'}
