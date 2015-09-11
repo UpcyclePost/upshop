@@ -2994,13 +2994,14 @@ a.thumbnail:focus {
     color: #e6e6e6; }
 
 .alert-danger {
-  background-color: #f3515c;
+  background-color: $fff;
   border-color: #d4323d;
-  color: #fff; }
+  color: #d4323d;
+  margin:15px; }
   .alert-danger hr {
     border-top-color: #c32933; }
   .alert-danger .alert-link {
-    color: #e6e6e6; }
+    color: #0187d0; }
 
 @-webkit-keyframes progress-bar-stripes {
   from {

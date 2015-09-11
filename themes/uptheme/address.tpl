@@ -23,7 +23,7 @@
 *  International Registered Trademark & Property of PrestaShop SA
 *}
 
-<div class="dashboard_content login-panel">
+<div class="login-panel">
 	<div class="login-panel-header">
 	<h1 class="">{l s='Your addresses'}</h1>
 	</div>

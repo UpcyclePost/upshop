@@ -46,6 +46,7 @@
 			<div id="opc_delivery_methods" class="opc-main-block" style="padding:15px">
 				<div id="opc_delivery_methods-overlay" class="opc-overlay" style="display: none;"></div>
 {/if}
+{if !isset($errors) && !$errors}
 <div class="order_carrier_content box">
 	{if isset($virtual_cart) && $virtual_cart}
 		<input id="input_virtual_carrier" class="hidden" type="hidden" name="id_carrier" value="0" />
@@ -413,7 +414,9 @@
 	</div>
 <!-- end order carrier panel -->
 	{/if}
+{/if}<!-- end errors -->
 	</div>
+
 </div> <!-- end carrier_area -->
 
 {strip}

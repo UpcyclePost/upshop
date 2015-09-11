@@ -50,6 +50,7 @@
 			<span><i class="icon-chevron-left left"></i>{l s='Continue shopping'}</span>
 		</a>
 	</div>
+</div>
 
 {elseif $PS_CATALOG_MODE}
 	<p class="alert alert-warning">{l s='This store has not accepted your new order.'}</p>
@@ -58,7 +59,7 @@
 			<i class="icon-chevron-left"></i>&nbsp;{l s='Continue shopping'}
 		</a>
 	</div>
-
+</div>
 {else}
 	<div id="emptyCartWarning" class="unvisible" style="padding: 10px 0px 20px 30px">
 	<p class="alert">{l s='Your shopping cart is empty.'}</p>
