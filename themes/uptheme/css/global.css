@@ -5769,17 +5769,19 @@ span.exclusive {
   color: #fff;
   background: #0187d0;
   border: 1px solid;
-  border-color: #89c226;
+  border-color: #0187d0;
   padding: 0;
-  text-shadow: 1px 1px rgba(0, 0, 0, 0.24);
   -moz-border-radius: 4px;
   -webkit-border-radius: 4px;
   border-radius: 4px; }
   .button.button-small span {
     display: block;
     padding: 3px 8px 3px 8px;
-    border: 1px solid;
-    border-color: #8b8a8a; }
+    border: 2px solid;
+    border-color: #0187d0;
+    -moz-border-radius: 4px;
+    -webkit-border-radius: 4px;
+    border-radius: 4px;     }
     .button.button-small span i {
       vertical-align: 0px;
       margin-right: 5px; }
@@ -5787,8 +5789,25 @@ span.exclusive {
         margin-right: 0;
         margin-left: 5px; }
     .button.button-small span:hover {
-      background: #89c226;
+      color: #0187d0;
+      background: #fff;
       border-color: #0187d0; }
+
+.input-small-green {
+  /*font: bold 13px/17px Arial, Helvetica, sans-serif;*/
+  font: inherit;
+  color: #89cc26;
+  background: #fff;
+  border: 2px solid;
+  border-color: #89cc26;
+  padding: 4px 8px;
+  -moz-border-radius: 4px;
+  -webkit-border-radius: 4px;
+  border-radius: 4px; }
+    .input-small-green:hover {
+      color: #fff;
+      background: #89cc26;
+      border-color: #89cc26; }
 
 .button.button-medium {
     background-color: #0187d0;

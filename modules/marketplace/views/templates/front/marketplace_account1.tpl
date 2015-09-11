@@ -457,14 +457,14 @@
 							{assign var=i value=1} 
 							{foreach $product_lists as $product}
 								<tr class="even">
-									<td>
+									<td style="nowrap" nowrap>
 										<a id="{$product['id']|escape:'html':'UTF-8'}" class="btn btn-default button button-small edit_img"><span>Edit</span></a>
 									</td>
                                      <td>
                                     <form action="" method="post" id="form_{$product['id']}">
 										 <input type="hidden" name="do_duplicate" value="duplicate" />
 										 <input type="hidden" name="id_product" value="{$product['id']}" />
-                                        <input id="{$product['id']}" class="btn btn-default button button-small duplicate" type="submit" name="duplicate" value="Duplicate" style="background-color:#89c226;padding:3px 8px;"/>
+                                        <input id="{$product['id']}" class="input-small-green duplicate" type="submit" name="duplicate" value="Duplicate"/>
                                         </form>
 									</td>
 									<td>
