@@ -78,7 +78,7 @@
 				<div class="box-account box-recent">
 					<div class="box-head">
 						<div class="box-head-left">
-						<h2>{l s='Recent Orders Received' mod='marketplace'}</h2>
+						<h3>{l s='Recent Orders Received' mod='marketplace'}</h3>
 						</div>
 						<div class="box-head-right">
 						<a class="btn btn-default button button-small" href="{$link->getModuleLink('marketplace','marketplaceaccount',['shop'=>{$id_shop|escape:'html':'UTF-8'},'l'=>4])|escape:'html':'UTF-8'}"><span>{l s='View All' mod='marketplace'}</span></a>
@@ -104,7 +104,7 @@
 								{assign var=i value=0}
 								{while $i != $count}
 									<tr class="even">
-										<td><a class="btn btn-default button button-small" href="{$link->getModuleLink('marketplace','marketplaceaccount',['flag'=>1,'shop'=>{$id_shop|escape:'html':'UTF-8'},'l'=>6,id_order=>{$dashboard[$i]['id_order']|escape:'html':'UTF-8'}])|escape:'html':'UTF-8'}"><span>View</span></a></td>
+										<td style="nowrap" nowrap><a class="btn btn-default button button-small" href="{$link->getModuleLink('marketplace','marketplaceaccount',['flag'=>1,'shop'=>{$id_shop|escape:'html':'UTF-8'},'l'=>6,id_order=>{$dashboard[$i]['id_order']|escape:'html':'UTF-8'}])|escape:'html':'UTF-8'}"><span>View</span></a></td>
 										<td>{$dashboard[$i]['ref']|escape:'html':'UTF-8'}</td>
 										<td data-value="{$dashboard[$i]['date_add']|regex_replace:"/[\-\:\ ]/":""}}"><span class="nobr">{$dashboard[$i]['date_add']|date_format:"%D %l:%M %p"|escape:'html':'UTF-8'}</span></td>
 										<!-- <td>{$dashboard[$i]['name']|escape:'html':'UTF-8'}</td> -->
@@ -121,7 +121,7 @@
 				</div>	
 				<div class="box-account box-recent">
 					<div class="box-head">
-						<h2>{l s='Orders Graph' mod='marketplace'}</h2>
+						<h3>{l s='Orders Graph' mod='marketplace'}</h3>
 						<div class="wk_border_line"></div>
 					</div>
 					<div class="box-content">
@@ -513,8 +513,11 @@
 									<td>
 									{ProductController::getTotalViewed($product['id_product'])}
 									</td>
-									<td>
-										<img id="{$product['id']|escape:'html':'UTF-8'}" class="delete_img" src="{$img_ps_dir|escape:'html':'UTF-8'}admin/delete.gif"/>
+									<td style="text-align:center">
+										<span class="delete_img">
+											<i class="icon-trash "></i>
+										</span>
+										<!--<img id="{$product['id']|escape:'html':'UTF-8'}" class="delete_img" src="{$img_ps_dir|escape:'html':'UTF-8'}admin/delete.gif"/>-->
 										{hook h="PriceDisplay" id_product=$product['id']|escape:'html':'UTF-8'}
 									</td>
 								</tr>
@@ -657,7 +660,7 @@
 			<div class="wk_right_col">
 				<div class="box-account box-recent">
 					<div class="box-head">
-						<h2>{l s='Recent Orders Received' mod='marketplace'}</h2>
+						<h3>{l s='Recent Orders Received' mod='marketplace'}</h3>
 						<div class="wk_border_line"></div>
 					</div>
 					<div class="box-content">
@@ -697,27 +700,6 @@
 				</div>
 				</div>
 				</div>
-				<!--
-				<div class="box-account box-recent">
-					<div class="box-head">
-						<h2>{l s='Customer Feedback' mod='marketplace'}</h2>
-						<div class="wk_border_line"></div>
-					</div>
-					
-					<div class="box-content">
-					{assign var=i value=0}
-					{while $i != $count_msg}
-					<div id="feedback_box">
-							<div id="feedback_by" class="feedback_inner_box"><h4>{l s='FeedBack By' mod='marketplace'}</h4><span>{$message[$i]['firstname']|escape:'html':'UTF-8'}</span></div>
-							<div id="product_name" class="feedback_inner_box"><h4>{l s='Product Name' mod='marketplace'}</h4><span>{$message[$i]['product_name']|escape:'html':'UTF-8'}</span></div>
-							<div id="feedback" class="feedback_inner_box"><h4>{l s='FeedBack' mod='marketplace'}</h4><span>{$message[$i]['message']|escape:'html':'UTF-8'}</span></div>
-							<div id="date_add" class="feedback_inner_box"><h4>{l s='Date Add' mod='marketplace'}</h4><span>{$message[$i]['date_add']|escape:'html':'UTF-8'}</span></div>
-					</div>
-					{assign var=i value=$i+1}
-					{/while}
-					</div>
-				</div>
-				-->
 			</div>
 		</div>
 		</div>
@@ -842,11 +824,11 @@
 				<div class="box-account box-recent">
 					<div class="box-head">
 						<div class="box-head-left">
-							<h2>{l s='Product Details' mod='marketplace'}</h2>
+							<h3>{l s='Product Details' mod='marketplace'}</h3>
 						</div>
 						<div class="box-head-right">
-						<a class="btn btn-default button button-small" href="{$link->getModuleLink('marketplace','marketplaceaccount',['shop'=>{$id_shop|escape:'html':'UTF-8'},'l'=>4])|escape:'html':'UTF-8'}">
-							<span>{l s='Back to orders' mod='marketplace'}</span>
+						<a class="btn lnk_view button button-medium" href="{$link->getModuleLink('marketplace','marketplaceaccount',['shop'=>{$id_shop|escape:'html':'UTF-8'},'l'=>4])|escape:'html':'UTF-8'}">
+							<span><i class="fa fa-chevron-left"></i>{l s='Back to orders' mod='marketplace'}</span>
 						</a>
 						</div>
 						<div class="wk_border_line"></div>
@@ -858,9 +840,9 @@
 
 				<div class="box-account box-recent">
 					<div class="box-head">
-						<h2>{l s='Order Details' mod='marketplace'}</h2>
+						<h3>{l s='Order Details' mod='marketplace'}</h3>
 							Order Reference - {$dashboard[0]['ref']}
-							<a target="_blank" class="btn btn-gray" style="float:right;margin:-15px 0 0 0" href="{$link->getPageLink('pdf-invoice', true)}?id_order={$dashboard[0]['id_order']|intval}&amp;secure_key={$dashboard[0]['secure_key']|escape:'html':'UTF-8'}"><i class="fa fa-file-pdf-o icon-only"></i> {l s='Download invoice as a PDF file.'}</a>
+							<a target="_blank" class="btn lnk_view button" style="float:right;margin:-15px 0 0 0" href="{$link->getPageLink('pdf-invoice', true)}?id_order={$dashboard[0]['id_order']|intval}&amp;secure_key={$dashboard[0]['secure_key']|escape:'html':'UTF-8'}"><span><i class="fa fa-file-pdf-o icon-only"></i> {l s='Download invoice'}</span></a>
 						<div class="wk_border_line"></div>
 					</div>
 					<div class="box-content">

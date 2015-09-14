@@ -5793,6 +5793,37 @@ span.exclusive {
       background: #fff;
       border-color: #0187d0; }
 
+.button.button-small-green {
+  /*font: bold 13px/17px Arial, Helvetica, sans-serif;*/
+  font: inherit;
+  color: #fff;
+  background: #0187d0;
+  border: 1px solid;
+  border-color: #0187d0;
+  padding: 0;
+  -moz-border-radius: 4px;
+  -webkit-border-radius: 4px;
+  border-radius: 4px; }
+  .button.button-small-green span {
+    display: block;
+    padding: 3px 8px 3px 8px;
+    border: 2px solid;
+    border-color: #0187d0;
+    -moz-border-radius: 4px;
+    -webkit-border-radius: 4px;
+    border-radius: 4px;     }
+    .button.button-small-green span i {
+      vertical-align: 0px;
+      margin-right: 5px; }
+      .button.button-small-green span i.right {
+        margin-right: 0;
+        margin-left: 5px; }
+    .button.button-small-green span:hover {
+      color: #0187d0;
+      background: #fff;
+      border-color: #0187d0; }
+
+
 .input-small-green {
   /*font: bold 13px/17px Arial, Helvetica, sans-serif;*/
   font: inherit;
@@ -6028,7 +6059,10 @@ span.exclusive {
       border-radius: 0px; }
   .button.lnk_view i.left {
     padding-right: 8px;
-    color: #777777; }
+    color: #666; }
+@media (max-width: 768px) {
+      .button.lnk_view span {
+        padding: 4px 6px; } }
 
 .form-control {
   padding: 3px 5px;

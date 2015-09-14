@@ -1,8 +1,8 @@
 ﻿<table id="orderitems" class="table table-bordered">
 	<thead>
 	<tr>
-		<th><label>{l s='Product Name -' mod='marketplace'}</label></th>
-		<th>Quantity</th>
+		<th><label>{l s='Product Name' mod='marketplace'}</label></th>
+		<th>Qty</th>
 		<th>Unit Price</th>
 		<th>Total Price</th>	
 	</tr>
@@ -11,8 +11,8 @@
 	<tr>
 		<td>{$ord_info['product_name']|escape:'html':'UTF-8'}</td>
 		<td>{$ord_info['product_quantity']|escape:'html':'UTF-8'}</td>
-		<td>{$currency->prefix}{$ord_info['unit_price_tax_excl']|string_format:"%.2f"}{$currency->suffix}</td>
-		<td>{$currency->prefix}{$ord_info['total_price_tax_excl']|string_format:"%.2f"}{$currency->suffix}</td>
+		<td style="nowrap" nowrap>{$currency->prefix}{$ord_info['unit_price_tax_excl']|string_format:"%.2f"}{$currency->suffix}</td>
+		<td style="nowrap" nowrap>{$currency->prefix}{$ord_info['total_price_tax_excl']|string_format:"%.2f"}{$currency->suffix}</td>
 	</tr>
 {/foreach}
 	<tfoot>

@@ -106,15 +106,16 @@ a:hover {
   }
   .wk_order_customer_status{
     float: left;
-    width: 100%;
+    width: 80%;
   }
   .box-head-left{
     float: left;
-    padding: 7px 7px 7px 0;
+    padding: 0;
     width: 50%;
   }
   .box-head-right{
     float: right;
+    padding: 7px 5px 0 0;
   }
   .box-account .box-content .wk_detail_customer,.wk_detail_order{
     float: left;
@@ -138,7 +139,8 @@ a:hover {
     float: left;
     width: 100%;
     border: 1px solid #D5D5D5;
-    padding: 15px;
+    padding: 5px;
+    background-color: #fff;
   }
   .wk_from_to{
     float: left;
@@ -226,12 +228,11 @@ a:hover {
 
   .box-head-left{
     float: left;
-    width: 100%;
     margin-bottom: 10px;
   }
   .box-head-right{
-    float: left;
-    width: 100%;
+    float: right;
+    padding: 7px 5px 0 0;    
   }
 }
 
@@ -256,12 +257,7 @@ width:100% !important;
     width:100%;
 }
 .box-account .box-head h2 {
-    margin:0px !important;
-    font-size: 14px !important;
-    color: #555555;
     font-family: inherit;
-    line-height: 1.1 !important;
-    font-weight: bold !important;
 }
 .box-account .wk_border_line{
     float:left;
@@ -313,9 +309,17 @@ width:100% !important;
     text-align: center;
   }
   .wk_order_customer_status h2{ 
-    font-weight: bold;
     font-size: 16px;
   }
+@media only screen and (max-width: 768px) {
+  .wk_order_customer_status { 
+    width: 100%;
+  }
+}
+
+.button.lnk_view span{
+  padding: 4px 6px;
+}
 
 h1
 {
@@ -729,9 +733,15 @@ caption, th, td {
 
 }
 
+.delete_img{
+  font-size : 23px;
+  text-align : center;
+}
 .delete_img:hover {
   cursor: pointer !important;
   z-index:1000;
+  color:silver;
+  text-align : center;  
 }
 
 

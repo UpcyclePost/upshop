@@ -1,6 +1,6 @@
 <div class="box-account box-recent">
 	<div class="box-head">
-		<h2>{l s='Shipping Details' mod='marketplace'}</h2>
+		<h3>{l s='Shipping Details' mod='marketplace'}</h3>
 		<div class="wk_border_line"></div>
 	</div>
 	<div class="box-content">
@@ -116,9 +116,10 @@
 												{l s='Cancel' mod='mppaymentshippingtracking'}
 											</button>
 										</span>
-										<a href="#" class="btn btn-primary" id="edit_shipping_number_link">
-											<i class="icon-pencil"></i>
+										<a href="#" class="btn btn-default button button-small" id="edit_shipping_number_link">
+											<span><i class="icon-pencil"></i>
 											{l s='Edit' mod='mppaymentshippingtracking'}
+											</span>
 										</a>
 									{/if}
 								</td>
@@ -164,7 +165,7 @@
 	</div>
 <div class="box-account box-recent">
 	<div class="box-head">
-		<h2>{l s='Order Status' mod='marketplace'}</h2>
+		<h3>{l s='Order Status' mod='marketplace'}</h3>
 		<div class="wk_border_line"></div>
 	</div>
 	<div class="box-content">
@@ -216,7 +217,7 @@
 				<!-- Change status form -->
 				<form action="{$update_url_link}" method="post" class="form-horizontal well" id="change_order_status_form" onsubmit="needToConfirm= false;">
 					<div class="row">
-						<div class="col-lg-9 form-group" id="select_ele_id">
+						<div class="col-lg-6 form-group" id="select_ele_id">
 							<select id="id_order_state" class="chosen form-control" name="id_order_state" onchange="needToConfirm= true;">
 							{foreach from=$states item=state}
 								{if !$state['hidden']}
@@ -226,8 +227,8 @@
 							</select>
 							<input type="hidden" name="id_order_state_checked" class="id_order_state_checked" value="{$currentState->id}" />
 						</div>
-						<div class="col-lg-3">
-							<button type="submit" name="submitState" class="btn btn-primary" id="update_order_status">
+						<div class="col-lg-5 pull-right">
+							<button type="submit" name="submitState" class="btn btn-default button button-small" id="update_order_status">
 								<span>{l s='Update status' mod='mppaymentshippingtracking'}</span>
 							</button>
 						</div>
