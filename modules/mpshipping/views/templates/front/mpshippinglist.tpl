@@ -1,10 +1,11 @@
-{capture name=path}
-<a href="{$link->getModuleLink('marketplace', 'marketplaceaccount')|addslashes}">
-        {l s='My Dashboard'}
-</a>
-<span class="navigation-pipe">{$navigationPipe}</span>
-<span class="navigation_page">{l s='Shipping Profiles' mod='marketplace'}</span>
-{/capture}
+<style type="text/css">
+.delete_img i {
+	color: #666;
+	}
+.delete_img i:hover {
+	color: silver;
+	}
+</style>
 
 {hook h="DisplayMpmenuhook"}
 
@@ -21,7 +22,7 @@
 			<th data-sort-ignore="true">{l s='Edit' mod='mpshipping'}</th>
 			<th>{l s='Shipping Profile' mod='mpshipping'}</th>
 			<th data-hide="phone">{l s='Shipping time' mod='mpshipping'}</th>
-			<th data-type="numeric">{l s='Price' mod='mpshipping'}</th>			
+			<th data-type="numeric">{l s='Cost' mod='mpshipping'}</th>			
 			<th data-sort-ignore="true">{l s='Delete' mod='mpshipping'}</th>
 			</tr>
 		</thead>
@@ -29,7 +30,7 @@
 			{if $mp_shipping_detail!=0}
 				{foreach $mp_shipping_detail as $mp_sp_det}
 					<tr class="even">
-						<td>
+						<td style="nowrap" nowrap>
 							<a href="{$link->getModuleLink('mpshipping','addnewshipping',['shop'=>{$mp_id_shop},'id_shipping'=>{$mp_sp_det['id']}])}" id="shipping_basicedit" class="btn btn-default button button-small">
 								<span>{l s='Edit' mod='mpshipping'}</span>
 							</a>
@@ -41,9 +42,11 @@
 						<td data-value="{$mp_sp_det['base_price']}">
 							{displayPrice price=$mp_sp_det['base_price'] currency=$currency->id}
 						</td>
-						<td>
+						<td align="center" style="text-align:center;">
 							<a href="{$link->getModuleLink('mpshipping','sellershippinglist',['shop'=>{$mp_id_shop},'id_shipping'=>{$mp_sp_det['id']},'delete'=>1])}" id="delete_shipping">
-								<img title="{l s='Delete' mod='mpshipping'}" src="{$img_ps_dir|escape:'html':'UTF-8'}admin/delete.gif"/>
+								<span class="delete_img">
+									<i class="icon-trash "></i>
+								</span>
 							</a>
 						</td>
 					</tr>
@@ -57,10 +60,7 @@
 		</div>
 	{/if}
 	<div class="" style="text-align:center;padding:15px">
-		{if $mp_shipping_detail!=0}
-		<a class="btn btn-default button button-medium" id="add_product" href="{$add_product}"><span>{l s='Add Product' mod='mpshipping'}</span></a>&nbsp;&nbsp;&nbsp;
-		{/if}
-		<a class="btn btn-default button button-medium" id="add_new_shipping" href="{$addnew_shipping_link}"><span>{l s='New Shipping Profile' mod='mpshipping'}</span></a>
+		<a class="btn btn-default button button-medium" id="add_new_shipping" href="{$addnew_shipping_link}"><span>{l s='Add Shipping Profile' mod='mpshipping'}</span></a>
 	</div>
 </div>		
 </div>

@@ -23,57 +23,24 @@
 			{/if}
 		{/if}
 
-		<!-- Tab -->
-		<!--
-		<ul class="nav nav-tabs">
-			<li class="active">
-				<a href="#status" data-toggle="tab">
-					<i class="icon-time"></i>
-					{l s='Order Status' mod='mppaymentshippingtracking'}</span>
-				</a>
-			</li>
-			<li>
-				<a href="#shipping" data-toggle="tab">
-					<i class="icon-truck"></i>
-					{l s='Shipping Details' mod='mppaymentshippingtracking'}</span>
-				</a>
-			</li>
-			{if isset($received_by) && isset($delivery_date) && $received_by != ''}
-			<li>
-				<a href="#delivery" data-toggle="tab">
-					<i class="icon-truck"></i>
-					{l s='Delivery Description' mod='mppaymentshippingtracking'}</span>
-				</a>
-			</li>
-			{/if}
-		</ul>
-		-->
-
 			<!-- Tab shipping -->
 			<div class="tab-pane" id="shipping">
 				<h4 class="visible-print">{l s='Shipping' mod='mppaymentshippingtracking'}</h4>
 				<!-- Shipping block -->
 				{if !$order->isVirtual()}
-				<div class="table-responsive">
-					<table class="table" id="shipping_table">
+					<table class="table footab" id="shipping_table">
 						<thead>
 							<tr>
-								<th>
+								<th data-sort-ignore="true">
 									<span class="title_box ">{l s='Date' mod='mppaymentshippingtracking'}</span>
 								</th>
-								<th>
-									<span class="title_box ">{l s='Type' mod='mppaymentshippingtracking'}</span>
-								</th>
-								<th>
+								<th data-hide="phone" data-sort-ignore="true">
 									<span class="title_box ">{l s='Carrier' mod='mppaymentshippingtracking'}</span>
 								</th>
-								<th>
-									<span class="title_box ">{l s='Weight' mod='mppaymentshippingtracking'}</span>
+								<th data-hide="phone" data-sort-ignore="true">
+									<span class="title_box ">{l s='Shipping' mod='mppaymentshippingtracking'}</span>
 								</th>
-								<th>
-									<span class="title_box ">{l s='Shipping cost' mod='mppaymentshippingtracking'}</span>
-								</th>
-								<th>
+								<th data-sort-ignore="true">
 									<span class="title_box ">{l s='Tracking number' mod='mppaymentshippingtracking'}</span>
 								</th>
 							</tr>
@@ -81,10 +48,8 @@
 						<tbody>
 							{foreach from=$order->getShipping() item=line}
 							<tr>
-								<td>{$line.date_add|date_format:"%D %l:%M %p"|escape:'html':'UTF-8'}</td>								
-								<td>{$line.type}</td>
+								<td>{$line.date_add|date_format:"%D"|escape:'html':'UTF-8'}</td>								
 								<td>{$line.carrier_name}</td>
-								<td class="weight">{$line.weight|string_format:"%.3f"} {Configuration::get('PS_WEIGHT_UNIT')}</td>
 								<td class="center">
 									{if $order->getTaxCalculationMethod() == $smarty.const.PS_TAX_INC}
 										{displayPrice price=$line.shipping_cost_tax_incl currency=$currency->id}
@@ -107,13 +72,17 @@
 											<input type="hidden" name="id_order_carrier" id="id_order_carrier" value="{$line.id_order_carrier|htmlentities}" />
 											<input type="hidden" name="id_order_tracking" id="id_order_tracking" value="{$order->id}" />
 											<input type="text" class="form-control" name="tracking_number" id="tracking_number" value="{$line.tracking_number|htmlentities}" />
-											<button type="submit" class="btn btn-primary" id="submit_shipping_number">
-												<i class="icon-ok"></i>
+											<button type="submit" class="btn btn-default button button-small" id="submit_shipping_number">
+												<span>
+												<i class="icon-check"></i>
 												{l s='Update' mod='mppaymentshippingtracking'}
+												</span>
 											</button>
-											<button type="submit" class="btn btn-primary" id="cancel_shipping_number_link">
+											<button type="submit" class="btn lnk_view button" id="cancel_shipping_number_link">
+												<span style="padding:3px 10px;">
 												<i class="icon-remove"></i>
 												{l s='Cancel' mod='mppaymentshippingtracking'}
+												</span>
 											</button>
 										</span>
 										<a href="#" class="btn btn-default button button-small" id="edit_shipping_number_link">
@@ -127,7 +96,6 @@
 							{/foreach}
 						</tbody>
 					</table>
-				</div>
 				{/if}
 
 				{if isset($shipping_description) && isset($shipping_date) && $shipping_description != ''}
@@ -190,7 +158,7 @@
 										<td style="background-color:{$row['color']};color:{$row['text-color']}">
 										</td>
 										<td style="background-color:{$row['color']};color:{$row['text-color']}">
-											{$row['date_add']|date_format:"%D %l:%M %p"|escape:'html':'UTF-8'}
+											{$row['date_add']|date_format:"%D"|escape:'html':'UTF-8'}
 										</td>
 									</tr>
 								{else}
@@ -204,7 +172,7 @@
 										<td>
 										</td>
 										<td>
-											{dateFormat date=$row['date_add'] full=true}
+											{$row['date_add']|date_format:"%D"|escape:'html':'UTF-8'}
 										</td>
 									</tr>
 								{/if}

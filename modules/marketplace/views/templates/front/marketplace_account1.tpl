@@ -464,7 +464,7 @@
                                     <form action="" method="post" id="form_{$product['id']}">
 										 <input type="hidden" name="do_duplicate" value="duplicate" />
 										 <input type="hidden" name="id_product" value="{$product['id']}" />
-                                        <input id="{$product['id']}" class="input-small-green duplicate" type="submit" name="duplicate" value="Duplicate"/>
+                                        <input id="{$product['id']}" class="input-small-grey duplicate" type="submit" name="duplicate" value="Duplicate"/>
                                         </form>
 									</td>
 									<td>

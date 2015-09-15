@@ -240,7 +240,7 @@ body {
   font-family: 'Source Sans Pro', sans-serif;
   font-size: 14px;
   line-height: 1.42857;
-  color: #777777;
+  color: #666;
   background-color: #f4f4f4; }
 
 input,
@@ -258,7 +258,7 @@ textarea {
   background-image: none; }
 
 a {
-  color: #777;
+  color: #666;
   text-decoration: none; }
   a:hover, a:focus {
     color: #515151;
@@ -1809,7 +1809,7 @@ textarea.input-lg, .input-group-lg > textarea.form-control,
     border-color: #3983f1; }
 
 .btn-link {
-  color: #777;
+  color: #666;
   font-weight: normal;
   cursor: pointer;
   border-radius: 0; }
@@ -2274,7 +2274,7 @@ input[type="button"].btn-block {
         cursor: not-allowed; }
   .nav .open > a, .nav .open > a:hover, .nav .open > a:focus {
     background-color: #eeeeee;
-    border-color: #777; }
+    border-color: #666; }
   .nav .nav-divider {
     height: 1px;
     margin: 8px 0;
@@ -2354,8 +2354,8 @@ input[type="button"].btn-block {
   display: block; }
 
 .nav .caret {
-  border-top-color: #777;
-  border-bottom-color: #777; }
+  border-top-color: #666;
+  border-bottom-color: #666; }
 
 .nav a:hover .caret {
   border-top-color: #515151;
@@ -3379,7 +3379,7 @@ button.close {
   font-size: 13px;
   font-weight: normal;
   line-height: 18px;
-  background-color: #f7f7f7;
+  background-color: #fbfbfb;
   border-bottom: 1px solid #ebebeb;
   border-radius: 5px 5px 0 0; }
 
@@ -5632,7 +5632,7 @@ p.info-account {
   padding: 6px 10px; }
 
 label {
-  color: #555; }
+  color: #666; }
   label.required:before {
     content: "*";
     color: red;
@@ -5824,21 +5824,21 @@ span.exclusive {
       border-color: #0187d0; }
 
 
-.input-small-green {
+.input-small-grey {
   /*font: bold 13px/17px Arial, Helvetica, sans-serif;*/
   font: inherit;
-  color: #89cc26;
-  background: #fff;
+  color: #666;
+  background: #fbfbfb;
   border: 2px solid;
-  border-color: #89cc26;
+  border-color: #666;
   padding: 4px 8px;
   -moz-border-radius: 4px;
   -webkit-border-radius: 4px;
   border-radius: 4px; }
-    .input-small-green:hover {
+    .input-small-grey:hover {
       color: #fff;
-      background: #89cc26;
-      border-color: #89cc26; }
+      background: #666;
+      border-color: #666; }
 
 .button.button-medium {
     background-color: #0187d0;
@@ -5963,14 +5963,14 @@ span.exclusive {
     border-color: #fff;
     display: block;
     padding: 9px 10px 11px 10px;
-    background: #f7f7f7;
-    background: -moz-linear-gradient(top, #f7f7f7 0%, #ededed 100%);
-    background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #f7f7f7), color-stop(100%, #ededed));
-    background: -webkit-linear-gradient(top, #f7f7f7 0%, #ededed 100%);
-    background: -o-linear-gradient(top, #f7f7f7 0%, #ededed 100%);
-    background: -ms-linear-gradient(top, #f7f7f7 0%, #ededed 100%);
-    background: linear-gradient(to bottom, #f7f7f7 0%, #ededed 100%);
-    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#f7f7f7', endColorstr='#ededed',GradientType=0); }
+    background: #fbfbfb;
+    background: -moz-linear-gradient(top, #fbfbfb 0%, #ededed 100%);
+    background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #fbfbfb), color-stop(100%, #ededed));
+    background: -webkit-linear-gradient(top, #fbfbfb 0%, #ededed 100%);
+    background: -o-linear-gradient(top, #fbfbfb 0%, #ededed 100%);
+    background: -ms-linear-gradient(top, #fbfbfb 0%, #ededed 100%);
+    background: linear-gradient(to bottom, #fbfbfb 0%, #ededed 100%);
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#fbfbfb', endColorstr='#ededed',GradientType=0); }
     @media (max-width: 480px) {
       .button.exclusive-medium span {
         font-size: 15px;
@@ -6044,7 +6044,7 @@ span.exclusive {
     border-color: #fff;
     padding: 8px 12px;
     display: block;
-    background: #f7f7f7;
+    background: #fbfbfb;
     border-radius: 4px;
     -webkit-border-radius: 4px;
     -moz-border-radius: 4px;   
@@ -6908,7 +6908,7 @@ ul.step {
     ul.step li.step_current_end {
       font-weight: normal; }
     ul.step li.step_todo {
-      background: #f7f7f7;
+      background: #fbfbfb;
       }
       ul.step li.step_todo span {
         display: block;

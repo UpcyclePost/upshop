@@ -673,7 +673,7 @@ th, td {
 
   border-color:#CCCCCC !important;
 
-  color:#2F2F2F !important;
+  color:#666 !important;
 
 }
 
@@ -963,3 +963,7 @@ position: absolute;
 .form-control{
   border:solid 1px !important;
 }  
+
+#shipping_number_show{
+  padding-right: 15px;
+}
