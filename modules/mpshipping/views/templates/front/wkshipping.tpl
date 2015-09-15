@@ -97,6 +97,7 @@
 							<p class="pro_sub_text">{l s='Shipping Time' mod='mpshipping'}</p>
 						</div>
 						<div class="col-sm-9">
+							<!--
 							<input type="hidden" name="transit_time" id="ship_transit_time" {if isset($mp_shipping_id)}value="{$transit_delay}"{else}value="{l s='Select a value' mod='mpshipping'}"{/if}>
 							<div class="dropdown">
 								<button class="width-100" type="button" id="dropdownMenu1" data-toggle="dropdown">
@@ -116,6 +117,14 @@
 									<li role="presentation"><a role="menuitem" class="tran_val" tabindex="-1" href="#">{l s='1-2 Weeks' mod='mpshipping'}</a></li>
 								</ul>
 							</div>
+							-->
+							<Select name="transit_time" id="ship_transit_time">
+								<option value="" {if !isset($mp_shipping_id)}selected{/if}>Select Shipping Time</option>
+								<option value="1 Business day" {if $transit_delay = "1 Business day"}selected{/if}>1 Business day</option>
+								<option value="1-2 Business days" {if $transit_delay = "1-2 Business days"}selected{/if}>1-2 Business days</option>
+								<option value="3-5 Business days" {if $transit_delay = "3-5 Business days"}selected{/if}>3-5 Business days</option>
+								<option value="1-2 Weeks" {if $transit_delay = "1-2 Weeks"}selected{/if}>1-2 Weeks</option>
+							</Select>
 						</div>
 					</div>
 				</div>
@@ -153,17 +162,6 @@
 												</div>
 											</td>
 										</tr>
-										<!--
-										<tr>
-											<td class="color-black">{l s='Everywhere Else' mod='mpshipping'}</td>
-											<td>
-												<div class="input-group input-group-sm">
-													<span class="input-group-addon" id="sizing-addon2">{$currency_details['sign']}</span>
-													<input type="text" class="form-control ship_cost color-black" name="else_ship" {if isset($mp_shipping_id)}value="{$price_by_range[$ranges['0']['id_range']]['1']}"{/if} aria-describedby="sizing-addon2">
-												</div>
-											</td>
-										</tr>
-										-->
 									</table>
 								</div>
 							</div>
@@ -207,7 +205,7 @@
 
 				</div>
 				<div class="col-sm-12"  style="text-align:center;padding-top:10px;">
-					<a class="button button-medium" href="{$link->getModuleLink('mpshipping','sellershippinglist')|escape:'html':'UTF-8'}">
+					<a class="button lnk_view button-medium" href="{$link->getModuleLink('mpshipping','sellershippinglist')|escape:'html':'UTF-8'}">
 						<span><i class="icon-chevron-left "></i>&nbsp;{l s=' Back to Shipping Profiles ' mod='mpshipping'}</span>			
 					</a>
 					&nbsp;&nbsp;&nbsp;
