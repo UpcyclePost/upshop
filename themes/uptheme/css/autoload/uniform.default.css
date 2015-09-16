@@ -349,13 +349,13 @@ div.button.disabled span, div.button.disabled.active span {
   display: block; }
 
 div.selector {
-  font-size: 12px; }
+  font-size: 14px; }
   div.selector span {
     color: #666;
     text-shadow: 0 1px 0 #fff; }
   div.selector select {
     font-family: inherit;
-    font-size: 12px; }
+    font-size: 14px; }
   div.selector.disabled span, div.selector.disabled.active span {
     color: #bbb; }
 

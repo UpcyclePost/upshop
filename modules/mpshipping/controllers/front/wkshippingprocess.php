@@ -6,6 +6,7 @@
 		public function initContent()
 		{
 			parent::initContent();
+			
 			$link = new Link();
 
 			$my_account_link = $link->getPageLink('my-account');

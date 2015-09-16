@@ -57,11 +57,36 @@
     cursor: pointer;
 }
 
-div.uploader
-{
+div.uploader {
     width: 33%;
     display: inline-block;
 }
+div.uploader span.action {
+    text-shadow: none;
+    font-size: 14px;
+    font-weight: normal;
+    color: #666;
+	background-image:none;
+	background-color: #f7f7f7;
+  	border: 2px solid;
+    border-color: #666;
+    border-radius: 4px;
+    -webkit-border-radius: 4px;
+    -moz-border-radius: 4px;   
+}
+	div.uploader:hover span.action {
+	    text-shadow: none;
+	    font-size: 14px;
+	    font-weight: normal;
+	    color: #fff;
+		background-image:none;
+		background-color: #666;
+	  	border: 2px solid;
+	    border-color: #666;
+	    border-radius: 4px;
+	    -webkit-border-radius: 4px;
+	    -moz-border-radius: 4px;   
+	}
 
 #add_img:hover
 {
@@ -132,6 +157,7 @@ div.uploader
 			<div class="tab-pane active" id="information">
 				<div class="wk_product_form">
 				{hook h='displayMpUpdateProductBodyHeaderOption'}
+					<p><sup style="color:#f00;">*</sup> Required field</p>
 					<div class="required form-group">
 						<label for="product_name"><sup style="color:#f00;">*&nbsp;</sup>{l s='Product Name :' mod='marketplace'}</label>
 						<input type="text" id="product_name" name="product_name" value="{$pro_info['product_name']|escape:'html':'UTF-8'}" class="form-control" />
@@ -164,8 +190,8 @@ div.uploader
 					<div class="form-group">
 						<label for="prod_price"><sup style="color:#f00;">*&nbsp;</sup>{l s='Price :' mod='marketplace'}</label>&nbsp;Numbers and decimal point only (e.g. 1234.56)
 						<div class="input-group">
-							<input type="text" id="product_price" name="product_price" value="{$pro_info['price']|number_format:2:'.':''|escape:'html':'UTF-8'}"  class="form-control"  onblur="javascript:this.value=Number(this.value).toFixed(2)"/>
 							<span class="input-group-addon">{$currency_sign|escape:'html':'UTF-8'}</span>
+							<input type="text" id="product_price" name="product_price" value="{$pro_info['price']|number_format:2:'.':''|escape:'html':'UTF-8'}"  class="form-control"  onblur="javascript:this.value=Number(this.value).toFixed(2)"/>
 						</div>
 					</div>
 
@@ -182,15 +208,15 @@ div.uploader
 					</div>
 					{hook h="DisplayMpupdateproductfooterhook"}
                     <div class="form-group">
-                            <label for="upload_image" style="display:block">
+                            <label for="product_image" style="display:block">
                                     {l s='Upload Image : ' mod='marketplace'}
                             </label>
                             <input type="file" id="product_image" name="product_image" value="" class="account_input form-control" size="chars" />
                             <img style="display:none;" id="testImg" src="#" alt="" height="40px" width="40px" />
-                            <p class="img_validate">{l s='Images should be less than 2MB and ideally less than 1000px. Valid image extensions are jpg, jpeg, and png.' mod='marketplace'}</p>
+                            <p class="info_description">{l s='Images should be less than 2MB and ideally less than 1000px. Valid image extensions are jpg, jpeg, and png.' mod='marketplace'}</p>
                     </div>
 					<div class="form-group">
-						<a onclick="showOtherImage(); return false;" class="btn btn-default button button-small">
+						<a onclick="showOtherImage(); return false;" class="button lnk_view btn btn-default">
 								<span>{l s='Add another image' mod='marketplace'}</span>
 							</a>
 						<div id="wk_prod_other_images"></div>

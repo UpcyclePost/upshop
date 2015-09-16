@@ -76,6 +76,12 @@ div.uploader span.action {
 #add_img:hover {
 	text-decoration:underline;
 }
+.input-group-addon {
+    padding: 5px 10px;
+    font-size: 14px;
+    line-height: 1;
+    border-radius: 3px;
+}
 </style>
 
 <script type="text/javascript">
@@ -186,8 +192,9 @@ $(document).ready(function() {
 						<div class="form-group">
 							<label for="product_price" class="control-label required">{l s='Price :' mod='marketplace'}</label>&nbsp;Numbers and decimal point only (e.g. 1234.56)
 							<div class="input-group">
-						  		<input type="text" id="product_price" name="product_price" value="{$c_mp_product_price|escape:'html':'UTF-8'}"  class="account_input form-control" placeholder="{l s='Enter product price' mod='marketplace'}" onblur="javascript:this.value=Number(this.value).toFixed(2)"/>
 						  		<span class="input-group-addon">{$currency_sign|escape:'html':'UTF-8'}</span>
+						  		<input type="text" id="product_price" name="product_price" value="{$c_mp_product_price|escape:'html':'UTF-8'}"  class="account_input form-control" placeholder="{l s='Enter product price' mod='marketplace'}" onblur="javascript:this.value=Number(this.value).toFixed(2)"/>
+
 						  	</div>
 						</div>
 
