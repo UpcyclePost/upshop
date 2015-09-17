@@ -119,11 +119,11 @@ select:focus{
 					</div>
 					<p><sup style="color:#f00;">*</sup> Required field</p>
 					<div class="required form-group">
-						<label for="shipping_name"><sup style="color:#f00;">*&nbsp;</sup>{l s='Profile Name: (64 characters max)' mod='mpshipping'}</label>
+						<label for="shipping_name"><sup style="color:#f00;">*&nbsp;</sup>{l s='Profile Name : (64 characters max)' mod='mpshipping'}</label>
 						<input type="text" maxlength="64" class="form-control" name="shipping_name" id="shipping_name" {if isset($mp_shipping_id)}value="{$mp_shipping_name}"{/if}>
 					</div>
 					<div class="form-group">
-						<label for="transit_time">{l s='Shipping Time' mod='mpshipping'}</label>
+						<label for="transit_time">{l s='Shipping Time :' mod='mpshipping'}</label>
 						<Select name="transit_time" id="ship_transit_time" class="">
 							<option value="" {if !isset($mp_shipping_id)}selected{/if}>Select Shipping Time</option>
 							<option value="1 Business day" {if $transit_delay=="1 Business day"}selected{/if}>1 Business day</option>
@@ -141,7 +141,7 @@ select:focus{
 						<div class="info_description">{l s='If you have any handling charges include those as part of your shipping cost. If you would like to offer free shipping set the cost to 0.' mod='mpshipping'}</div>
 					</div>
 					<div class="form-group">
-						<label for="tracking_url">{l s='Tracking URL' mod='mpshipping'}</label>
+						<label for="tracking_url">{l s='Tracking URL :' mod='mpshipping'}</label>
 						<Select name="tracking_url" id="ship_tracking_url" class="">
 							<option value="" {if !isset($mp_shipping_id) || $tracking_url==""}selected{/if}>Select Carrier</option>
 							<option value="https://www.usps.com/search.htm?q=@" {if $tracking_url=="https://www.usps.com/search.htm?q=@"}selected{/if}>USPS</option>
@@ -152,7 +152,7 @@ select:focus{
 						<div class="info_description">{l s="This field is optional and should only be used if this shipping profile always uses the same carrier" mod="mpshipping"}.</div>
 					</div>
 					<div class="form-group">
-						<label for="ship_policy">{l s='Shipping Policies' mod='mpshipping'}</label>
+						<label for="ship_policy">{l s='Shipping Policies :' mod='mpshipping'}</label>
 						<textarea class="form-control" name="ship_policy">{if isset($mp_shipping_id)}{$shipping_policy}{/if}</textarea>
 						<div class="info_description">{l s="Specify any policies that you would like the buyer to know about regarding your shipping." mod="mpshipping"}</div>
 					</div>
