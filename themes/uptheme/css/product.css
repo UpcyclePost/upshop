@@ -402,7 +402,7 @@ span.view_scroll_spacer {
   .box-info-product p {
     margin-bottom: 7px; }
   .box-info-product .exclusive {
-    padding: 0;
+    padding: 3px;;
     border: 2px solid #0187d0;
     -moz-border-radius: 4px;
     -webkit-border-radius: 4px;

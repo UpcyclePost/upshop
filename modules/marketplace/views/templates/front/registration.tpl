@@ -20,6 +20,21 @@
   }
 
 .fcevrt{}
+select{
+	padding: 3px 5px;
+    height: 30px;
+    -webkit-box-shadow: none;
+    box-shadow: none;
+    border-radius: 4px;
+    border: 1px solid #999;
+    color: #9c9b9b;
+	width:100%;
+}
+select:focus{
+	outline: 0;
+    -webkit-box-shadow: 0 0 8px rgba(103, 174, 233, 0.6);
+    box-shadow: 0 0 8px rgba(103, 174, 233, 0.6);
+}
 </style>
 
 {capture name=path}
@@ -74,13 +89,16 @@
 			</div>
 		{else}
 			<p>
-				<h3>{l s='Your banking information has been verified.    ' mod='marketplace'}</h3>
+				<img width="107px"" height="109px" alt="Sell" src="{$img_dir}sell_sm.png" style="float:right;"></img>
+				<h3>{l s='Congratulations, Your banking information has been verified.' mod='marketplace'}</h3>
 				<p>&nbsp;</p>
-				<h5>Next step is to set up your shipping profiles, after that is complete you can add products from your dashboard</h5>
+				<h4 style="line-height:24px">On the next screen you will be asked to create a shipping profile, you can create one or more shipping profiles, and then you can associate a product with one or more shipping profiles.</h4>
 				<p>&nbsp;</p>
+				<div style="text-align:center;margin-left:auto;margin-right:auto;">
 				<a class="btn btn-default button button-medium" style="padding:3px 8px 3px 8px;" href="{$link->getModuleLink('mpshipping','addnewshipping')|escape:'html':'UTF-8'}">
-					{l s='Add shipping profile' mod='marketplace'}&nbsp;<i class="icon-chevron-right right"></i>
-				</a>			
+					<span>{l s='Add shipping profile' mod='marketplace'}&nbsp;<i class="icon-chevron-right right"></i></span>
+				</a>
+				</div>
 			</p>
 		{/if}
 	{/if}
@@ -106,7 +124,7 @@
 					<input class="is_required validate form-control" type="text" id="shop_name1" name="shop_name" placeholder="Enter your shop name" maxlength="255"/>
 				</div>
 				<div class="required form-group">
-					<label for="phone1"><sup>*</sup>{l s='Phone' mod='marketplace'}</label>{l s='10 digits, no separators' mod='marketplace'}
+					<label for="phone1"><sup>*</sup>{l s='Phone' mod='marketplace'}</label>&nbsp;{l s='10 digits, no separators' mod='marketplace'}
 					<input class="form-control" type="text" name="phone" id="phone1" maxlength="{$phone_digit|escape:'html':'UTF-8'}" placeholder="Enter your phone number"/>
 				</div>		 
                 <div class="form-group">	
@@ -115,39 +133,38 @@
 				</div>
                  <fieldset style="">
                  <div id="bank" class="form-group" >
-					<label for="bank"><sup>*</sup>{l s='Bank Account Number' mod='marketplace'}</label>
+					<label for="bank"><sup>*</sup>{l s='Bank Account Number' mod='marketplace'}</label>&nbsp;{l s='e.g.' mod='marketplace'} 000123456789
 					<input class="reg_sel_input form-control"  type="text" name="bank" id="bank" placeholder="Enter your bank account number"/>
-                    {l s='e.g.' mod='marketplace'} 000123456789
 				</div>
 					
 				<div id="routing" class="form-group" >
-					<label for="routing"><sup>*</sup>{l s='Routing Number' mod='marketplace'}</label>
+					<label for="routing"><sup>*</sup>{l s='Routing Number' mod='marketplace'}</label>&nbsp;{l s='e.g.' mod='marketplace'} 110000000
 					<input class="reg_sel_input form-control"  type="text" name="routing" id="routing" placeholder="Enter your bank routing number"/>
-                    {l s='e.g.' mod='marketplace'} 110000000
 				</div>
-                <fieldset style="">
                 <div id="type" class="form-group" >
 					<label for="type"><sup>*</sup>{l s='Entity Type' mod='marketplace'}</label>
-					<select name="type" id="type"><option value="individual">{l s='Individual' mod='marketplace'}</option><option value="company">{l s='Company' mod='marketplace'}</option></select>
+					<select name="type" id="type" style="width:100%;height:30px;"><option value="individual">{l s='Individual' mod='marketplace'}</option><option value="company">{l s='Company' mod='marketplace'}</option></select>
 				</div>
                 <div id="fname" class="form-group" >
 					<label for="fname"><sup>*</sup>{l s='First Name' mod='marketplace'}</label>
-					<input class="form-control"  type="text" name="fname" id="fname" style="width:100px;display: inline;" />&nbsp;&nbsp;
+					<input class="form-control"  type="text" name="fname" id="fname" />
+				</div>
+                <div id="lname" class="form-group" >
                     <label for="lname"><sup>*</sup>{l s='Last Name' mod='marketplace'}</label>
-					<input class="form-control"  type="text" name="lname" id="lname" style="width:100px;display: inline;" />
+					<input class="form-control"  type="text" name="lname" id="lname" />
 				</div>
                 <div id="ssn" class="form-group" >
 					<label for="ssn"><sup>*</sup>{l s='SSN/EIN last 4 digits' mod='marketplace'}</label>
-					<input class="form-control"  type="text" name="ssn" id="ssn" style="width:50px;display: inline;" maxlength="4"/>
+					<input class="form-control"  type="text" name="ssn" id="ssn" maxlength="4"/>
 				</div>
                 <div id="routing" class="form-group" >
-					<label for="routing"><sup>*</sup>{l s='Date of birth' mod='marketplace'}</label>
-                    <input class="form-control"  type="text" name="month" id="month" style="width:30px;display: inline;"  maxlength="2"/> /
+					<label for="routing"><sup>*</sup>{l s='Date of birth' mod='marketplace'}</label>&nbsp;{l s='e.g.' mod='marketplace'} 12/31/1988 (mm/dd/yyyy)
+                    <p>
+					<input class="form-control"  type="text" name="month" id="month" style="width:30px;display: inline;"  maxlength="2"/> /
 					<input class="form-control"  type="text" name="day" id="day" style="width:30px;display: inline;"  maxlength="2"/> /
                     <input class="form-control"  type="text" name="year" id="year" style="width:50px;display: inline;"  maxlength="4"/>&nbsp;
-                    {l s='e.g.' mod='marketplace'} 12/31/1988 (mm/dd/yyyy)
+                    </p>
 				</div>
-                </fieldset>
                 </fieldset>
 				{hook h="DisplayMpshoprequestfooterhook"}
 			</fieldset>
@@ -172,7 +189,7 @@
 
 	</div>
 		</div>
-			<div class="form-group" style="text-align:center;">
+			<div class="form-group" style="text-align:center;margin-bottom:50px">
 				<button type="submit" id="seller_save" class="btn btn-default button button-medium">
 					<span>{l s='Continue' mod='marketplace'}<i class="icon-chevron-right right"></i></span>
 				</button>&nbsp;&nbsp;
@@ -185,7 +202,7 @@
 	</div>
 		
 	</div>
-</div>
+
 {/if}
 
 <script type="text/javascript">

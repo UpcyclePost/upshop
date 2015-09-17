@@ -22,7 +22,11 @@
 *  @license    http://opensource.org/licenses/afl-3.0.php  Academic Free License (AFL 3.0)
 *  International Registered Trademark & Property of PrestaShop SA
 *}
-{capture name=path}{l s='My Account'}{/capture}
+<style>
+	ul{
+		margin-bottom:25px;
+	}
+</style>
 
 <div class="col-xs-12 col-sm-6 col-lg-5" style="padding-right:20px;">
 <br>
@@ -131,8 +135,3 @@
 </div>
 </div>
 
-<div style="clear:left;">
-<ul class="footer_links clearfix">
-<li><a class="btn btn-default button button-medium" href="{$base_dir}" title="{l s='Home'}"><span><i class="icon-chevron-left"></i> {l s='Home'}</span></a></li>
-</div>
-</ul>

@@ -28,6 +28,21 @@
 		  display:none;
 		  }
   }
+select{
+	padding: 3px 5px;
+    height: 30px;
+    -webkit-box-shadow: none;
+    box-shadow: none;
+    border-radius: 4px;
+    border: 1px solid #999;
+    color: #9c9b9b;
+	width:100%;
+}
+select:focus{
+	outline: 0;
+    -webkit-box-shadow: 0 0 8px rgba(103, 174, 233, 0.6);
+    box-shadow: 0 0 8px rgba(103, 174, 233, 0.6);
+} 
 </style>
 {/if}
 
@@ -385,7 +400,7 @@
 			</div>
 			<div class="submit-button" style="padding-bottom:30px;">
 					<button type="submit" id="update_profile" class="btn btn-default button button-medium">
-						<span>{l s='Update' mod='marketplace'}</span>
+						<span>{l s='Save' mod='marketplace'}</span>
 					</button>&nbsp;&nbsp;
 	                <span id="loadin_msg" style="display:none;margin-top: 12px;font-size: 15px;color: orangered;position: absolute;">{l s='Please wait while we validate your banking information...' mod='marketplace'}</span>
 				</div>

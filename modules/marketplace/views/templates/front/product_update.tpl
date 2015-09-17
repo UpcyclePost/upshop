@@ -94,7 +94,6 @@ div.uploader span.action {
 }
 </style>
 
-{capture name=path}{l s='Product Update' mod='marketplace'}{/capture}
 <span id="error">{l s='Field Should not be Empty.' mod='marketplace'}</span>
 	{if $is_main_er==1}
 		<div class="alert alert-danger">
@@ -305,7 +304,7 @@ div.uploader span.action {
 			{hook h="DisplayMpupdateproducttabhook"}
 			<div class="form-group" style="text-align:center;" id="update_product_submit_div">
 				<button type="submit" id="SubmitCreate" class="btn btn-default button button-medium">
-					<span>{l s='Update' mod='marketplace'}</span>
+					<span>{l s='Save' mod='marketplace'}</span>
 				</button>
                 <span id="loadin_msg" style="display:none;margin-left:15px;margin-top: 12px;font-size: 15px;color: orangered;position: absolute;">{l s='Please wait while we update your product...' mod='marketplace'}</span>				
 			</div>

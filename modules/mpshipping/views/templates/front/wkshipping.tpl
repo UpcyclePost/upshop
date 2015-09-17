@@ -158,7 +158,7 @@ select:focus{
 					</div>
 					<div class="form-group"  style="text-align:center;padding-top:10px;">
 					<button type="submit" id="buttonNext" name="buttonNext" class="btn btn-default button button-medium">
-						<span>{l s=' Save ' mod='mpshipping'}&nbsp;<i class="icon-chevron-right "></i></span>			
+						<span>{l s=' Save ' mod='mpshipping'}</span>			
 					</button>
 				</div>
 				</form>

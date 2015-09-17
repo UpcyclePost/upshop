@@ -357,6 +357,9 @@
     padding: 9px 10px;
     color: #fff;
 }
+.header-container .buttons .btn-user:hover > span {
+    color: #fff;
+}
 
 .btn-user {
     display: inline-block;
