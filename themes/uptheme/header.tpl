@@ -55,9 +55,8 @@
 	{/foreach}
 {/if}
                 <link href="{$css_dir}ptmfix.css" rel="stylesheet" type="text/css" media="screen" />
-                <link href="{$css_dir}custommaker.css" rel="stylesheet" type="text/css" media="screen" />
-                <link href="{$css_dir}customuser.css" rel="stylesheet" type="text/css" media="screen" />
 				<link href="{$css_dir}styles.min.css" type="text/css" rel="stylesheet" />
+				
 		{$HOOK_HEADER}
 		<link rel="stylesheet" href="http{if Tools::usingSecureMode()}s{/if}://fonts.googleapis.com/css?family=Source+Sans+Pro:400,300,700,600" type="text/css" media="all" />
 		{if $page_name!='product' && $page_name!='order-confirmation'}
