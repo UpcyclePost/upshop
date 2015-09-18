@@ -14,15 +14,7 @@ class Product extends ProductCore
 				JOIN "._DB_PREFIX_."marketplace_shop_product p ON s.id = p.marketplace_seller_id_product
 				WHERE p.id_product = " . (int)$this->id . ";";
 		
-		echo "<!-- sql :";
-		echo ($sql);
-		echo "-->";
-
 		$seller_id  = Db::getInstance()->getValue($sql);
-
-		echo "<!-- seller_id :";
-		echo ($seller_id);
-		echo "-->";
 
 		// get products that are before and after
 		$previoussql = "SELECT pl.id_product, pl.link_rewrite, pl.name
@@ -32,14 +24,8 @@ class Product extends ProductCore
 						WHERE s.id_seller = " . $seller_id . "
 						AND pl.id_product < " . (int)$this->id . "
 						ORDER BY pl.id_product DESC";
-		echo "<!-- previoussql : ";
-		echo ($previoussql);
-		echo "-->";
 		
 		$previous = Db::getInstance(_PS_USE_SQL_SLAVE_)->getRow($previoussql);
-		echo "<!-- previous";
-		print_r ($previous);
-		echo "-->";
 		
 		$nextsql = "SELECT pl.id_product, pl.link_rewrite, pl.name
 						FROM up_product_lang pl 
@@ -48,14 +34,8 @@ class Product extends ProductCore
 						WHERE s.id_seller = " . $seller_id . "
 						AND pl.id_product > " . (int)$this->id . "
 						ORDER BY pl.id_product ASC";
-		echo "<!-- nextsql";
-		echo ($nextsql);
-		echo "-->";
 
 		$next = Db::getInstance(_PS_USE_SQL_SLAVE_)->getRow($nextsql);
-		echo "<!-- next";
-		print_r($next);
-		echo "-->";
 
 		return array('previous' => $previous, 'next' => $next);
 	}
