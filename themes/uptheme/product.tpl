@@ -65,7 +65,7 @@
 					<li class=""><a href="/shops">Shops</a></li>
 					<li class=""><a href="http://{$smarty.server.SERVER_NAME}/gallery/{$product->category}">{$product->category|@ucfirst}</a></li>
 					<li class="attr-content" style="float:right;">
-							<span class='st_stumbleupon' style="float:right;"></span>
+							<span class='st_googleplus' style="float:right;"></span>
 							<span class='st_pinterest' style="float:right;"></span>
 							<span class='st_twitter' style="float:right;"></span>
 							<span class='st_facebook' style="float:right;"></span>

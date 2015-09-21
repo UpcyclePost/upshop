@@ -113,7 +113,7 @@ select:focus{
 		<div class="wk_right_col">
 			<div class="col-sm-12">
 				<div class="col-sm-6">
-		<p>We require the following information for you to successfully process transactions on the site, and to receive payment for the purchases made in your shop. UpcyclePost does not store any of your banking information and collects the minimum amount of data required by the payment processing industry.</p>	
+		<p>We require the following information for you to successfully process transactions on the site, and to receive payment for the purchases made in your shop. Upmod does not store any of your banking information and collects the minimum amount of data required by the payment processing industry.</p>	
 		<p><sup>*</sup> {l s='Required field' mod='marketplace'}</p>
 		<form action="{$link->getModuleLink('marketplace', 'registrationprocess')|escape:'htmlall':'UTF-8'}" method="post" id="createaccountform" class="std contact-form-box" enctype="multipart/form-data">
 			<fieldset>

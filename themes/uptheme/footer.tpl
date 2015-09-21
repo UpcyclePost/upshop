@@ -34,9 +34,11 @@
 				<!-- Footer -->
 				<div  id="footer_setfooter" class="footer-container hidden-xs">
 					<div class="container" style="padding-bottom:0;">
+					<div class="row">
 					<footer id="footer"  class="columns-container">
 						{$HOOK_FOOTER}
 					</footer>
+					</div>
 					</div>
 				</div><!-- #footer -->
 			{/if}

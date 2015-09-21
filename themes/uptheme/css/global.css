@@ -997,7 +997,7 @@ header .row #header_logo,
     margin-left: 91.66667%; } }
 @media (min-width: 1200px) {
   .container {
-    max-width: 1280px; }
+    max-width: 1180px; }
 
   .col-lg-1,
   .col-lg-2,
@@ -7190,8 +7190,6 @@ div.star a:hover {
       clear: left; }
     .footer-container #footer #social_block {
       padding: 0px 10px 0 10px; 
-      border-left: 1px solid #ddd;
-      border-right: 1px solid #ddd;
       height:35px;}
       @media (max-width: 767px) {
         .footer-container #footer #social_block {
@@ -7239,7 +7237,7 @@ div.star a:hover {
           .footer-container #footer #social_block ul li.google-plus a:before {
             content: "\f0d5"; }
           .footer-container #footer #social_block ul li.pinterest a:before {
-            content: "\f0d2"; }
+            content: "\f0d3"; }
           .footer-container #footer #social_block ul li.vimeo a:before {
             content: "\f194"; }
           .footer-container #footer #social_block ul li.instagram a:before {
@@ -8496,6 +8494,7 @@ header .buttons font.items {
 }
 .slug li.copyright {
     padding: 10px 14px;
+    font-size:14px;
   }
 @media(min-width:1094px) {
   .slug li.f-logo {
@@ -8508,7 +8507,7 @@ header .buttons font.items {
     position: relative;
     float: left;
     margin-left:20px;
-    margin-top:-4px;
+    margin-top:-12px;
 }
 .slug li.f-logo a {
     padding: 10px 0 2px;

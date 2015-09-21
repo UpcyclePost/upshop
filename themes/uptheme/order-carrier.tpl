@@ -369,7 +369,7 @@
 				<p class="carrier_title">{l s='Terms of service'}</p>
 				<p class="checkbox">
 					<input type="checkbox" name="cgv" id="cgv" value="1" checked="checked" />
-					<label for="cgv">{l s='By placing an order you agree to the UpcyclePost.com terms of service.'}</label>&nbsp;
+					<label for="cgv">{l s='By placing an order you agree to the Upmod.com terms of service.'}</label>&nbsp;
 					<a href="{$link_conditions|escape:'html':'UTF-8'}" class="iframe" rel="nofollow">{l s='(Read the Terms of Service)'}</a>
 				</p>
 			{/if}
