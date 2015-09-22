@@ -141,92 +141,84 @@ window._fbq.push(['track', '6025947566399',
 		{/if}
 		<div id="page">
 			<div id="header_setfooter" class="header-container">
-				<header id="header">
+				<header id="header" class="header-area">
+					<nav class="mainmenu">
 						<div class="container">
 							<div class="row">
 								<div class="col-xs-2 col-sm-2 col-lg-2" style="float:left;padding-left:0;padding-right:0;">
-									<a href="{if isset($force_ssl) && $force_ssl}{$base_dir_ssl}{else}{$base_dir}{/if}" title="{$shop_name|escape:'html':'UTF-8'}">
-										<img class="logo img-responsive" src="{$logo_url}" alt="{$shop_name|escape:'html':'UTF-8'}"{if isset($logo_image_width) && $logo_image_width} width="{$logo_image_width}"{/if}{if isset($logo_image_height) && $logo_image_height} height="{$logo_image_height}"{/if}/>
+									<a class="logo" href="http{if Tools::usingSecureMode()}s{/if}://{$smarty.server.SERVER_NAME}" title="{$shop_name|escape:'html':'UTF-8'}">
 									</a>
 								</div>		
 								{if isset($HOOK_TOP)}{$HOOK_TOP}{/if}
 								{hook h="displayNav"}
 							</div>
 						</div>
+					</nav>
 				</header>
-				<!-- Nav -->
-				<div class="container">
-					<div class="row">
-						<nav class="menu hidden-xs hidden-sm" id="main-menu">
-							<div class="content-container">
-								<div class="menu-container clearfix">
-									<div class="main-menu menu-categories clearfix">
-										<h4 class="blue">Browse Ideas</h4>
-										<div class="col-sm-3">
-											<ul>
-												<li><a href="/gallery/art">Art</a></li>
-												<li><a href="/gallery/automotive">Automotive</a></li>
-												<li><a href="/gallery/construction">Construction</a></li>
-												<li><a href="/gallery/crafts">Crafts</a></li>
-												<li><a href="/gallery/electronics">Electronics</a></li>
-												<li><a href="/gallery/fashion">Fashion</a></li>
-											</ul></div><div class="col-sm-3"><ul>
-												<li><a href="/gallery/furniture">Furniture</a></li>
-												<li><a href="/gallery/glass">Glass</a></li>
-												<li><a href="/gallery/hardware">Hardware</a></li>
-												<li><a href="/gallery/holidays">Holidays</a></li>
-												<li><a href="/gallery/home">Home</a></li>
-												<li><a href="/gallery/jewelry">Jewelry</a></li>
-											</ul></div><div class="col-sm-3"><ul>
-												<li><a href="/gallery/metal">Metal</a></li>
-												<li><a href="/gallery/musical">Musical</a></li>
-												<li><a href="/gallery/office">Office</a></li>
-												<li><a href="/gallery/outdoors">Outdoors</a></li>
-												<li><a href="/gallery/paper">Paper</a></li>
-												<li><a href="/gallery/pets">Pets</a></li>
-											</ul></div><div class="col-sm-3"><ul>
-												<li><a href="/gallery/plastic">Plastic</a></li>
-												<li><a href="/gallery/sporting-goods">Sporting Goods</a></li>
-												<li><a href="/gallery/toys">Toys</a></li>
-												<li><a href="/gallery/vintage">Vintage</a></li>
-												<li><a href="/gallery/wood">Wood</a></li>
-												<li><a href="/gallery/yard">Yard</a></li>
-											</ul>
-										</div>
-										<div class="col-sm-6" style="margin-top: 15px;">
-											<ul>
-												<li><a href="/search/users"><i class="fa fa-users"></i> Visit Profile Gallery</a></li>
-											</ul>
-										</div>
-									</div>
-									<div class="main-menu menu-child-menus clearfix">
-										<div class="menu-col-1 clearfix">
-											<h4 class="blue">Company</h4>
-											<div class="col-xs-12">
-												<ul>
-													<li><a href="/about">About Us</a></li>
-													<li><a target="_blank" href="http://www.facebook.com/upcyclepost">Facebook</a></li>
-													<li><a target="_blank" href="http://www.twitter.com/upcyclepost">Twitter</a></li>
-													<li><a target="_blank" href="http://www.linkedin.com/company/upcyclepost-com">LinkedIn</a></li>
-													<li><a target="_blank" href="/blog">Blog</a></li>
-													<li><a target="_blank" href="/contact">Contact Us</a></li>
-												</ul>
-											</div>
-										</div>
-										<div class="menu-col-2 clearfix">
-											<h4 class="green">Do you have an idea?</h4>
-											<div class="col-xs-12">
-												<p>It doesn't matter if it's a work in progress, rough draft or a finished product.</p>
-												<a class="btn btn-green" href="/post/idea"><i class="fa fa-camera"></i>Post Your Idea</a>
-											</div>
-										</div>
-									</div>
-								</div>
-							</div>
-						</nav>
-					</div>
+				<div class="main-dd-menu">
+				    <div class="container">
+				        <div class="row">
+				            <div class="column clearfix">
+				                <h3>Shop Categories</h3>
+				                <ul class="categories">
+				        				<li><a href="http://{$smarty.server.SERVER_NAME}/gallery/art">Art</a></li>
+										<li><a href="http://{$smarty.server.SERVER_NAME}/gallery/automotive">Automotive</a></li>
+										<li><a href="http://{$smarty.server.SERVER_NAME}/gallery/construction">Construction</a></li>
+										<li><a href="http://{$smarty.server.SERVER_NAME}/gallery/crafts">Crafts</a></li>
+										<li><a href="http://{$smarty.server.SERVER_NAME}/gallery/electronics">Electronics</a></li>
+										<li><a href="http://{$smarty.server.SERVER_NAME}/gallery/fashion">Fashion</a></li>
+										<li><a href="http://{$smarty.server.SERVER_NAME}/gallery/furniture">Furniture</a></li>
+										<li><a href="http://{$smarty.server.SERVER_NAME}/gallery/glass">Glass</a></li>
+										<li><a href="http://{$smarty.server.SERVER_NAME}/gallery/hardware">Hardware</a></li>
+										<li><a href="http://{$smarty.server.SERVER_NAME}/gallery/holidays">Holidays</a></li>
+										<li><a href="http://{$smarty.server.SERVER_NAME}/gallery/home">Home</a></li>
+										<li><a href="http://{$smarty.server.SERVER_NAME}/gallery/jewelry">Jewelry</a></li>
+										<li><a href="http://{$smarty.server.SERVER_NAME}/gallery/metal">Metal</a></li>
+										<li><a href="http://{$smarty.server.SERVER_NAME}/gallery/musical">Musical</a></li>
+										<li><a href="http://{$smarty.server.SERVER_NAME}/gallery/office">Office</a></li>
+										<li><a href="http://{$smarty.server.SERVER_NAME}/gallery/outdoors">Outdoors</a></li>
+										<li><a href="http://{$smarty.server.SERVER_NAME}/gallery/paper">Paper</a></li>
+										<li><a href="http://{$smarty.server.SERVER_NAME}/gallery/pets">Pets</a></li>
+										<li><a href="http://{$smarty.server.SERVER_NAME}/gallery/plastic">Plastic</a></li>
+										<li><a href="http://{$smarty.server.SERVER_NAME}/gallery/sporting-goods">Sporting Goods</a></li>
+										<li><a href="http://{$smarty.server.SERVER_NAME}/gallery/toys">Toys</a></li>
+										<li><a href="http://{$smarty.server.SERVER_NAME}/gallery/vintage">Vintage</a></li>
+										<li><a href="http://{$smarty.server.SERVER_NAME}/gallery/wood">Wood</a></li>
+										<li><a href="http://{$smarty.server.SERVER_NAME}/gallery/yard">Yard</a></li>							
+				                </ul>
+				            </div>
+				            <div class="column clearfix">
+				                <div class="left-menu">
+				                    <h3>Share your ideas</h3>
+				                    <ul class="links">
+				                        <li><a href="http://{$smarty.server.SERVER_NAME}/post/idea">Upload your images</a></li>
+				                        <li><a href="http://{$smarty.server.SERVER_NAME}/search/users">View member gallery</a></li>
+				                    </ul>
+				                </div>
+				                <div class="right-menu">
+				                    <h3>Sell your products</h3>
+				                    <ul class="links">
+				                        <li><a href="http://{$smarty.server.SERVER_NAME}/shop/module/marketplace/sellerrequest">Create your shop</a></li>
+				                    </ul>
+				                </div>
+				            </div>
+				            <div class="column clearfix">
+				                <h3>Upmod</h3>
+				                <ul class="links">
+				                    <li><a href="http://{$smarty.server.SERVER_NAME}/about">About us</a></li>
+				                    <li><a href="http://{$smarty.server.SERVER_NAME}/blog">Blog</a></li>
+				                    <li><a href="http://{$smarty.server.SERVER_NAME}/contact">Contact us</a></li>
+				                </ul>
+				                <div class="social-icons">
+				                    <a href="http://www.facebook.com/upcyclepost"><i class="fa fa-facebook-square"></i></a>
+				                    <a href="http://www.linkedin.com/company/upcyclepost-com"><i class="fa fa-linkedin-square"></i></a>
+				                    <a href="http://www.twitter.com/upcyclepost"><i class="fa fa-twitter-square"></i></a>
+				                    <a href="http://www.pinterest.com/upcyclepost"><i class="fa fa-pinterest-square"></i></a>
+				                </div>
+				            </div>
+				        </div>
+				    </div>
 				</div>
-				<!-- End Nav -->
 			</div>
 			<div id="body_setfooter" class="columns-container">
 				<div id="columns" class="container">
