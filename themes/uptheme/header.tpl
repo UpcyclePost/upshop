@@ -144,7 +144,7 @@ window._fbq.push(['track', '6025947566399',
 				<header id="header">
 						<div class="container">
 							<div class="row">
-								<div class="col-xs-2 col-sm-2 col-lg-2" style="float:left;">
+								<div class="col-xs-2 col-sm-2 col-lg-2" style="float:left;padding-left:0;padding-right:0;">
 									<a href="{if isset($force_ssl) && $force_ssl}{$base_dir_ssl}{else}{$base_dir}{/if}" title="{$shop_name|escape:'html':'UTF-8'}">
 										<img class="logo img-responsive" src="{$logo_url}" alt="{$shop_name|escape:'html':'UTF-8'}"{if isset($logo_image_width) && $logo_image_width} width="{$logo_image_width}"{/if}{if isset($logo_image_height) && $logo_image_height} height="{$logo_image_height}"{/if}/>
 									</a>

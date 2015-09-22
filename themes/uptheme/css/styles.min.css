@@ -412,7 +412,6 @@
     font-size: 28px;
     height: 30px;
     line-height: 28px;
-    margin-left: 80px;
     margin-top: 5px;
     width: 40px;
     border: 0;
@@ -755,8 +754,7 @@ header .row #header_logo {
     padding: 4px 32px 4px 10px;
     /*background: url(../img/icons/search-icon.png) no-repeat right 9px;*/
     height: 37px;
-    width: 96%;
-    margin-left:20px;
+    width: 90%;
 }
     .search-container
     {

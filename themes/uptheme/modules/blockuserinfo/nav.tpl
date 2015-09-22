@@ -1,14 +1,16 @@
 <!-- Block user information module NAV  -->
 
-<div class="header_user_info col-xs-2 col-sm-2 col-md-5 col-lg-3" style="padding:0;">
-	<button class="hamburger-menu" id="hamburger">
+<div class="header_user_info col-xs-2 col-sm-2 col-md-5 col-lg-4" style="padding:0;">
+	<button class="hamburger-menu" id="hamburger" {if !$is_logged}style="margin-left:80px;"{/if}>
         <i class="fa fa-bars"></i>
     </button>
 	<a class="slide-menu fa fa-bars hidden-lg hidden-md pull-right" href="#mobile-slide-menu"></a>
 	<div class="buttons hidden-xs hidden-sm">
 		{if !$is_logged}
-			<a href="http{if Tools::usingSecureMode()}s{/if}://{$smarty.server.SERVER_NAME}/profile/login" class="">Sign In</a>
-			<a href="http{if Tools::usingSecureMode()}s{/if}://{$smarty.server.SERVER_NAME}/profile/register" class="button button-medium">Sign Up</a>
+			<div class="signup">
+				<a href="http{if Tools::usingSecureMode()}s{/if}://{$smarty.server.SERVER_NAME}/profile/login" class="">Sign In</a>
+				<a href="http{if Tools::usingSecureMode()}s{/if}://{$smarty.server.SERVER_NAME}/profile/register" class="button button-medium">Sign Up</a>
+			</div>
 		{/if}
 		{if $is_logged}
 			{if $is_seller == 1}
