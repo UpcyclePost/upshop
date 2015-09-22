@@ -92,6 +92,10 @@ div.uploader span.action {
 {
 	text-decoration:underline;
 }
+
+.icon-trash:hover{
+	color:silver;
+}
 </style>
 
 <span id="error">{l s='Field Should not be Empty.' mod='marketplace'}</span>
@@ -206,7 +210,7 @@ div.uploader span.action {
 						<div>{$categoryTree|escape:'intval'}</div>
 					</div>
 					{hook h="DisplayMpupdateproductfooterhook"}
-                    <div class="form-group">
+<!--                    <div class="form-group">
                             <label for="product_image" style="display:block">
                                     {l s='Upload Image : ' mod='marketplace'}
                             </label>
@@ -214,12 +218,7 @@ div.uploader span.action {
                             <img style="display:none;" id="testImg" src="#" alt="" height="40px" width="40px" />
                             <p class="info_description">{l s='Images should be less than 2MB and ideally less than 1000px. Valid image extensions are jpg, jpeg, and png.' mod='marketplace'}</p>
                     </div>
-					<div class="form-group">
-						<a onclick="showOtherImage(); return false;" class="button lnk_view btn btn-default">
-								<span>{l s='Add another image' mod='marketplace'}</span>
-							</a>
-						<div id="wk_prod_other_images"></div>
-					</div>				
+-->
 				</div>
 			</div>
 
@@ -275,6 +274,7 @@ div.uploader span.action {
 					 {/if}
 					</table>
 			    </div>
+
 				{else}
 					<div id="image_details" style="float:left;margin-top:10px;">
 						<table>
@@ -301,6 +301,13 @@ div.uploader span.action {
 					</div>
 				{/if}
 			</div>
+			<div class="form-group" style="margin: 10px 0px 0px 15px">
+				<a onclick="showOtherImage(); return false;" class="button lnk_view btn btn-default">
+						<span>{l s='Add another image' mod='marketplace'}</span>
+					</a>
+				<div id="wk_prod_other_images"></div>
+			</div>				
+
 			{hook h="DisplayMpupdateproducttabhook"}
 			<div class="form-group" style="text-align:center;" id="update_product_submit_div">
 				<button type="submit" id="SubmitCreate" class="btn btn-default button button-medium">
@@ -351,7 +358,7 @@ div.uploader span.action {
 	    var newdiv = document.createElement('div');
 	    newdiv.setAttribute("id", "childDiv" + i);
 	    newdiv.setAttribute("class", "wkChildDivClass");
-	    newdiv.innerHTML = "<input type='file' class=\"btn\" onchange=\"changeEvent(this,"+i+")\" id='images"+i+"' name='images[]' /><img id='showimg"+i+"' style=\"display:none\" src=\"#\" height=\"40px\" width=\"40px\" onload=\"loadEvent("+i+")\"><a style=\"height:27px\" class=\"btn btn-default button button-small\" href=\"javascript:;\" onclick=\"removeEvent('childDiv"+i+"')\"><span style=\"color:#FFF\">Remove</span></a>";		
+	    newdiv.innerHTML = "<input type='file' class=\"btn\" onchange=\"changeEvent(this,"+i+")\" id='images"+i+"' name='images[]' /><img id='showimg"+i+"' style=\"display:none\" src=\"#\" height=\"40px\" width=\"40px\" onload=\"loadEvent("+i+")\"><a style=\"height:27px\" href=\"javascript:;\" onclick=\"removeEvent('childDiv"+i+"')\"><span style=\"color:#666;font-size:24px;padding-top:6px;\"><i class=\"icon-trash\"></i></span></a>";		
 	    var ni = document.getElementById('wk_prod_other_images');
 	    ni.appendChild(newdiv);
 	    i++;

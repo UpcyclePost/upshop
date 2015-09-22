@@ -82,6 +82,9 @@ div.uploader span.action {
     line-height: 1;
     border-radius: 3px;
 }
+.icon-trash:hover{
+	color:silver;
+}
 </style>
 
 <script type="text/javascript">
@@ -212,7 +215,7 @@ $(document).ready(function() {
 						<div class="form-group">   
 							<label for="product_image" style="display:block">{l s='Upload Image :' mod='marketplace'}</label>
 							<input type="file" id="product_image" name="product_image" value="" class="account_input form-control" size="chars"  />
-							<img style="display:none;" id="testImg" src="#" alt="" height="40px" width="40px" />
+							<img style="display:none;" id="testImg" src="#" alt="" height="50px" width="50px" />
 							<p class="info_description">{l s='Images should be less than 2MB and ideally less than 1000px. Valid image extensions are jpg, jpeg, and png.' mod='marketplace'}</p>
 						</div>
 
@@ -261,7 +264,6 @@ $(document).ready(function() {
 	var char_seo_title_length = '{l s='SEO title should be less than 120 characters.' js=1 mod='marketplace'}';
 	var char_seo_description_length = '{l s='SEO description should be less than 120 characters.' js=1 mod='marketplace'}';
 
-
 	var i = 2;
 	function showOtherImage()
 	{
@@ -270,7 +272,7 @@ $(document).ready(function() {
 	    newdiv.setAttribute("class", "wkChildDivClass");
 	    newdiv.innerHTML = "<input type='file' class=\"btn\" onchange=\"changeEvent(this,"+i+")\" id='images"+i+"' name='images[]' />";
 		newdiv.innerHTML += "<img id='showimg"+i+"' style=\"display:none\" src=\"#\" height=\"40px\" width=\"40px\" onload=\"loadEvent("+i+")\">";
-		newdiv.innerHTML += "<a style=\"height:27px\" class=\"btn btn-default button button-small\" href=\"javascript:;\" onclick=\"removeEvent('childDiv"+i+"')\"><span style=\"color:#FFF\">Remove</span></a>";
+		newdiv.innerHTML += "<a style=\"height:27px\" href=\"javascript:;\" onclick=\"removeEvent('childDiv"+i+"')\"><span style=\"color:#666;font-size:24px;padding-top:6px;\"><i class=\"icon-trash\"</i></span></a>";
 	    var ni = document.getElementById('wk_prod_other_images');
 	    ni.appendChild(newdiv);
 	    i++;
