@@ -1,7 +1,7 @@
 <!-- Block user information module NAV  -->
 
 <div class="header_user_info col-xs-2 col-sm-2 col-md-5 col-lg-4" style="padding:0;">
-	<button class="hamburger-menu" id="hamburger" {if !$is_logged}style="margin-left:80px;"{/if}>
+	<button class="hamburger-menu hidden-xs" id="hamburger" {if !$is_logged}style="margin-left:80px;"{/if}>
         <i class="fa fa-bars"></i>
     </button>
 	<a class="slide-menu fa fa-bars hidden-lg hidden-md pull-right" href="#mobile-slide-menu"></a>
