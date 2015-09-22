@@ -7656,7 +7656,8 @@ table#cart_summary .gift-icon {
 
 .order_carrier_content {
   line-height: normal;
-  padding-bottom: 16px; }
+  padding-bottom: 16px;
+  margin:15px; }
   .order_carrier_content .carrier_title {
     font-weight: bold;
     color: #666; }

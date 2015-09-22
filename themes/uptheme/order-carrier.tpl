@@ -46,7 +46,6 @@
 			<div id="opc_delivery_methods" class="opc-main-block" style="padding:15px">
 				<div id="opc_delivery_methods-overlay" class="opc-overlay" style="display: none;"></div>
 {/if}
-{if !isset($errors) && !$errors}
 <div class="order_carrier_content box">
 	{if isset($virtual_cart) && $virtual_cart}
 		<input id="input_virtual_carrier" class="hidden" type="hidden" name="id_carrier" value="0" />
@@ -74,6 +73,10 @@
 								<div class="delivery_option {if ($option@index % 2)}alternate_{/if}item">
 									<div>
 										<table class="resume table table-bordered{if !$option.unique_carrier} hide{/if}">
+											<th>Select</th>
+											<th>Profile</th>
+											<th>Policies</th>
+											<th>Cost</th>
 											<tr>
 												<td class="delivery_option_radio">
 													<input id="delivery_option_{$id_address|intval}_{$option@index}" class="delivery_option_radio" type="radio" name="delivery_option[{$id_address|intval}]" data-key="{$key}" data-id_address="{$id_address|intval}" value="{$key}"{if isset($delivery_option[$id_address]) && $delivery_option[$id_address] == $key} checked="checked"{/if} />
@@ -112,7 +115,7 @@
 														{/if}
 													{/if}
 												</td>
-                                                <td style="width: 100%; overflow: auto; display: block; max-height: 80px; min-height: 60px; min-width: 325px;border:0;">
+                                                <td style="width: 100%; overflow: auto; display: block; max-height: 75px;min-height: 56px;border:0;">
 													{foreach $option.carrier_list as $carrier}
 															{$carrier.shipping_policy|escape:'htmlall':'UTF-8'}
 													{/foreach}
@@ -138,6 +141,10 @@
 										</table>
 										{if !$option.unique_carrier}
 											<table class="delivery_option_carrier{if isset($delivery_option[$id_address]) && $delivery_option[$id_address] == $key} selected{/if} resume table table-bordered{if $option.unique_carrier} hide{/if}">
+											<th>Select</th>
+											<th>Profile</th>
+											<th>Policies</th>
+											<th>Cost</th>
 												<tr>
 													{if !$option.unique_carrier}
 														<td rowspan="{$option.carrier_list|@count}" class="delivery_option_radio first_item">
@@ -414,7 +421,7 @@
 	</div>
 <!-- end order carrier panel -->
 	{/if}
-{/if}<!-- end errors -->
+<!-- end errors -->
 	</div>
 
 </div> <!-- end carrier_area -->
