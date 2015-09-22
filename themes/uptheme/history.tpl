@@ -22,11 +22,9 @@
 *  @license    http://opensource.org/licenses/afl-3.0.php  Academic Free License (AFL 3.0)
 *  International Registered Trademark & Property of PrestaShop SA
 *}
-{capture name=path}
-	<span class="navigation_page">{l s='Purchase history'}</span>
-{/capture}
+
 {include file="$tpl_dir./errors.tpl"}
-<div class="login-panel">
+<div class="login-panel" style="padding-bottom:25px;">
 	<div class="login-panel-header">
 		<h1 class="bottom-indent">{l s='Purchase history'}</h1>
 	</div>
@@ -108,9 +106,4 @@
 	{else}
 		<p class="alert alert-warning">{l s='You have not placed any orders.'}</p>
 	{/if}
-</div>
-<div style="text-align:center;padding-bottom:10px">
-		<a class="btn btn-default button button-medium" href="{$base_dir}">
-			<span><i class="fa fa-home"></i> {l s='Home'}</span>
-		</a>
 </div>

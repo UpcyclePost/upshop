@@ -2,7 +2,7 @@
 
 @media (min-width: 1200px){
 .container {
-  max-width: 970px;
+  max-width: 1180px;
   margin-left:auto;
   margin-right:auto;
 }
