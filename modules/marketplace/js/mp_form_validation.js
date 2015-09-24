@@ -210,6 +210,11 @@ $(document).ready(function()
 		}
 		else 
 		{
+			// Mixpanel Tracking
+			mixpanel.track("Create a Shop Clicked",{
+				'Shop Name': shop_name		 
+			});
+			// End Mixpanel Tracking
 			$('#createaccountform').submit();
 		}
 	});
