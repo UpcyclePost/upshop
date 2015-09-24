@@ -22,6 +22,62 @@
 *  @license    http://opensource.org/licenses/afl-3.0.php  Academic Free License (AFL 3.0)
 *  International Registered Trademark & Property of PrestaShop SA
 *}
+<style>
+	.stButton{
+		width : 24px !important;
+		height: 24px !important;
+		margin-left: 16px !important;
+	}
+	.chicklets{
+		width : 24px !important;
+		height: 24px !important;
+	}
+
+	.stButton .facebook {
+    background-image: none;
+	padding: 0;
+	}
+
+	.stButton .facebook:before {
+    font-family: FontAwesome;
+    font-size: 24px;
+    content: "\f082";
+	color: #0187d0;
+	}
+	.stButton .twitter {
+    background-image: none;
+	padding: 0;	
+	}
+
+	.stButton .twitter:before {
+    font-family: FontAwesome;
+    font-size: 24px;
+    content: "\f081";
+	color: #0187d0;	
+	}
+	.stButton .pinterest {
+    background-image: none;
+	padding: 0;
+	}
+
+	.stButton .pinterest:before {
+    font-family: FontAwesome;
+    font-size: 24px;
+    content: "\f0d3";
+	color: #0187d0;	
+	}
+	.stButton .googleplus {
+    background-image: none;
+	padding: 0;
+	}
+
+	.stButton .googleplus:before {
+    font-family: FontAwesome;
+    font-size: 24px;
+    content: "\f0d4";
+	color: #0187d0;	
+	}
+</style>
 {include file="$tpl_dir./errors.tpl"}
 {if $errors|@count == 0}
 	{if !isset($priceDisplayPrecision)}
