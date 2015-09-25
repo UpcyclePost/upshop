@@ -2262,7 +2262,10 @@ a:focus {
   background: #fff;
 }
 .mainmenu.active .logo {
-  background: url('../img/logo-active.png');
+  background: url('../img/logo_blue.png');
+    height: 50px;
+    width: 150px;
+
 }
 .mainmenu.active .user-actions li a {
   color: #0187d0;
@@ -2274,9 +2277,9 @@ a:focus {
   position: relative;
 }
 .mainmenu .logo {
-    background: url('../img/logo.png');
-    height: 48px;
-    width: 105px;
+    background: url('../img/logo_white.png');
+    height: 50px;
+    width: 150px;
     position: absolute;
     top: 0px;   
 }
