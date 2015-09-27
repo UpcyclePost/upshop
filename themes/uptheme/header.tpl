@@ -219,6 +219,45 @@ window._fbq.push(['track', '6025947566399',
 				        </div>
 				    </div>
 				</div>
+				{if $page_name=='product'}
+				<nav class="submenu">
+                    <div class="container hidden-xs">
+                        <div class="row">
+                            <div class="left_menu">
+                                <ul>
+                                    <li>
+                                        <a href="http://{$smarty.server.SERVER_NAME}/browse/products/art">Art</a>
+                                    </li>
+
+                                    <li>
+                                        <a href="http://{$smarty.server.SERVER_NAME}/browse/products/fashion">Fashion</a>
+                                    </li>
+
+                                    <li>
+                                        <a href="http://{$smarty.server.SERVER_NAME}/browse/products/furniture">Furniture</a>
+                                    </li>
+
+                                    <li>
+                                        <a href="http://{$smarty.server.SERVER_NAME}/browse/products/home">Home</a>
+                                    </li>
+
+                                    <li>
+                                        <a href="http://{$smarty.server.SERVER_NAME}/browse/products/jewelry">Jewelry</a>
+                                    </li>
+
+                                    <li>
+                                        <a href="http://{$smarty.server.SERVER_NAME}/browse/products/vintage">Vintage</a>
+                                    </li>
+                                </ul>
+                            </div>
+
+                            <div class="right_menu">
+                                <a class="menu-toggle">See all categories</a>
+                            </div>
+                        </div>
+                    </div>
+                </nav>
+				{/if}
 			</div>
 			<div id="body_setfooter" class="columns-container">
 				<div id="columns" class="container">

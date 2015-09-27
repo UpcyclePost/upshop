@@ -5532,7 +5532,7 @@ textarea {
 header {
   z-index: 1;
   position: fixed;
-  background: rgba(0, 0, 0, 0.6);
+  background: rgba(0, 0, 0, 0.65);
   width: 100%; }
   header .banner {
     background: black;

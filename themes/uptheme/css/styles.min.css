@@ -1800,6 +1800,8 @@ a:focus {
     -moz-box-shadow: 0 2px 2px rgba(0, 0, 0, .2), 0 0 1px 0 rgba(0, 0, 0, .1);
     box-shadow: 0 2px 2px rgba(0, 0, 0, .2), 0 0 1px 0 rgba(0, 0, 0, .1);
     margin-bottom: 40px;
+    top: 65px;
+    position: relative;
 }
 .post-details-panel h5 {
     margin: 0 0 10px 0;
@@ -2573,4 +2575,50 @@ a:focus {
 }
 .main-dd-menu .social-icons a {
   margin-right: 10px;
+}
+/*----------------------
+  SUB MENU
+-----------------------*/
+.submenu {
+  background: rgba(0, 0, 0, 0.35);
+  top: 67px;
+    position: fixed;
+    width: 100%;
+    z-index: 999;
+}
+@media (max-width: 767px) {
+  .submenu {
+    height: 60px;
+  }
+}
+.submenu a {
+  color: #fff;
+  display: inline-block;
+  font-size: 16px;
+  padding: 20px;
+  text-decoration: none;
+}
+.submenu a:hover {
+  text-decoration: underline;
+}
+.submenu ul {
+  list-style: outside none none;
+  margin: 0;
+  padding: 0;
+}
+.submenu ul li {
+  float: left;
+}
+.left_menu {
+  float: left;
+  overflow: hidden;
+}
+.left_menu ul li:first-child a {
+  padding-left: 0;
+}
+.right_menu {
+  float: right;
+}
+.right_menu a {
+  padding-right: 0;
 }
