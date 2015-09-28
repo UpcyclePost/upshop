@@ -427,7 +427,7 @@
 					<div class="box-cart-bottom no-print">
 						<div{if (!$allow_oosp && $product->quantity <= 0) || !$product->available_for_order || (isset($restricted_country_mode) && $restricted_country_mode) || $PS_CATALOG_MODE} class="unvisible"{/if}>
 							<p id="add_to_cart" class="buttons_bottom_block no-print">
-								<button type="submit" name="Submit" class="exclusive">
+								<button type="submit" name="Submit" class="exclusive" id="add_to_cart_button">
 									<span>{if $content_only && (isset($product->customization_required) && $product->customization_required)}{l s='Customize'}{else}{l s='Add to cart'}{/if}</span>
 								</button>
 							</p>
@@ -876,3 +876,22 @@
 {addJsDefL name='product_fileButtonHtml'}{l s='Choose File' js=1}{/addJsDefL}
 {/strip}
 {/if}
+<!-- Mixpanel Tracking -->
+<script type="text/javascript">
+	mixpanel.track('Product Page', {
+		'Product Id': {$product->id},
+		'Product Name' : '{$product->name|escape:'html':'UTF-8'}',
+		'Category Name' : '{$product->category|@ucfirst}',
+		'Seller Name' : '{$mkt_seller_info['shop_name']|escape:'html':'UTF-8'}'
+		});
+
+		$('#add_to_cart_button').click(function(){
+		         mixpanel.track("Add to Cart Clicked",{
+					'Product Id': {$product->id},
+					'Product Name' : '{$product->name|escape:'html':'UTF-8'}',
+					'Category Name' : '{$product->category|@ucfirst}',
+					'Seller Name' : '{$mkt_seller_info['shop_name']|escape:'html':'UTF-8'}'		 
+				});
+		});
+</script>
+<!-- End Mixpanel Tracking -->

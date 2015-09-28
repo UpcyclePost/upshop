@@ -38,6 +38,12 @@ $(document).ready(function() {
 
   $('#stripe-proceed-button').on('click', function(e) {
 	   $("#stripe-proceed-button").html("{l s='Processing...' mod='stripepro'}");
+    // log to mixpanel
+    var amount = $('#total_price').text();
+    mixpanel.track("Pay Clicked",{
+  		'Amount': amount
+  	});
+    
     // Open Checkout with further options
     handler.open({
       name: '{$shop_name}',
