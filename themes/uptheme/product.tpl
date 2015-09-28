@@ -298,7 +298,7 @@
 		<!-- end post details-->
 		</div>
 		<!-- pb-right-column-->
-		<aside class="post-sidebar" data-spy="affix" data-offset-top="25">
+		<aside class="post-sidebar" data-spy="affix">
 		<div class="">
 			<div class="post-author clearfix">
 			<div class="avatar">

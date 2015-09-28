@@ -1918,9 +1918,9 @@ a:focus {
     padding: 15px;
     border-top: 1px solid #ddd;    
 }
-@media(max-width:824px) {
+@media(max-width:768px) {
     .post-details-description {
-        //border-bottom: 1px solid #ddd;
+        border-bottom: 1px solid #ddd;
     }
 }.post-details-description h2 {
      margin: 0 0 15px 0;
@@ -1937,13 +1937,19 @@ a:focus {
     width: 244px;
     float: right;
     display: inline-block;
-    top:60px;
+    top:156px;
 }
 @media(max-width:992px) {
     .affix {
-        position: static;}
+        position: static;
+        }
 }
 
+@media (min-width: 1200px) {
+  .affix-bottom {
+    //width: 263px;
+  }
+}
 
 @media(max-width:992px) {
     .post-sidebar {

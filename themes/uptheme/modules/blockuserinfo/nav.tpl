@@ -1,13 +1,21 @@
 <!-- Block user information module NAV  -->
 
 <div class="header_user_info col-xs-2 col-sm-2 col-md-5 col-lg-4" style="padding:0;">
-	<button class="hamburger-menu hidden-xs" id="hamburger" {if !$is_logged}style="margin-left:80px;"{/if}>
+	<button class="hamburger-menu hidden-xs" id="hamburger" {if !$is_logged && $cart_qties==0}style="margin-left:80px;"{/if}>
         <i class="fa fa-bars"></i>
     </button>
 	<a class="slide-menu fa fa-bars hidden-lg hidden-md pull-right" href="#mobile-slide-menu"></a>
 	<div class="buttons hidden-xs hidden-sm">
 		{if !$is_logged}
 			<div class="signup">
+			{if !$PS_CATALOG_MODE}
+				{if $cart_qties > 0}
+				<span class="cart text-center" style="float:right;">
+					<a id="cart-link" style="margin: 0; padding: 0" href="http{if Tools::usingSecureMode()}s{/if}://{$smarty.server.SERVER_NAME}/shop/quick-order"><i class="fa fa-fw fa-shopping-cart"></i><br>Cart{if $cart_qties > 0}<span id="header_cart_items" class="items">{$cart_qties}</span>{/if}</a>
+				</span>
+				{/if}
+			{/if}
+
 				<a href="http{if Tools::usingSecureMode()}s{/if}://{$smarty.server.SERVER_NAME}/profile/login" class="">Sign In</a>
 				<a href="http{if Tools::usingSecureMode()}s{/if}://{$smarty.server.SERVER_NAME}/profile/register" class="button button-medium">Sign Up</a>
 			</div>
@@ -46,13 +54,14 @@
 					<li><a href="http{if Tools::usingSecureMode()}s{/if}://{$smarty.server.SERVER_NAME}/profile/logout"><i class="fa fa-fw fa-sign-out"></i> Sign Out</a></li>
 				</ul>
 			</div>
-		{/if}
-		{if !$PS_CATALOG_MODE}
-		{if $cart_qties > 0}
-		<div class="cart pull-right text-center">
-			<a id="cart-link" style="margin: 0; padding: 0" href="http{if Tools::usingSecureMode()}s{/if}://{$smarty.server.SERVER_NAME}/shop/quick-order"><i class="fa fa-fw fa-shopping-cart"></i><br>Cart{if $cart_qties > 0}<span id="header_cart_items" class="items">{$cart_qties}</span>{/if}</a>
-		</div>
-		{/if}
+
+			{if !$PS_CATALOG_MODE}
+				{if $cart_qties > 0}
+				<div class="cart pull-right text-center">
+					<a id="cart-link" style="margin: 0; padding: 0" href="http{if Tools::usingSecureMode()}s{/if}://{$smarty.server.SERVER_NAME}/shop/quick-order"><i class="fa fa-fw fa-shopping-cart"></i><br>Cart{if $cart_qties > 0}<span id="header_cart_items" class="items">{$cart_qties}</span>{/if}</a>
+				</div>
+				{/if}
+			{/if}
 		{/if}
 	</div>
 	<!-- <a href="{$link->getPageLink('my-account', true)|escape:'html':'UTF-8'}" title="{l s='View my customer account' mod='blockuserinfo'}" class="account" rel="nofollow"><span>You</span></a> -->
