@@ -95,7 +95,8 @@ a.fancybox-nav {
 #thumbs_list {
   overflow: hidden;
   float: left;
-  padding-left: 25px; }
+  padding-left: 25px;
+  width: 600px; }
   @media (min-width: 992px) and (max-width: 1199px) {
     #thumbs_list {
       width: 294px; } }
@@ -701,7 +702,7 @@ table.table-product-discounts {
 
 /* prices */
 .content_prices {
-  padding: 13px;
+  padding: 10px 13px 3px;;
   border-bottom: 1px solid #dfdede;
    }
 .content_prices:nth-last-child(2) {
@@ -770,7 +771,7 @@ table.table-product-discounts {
 
 .buttons_bottom_block {
   clear: both;
-  padding: 13px 15px 0; }
+  padding: 10px 15px 3px; }
   .buttons_bottom_block #wishlist_button {
     font-weight: 700; }
 

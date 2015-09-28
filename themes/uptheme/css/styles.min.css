@@ -2064,7 +2064,7 @@ a:focus {
     .post-actions.col-2>li>a {
         width: 100%}
 }.post-sidebar-container {
-     padding: 15px;
+     padding: 10px 15px 3px;;
      border-bottom: 1px solid #ddd;
  }
 .post-sidebar-container.last {
@@ -2129,7 +2129,7 @@ a:focus {
 }
 .post-engagement li:last-child {
     margin: 0;
-    padding: 0;
+    padding: 0 0 6px 0;
     border: 0;
 }
 .post-engagement li i {
