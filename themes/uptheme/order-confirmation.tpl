@@ -22,8 +22,6 @@
 *  @license    http://opensource.org/licenses/afl-3.0.php  Academic Free License (AFL 3.0)
 *  International Registered Trademark & Property of PrestaShop SA
 *}
-
-
 <div class="login-panel">
 	<div class="login-panel-header">
 	<h1 class="">{l s='Order confirmation'}</h1>
@@ -104,3 +102,12 @@
 
 {/if}
 	</div>
+</div>
+<!-- Mixpanel Tracking -->
+<script type="text/javascript">
+	mixpanel.track('Order Confirmation', {
+		'Order Id': '{$order->id}',
+		'Order Reference': '{$order->reference}'
+		});
+</script>
+<!-- End Mixpanel Tracking -->

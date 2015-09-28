@@ -100,6 +100,14 @@ select:focus{
 				</a>
 				</div>
 			</p>
+			<!-- Mixpanel Tracking -->
+			{assign var=shop_name value=$cookie->c_mp_shop_name}
+			<script type="text/javascript">
+				mixpanel.track('Shop Created', {
+					'Shop Name': "{$shop_name}"
+					});
+			</script>
+			<!-- End Mixpanel Tracking -->
 		{/if}
 	{/if}
 	</div>
@@ -206,7 +214,11 @@ select:focus{
 {/if}
 
 <script type="text/javascript">
+{if isset($phone_digit)}
 var phone_digit = '{$phone_digit|escape:'html':'UTF-8'}';
+{else}
+var phone_digit = '10';
+{/if}
 var req_seller_name = '{l s='Seller name is required.' js=1 mod='marketplace'}';
 var inv_seller_name = '{l s='Invalid Seller name.' js=1 mod='marketplace'}';
 var req_shop_name = '{l s='Shop name is required.' js=1 mod='marketplace'}';
@@ -215,8 +227,4 @@ var req_email = '{l s='Email Id is required.' js=1 mod='marketplace'}';
 var inv_email = '{l s='Invalid email address' js=1 mod='marketplace'}';
 var req_phone = '{l s='Phone is required.' js=1 mod='marketplace'}';
 var inv_phone = '{l s='Invalid phone number.' js=1 mod='marketplace'}'; 
-
-function show_load_msg(){
-					
-					}
 </script>
