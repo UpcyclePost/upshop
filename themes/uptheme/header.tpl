@@ -307,7 +307,7 @@ for(g=0;g<i.length;g++)f(c,i[g]);b._i.push([a,e,d])};b.__SV=1.2;a=e.createElemen
 					</div>
                 </nav>
 				{/if}
-				{if page_name=="product"}
+				{if $page_name=="product"}
 				<nav class="submenu hidden-sm hidden-md hidden-lg">
 					<div class="submenu-bg">
                     <div class="container">

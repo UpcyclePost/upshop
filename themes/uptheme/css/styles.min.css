@@ -2631,7 +2631,7 @@ a:focus {
 .submenu {
     background: rgba(0, 0, 0, 0)
     url("../img/header_bg.png") no-repeat scroll center center / cover!important;
-    top: 67px;
+    top: 65px;
     position: fixed;
     width: 100%;
     z-index: 999;
