@@ -28,7 +28,32 @@
 				<a href="http://{$smarty.server.SERVER_NAME}">
 				<img src="http{if Tools::usingSecureMode()}s{/if}://{$smarty.server.SERVER_NAME}/img/logo-footer.png"/></a>
 				</li>
-            <li class="copyright">&copy; {$smarty.now|date_format:"%Y"} Upmod. All rights reserved.</li>
+            <li class="copyright hidden-xs">&copy; {$smarty.now|date_format:"%Y"} upmod. All rights reserved.</li>
+			
+			<div class="policies hidden-sm hidden-md hidden-lg">
+            <a href="http://{$smarty.server.SERVER_NAME}/about">About Us</a>
+            <a href="http://{$smarty.server.SERVER_NAME}/faq">FAQ</a>
+            <a href="http://{$smarty.server.SERVER_NAME}/blog">Blog</a>
+            <a href="http://{$smarty.server.SERVER_NAME}/contact">Contact</a>
+            <a href="http://{$smarty.server.SERVER_NAME}/policy">Policies</a>
+			</div>
+				
+			<div class="hidden-sm hidden-md hidden-lg" id="social_block">
+            {if isset($facebook_url) && $facebook_url != ''}
+				<a href="{$facebook_url|escape:html:'UTF-8'}"><i class="fa fa-facebook-square"></i></a>
+			{/if}
+            {if isset($twitter_url) && $twitter_url != ''}
+				<a href="{$twitter_url|escape:html:'UTF-8'}"><i class="fa fa-twitter-square"></i></a>
+			{/if}
+            {if isset($pinterest_url) && $pinterest_url != ''}
+				<a href="{$pinterest_url|escape:html:'UTF-8'}"><i class="fa fa-pinterest-square"></i></a>
+			{/if}
+            {if isset($google_plus_url) && $google_plus_url != ''}
+				<a href="{$google_plus_url|escape:html:'UTF-8'}"><i class="fa fa-google-plus-square"></i></a>
+			{/if}
+			</div>
+
+			<div class="hidden-xs">
             <li id="social_block">
                 <ul>
 				{if isset($rss_url) && $rss_url != ''}
@@ -90,7 +115,10 @@
 		
 			</ul>
             </li>
-			<div class="policies hidden-sm">
+			</div>
+            <li class="copyright hidden-sm hidden-md hidden-lg">&copy; {$smarty.now|date_format:"%Y"} upmod. All rights reserved.</li>
+			
+			<div class="policies hidden-xs">
             <li><a href="http://{$smarty.server.SERVER_NAME}/policy">Policies</a></li>
             {if !isSeller}
                 <li><a href="http://{$smarty.server.SERVER_NAME}/profile/login">Create a shop</a></li>

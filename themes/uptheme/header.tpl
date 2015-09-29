@@ -122,14 +122,32 @@ if (!_fbq.loaded)
 }
 )();
 window._fbq = window._fbq || [];
-window._fbq.push(['track', '6025947566399', 
+window._fbq.push(['track', '6027155380399', 
 {
 	'value':'{$total_to_pay}','currency':'{$currency_iso_code}'
 }
 ]);
 </script>
-<noscript><img height="1" width="1" alt="" style="display:none" src="https://www.facebook.com/tr?ev=6025947566399&amp;cd[value]={$total_to_pay}&amp;cd[currency]={$currency_iso_code}&amp;noscript=1" /></noscript>
+<noscript><img height="1" width="1" alt="" style="display:none" src="https://www.facebook.com/tr?ev=6027155380399&amp;cd[value]={$total_to_pay}&amp;cd[currency]={$currency_iso_code}&amp;noscript=1" /></noscript>
 <!-- End Facebook tracking pixel for order confirmation -->
+<!-- Google Code for Purchase Confirmation Conversion Page --> 
+<script type="text/javascript">
+/* <![CDATA[ */
+var google_conversion_id = 1034553725;
+var google_conversion_language = "en";
+var google_conversion_format = "3";
+var google_conversion_color = "ffffff";
+var google_conversion_label = "eYXfCPiHjmAQ_ZKo7QM"; var google_conversion_value = {$total_to_pay}; var google_conversion_currency = "{$currency_iso_code}"; var google_remarketing_only = false;
+/* ]]> */
+</script>
+<script type="text/javascript" src="//www.googleadservices.com/pagead/conversion.js">
+</script>
+<noscript>
+<div style="display:inline;">
+<img height="1" width="1" style="border-style:none;" alt="" 
+src="//www.googleadservices.com/pagead/conversion/1034553725/?value={$total_to_pay}&amp;currency_code={$currency_iso_code}&amp;label=eYXfCPiHjmAQ_ZKo7QM&amp;guid=ON&amp;script=0"/>
+</div>
+</noscript>
 {/if}
 
 <!-- start Mixpanel snippet-->
@@ -180,6 +198,13 @@ for(g=0;g<i.length;g++)f(c,i[g]);b._i.push([a,e,d])};b.__SV=1.2;a=e.createElemen
 				<div class="main-dd-menu">
 				    <div class="container">
 				        <div class="row">
+							<div class="col-xs-12 search-container" style="padding:5px 0">
+								<form class="search-form form-inline" method="post" action="http://{$smarty.server.SERVER_NAME}/gallery">
+								<input type="search" name="term" class="form-control search" placeholder="Search the world's largest upcyle hand-crafted community">
+								<button type="submit" class="search-icon"><img src="http://{$smarty.server.SERVER_NAME}/img/icons/search-icon.png" alt="Search"></button>
+								</form>
+							</div>
+
 				            <div class="column clearfix">
 				                <h3>Shop Categories</h3>
 				                <ul class="categories">
@@ -242,7 +267,8 @@ for(g=0;g<i.length;g++)f(c,i[g]);b._i.push([a,e,d])};b.__SV=1.2;a=e.createElemen
 				    </div>
 				</div>
 				{if $page_name=='product'}
-				<nav class="submenu">
+				<nav class="submenu hidden-xs">
+					<div class="submenu-bg">
                     <div class="container hidden-xs">
                         <div class="row">
                             <div class="left_menu">
@@ -278,8 +304,27 @@ for(g=0;g<i.length;g++)f(c,i[g]);b._i.push([a,e,d])};b.__SV=1.2;a=e.createElemen
                             </div>
                         </div>
                     </div>
+					</div>
                 </nav>
 				{/if}
+				{if page_name=="product"}
+				<nav class="submenu hidden-sm hidden-md hidden-lg">
+					<div class="submenu-bg">
+                    <div class="container">
+                        <div class="row">
+								<div class="col-xs-12 search-container" style="padding:5px 0">
+								<form class="search-form form-inline" method="post" action="http://{$smarty.server.SERVER_NAME}/gallery">
+								<input type="search" name="term" class="form-control search" placeholder="Search the world's largest upcyle hand-crafted community">
+								<button type="submit" class="search-icon"><img src="http://{$smarty.server.SERVER_NAME}/img/icons/search-icon.png" alt="Search"></button>
+								</form>
+                            </div>
+                        </div>
+                    </div>
+					</div>
+                </nav>
+				{/if}
+
+
 			</div>
 			<div id="body_setfooter" class="columns-container">
 				<div id="columns" class="container">

@@ -5532,7 +5532,8 @@ textarea {
 header {
   z-index: 1;
   position: fixed;
-  background: rgba(0, 0, 0, 0.65);
+  background: rgba(0, 0, 0, 0)
+    url("../img/header_bg.png") no-repeat scroll center center / cover!important;
   width: 100%; }
   header .banner {
     background: black;
@@ -7192,16 +7193,24 @@ div.star a:hover {
       @media (max-width: 767px) {
         .footer-container #footer #social_block {
           width: 100%;
+          margin:10px 0 0 0;
+          text-align:center;
           padding-top: 5px; } }
       .footer-container #footer #social_block ul {
         float: right;
         height:37px; }
         @media (max-width: 767px) {
           .footer-container #footer #social_block ul {
-            float: none; } }
+            float: none; }
+          .footer-container #footer #social_block a {
+            font-size: 20px;
+            margin: 6px; } }
         .footer-container #footer #social_block ul li {
           width: 40px;
           text-align: center; }
+          @media (max-width: 767px) {
+            .footer-container #footer #social_block ul li {
+              width: 38px; } }
           @media (min-width: 768px) and (max-width: 991px) {
             .footer-container #footer #social_block ul li {
               width: 30px; } }
@@ -8495,6 +8504,7 @@ header .buttons font.items {
     padding: 10px 14px;
     font-size:14px;
   }
+
 @media(min-width:1094px) {
   .slug li.f-logo {
     margin-left: 20px;
@@ -8512,9 +8522,26 @@ header .buttons font.items {
     padding: 10px 0 2px;
 }
 @media(max-width:870px) {
+  .slug li.f-logo {
+      position: relative;
+      float: none;
+      text-align:center;
+      margin: 0;
+  }
+  .slug li.f-logo a {
+      padding: 10px 0 2px;
+  }
+  .slug li.copyright {
+      text-align:center;
+      margin: 0;
+      width:100%;
+  }
+}
+
+@media(max-width:870px) {
 .slug li a {
     color: #555;
-    padding: 10px 4px;
+    padding: 10px 6px;
     display: block;
     text-decoration: none;    
   }

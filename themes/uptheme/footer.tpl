@@ -32,7 +32,7 @@
 			</div><!-- .columns-container -->
 			{if isset($HOOK_FOOTER)}
 				<!-- Footer -->
-				<div  id="footer_setfooter" class="footer-container hidden-xs">
+				<div  id="footer_setfooter" class="footer-container">
 					<div class="container" style="padding-bottom:0;">
 					<div class="row">
 					<footer id="footer"  class="columns-container">
