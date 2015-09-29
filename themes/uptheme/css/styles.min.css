@@ -8,8 +8,9 @@
    padding-bottom:69px;   /* Height of the footer */
 }
 @media (max-width: 992px){
-#body_setfooter{
-   padding-bottom:160px;   /* Height of the footer */
+    #body_setfooter{
+       padding-bottom:160px;   /* Height of the footer */
+    }
 }
 #footer_setfooter {
    position:absolute;
