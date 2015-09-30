@@ -767,8 +767,22 @@ header .row #header_logo {
     background-clip: padding-box;
     padding: 4px 32px 4px 10px;
     /*background: url(../img/icons/search-icon.png) no-repeat right 9px;*/
-    height: 37px;
-    width: 90%;
+    height: 34px;
+    width: 100%;
+}
+.search-container::before {
+    content: "\f002";
+    font-family: FontAwesome;
+    font-weight: normal;
+    font-style: normal;
+    display: inline-block;
+    text-decoration: inherit;
+    font-size: 16px;
+    color: #949494;
+    position: absolute;
+    right: 12px;
+    top: 12px;
+    z-index: 109999;
 }
 .search-container
 {
@@ -784,6 +798,20 @@ header .row #header_logo {
         line-height:20px;
         height: 34px;  
         padding: 6px 32px 6px 10px;
+    }
+    .search-container::before {
+        content: "\f002";
+        font-family: FontAwesome;
+        font-weight: normal;
+        font-style: normal;
+        display: inline-block;
+        text-decoration: inherit;
+        font-size: 16px;
+        color: #949494;
+        position: absolute;
+        right: 12px;
+        top: 20px;
+        z-index: 109999;
     }
 }  
 
@@ -836,7 +864,7 @@ header .row #header_logo {
 
 @media(min-width:992px) and (max-width:1199px) {
     .header-container .search {
-        width: 90%;
+        /*width: 90%;*/
     }
 }.search-expand, .slide-menu {
      display: inline-block;
@@ -2357,7 +2385,7 @@ a:focus {
 @media (min-width: 992px) and (max-width: 1199px) {
   .mainmenu .search {
     left: 160px;
-    width: 480px;
+    /*width: 480px;*/
   }
 }
 @media (min-width: 768px) and (max-width: 991px) {
@@ -2450,7 +2478,7 @@ a:focus {
 }
 @media (min-width: 992px) and (max-width: 1199px) {
   .mainmenu .hamburger-menu {
-    margin-left: 50px;
+    /*margin-left: 50px;*/
   }
 }
 @media (min-width: 768px) and (max-width: 991px) {

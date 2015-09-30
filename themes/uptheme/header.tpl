@@ -105,7 +105,7 @@
 
 {if $page_name=='order-confirmation'}
 <!-- Facebook tracking pixel for order confirmation -->
-<!-- Facebook Conversion Code for Registrations - UpcyclePost 1 -->
+<!-- Facebook Conversion Code for Registrations -->
 <script>
 (function() 
 {
@@ -159,7 +159,7 @@ for(g=0;g<i.length;g++)f(c,i[g]);b._i.push([a,e,d])};b.__SV=1.2;a=e.createElemen
 <!-- end Mixpanel snippet-->
 
 <!-- start Mixpanel init-->
-{if {$smarty.server.SERVER_NAME}=='www.upcyclepost.com'}
+{if {$smarty.server.SERVER_NAME}=='www.upcyclepost.com' || {$smarty.server.SERVER_NAME}=='www.upmod.com'}
 <script type="text/javascript">mixpanel.init("c0185653f28d7158fd08c11fd5eeca91");</script>
 {else}
 <script type="text/javascript">mixpanel.init("bdba27aa461b0f60b84e470697e19a0b");</script>
@@ -185,7 +185,7 @@ for(g=0;g<i.length;g++)f(c,i[g]);b._i.push([a,e,d])};b.__SV=1.2;a=e.createElemen
 					<nav class="mainmenu">
 						<div class="container">
 							<div class="row">
-								<div class="col-xs-2 col-sm-2 col-lg-2" style="float:left;padding-left:0;padding-right:0;">
+								<div class="col-xs-2 col-sm-3 col-md-2 col-lg-2" style="float:left;padding-left:0;padding-right:0;">
 									<a class="logo" href="http{if Tools::usingSecureMode()}s{/if}://{$smarty.server.SERVER_NAME}" title="{$shop_name|escape:'html':'UTF-8'}">
 									</a>
 								</div>		
@@ -201,7 +201,6 @@ for(g=0;g<i.length;g++)f(c,i[g]);b._i.push([a,e,d])};b.__SV=1.2;a=e.createElemen
 							<div class="col-xs-12 search-container hidden-sm hidden-md hidden-lg" style="padding:5px 0">
 								<form class="search-form form-inline" method="post" action="http://{$smarty.server.SERVER_NAME}/gallery">
 								<input type="search" name="term" class="form-control search" placeholder="Search the world's largest upcyle hand-crafted community">
-								<button type="submit" class="search-icon"><img src="http://{$smarty.server.SERVER_NAME}/img/icons/search-icon.png" alt="Search"></button>
 								</form>
 							</div>
 
@@ -257,10 +256,10 @@ for(g=0;g<i.length;g++)f(c,i[g]);b._i.push([a,e,d])};b.__SV=1.2;a=e.createElemen
 				                    <li><a href="http://{$smarty.server.SERVER_NAME}/contact">Contact us</a></li>
 				                </ul>
 				                <div class="social-icons">
-				                    <a href="http://www.facebook.com/upcyclepost"><i class="fa fa-facebook-square"></i></a>
-				                    <a href="http://www.linkedin.com/company/upcyclepost-com"><i class="fa fa-linkedin-square"></i></a>
-				                    <a href="http://www.twitter.com/upcyclepost"><i class="fa fa-twitter-square"></i></a>
-				                    <a href="http://www.pinterest.com/upcyclepost"><i class="fa fa-pinterest-square"></i></a>
+				                    <a href="https://www.facebook.com/upmodinc"><i class="fa fa-facebook-square"></i></a>
+				                    <a href="https://www.twitter.com/upmodinc"><i class="fa fa-twitter-square"></i></a>	                    
+				                    <a href="https://www.pinterest.com/upmodinc"><i class="fa fa-pinterest-square"></i></a>
+									<a href="https://plus.google.com/+upmodinc"><i class="fa fa-google-plus-square"></i></a>										
 				                </div>
 				            </div>
 				        </div>
@@ -315,7 +314,6 @@ for(g=0;g<i.length;g++)f(c,i[g]);b._i.push([a,e,d])};b.__SV=1.2;a=e.createElemen
 								<div class="col-xs-12 search-container" style="padding:5px 0">
 								<form class="search-form form-inline" method="post" action="http://{$smarty.server.SERVER_NAME}/gallery">
 								<input type="search" name="term" class="form-control search" placeholder="Search the world's largest upcyle hand-crafted community">
-								<button type="submit" class="search-icon"><img src="http://{$smarty.server.SERVER_NAME}/img/icons/search-icon.png" alt="Search"></button>
 								</form>
                             </div>
                         </div>
