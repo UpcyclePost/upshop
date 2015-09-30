@@ -86,6 +86,11 @@
 		<link href="{$css_dir}upcyclepost/libraries/mobile-slide-menu/jquery.mmenu.positioning.css" rel="stylesheet">
 
 		<script type="text/javascript" src="http{if Tools::usingSecureMode()}s{/if}://{$smarty.server.SERVER_NAME}/js/libraries/tagmanager/tagmanager.js"></script>
+
+        <script src="http{if Tools::usingSecureMode()}s{/if}://{$smarty.server.SERVER_NAME}/js/libraries/typeahead/bloodhound.min.js"></script>
+        <script src="http{if Tools::usingSecureMode()}s{/if}://{$smarty.server.SERVER_NAME}/js/libraries/typeahead/typeahead.jquery.min.js"></script>
+        <script src="http{if Tools::usingSecureMode()}s{/if}://{$smarty.server.SERVER_NAME}/js/up.js"></script>
+
 		
 		{if $page_name=='product'}
 		<script type="text/javascript" src="http{if Tools::usingSecureMode()}s{/if}://{$smarty.server.SERVER_NAME}/js/social/follow.js"></script>			
@@ -200,7 +205,7 @@ for(g=0;g<i.length;g++)f(c,i[g]);b._i.push([a,e,d])};b.__SV=1.2;a=e.createElemen
 				        <div class="row">
 							<div class="col-xs-12 search-container hidden-sm hidden-md hidden-lg" style="padding:5px 0">
 								<form class="search-form form-inline" method="post" action="http://{$smarty.server.SERVER_NAME}/gallery">
-								<input type="search" name="term" class="form-control search" placeholder="Search the world's largest upcyle hand-crafted community">
+								<input type="search" name="term" class="form-control search" placeholder="Search the world's largest upcyle hand-crafted community" id="universal-search">
 								</form>
 							</div>
 
@@ -313,7 +318,7 @@ for(g=0;g<i.length;g++)f(c,i[g]);b._i.push([a,e,d])};b.__SV=1.2;a=e.createElemen
                         <div class="row">
 								<div class="col-xs-12 search-container" style="padding:5px 0">
 								<form class="search-form form-inline" method="post" action="http://{$smarty.server.SERVER_NAME}/gallery">
-								<input type="search" name="term" class="form-control search" placeholder="Search the world's largest upcyle hand-crafted community">
+								<input type="search" name="term" class="form-control search" placeholder="Search the world's largest upcyle hand-crafted community" id="universal-search">
 								</form>
                             </div>
                         </div>
