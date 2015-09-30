@@ -7188,6 +7188,8 @@ div.star a:hover {
     .footer-container #footer .blockcategories_footer {
       clear: left; }
     .footer-container #footer #social_block {
+      float:left;
+      margin: -3px 0 0 20px;
       padding: 0px 10px 0 10px; 
       height:35px;}
       @media (max-width: 767px) {
@@ -8503,6 +8505,7 @@ header .buttons font.items {
 .slug li.copyright {
     padding: 10px 14px;
     font-size:14px;
+    margin: -3px 0 0 0;
   }
 
 @media(min-width:1094px) {

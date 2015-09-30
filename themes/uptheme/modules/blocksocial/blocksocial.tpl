@@ -53,6 +53,15 @@
 			{/if}
 			</div>
 
+			<div class="policies hidden-xs">
+            <li><a href="http://{$smarty.server.SERVER_NAME}/policy">Policies</a></li>
+            <li><a href="http://{$smarty.server.SERVER_NAME}/contact">Contact</a></li>
+            <li><a href="http://{$smarty.server.SERVER_NAME}/blog">Blog</a></li>
+            <li><a href="http://{$smarty.server.SERVER_NAME}/faq">FAQ</a></li>
+            <li><a href="http://{$smarty.server.SERVER_NAME}/about">About Us</a></li>
+			</div>
+
+
 			<div class="hidden-xs">
             <li id="social_block">
                 <ul>
@@ -117,15 +126,4 @@
             </li>
 			</div>
             <li class="copyright hidden-sm hidden-md hidden-lg">&copy; {$smarty.now|date_format:"%Y"} upmod. All rights reserved.</li>
-			
-			<div class="policies hidden-xs">
-            <li><a href="http://{$smarty.server.SERVER_NAME}/policy">Policies</a></li>
-            {if !isSeller}
-                <li><a href="http://{$smarty.server.SERVER_NAME}/profile/login">Create a shop</a></li>
-            {/if}
-            <li><a href="http://{$smarty.server.SERVER_NAME}/contact">Contact Us</a></li>
-            <li><a href="http://{$smarty.server.SERVER_NAME}/blog">Blog</a></li>
-            <li><a href="http://{$smarty.server.SERVER_NAME}/faq">FAQ</a></li>
-            <li><a href="http://{$smarty.server.SERVER_NAME}/about">About Us</a></li>
-			</div>
         </nav>
