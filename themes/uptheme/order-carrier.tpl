@@ -26,7 +26,10 @@
 	{capture name=path}{l s='Shipping:'}{/capture}
 	{assign var='current_step' value='shipping'}
 	<div id="carrier_area">
-		<h1 class="page-heading">{l s='Shipping:'}</h1>
+	<div class="login-panel">
+	<div class="login-panel-header">
+		<h1 class="">{l s='Shipping'}</h1>
+	</div>
 		{include file="$tpl_dir./order-steps.tpl"}
 		{include file="$tpl_dir./errors.tpl"}
 		<form id="form" action="{$link->getPageLink('order', true, NULL, "{if $multi_shipping}multi-shipping={$multi_shipping}{/if}")|escape:'html':'UTF-8'}" method="post" name="carrier_area">
@@ -70,10 +73,15 @@
 								<div class="delivery_option {if ($option@index % 2)}alternate_{/if}item">
 									<div>
 										<table class="resume table table-bordered{if !$option.unique_carrier} hide{/if}">
+											<th>Select</th>
+											<th>Profile</th>
+											<th>Policies</th>
+											<th>Cost</th>
 											<tr>
 												<td class="delivery_option_radio">
 													<input id="delivery_option_{$id_address|intval}_{$option@index}" class="delivery_option_radio" type="radio" name="delivery_option[{$id_address|intval}]" data-key="{$key}" data-id_address="{$id_address|intval}" value="{$key}"{if isset($delivery_option[$id_address]) && $delivery_option[$id_address] == $key} checked="checked"{/if} />
 												</td>
+												{if false}
 												<td class="delivery_option_logo">
 													{foreach $option.carrier_list as $carrier}
 														{if $carrier.logo}
@@ -84,6 +92,7 @@
 														{/if}
 													{/foreach}
 												</td>
+												{/if}
 												<td>
 													{if $option.unique_carrier}
 														{foreach $option.carrier_list as $carrier}
@@ -106,7 +115,7 @@
 														{/if}
 													{/if}
 												</td>
-                                                <td style="width: 100%; overflow: auto; display: block; max-height: 80px; min-height: 60px; min-width: 325px;">
+                                                <td style="width: 100%; overflow: auto; display: block; max-height: 75px;min-height: 56px;border:0;">
 													{foreach $option.carrier_list as $carrier}
 															{$carrier.shipping_policy|escape:'htmlall':'UTF-8'}
 													{/foreach}
@@ -132,6 +141,10 @@
 										</table>
 										{if !$option.unique_carrier}
 											<table class="delivery_option_carrier{if isset($delivery_option[$id_address]) && $delivery_option[$id_address] == $key} selected{/if} resume table table-bordered{if $option.unique_carrier} hide{/if}">
+											<th>Select</th>
+											<th>Profile</th>
+											<th>Policies</th>
+											<th>Cost</th>
 												<tr>
 													{if !$option.unique_carrier}
 														<td rowspan="{$option.carrier_list|@count}" class="delivery_option_radio first_item">
@@ -139,6 +152,7 @@
 														</td>
 													{/if}
 													{assign var="first" value=current($option.carrier_list)}
+													{if false}
 													<td class="delivery_option_logo{if $first.product_list[0].carrier_list[0] eq 0} hide{/if}">
 														{if $first.logo}
 															<img src="{$first.logo|escape:'htmlall':'UTF-8'}" alt="{$first.instance->name|escape:'htmlall':'UTF-8'}"/>
@@ -146,6 +160,7 @@
 															{$first.instance->name|escape:'htmlall':'UTF-8'}
 														{/if}
 													</td>
+													{/if}
 													<td class="{if $option.unique_carrier}first_item{/if}{if $first.product_list[0].carrier_list[0] eq 0} hide{/if}">
 														<input type="hidden" value="{$first.instance->id|intval}" name="id_carrier" />
 														{if isset($first.instance->delay[$cookie->id_lang])}
@@ -189,7 +204,7 @@
 															{/foreach}
 														{/if}
 													</td>
-                                                    <td style="width: 100%; overflow: auto; display: block; max-height: 75px;min-height: 56px;">
+                                                    <td style="width: 100%; overflow: auto; display: block; max-height: 75px;min-height: 56px;border:0;">
 															{$first.shipping_policy|escape:'htmlall':'UTF-8'}
 												   </td>
 													<td rowspan="{$option.carrier_list|@count}" class="delivery_option_price">
@@ -213,6 +228,7 @@
 												{foreach $option.carrier_list as $carrier}
 													{if $carrier@iteration != 1}
 													<tr>
+														{if false}
 														<td class="delivery_option_logo{if $carrier.product_list[0].carrier_list[0] eq 0} hide{/if}">
 															{if $carrier.logo}
 																<img src="{$carrier.logo|escape:'htmlall':'UTF-8'}" alt="{$carrier.instance->name|escape:'htmlall':'UTF-8'}"/>
@@ -220,6 +236,7 @@
 																{$carrier.instance->name|escape:'htmlall':'UTF-8'}
 															{/if}
 														</td>
+														{/if}
 														<td class="{if $option.unique_carrier} first_item{/if}{if $carrier.product_list[0].carrier_list[0] eq 0} hide{/if}">
 															<input type="hidden" value="{$first.instance->id|intval}" name="id_carrier" />
 															{if isset($carrier.instance->delay[$cookie->id_lang])}
@@ -263,7 +280,7 @@
 																{/foreach}
 															{/if}
 														</td>
-                                                        <td style="width: 100%; overflow: auto; display: block; max-height: 75px;min-height: 56px;">
+                                                        <td style="width: 100%; overflow: auto; display: block; max-height: 75px;min-height: 56px;border-style:none;border-top: 1px solid #ccc;">
                                                     
                                                             {$carrier.shipping_policy|escape:'htmlall':'UTF-8'}
 															
@@ -359,37 +376,40 @@
 				<p class="carrier_title">{l s='Terms of service'}</p>
 				<p class="checkbox">
 					<input type="checkbox" name="cgv" id="cgv" value="1" checked="checked" />
-					<label for="cgv">{l s='By placing an order you agree to the UpcyclePost.com terms of service.'}</label>
+					<label for="cgv">{l s='By placing an order you agree to the Upmod.com terms of service.'}</label>&nbsp;
 					<a href="{$link_conditions|escape:'html':'UTF-8'}" class="iframe" rel="nofollow">{l s='(Read the Terms of Service)'}</a>
 				</p>
 			{/if}
 		</div> <!-- end delivery_options_address -->
 		{if !$opc}
 				<p class="cart_navigation clearfix">
+
 					<input type="hidden" name="step" value="3" />
 					<input type="hidden" name="back" value="{$back}" />
-					{if !$is_guest}
-						{if $back}
-							<a href="{$link->getPageLink('order', true, NULL, "step=1&back={$back}{if $multi_shipping}&multi-shipping={$multi_shipping}{/if}")|escape:'html':'UTF-8'}" title="{l s='Previous'}" class="button-exclusive btn btn-default">
-								<i class="icon-chevron-left"></i>
-								{l s='Continue shopping'}
-							</a>
+					{if false}
+						{if !$is_guest}
+							{if $back}
+								<a href="{$link->getPageLink('order', true, NULL, "step=1&back={$back}{if $multi_shipping}&multi-shipping={$multi_shipping}{/if}")|escape:'html':'UTF-8'}" title="{l s='Previous'}" class="button-exclusive btn btn-default">
+									<i class="icon-chevron-left"></i>
+									{l s='Continue shopping'}
+								</a>
+							{else}
+								<a href="{$link->getPageLink('order', true, NULL, "step=1{if $multi_shipping}&multi-shipping={$multi_shipping}{/if}")|escape:'html':'UTF-8'}" title="{l s='Previous'}" class="button-exclusive btn btn-default">
+									<i class="icon-chevron-left"></i>
+									{l s='Continue shopping'}
+								</a>
+							{/if}
 						{else}
-							<a href="{$link->getPageLink('order', true, NULL, "step=1{if $multi_shipping}&multi-shipping={$multi_shipping}{/if}")|escape:'html':'UTF-8'}" title="{l s='Previous'}" class="button-exclusive btn btn-default">
+							<a href="{$link->getPageLink('order', true, NULL, "{if $multi_shipping}multi-shipping={$multi_shipping}{/if}")|escape:'html':'UTF-8'}" title="{l s='Previous'}" class="button-exclusive btn btn-default">
 								<i class="icon-chevron-left"></i>
 								{l s='Continue shopping'}
 							</a>
 						{/if}
-					{else}
-						<a href="{$link->getPageLink('order', true, NULL, "{if $multi_shipping}multi-shipping={$multi_shipping}{/if}")|escape:'html':'UTF-8'}" title="{l s='Previous'}" class="button-exclusive btn btn-default">
-							<i class="icon-chevron-left"></i>
-							{l s='Continue shopping'}
-						</a>
 					{/if}
 					{if isset($virtual_cart) && $virtual_cart || (isset($delivery_option_list) && !empty($delivery_option_list))}
 						<button type="submit" name="processCarrier" class="button btn btn-default standard-checkout button-medium">
 							<span>
-								{l s='Proceed to checkout'}
+								{l s='Continue'}
 								<i class="icon-chevron-right right"></i>
 							</span>
 						</button>
@@ -401,6 +421,8 @@
 	</div>
 <!-- end order carrier panel -->
 	{/if}
+<!-- end errors -->
+	</div>
 
 </div> <!-- end carrier_area -->
 

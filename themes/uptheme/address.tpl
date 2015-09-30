@@ -22,11 +22,8 @@
 *  @license    http://opensource.org/licenses/afl-3.0.php  Academic Free License (AFL 3.0)
 *  International Registered Trademark & Property of PrestaShop SA
 *}
-{capture name=path}
-        <span class="navigation_page">{l s='Your Address'}</span>
-{/capture}
 
-<div class="dashboard_content login-panel">
+<div class="login-panel">
 	<div class="login-panel-header">
 	<h1 class="">{l s='Your addresses'}</h1>
 	</div>
@@ -172,10 +169,6 @@
 				<span class="form_info">{l s='DNI / NIF / NIE'}</span>
 			</div>
 		{/if}
-		<div class="form-group">
-			<label for="other">{l s='Additional information'}</label>
-			<textarea class="validate form-control" data-validate="{$address_validation.other.validate}" id="other" name="other" cols="26" rows="3" >{if isset($smarty.post.other)}{$smarty.post.other}{else}{if isset($address->other)}{$address->other|escape:'html':'UTF-8'}{/if}{/if}</textarea>
-		</div>
 		{if !$homePhoneExist}
 			<div class="form-group phone-number">
 				<label for="phone">{l s='Home phone'}</label>
@@ -196,13 +189,13 @@
 			<label for="alias"><span style="color:#f00"><sup>*&nbsp;</sup></span>{l s='Please assign an address title for future reference.'}</label>
 			<input type="text" id="alias" class="is_required validate form-control" data-validate="{$address_validation.alias.validate}" name="alias" value="{if isset($smarty.post.alias)}{$smarty.post.alias}{else if isset($address->alias)}{$address->alias|escape:'html':'UTF-8'}{elseif !$select_address}{l s='My address'}{/if}" />
 		</div>
-		<p class="submit2">
+		<p class="submit2 center-button-bottom">
 			{if isset($id_address)}<input type="hidden" name="id_address" value="{$id_address|intval}" />{/if}
 			{if isset($back)}<input type="hidden" name="back" value="{$back}" />{/if}
 			{if isset($mod)}<input type="hidden" name="mod" value="{$mod}" />{/if}
 			{if isset($select_address)}<input type="hidden" name="select_address" value="{$select_address|intval}" />{/if}
 			<input type="hidden" name="token" value="{$token}" />
-			<button type="submit" name="submitAddress" id="submitAddress" class="btn btn-default button button-medium">
+			<button type="submit" name="submitAddress" id="submitAddress" class="button button-medium">
 				<span>
 					{l s='Save'}
 					<i class="icon-chevron-right right"></i>
@@ -210,15 +203,6 @@
 			</button>
 		</p>
 	</form>
-
-
-<ul class="footer_links clearfix">
-	<li>
-		<a class="btn btn-defaul button button-small" href="{$link->getPageLink('addresses', true)|escape:'html':'UTF-8'}">
-			<span><i class="icon-chevron-left"></i> {l s='Back to your addresses'}</span>
-		</a>
-	</li>
-</ul>
 </div>
 </div>
 {strip}

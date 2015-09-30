@@ -1,10 +1,12 @@
 ﻿<div class="wk_order_customer_status">
-<h2>{l s='Customer Detail' mod='marketplace'}&nbsp;&nbsp;&nbsp; <a class="btn btn-gray" style="float:right;margin:-5px 100px 0 0" href="http://{$smarty.server.SERVER_NAME}/profile/messages/send/{$dashboard[0]['ws']}"><i class="fa fa-envelope icon-only"></i> Contact customer</a></h2>
-<table width="80%">
+<a class="btn lnk_view button pull-right" href="http://{$smarty.server.SERVER_NAME}/profile/messages/send/{$dashboard[0]['ws']}"><span><i class="fa fa-envelope icon-only"></i> Contact</a></span>
+<h2>{l s='Customer Detail' mod='marketplace'}</h2>
+<div class="clearfix"></div>
+<table width="100%">
 	<tr>
 		<td>
 			<div class="">
-				<label>{l s='Name -' mod='marketplace'}</label>
+				<label>{l s='Name' mod='marketplace'}</label>
 			</div>
 		</td>
 		<td>
@@ -16,7 +18,7 @@
 	<tr>
 		<td>
 			<div class="">
-				<label>{l s='Address -' mod='marketplace'}</label>
+				<label>{l s='Address' mod='marketplace'}</label>
 			</div>
 		</td>
 		<td>
@@ -32,7 +34,7 @@
 	<tr>
 		<td>
 			<div class="">
-				<label>{l s='Email Address -' mod='marketplace'}</label>
+				<label>{l s='Email Address' mod='marketplace'}</label>
 			</div>
 		</td>
 		<td>

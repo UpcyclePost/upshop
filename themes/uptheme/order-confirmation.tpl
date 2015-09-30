@@ -22,18 +22,12 @@
 *  @license    http://opensource.org/licenses/afl-3.0.php  Academic Free License (AFL 3.0)
 *  International Registered Trademark & Property of PrestaShop SA
 *}
-<!--
-	{$order|@print_r}
--->
-{capture name=path}{l s='Order confirmation'}{/capture}
-<div class="dashboard_content login-panel">
+<div class="login-panel">
 	<div class="login-panel-header">
 	<h1 class="">{l s='Order confirmation'}</h1>
 	</div>
-	<div class="wk_right_col">
 
-{assign var='current_step' value='payment'}
-{include file="$tpl_dir./order-steps.tpl"}
+{assign var='current_step' value='payment_complete'}
 
 {include file="$tpl_dir./errors.tpl"}
 
@@ -45,51 +39,66 @@
 	<a class="button-exclusive btn btn-default" href="{$link->getPageLink('guest-tracking', true, NULL, "id_order={$reference_order|urlencode}&email={$email|urlencode}")|escape:'html':'UTF-8'}" title="{l s='Follow my order'}"><i class="icon-chevron-left"></i>{l s='Follow my order'}</a>
     </p>
 {else}
-
-<table id="orderitems" class="table table-bordered">
+<div id="order-detail-content" class="table_block table-responsive" style="padding:10px 15px 50px">
+<table id="cart_summary" class="table table-bordered">
 	<thead>
 	<tr>
-		<th>Product</th>
-		<th>Seller</th>
-		<th>Quantity</th>
-		<th>Unit Price</th>
-		<th>Total Price</th>	
+		<th class="cart_description first_item text-left">Product Name</th>
+		<th class="cart_description item">Seller</th>
+		<th class="cart_unit item text-right">Unit price</th>
+		<th class="cart_quantity item text-center">Qty</th>
+		<th class="cart_total last_item text-right">Total Price</th>	
 	</tr>
 	</thead>
+	<tbody>
 {foreach $orderitems as $orderitem}	
-	<tr>
-		<td>{$orderitem['ordered_product_name']}</td>
-		<td>{$orderitem['shop_name']}</td>
-		<td>{$orderitem['qty']}</td>
-		<td>{displayWtPriceWithCurrency price=$orderitem['unit_price'] currency=$currency }</td>
-		<td>{displayWtPriceWithCurrency price=$orderitem['total_price'] currency=$currency }</td>
+	{assign var='odd' value=$orderitem@iteration%2}
+	<tr id="" class="cart_item {if $odd}odd{else}even{/if}">
+		<td class="cart_description" data-title="Name">{$orderitem['ordered_product_name']}</td>
+		<td class="cart_description" data-title="Seller">{$orderitem['shop_name']}</td>
+		<td class="cart_unit" data-title="Unit price">{displayWtPriceWithCurrency price=$orderitem['unit_price'] currency=$currency }</td>
+		<td class="cart_quantity text-center" data-title="Qty">{$orderitem['qty']}</td>
+		<td class="cart_total" data-title="Total">{displayWtPriceWithCurrency price=$orderitem['total_price'] currency=$currency }</td>
 	</tr>
 {/foreach}
+	</tbody>
 	<tfoot>
-	<tr>
-		<td colspan="4"><strong>Items</strong></td>
-		<td>{displayWtPriceWithCurrency price=$orderheader[0]['total_products'] currency=$currency }</td>
+	<tr class="cart_total_price">
+		<td colspan="4" class="text-right"><strong>Total Products</strong></td>
+		<td class="price" id="total_product">{displayWtPriceWithCurrency price=$orderheader[0]['total_products'] currency=$currency }</td>
 	</tr>
-	<tr>
-		<td colspan="4"><strong>Shipping & Handling</strong></td>
-		<td>{displayWtPriceWithCurrency price=$orderheader[0]['total_shipping'] currency=$currency }</td>
+	<tr class="cart_total_delivery">
+		<td colspan="4" class="text-right"><strong>Total Shipping</strong></td>
+		<td class="price" id="total_shipping">{displayWtPriceWithCurrency price=$orderheader[0]['total_shipping'] currency=$currency }</td>
 	</tr>
-	<tr>
-		<td colspan="4"><strong>Total</strong></td>
-		<td>{displayWtPriceWithCurrency price=$orderheader[0]['total_paid'] currency=$currency }</td>
+	<tr class="cart_total_price">
+		<td colspan="4" class="text-right total_price_container"><span>Total</span></td>
+		<td class="price total_price_container" id="total_price_container">{displayWtPriceWithCurrency price=$orderheader[0]['total_paid'] currency=$currency }</td>
 	</tr>
 	</tfoot>
 </table>
+	<div class="order-confirmation-share">
+		<ul>
+		<li>
+	<a class="button lnk_view btn btn-default" href="{$link->getPageLink('history', true)|escape:'html':'UTF-8'}" title="{l s='Go to your order history page'}">
+		<span>{l s='Order history'}
+		<i class="fa fa-fw fa-tasks"></i>
+		</span>
+	</a>
+		</li>
+		<li>
+	<a class="button button-medium" href="/shops" title="{l s='Browse Shops'}">
+		<span>{l s='Browse Shops'}
+		<i class="fa up-shop-1"></i>
+		</span>
+	</a>
+		</li>
+		</ul>
+	</div>	
 
-<p class="exclusive" style="">
-	<a class="button button-medium btn btn-default" href="{$link->getPageLink('history', true)|escape:'html':'UTF-8'}" title="{l s='Go to your order history page'}">
-		<i class="fa fa-fw fa-tasks"></i>&nbsp;{l s='View your order history'}
-	</a>
-	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-	<a class="button button-medium btn btn-default" href="/shops" title="{l s='Browse Shops'}">
-		<i class="fa up-shop-1"></i>&nbsp;{l s='Browse Shops'}
-	</a>
-</p>
+</div>
+
+	
 
 {/if}
 	</div>

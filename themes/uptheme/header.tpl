@@ -55,12 +55,11 @@
 	{/foreach}
 {/if}
                 <link href="{$css_dir}ptmfix.css" rel="stylesheet" type="text/css" media="screen" />
-                <link href="{$css_dir}custommaker.css" rel="stylesheet" type="text/css" media="screen" />
-                <link href="{$css_dir}customuser.css" rel="stylesheet" type="text/css" media="screen" />
 				<link href="{$css_dir}styles.min.css" type="text/css" rel="stylesheet" />
+				
 		{$HOOK_HEADER}
 		<link rel="stylesheet" href="http{if Tools::usingSecureMode()}s{/if}://fonts.googleapis.com/css?family=Source+Sans+Pro:400,300,700,600" type="text/css" media="all" />
-		{if $page_name!='product'}
+		{if $page_name!='product' && $page_name!='order-confirmation'}
 		<meta property="og:title" content="{$meta_title|escape:'htmlall':'UTF-8'}"/>
 		<meta property="og:url" content="http://{$smarty.server.HTTP_HOST}{$smarty.server.REQUEST_URI}"/>
 		<meta property="og:site_name" content="http://www.upcyclepost.com"/>
@@ -106,7 +105,7 @@
 
 {if $page_name=='order-confirmation'}
 <!-- Facebook tracking pixel for order confirmation -->
-<!-- Facebook Conversion Code for Registrations - UpcyclePost 1 -->
+<!-- Facebook Conversion Code for Registrations -->
 <script>
 (function() 
 {
@@ -123,14 +122,32 @@ if (!_fbq.loaded)
 }
 )();
 window._fbq = window._fbq || [];
-window._fbq.push(['track', '6025947566399', 
+window._fbq.push(['track', '6027155380399', 
 {
 	'value':'{$total_to_pay}','currency':'{$currency_iso_code}'
 }
 ]);
 </script>
-<noscript><img height="1" width="1" alt="" style="display:none" src="https://www.facebook.com/tr?ev=6025947566399&amp;cd[value]={$total_to_pay}&amp;cd[currency]={$currency_iso_code}&amp;noscript=1" /></noscript>
+<noscript><img height="1" width="1" alt="" style="display:none" src="https://www.facebook.com/tr?ev=6027155380399&amp;cd[value]={$total_to_pay}&amp;cd[currency]={$currency_iso_code}&amp;noscript=1" /></noscript>
 <!-- End Facebook tracking pixel for order confirmation -->
+<!-- Google Code for Purchase Confirmation Conversion Page --> 
+<script type="text/javascript">
+/* <![CDATA[ */
+var google_conversion_id = 1034553725;
+var google_conversion_language = "en";
+var google_conversion_format = "3";
+var google_conversion_color = "ffffff";
+var google_conversion_label = "eYXfCPiHjmAQ_ZKo7QM"; var google_conversion_value = {$total_to_pay}; var google_conversion_currency = "{$currency_iso_code}"; var google_remarketing_only = false;
+/* ]]> */
+</script>
+<script type="text/javascript" src="//www.googleadservices.com/pagead/conversion.js">
+</script>
+<noscript>
+<div style="display:inline;">
+<img height="1" width="1" style="border-style:none;" alt="" 
+src="//www.googleadservices.com/pagead/conversion/1034553725/?value={$total_to_pay}&amp;currency_code={$currency_iso_code}&amp;label=eYXfCPiHjmAQ_ZKo7QM&amp;guid=ON&amp;script=0"/>
+</div>
+</noscript>
 {/if}
 
 <!-- start Mixpanel snippet-->
@@ -142,7 +159,7 @@ for(g=0;g<i.length;g++)f(c,i[g]);b._i.push([a,e,d])};b.__SV=1.2;a=e.createElemen
 <!-- end Mixpanel snippet-->
 
 <!-- start Mixpanel init-->
-{if {$smarty.server.SERVER_NAME}=='www.upcyclepost.com'}
+{if {$smarty.server.SERVER_NAME}=='www.upcyclepost.com' || {$smarty.server.SERVER_NAME}=='www.upmod.com'}
 <script type="text/javascript">mixpanel.init("c0185653f28d7158fd08c11fd5eeca91");</script>
 {else}
 <script type="text/javascript">mixpanel.init("bdba27aa461b0f60b84e470697e19a0b");</script>
@@ -163,93 +180,151 @@ for(g=0;g<i.length;g++)f(c,i[g]);b._i.push([a,e,d])};b.__SV=1.2;a=e.createElemen
 			</div>
 		{/if}
 		<div id="page">
-			<div class="header-container">
-				<header id="header">
-					<div>
+			<div id="header_setfooter" class="header-container">
+				<header id="header" class="header-area">
+					<nav class="mainmenu">
 						<div class="container">
 							<div class="row">
-								<a id="mobile-menu" class="mobile-menu fa fa-bars visible-lg visible-md"></a>
+								<div class="col-xs-2 col-sm-3 col-md-2 col-lg-2" style="float:left;padding-left:0;padding-right:0;">
+									<a class="logo" href="http{if Tools::usingSecureMode()}s{/if}://{$smarty.server.SERVER_NAME}" title="{$shop_name|escape:'html':'UTF-8'}">
+									</a>
+								</div>		
 								{if isset($HOOK_TOP)}{$HOOK_TOP}{/if}
 								{hook h="displayNav"}
 							</div>
 						</div>
-					</div>
+					</nav>
 				</header>
-				<!-- Nav -->
-				<div class="container">
-					<div class="row">
-						<nav class="menu hidden-xs hidden-sm" id="main-menu">
-							<div class="content-container">
-								<div class="menu-container clearfix">
-									<div class="main-menu menu-categories clearfix">
-										<h4 class="blue">Browse Ideas</h4>
-										<div class="col-sm-3">
-											<ul>
-												<li><a href="/gallery/art">Art</a></li>
-												<li><a href="/gallery/automotive">Automotive</a></li>
-												<li><a href="/gallery/construction">Construction</a></li>
-												<li><a href="/gallery/crafts">Crafts</a></li>
-												<li><a href="/gallery/electronics">Electronics</a></li>
-												<li><a href="/gallery/fashion">Fashion</a></li>
-											</ul></div><div class="col-sm-3"><ul>
-												<li><a href="/gallery/furniture">Furniture</a></li>
-												<li><a href="/gallery/glass">Glass</a></li>
-												<li><a href="/gallery/hardware">Hardware</a></li>
-												<li><a href="/gallery/holidays">Holidays</a></li>
-												<li><a href="/gallery/home">Home</a></li>
-												<li><a href="/gallery/jewelry">Jewelry</a></li>
-											</ul></div><div class="col-sm-3"><ul>
-												<li><a href="/gallery/metal">Metal</a></li>
-												<li><a href="/gallery/musical">Musical</a></li>
-												<li><a href="/gallery/office">Office</a></li>
-												<li><a href="/gallery/outdoors">Outdoors</a></li>
-												<li><a href="/gallery/paper">Paper</a></li>
-												<li><a href="/gallery/pets">Pets</a></li>
-											</ul></div><div class="col-sm-3"><ul>
-												<li><a href="/gallery/plastic">Plastic</a></li>
-												<li><a href="/gallery/sporting-goods">Sporting Goods</a></li>
-												<li><a href="/gallery/toys">Toys</a></li>
-												<li><a href="/gallery/vintage">Vintage</a></li>
-												<li><a href="/gallery/wood">Wood</a></li>
-												<li><a href="/gallery/yard">Yard</a></li>
-											</ul>
-										</div>
-										<div class="col-sm-6" style="margin-top: 15px;">
-											<ul>
-												<li><a href="/search/users"><i class="fa fa-users"></i> Visit Profile Gallery</a></li>
-											</ul>
-										</div>
-									</div>
-									<div class="main-menu menu-child-menus clearfix">
-										<div class="menu-col-1 clearfix">
-											<h4 class="blue">Company</h4>
-											<div class="col-xs-12">
-												<ul>
-													<li><a href="/about">About Us</a></li>
-													<li><a target="_blank" href="http://www.facebook.com/upcyclepost">Facebook</a></li>
-													<li><a target="_blank" href="http://www.twitter.com/upcyclepost">Twitter</a></li>
-													<li><a target="_blank" href="http://www.linkedin.com/company/upcyclepost-com">LinkedIn</a></li>
-													<li><a target="_blank" href="/blog">Blog</a></li>
-													<li><a target="_blank" href="/contact">Contact Us</a></li>
-												</ul>
-											</div>
-										</div>
-										<div class="menu-col-2 clearfix">
-											<h4 class="green">Do you have an idea?</h4>
-											<div class="col-xs-12">
-												<p>It doesn't matter if it's a work in progress, rough draft or a finished product.</p>
-												<a class="btn btn-green" href="/post/idea"><i class="fa fa-camera"></i>Post Your Idea</a>
-											</div>
-										</div>
-									</div>
-								</div>
+				<div class="main-dd-menu">
+				    <div class="container">
+				        <div class="row">
+							<div class="col-xs-12 search-container hidden-sm hidden-md hidden-lg" style="padding:5px 0">
+								<form class="search-form form-inline" method="post" action="http://{$smarty.server.SERVER_NAME}/gallery">
+								<input type="search" name="term" class="form-control search" placeholder="Search the world's largest upcyle hand-crafted community">
+								</form>
 							</div>
-						</nav>
-					</div>
+
+				            <div class="column clearfix">
+				                <h3>Shop Categories</h3>
+				                <ul class="categories">
+				        				<li><a href="http://{$smarty.server.SERVER_NAME}/gallery/art">Art</a></li>
+										<li><a href="http://{$smarty.server.SERVER_NAME}/gallery/automotive">Automotive</a></li>
+										<li><a href="http://{$smarty.server.SERVER_NAME}/gallery/construction">Construction</a></li>
+										<li><a href="http://{$smarty.server.SERVER_NAME}/gallery/crafts">Crafts</a></li>
+										<li><a href="http://{$smarty.server.SERVER_NAME}/gallery/electronics">Electronics</a></li>
+										<li><a href="http://{$smarty.server.SERVER_NAME}/gallery/fashion">Fashion</a></li>
+										<li><a href="http://{$smarty.server.SERVER_NAME}/gallery/furniture">Furniture</a></li>
+										<li><a href="http://{$smarty.server.SERVER_NAME}/gallery/glass">Glass</a></li>
+										<li><a href="http://{$smarty.server.SERVER_NAME}/gallery/hardware">Hardware</a></li>
+										<li><a href="http://{$smarty.server.SERVER_NAME}/gallery/holidays">Holidays</a></li>
+										<li><a href="http://{$smarty.server.SERVER_NAME}/gallery/home">Home</a></li>
+										<li><a href="http://{$smarty.server.SERVER_NAME}/gallery/jewelry">Jewelry</a></li>
+										<li><a href="http://{$smarty.server.SERVER_NAME}/gallery/metal">Metal</a></li>
+										<li><a href="http://{$smarty.server.SERVER_NAME}/gallery/musical">Musical</a></li>
+										<li><a href="http://{$smarty.server.SERVER_NAME}/gallery/office">Office</a></li>
+										<li><a href="http://{$smarty.server.SERVER_NAME}/gallery/outdoors">Outdoors</a></li>
+										<li><a href="http://{$smarty.server.SERVER_NAME}/gallery/paper">Paper</a></li>
+										<li><a href="http://{$smarty.server.SERVER_NAME}/gallery/pets">Pets</a></li>
+										<li><a href="http://{$smarty.server.SERVER_NAME}/gallery/plastic">Plastic</a></li>
+										<li><a href="http://{$smarty.server.SERVER_NAME}/gallery/sporting-goods">Sporting Goods</a></li>
+										<li><a href="http://{$smarty.server.SERVER_NAME}/gallery/toys">Toys</a></li>
+										<li><a href="http://{$smarty.server.SERVER_NAME}/gallery/vintage">Vintage</a></li>
+										<li><a href="http://{$smarty.server.SERVER_NAME}/gallery/wood">Wood</a></li>
+										<li><a href="http://{$smarty.server.SERVER_NAME}/gallery/yard">Yard</a></li>							
+				                </ul>
+				            </div>
+				            <div class="column clearfix">
+				                <div class="left-menu">
+				                    <h3>Share your ideas</h3>
+				                    <ul class="links">
+				                        <li><a href="http://{$smarty.server.SERVER_NAME}/post/idea">Upload your images</a></li>
+				                        <li><a href="http://{$smarty.server.SERVER_NAME}/search/users">View member gallery</a></li>
+				                    </ul>
+				                </div>
+				                <div class="right-menu">
+				                    <h3>Sell your products</h3>
+				                    <ul class="links">
+				                        <li><a href="http://{$smarty.server.SERVER_NAME}/shop/module/marketplace/sellerrequest">Create your shop</a></li>
+				                    </ul>
+				                </div>
+				            </div>
+				            <div class="column clearfix">
+				                <h3>Upmod</h3>
+				                <ul class="links">
+				                    <li><a href="http://{$smarty.server.SERVER_NAME}/about">About us</a></li>
+				                    <li><a href="http://{$smarty.server.SERVER_NAME}/blog">Blog</a></li>
+				                    <li><a href="http://{$smarty.server.SERVER_NAME}/contact">Contact us</a></li>
+				                </ul>
+				                <div class="social-icons">
+				                    <a href="https://www.facebook.com/upmodinc"><i class="fa fa-facebook-square"></i></a>
+				                    <a href="https://www.twitter.com/upmodinc"><i class="fa fa-twitter-square"></i></a>	                    
+				                    <a href="https://www.pinterest.com/upmodinc"><i class="fa fa-pinterest-square"></i></a>
+									<a href="https://plus.google.com/+upmodinc"><i class="fa fa-google-plus-square"></i></a>										
+				                </div>
+				            </div>
+				        </div>
+				    </div>
 				</div>
-				<!-- End Nav -->
+				{if $page_name=='product'}
+				<nav class="submenu hidden-xs">
+					<div class="submenu-bg">
+                    <div class="container hidden-xs">
+                        <div class="row">
+                            <div class="left_menu">
+                                <ul>
+                                    <li>
+                                        <a href="http://{$smarty.server.SERVER_NAME}/browse/products/art">Art</a>
+                                    </li>
+
+                                    <li>
+                                        <a href="http://{$smarty.server.SERVER_NAME}/browse/products/fashion">Fashion</a>
+                                    </li>
+
+                                    <li>
+                                        <a href="http://{$smarty.server.SERVER_NAME}/browse/products/furniture">Furniture</a>
+                                    </li>
+
+                                    <li>
+                                        <a href="http://{$smarty.server.SERVER_NAME}/browse/products/home">Home</a>
+                                    </li>
+
+                                    <li>
+                                        <a href="http://{$smarty.server.SERVER_NAME}/browse/products/jewelry">Jewelry</a>
+                                    </li>
+
+                                    <li>
+                                        <a href="http://{$smarty.server.SERVER_NAME}/browse/products/vintage">Vintage</a>
+                                    </li>
+                                </ul>
+                            </div>
+
+                            <div class="right_menu">
+                                <a class="menu-toggle">See all categories</a>
+                            </div>
+                        </div>
+                    </div>
+					</div>
+                </nav>
+				{/if}
+				{if $page_name=="product"}
+				<nav class="submenu hidden-sm hidden-md hidden-lg">
+					<div class="submenu-bg">
+                    <div class="container">
+                        <div class="row">
+								<div class="col-xs-12 search-container" style="padding:5px 0">
+								<form class="search-form form-inline" method="post" action="http://{$smarty.server.SERVER_NAME}/gallery">
+								<input type="search" name="term" class="form-control search" placeholder="Search the world's largest upcyle hand-crafted community">
+								</form>
+                            </div>
+                        </div>
+                    </div>
+					</div>
+                </nav>
+				{/if}
+
+
 			</div>
-			<div class="columns-container">
+			<div id="body_setfooter" class="columns-container">
 				<div id="columns" class="container">
 					{if $page_name !='index' && $page_name !='pagenotfound'}
 						{include file="$tpl_dir./breadcrumb.tpl"}

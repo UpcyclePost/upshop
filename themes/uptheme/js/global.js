@@ -420,3 +420,9 @@ function accordion(status)
 		$('#left_column, #right_column').removeClass('accordion');
 	}
 }
+
+$(document).ready(function() {
+    $('#hamburger, .menu-toggle').click(function() {
+        $('.main-dd-menu, .mainmenu').toggleClass('active');
+    });
+});

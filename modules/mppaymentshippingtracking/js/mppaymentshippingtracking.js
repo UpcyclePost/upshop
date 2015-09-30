@@ -60,13 +60,18 @@ $(document).ready(function(){
 	$(document).on('click', '#edit_shipping_number_link', function (e) {
 		e.preventDefault();
 		$('#shipping_number_show').hide();
+		$('#edit_shipping_number_link').removeClass();
 		$('#edit_shipping_number_link').hide();
-		$('#shipping_number_edit').css('display','block');
+		$('#shipping_number_edit').css('display','block');	
 	});
 
 	$(document).on('click', '#cancel_shipping_number_link', function (e) {
 		e.preventDefault();
 		$('#shipping_number_show').show();
+		$('#edit_shipping_number_link').addClass('btn');
+		$('#edit_shipping_number_link').addClass('btn-default');
+		$('#edit_shipping_number_link').addClass('button');
+		$('#edit_shipping_number_link').addClass('button-small');
 		$('#edit_shipping_number_link').show();
 		$('#shipping_number_edit').css('display','none');
 	});
@@ -98,8 +103,9 @@ $(document).ready(function(){
 				}
 			});
 			$('#shipping_number_show').show();
+			$('#edit_shipping_number_link').addClass('btn btn-default button button-small');
 			$('#edit_shipping_number_link').show();
-			$('#shipping_number_edit').css('display','none');
+			$('#shipping_number_edit').css('display','none');		
 		}
 	});
 

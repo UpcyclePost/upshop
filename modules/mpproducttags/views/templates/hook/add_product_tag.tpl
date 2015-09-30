@@ -8,23 +8,14 @@
   text-align: left;
 }
 .tm-tag {
-  color: #fff;
-  background-image: url(data:image/svg+xml;
- base64, PD94bWwgdmVyc2lvbj0iMS4wIiA/PjxzdmcgeG1sbn…0iMSIgaGVpZ2h0PSIxIiBmaWxsPSJ1cmwoI2xlc3NoYXQtZ2VuZXJhdGVkKSIgLz48L3N2Zz4=);
-  background-image: -webkit-linear-gradient(bottom, #6da134 0, #85c125 100%);
-  background-image: -moz-linear-gradient(bottom, #6da134 0, #85c125 100%);
-  background-image: -o-linear-gradient(bottom, #6da134 0, #85c125 100%);
-  background-image: linear-gradient(to top, #6da134 0, #85c125 100%);
-  box-shadow: 0 1px 1px rgba(0, 0, 0, 0.075) inset;
+  background-color: #ddd;
+  color: #000;
   display: inline-block;
   border-radius: 2px;
   font-size: 14px;
   margin: 0 5px 5px 0;
   padding: 4px 6px 4px 8px;
   text-decoration: none;
-  transition: border .2s linear 0, box-shadow .2s linear 0;
-  -moz-transition: border .2s linear 0, box-shadow .2s linear 0;
-  -webkit-transition: border .2s linear 0, box-shadow .2s linear 0;
   vertical-align: middle;
   line-height: normal;
 }
@@ -45,6 +36,6 @@
         tagsContainer: '.tags-container',
         tagCloseIcon: '<i class="fa fa-fw"></i>',
         prefilled: ["{$product_tag}"],
-        preventSubmitOnEnter: true
+        preventSubmitOnEnter: true,
     });
 </script>

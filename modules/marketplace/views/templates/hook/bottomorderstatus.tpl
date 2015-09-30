@@ -1,10 +1,11 @@
 ﻿<div class="wk_order_customer_status">
 <h2>{l s='Order Status' mod='marketplace'}</h2>
-<table width="80%">
+<table width="100%">
+	<tbody>
 	<tr>
 		<td>
 			<div class="">
-				<label>{l s='Order Status -' mod='marketplace'}</label>
+				<label>{l s='Order Status' mod='marketplace'}</label>
 			</div>
 		</td>
 		<td>
@@ -16,7 +17,7 @@
 	<tr>
 		<td>
 			<div class="">
-				<label>{l s='Shipping Address -' mod='marketplace'}</label>
+				<label>{l s='Shipping Address' mod='marketplace'}</label>
 			</div>
 		</td>
 		<td>
@@ -32,7 +33,7 @@
 	<tr>
 		<td>
 			<div class="">
-				<label>{l s='Payment Mode -' mod='marketplace'}</label>
+				<label>{l s='Payment Mode' mod='marketplace'}</label>
 			</div>
 		</td>
 		<td>
@@ -41,5 +42,6 @@
 			</div>
 		</td>
 	</tr>
+	</tbody>
 </table>
 </div>

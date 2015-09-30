@@ -4,11 +4,12 @@
     z-index:1;
 }
 .footer-container{
-    position:relative;
-    z-index: 2;
     background-image: none;
-    background: #333333;
+    background-color: #0187d0;
+    left: 0;
 }
+
+
 @media (min-width: 768px) {
     #home-page-tabs {
         margin: 0; }} 
@@ -100,27 +101,12 @@ ul.step li.step_todo span, ul.step li.step_current span{
 ul.step li.step_done a{
     border:none;
 }
-div .box-info-product .exclusive:before, .box-info-product .exclusive span{
-    border: none !important;
-    text-shadow: none !important;
-}
-.columns-container .button.lnk_view span{
-    border:none !important;
-}
-.columns-container .button.button-medium span{
-    border:none !important;
-}
-.columns-container .button.button-small span{
-    border:none !important;
-}
+
 ul.step li a{
     text-shadow: none !important;
 }
 .box-security{
     background:none;
-}
-.box-info-product .exclusive span{
-    text-shadow: none;
 }
 .button.lnk_view{
     text-shadow: none;
@@ -128,19 +114,6 @@ ul.step li a{
 .btn.button-plus span, .btn.button-minus span{
     border:none;
     background: none;
-}
-.box-info-product .exclusive:after{
-    background:none !important;
-}
-.box-info-product .exclusive:before{
-    text-shadow: none;
-}
-.box-info-product .exclusive span{
-    border:none;
-}
-.button.ajax_add_to_cart_button{
-    text-shadow: none;
-    border:none;
 }
 .button.exclusive-medium{
     text-shadow: none;

@@ -67,7 +67,7 @@
 						if($mp_shipping_id) 
 						{
 							$obj_mpshipping_method = new Mpshippingmethod($mp_shipping_id);
-							
+
 							$this->context->smarty->assign('mp_shipping_name',$obj_mpshipping_method->mp_shipping_name);
 							$this->context->smarty->assign('transit_delay',$obj_mpshipping_method->transit_delay);
 							$this->context->smarty->assign('shipping_method',$obj_mpshipping_method->shipping_method);
@@ -81,6 +81,27 @@
 							$this->context->smarty->assign('max_depth',$obj_mpshipping_method->max_depth);
 							$this->context->smarty->assign('max_weight',$obj_mpshipping_method->max_weight);
 							$this->context->smarty->assign('shipping_policy',$obj_mpshipping_method->shipping_policy);
+							
+							$id_shop = $mp_id_shop;
+							$param = array('shop'=>$id_shop);
+							
+							$link_store        = $link->getModuleLink('marketplace', 'shopstore',array('shop'=>$id_shop,'shop_name'=>$name_shop));
+							$add_product       = $link->getModuleLink('marketplace', 'addproduct',$param);
+							$account_dashboard = $link->getModuleLink('marketplace', 'marketplaceaccount',$param);
+							$edit_profile    = $link->getModuleLink('marketplace', 'marketplaceaccount',array('shop'=>$id_shop,'l'=>2,'edit-profile'=>1));
+							$product_list    = $link->getModuleLink('marketplace', 'marketplaceaccount',array('shop'=>$id_shop,'l'=>3));
+							$my_order    = $link->getModuleLink('marketplace', 'marketplaceaccount',array('shop'=>$id_shop,'l'=>4));
+							
+							$this->context->smarty->assign("id_shop", $id_shop);
+							$this->context->smarty->assign("id_customer", $customer_id);
+							$this->context->smarty->assign("link_store", $link_store);
+							$this->context->smarty->assign("add_product", $add_product);
+							$this->context->smarty->assign("account_dashboard", $account_dashboard);
+							$this->context->smarty->assign("edit_profile", $edit_profile);
+							$this->context->smarty->assign("product_list", $product_list);
+							$this->context->smarty->assign("my_order", $my_order);
+						
+							$this->context->smarty->assign('is_seller',$is_seller);							
 							
 							//@shipping_method==1 billing accroding to weight
 							//@shipping_method==2 billing accroding to price
@@ -187,6 +208,22 @@
 						$this->context->smarty->assign('currency_sign', $currency->sign);
 						$this->context->smarty->assign('PS_WEIGHT_UNIT', Configuration::get('PS_WEIGHT_UNIT'));
 							
+
+						$this->addCSS(_MODULE_DIR_.'mpshipping/css/sellershippinglist.css');
+						$this->addCSS(_MODULE_DIR_.'marketplace/css/marketplace_account.css');
+				
+						// Jquery for the mobile menu
+						if ($this->context->getMobileDevice()){
+							$this->addJS(array(
+										_MODULE_DIR_.'marketplace/js/mobile/jquery.mobile.custom.min.js',
+									));
+							$this->addCSS(array(
+										_MODULE_DIR_.'marketplace/js/mobile/jquery.mobile.custom.structure.min.css',
+										_MODULE_DIR_.'marketplace/js/mobile/jquery.mobile.custom.theme.min.css'
+									));
+							}
+
+						$this->addJs(_MODULE_DIR_.'mpshipping/js/mpshipping.js');
 						// $this->setTemplate('addmpshipping.tpl');
 						$this->setTemplate('wkshipping.tpl');
 					}

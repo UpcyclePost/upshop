@@ -30,23 +30,23 @@
 	{addJsDefL name=txtProduct}{l s='product' js=1}{/addJsDefL}
 	{addJsDefL name=txtProducts}{l s='products' js=1}{/addJsDefL}
 	{capture name=path}{l s='Your payment method'}{/capture}
-	<h1 class="page-heading">{l s='Please choose your payment method'}
+<div class="login-panel">
+	<div class="login-panel-header">
+	<h1 class="">{l s='Please choose your payment method'}
 		{if !isset($empty) && !$PS_CATALOG_MODE}
-			<span class="heading-counter">{l s='Your shopping cart contains:'}
-				<span id="summary_products_quantity">{$productNumber} {if $productNumber == 1}{l s='product'}{else}{l s='products'}{/if}</span>
+			<span class="heading-counter">
+				<span id="summary_products_quantity">({$productNumber} {if $productNumber == 1}{l s='product'}{else}{l s='products'}{/if})</span>
 			</span>
 		{/if}
 	</h1>
+	</div>
+
 {else}
 <!-- open the payment login panel -->
 <div class="login-panel">
-
 	<div class="login-panel-header">
 	<h1 class="step-num"><span>3.</span> {l s='Please choose your payment method'}</h1>
-
 	</div>
-
-
 {/if}
 
 {if !$opc}
@@ -57,16 +57,16 @@
 	<div id="opc_payment_methods" class="opc-main-block">
 		<div id="opc_payment_methods-overlay" class="opc-overlay" style="display: none;"></div>
 {/if}
-		<div class="paiement_block">
+		<div class="paiement_block" style="padding-bottom:15px">
 			<div id="HOOK_TOP_PAYMENT">{$HOOK_TOP_PAYMENT}</div>
 				{if $HOOK_PAYMENT}
 					{if !$opc}
-						<div id="order-detail-content" class="table_block table-responsive">
+						<div id="order-detail-content" class="table_block table-responsive" style="padding:15px;">
 							<table id="cart_summary" class="table table-bordered">
 								<thead>
 									<tr>
 										<th class="cart_product first_item">{l s='Product'}</th>
-										<th class="cart_description item">{l s='Description'}</th>
+										<th class="cart_description item">{l s='Name'}</th>
 										{if $PS_STOCK_MANAGEMENT}
 											<th class="cart_availability item text-center">{l s='Availability'}</th>
 										{/if}
@@ -90,7 +90,8 @@
 										{/if}
 									{else}
 										<tr class="cart_total_price">
-											<td colspan="4" class="text-right">{l s='Total products'}</td>
+											<td colspan="2" rowspan="3"></td>
+											<td colspan="2" class="text-right">{l s='Total products'}</td>
 											<td colspan="2" class="price" id="total_product">{displayPrice price=$total_products}</td>
 										</tr>
 									{/if}
@@ -120,7 +121,7 @@
 									</tr>
 									{if $total_shipping_tax_exc <= 0 && !isset($virtualCart)}
 										<tr class="cart_total_delivery">
-											<td colspan="4" class="text-right">{l s='Total shipping'}</td>
+											<td colspan="2" class="text-right">{l s='Total shipping'}</td>
 											<td colspan="2" class="price" id="total_shipping">{l s='Free Shipping!'}</td>
 										</tr>
 									{else}
@@ -138,7 +139,7 @@
 											{/if}
 										{else}
 											<tr class="cart_total_delivery"{if $shippingCost <= 0} style="display:none"{/if}>
-												<td colspan="4" class="text-right">{l s='Total shipping'}</td>
+												<td colspan="2" class="text-right">{l s='Total shipping'}</td>
 												<td colspan="2" class="price" id="total_shipping" >{displayPrice price=$shippingCostTaxExc}</td>
 											</tr>
 										{/if}
@@ -181,7 +182,7 @@
 											</tr>
 										{/if}
 										<tr class="cart_total_price">
-											<td colspan="4" class="total_price_container text-right"><span>{l s='Total'}</span></td>
+											<td colspan="1" class="total_price_container text-right"><span>{l s='Total'}</span></td>
 											<td colspan="2" class="price" id="total_price_container">
 												<span id="total_price" data-selenium-total-price="{$total_price}">{displayPrice price=$total_price}</span>
 											</td>
@@ -219,7 +220,7 @@
 												</div>
 											</td>
 										{/if}
-										<td colspan="{if !$voucherAllowed}4{else}2{/if}" class="text-right total_price_container">
+										<td colspan="{if !$voucherAllowed}2{else}2{/if}" class="text-right total_price_container">
 											<span>{l s='Total'}</span>
 										</td>
 										<td colspan="2" class="price total_price_container" id="total_price_container">
@@ -336,7 +337,7 @@
 						</div> <!-- end order-detail-content -->
 					{/if}
 					{if $opc}<div id="opc_payment_methods-content" style="padding:15px">{/if}
-					<div id="HOOK_PAYMENT">
+					<div id="HOOK_PAYMENT" style="padding: 0 15px;">
 						{$HOOK_PAYMENT}
 					</div>
 					{if $opc}</div> <!-- end opc_payment_methods-content -->{/if}
@@ -350,10 +351,16 @@
 							{l s='Continue shopping'}
 						</a>
 					</p>
+
 				{else}
 					</div> <!-- end opc_payment_methods -->
 					</div> <!-- close the payment panel -->	
 				{/if}
+				</div>
+			</div>
+		</div>
+	</div>
+</div> <!-- end HOOK_TOP_PAYMENT -->
 
-			</div> <!-- end HOOK_TOP_PAYMENT -->
+
 

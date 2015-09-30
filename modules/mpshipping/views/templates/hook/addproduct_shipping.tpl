@@ -2,8 +2,8 @@
 .info_description {
     clear: both;
     color: #7F7F7F;
-    font-family: Georgia,Arial,'sans-serif';
-    font-size: 11px;
+	font: inherit;
+    font-size: 12px;
     font-style: italic;
     text-align: left;
     width: 100%;

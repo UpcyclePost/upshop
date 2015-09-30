@@ -22,6 +22,62 @@
 *  @license    http://opensource.org/licenses/afl-3.0.php  Academic Free License (AFL 3.0)
 *  International Registered Trademark & Property of PrestaShop SA
 *}
+<style>
+	.stButton{
+		width : 24px !important;
+		height: 24px !important;
+		margin-left: 16px !important;
+	}
+	.chicklets{
+		width : 24px !important;
+		height: 24px !important;
+	}
+
+	.stButton .facebook {
+    background-image: none;
+	padding: 0;
+	}
+
+	.stButton .facebook:before {
+    font-family: FontAwesome;
+    font-size: 24px;
+    content: "\f082";
+	color: #0187d0;
+	}
+	.stButton .twitter {
+    background-image: none;
+	padding: 0;	
+	}
+
+	.stButton .twitter:before {
+    font-family: FontAwesome;
+    font-size: 24px;
+    content: "\f081";
+	color: #0187d0;	
+	}
+	.stButton .pinterest {
+    background-image: none;
+	padding: 0;
+	}
+
+	.stButton .pinterest:before {
+    font-family: FontAwesome;
+    font-size: 24px;
+    content: "\f0d3";
+	color: #0187d0;	
+	}
+	.stButton .googleplus {
+    background-image: none;
+	padding: 0;
+	}
+
+	.stButton .googleplus:before {
+    font-family: FontAwesome;
+    font-size: 24px;
+    content: "\f0d4";
+	color: #0187d0;	
+	}
+</style>
 {include file="$tpl_dir./errors.tpl"}
 {if $errors|@count == 0}
 	{if !isset($priceDisplayPrecision)}
@@ -65,10 +121,8 @@
 					<li class=""><a href="/shops">Shops</a></li>
 					<li class=""><a href="http://{$smarty.server.SERVER_NAME}/gallery/{$product->category}">{$product->category|@ucfirst}</a></li>
 					<li class="attr-content" style="float:right;">
-							<span class='st_stumbleupon' style="float:right;"></span>
-							<span class='st_pinterest' style="float:right;"></span>
 							<span class='st_googleplus' style="float:right;"></span>
-							<span class='st_linkedin' style="float:right;"></span>
+							<span class='st_pinterest' style="float:right;"></span>
 							<span class='st_twitter' style="float:right;"></span>
 							<span class='st_facebook' style="float:right;"></span>
 					</li>
@@ -189,17 +243,17 @@
 
 		<!-- end pb-left-column -->
 		<!-- end left infos-->
-		<!-- begin short_description_block -->
+		<!-- begin short_description_block desktop -->
 		{if $product->description_short}
-			<div class="post-details-description">
+			<div class="post-details-description hidden-xs">
 			<h5>{l s='Description'}</h5>
 			<p>{$product->description_short}</p>
 			</div>
 		{/if}
 		<!-- end short_description_block -->
 		{if isset($product) && $product->description}
-		<!-- More info -->
-		<div class="post-details-description">
+		<!-- More info desktop -->
+		<div class="post-details-description hidden-xs">
 		<h5>{l s='More info'}</h4>
 			<!-- full description -->
 			<p>{$product->description}</p>
@@ -244,7 +298,7 @@
 		<!-- end post details-->
 		</div>
 		<!-- pb-right-column-->
-		<aside class="post-sidebar" data-spy="affix" data-offset-top="25">
+		<aside class="post-sidebar" data-spy="affix">
 		<div class="">
 			<div class="post-author clearfix">
 			<div class="avatar">
@@ -477,6 +531,23 @@
 					<p>{$shipmethod['mp_shipping_name']} : {convertPrice price=$shipmethod['base_price']}</p>
 				{/foreach}
 			</div>
+			{/if}
+			<!-- begin short_description_block desktop -->
+			{if $product->description_short}
+				<div class="post-details-description hidden-sm hidden-md hidden-lg">
+				<h5>{l s='Description'}</h5>
+				<p>{$product->description_short}</p>
+				</div>
+			{/if}
+			<!-- end short_description_block -->
+			{if isset($product) && $product->description}
+			<!-- More info desktop -->
+			<div class="post-details-description hidden-sm hidden-md hidden-lg">
+			<h5>{l s='More info'}</h4>
+				<!-- full description -->
+				<p>{$product->description}</p>
+			</div>
+			<!--end  More info -->
 			{/if}
 			<div class="post-sidebar-container engage">
 				<h5>Engagement</h5>

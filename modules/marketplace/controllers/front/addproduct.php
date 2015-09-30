@@ -195,8 +195,6 @@ class marketplaceAddproductModuleFrontController extends ModuleFrontController
 						_MODULE_DIR_.'marketplace/js/mobile/jquery.mobile.custom.theme.min.css'
 					));
 			}
-		
-		
 	}
 }
 

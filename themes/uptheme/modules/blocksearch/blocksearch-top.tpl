@@ -24,23 +24,13 @@
 *}
 <!-- block search mobile -->
 {if isset($hook_mobile)}
-<div class="col-xs-6 col-md-5 search-container">
-<form class="search-form form-inline" method="post" action="http://{$smarty.server.SERVER_NAME}/gallery">
-<input type="search" name="term" class="form-control search" placeholder="Find Inspiration">
-<button type="submit" class="search-icon"><img src="http://{$smarty.server.SERVER_NAME}/img/icons/search-icon.png" alt="Search"></button>
-</form>
-</div>	
 {else}
 <!-- Block search module TOP -->
 
-<div class="col-xs-6 col-md-5 search-container">
+<div class="col-xs-8 col-sm-6 col-md-4 col-lg-5 search-container hidden-xs" style="padding:5px 0">
 <form class="search-form form-inline" method="post" action="http://{$smarty.server.SERVER_NAME}/gallery">
-<input type="search" name="term" class="form-control search" placeholder="Find Inspiration">
-<button type="submit" class="search-icon"><img src="http://{$smarty.server.SERVER_NAME}/img/icons/search-icon.png" alt="Search"></button>
+<input type="search" name="term" class="form-control search" placeholder="Search the world's largest upcycle hand-crafted community">
 </form>
 </div>	
 <!-- /Block search module TOP -->
 {/if}
-<!-- center the logo by moving this code from header.tpl -->
-<div class="logo"><a href="http://{$smarty.server.SERVER_NAME}" title="{$shop_name|escape:'html':'UTF-8'}"><img class="hidden-xs" src="http{if Tools::usingSecureMode()}s{/if}://{$smarty.server.SERVER_NAME}/img/logo.jpg" /><img class="visible-xs" alt="UpcyclePost.com" src="http{if Tools::usingSecureMode()}s{/if}://{$smarty.server.SERVER_NAME}/img/micro-logo.png" /></a></div>
-<!-- /center the logo -->

@@ -41,7 +41,7 @@ a.fancybox-nav {
    }
   @media (max-width: 767px) {
     #image-block {
-      width: 280px;
+      //width: 280px;
       margin: 0 auto; } }
   #image-block img {
     background: #fff;
@@ -95,7 +95,8 @@ a.fancybox-nav {
 #thumbs_list {
   overflow: hidden;
   float: left;
-  padding-left: 25px; }
+  padding-left: 25px;
+  width: 600px; }
   @media (min-width: 992px) and (max-width: 1199px) {
     #thumbs_list {
       width: 294px; } }
@@ -402,23 +403,22 @@ span.view_scroll_spacer {
   .box-info-product p {
     margin-bottom: 7px; }
   .box-info-product .exclusive {
-    padding: 0;
-    border-top: 1px solid #0079b6;
-    border-right: 1px solid #006fa8;
-    border-left: 1px solid #006fa8;
-    border-bottom: 1px solid #012740;
-    -moz-border-radius: 5px;
-    -webkit-border-radius: 5px;
-    border-radius: 5px;
+    padding: 3px;;
+    border: 2px solid #0187d0;
+    -moz-border-radius: 4px;
+    -webkit-border-radius: 4px;
+    border-radius: 4px;
     position: relative;
     display: block;
-    background-image: url('data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0idXRmLTgiPz4gPHN2ZyB2ZXJzaW9uPSIxLjEiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PGRlZnM+PGxpbmVhckdyYWRpZW50IGlkPSJncmFkIiBncmFkaWVudFVuaXRzPSJvYmplY3RCb3VuZGluZ0JveCIgeDE9IjAuNSIgeTE9IjAuMCIgeDI9IjAuNSIgeTI9IjEuMCI+PHN0b3Agb2Zmc2V0PSIwJSIgc3RvcC1jb2xvcj0iIzAwOWFkMCIvPjxzdG9wIG9mZnNldD0iMTAwJSIgc3RvcC1jb2xvcj0iIzAwN2FiNyIvPjwvbGluZWFyR3JhZGllbnQ+PC9kZWZzPjxyZWN0IHg9IjAiIHk9IjAiIHdpZHRoPSIxMDAlIiBoZWlnaHQ9IjEwMCUiIGZpbGw9InVybCgjZ3JhZCkiIC8+PC9zdmc+IA==');
     background-size: 100%;
-    background-image: -webkit-gradient(linear, 50% 0%, 50% 100%, color-stop(0%, #009ad0), color-stop(100%, #007ab7));
-    background-image: -moz-linear-gradient(#009ad0, #007ab7);
-    background-image: -webkit-linear-gradient(#009ad0, #007ab7);
-    background-image: linear-gradient(#009ad0, #007ab7);
-    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#009ad0', endColorstr='#007ab7',GradientType=0 ); }
+    color:#fff;
+    background:#0187d0;    
+    }
+  .box-info-product .exclusive:hover {
+    border: 2px solid #0187d0;
+    color:#0187d0;
+    background:#fff;
+    }
     .box-info-product .exclusive:before {
       font-family: "FontAwesome";
       position: absolute;
@@ -428,18 +428,17 @@ span.view_scroll_spacer {
       color: #fff;
       font-size: 20px;
       line-height: 34px;
-      text-shadow: 0 1px #015883;
       content: "\f07a";
       z-index: 2;
       width: 40px;
       text-align: center;
-      border: 1px solid #06b2e6;
-      -moz-border-radius: 5px 0 0 5px;
-      -webkit-border-radius: 5px;
-      border-radius: 5px 0 0 5px; }
+      border-radius: 4px 0 0 4px;}
+    .box-info-product .exclusive:hover:before  {
+      color: #0187d0;
+      background:#fff; }
       @media (max-width: 991px) {
         .box-info-product .exclusive:before {
-          display: none; } }
+           } }
     .box-info-product .exclusive.added:before {
       content: "\f00c"; }
     .box-info-product .exclusive.added.disabled:before, .box-info-product .exclusive.disabled:before {
@@ -449,54 +448,18 @@ span.view_scroll_spacer {
       -webkit-animation: 2s linear 0s normal none infinite spin;
       -moz-animation: 2s linear 0s normal none infinite spin;
       border: none; }
-    .box-info-product .exclusive:after {
-      background: url(../img/border-1.gif) repeat-y 0 0;
-      position: absolute;
-      top: 0;
-      bottom: 0;
-      left: 51px;
-      content: "";
-      width: 1px;
-      z-index: 2; }
-      @media (max-width: 991px) {
-        .box-info-product .exclusive:after {
-          display: none; } }
     .box-info-product .exclusive span {
-      -moz-border-radius: 5px;
-      -webkit-border-radius: 5px;
-      border-radius: 5px;
-      font-weight: 500;
       font-size: 16px;
-      line-height: 22px;
-      border-top: 1px solid #06b2e6;
-      border-right: 1px solid #06b2e6;
-      border-left: 1px solid #06b2e6;
-      border-bottom: 1px solid #06b2e6;
-      text-shadow: 0 1px #015883;
       padding: 6px 16px 6px 40px;
-      color: #fff;
-      display: block !important;
-      -moz-transition: all 0.3s ease;
-      -o-transition: all 0.3s ease;
-      -webkit-transition: all 0.3s ease;
-      transition: all 0.3s ease; }
+      display: block !important;}
       @media (max-width: 1199px) {
         .box-info-product .exclusive span {
-          padding: 12px 22px 14px 55px;
-          font-size: 14px; } }
+          font-size: 16px; } }
       @media (max-width: 991px) {
         .box-info-product .exclusive span {
-          padding: 8px 12px 10px;
           text-align: left; } }
-    .box-info-product .exclusive:hover {
-      background-image: url('data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0idXRmLTgiPz4gPHN2ZyB2ZXJzaW9uPSIxLjEiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PGRlZnM+PGxpbmVhckdyYWRpZW50IGlkPSJncmFkIiBncmFkaWVudFVuaXRzPSJvYmplY3RCb3VuZGluZ0JveCIgeDE9IjAuNSIgeTE9IjAuMCIgeDI9IjAuNSIgeTI9IjEuMCI+PHN0b3Agb2Zmc2V0PSIwJSIgc3RvcC1jb2xvcj0iIzAwN2FiNyIvPjxzdG9wIG9mZnNldD0iMTAwJSIgc3RvcC1jb2xvcj0iIzAwOWFkMCIvPjwvbGluZWFyR3JhZGllbnQ+PC9kZWZzPjxyZWN0IHg9IjAiIHk9IjAiIHdpZHRoPSIxMDAlIiBoZWlnaHQ9IjEwMCUiIGZpbGw9InVybCgjZ3JhZCkiIC8+PC9zdmc+IA==');
-      background-size: 100%;
-      background-image: -webkit-gradient(linear, 50% 0%, 50% 100%, color-stop(0%, #007ab7), color-stop(100%, #009ad0));
-      background-image: -moz-linear-gradient(#007ab7, #009ad0);
-      background-image: -webkit-linear-gradient(#007ab7, #009ad0);
-      background-image: linear-gradient(#007ab7, #009ad0);
-      filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#007ab7', endColorstr='#009ad0',GradientType=0 );
-      background-position: 0 0; }
+    .box-info-product .exclusive span:hover {
+}
 
 #center_column.col-sm-9 .col-md-3 .box-info-product {
   background: #f6f6f6;
@@ -739,7 +702,7 @@ table.table-product-discounts {
 
 /* prices */
 .content_prices {
-  padding: 13px;
+  padding: 10px 13px 3px;;
   border-bottom: 1px solid #dfdede;
    }
 .content_prices:nth-last-child(2) {
@@ -808,7 +771,7 @@ table.table-product-discounts {
 
 .buttons_bottom_block {
   clear: both;
-  padding: 13px 15px 0; }
+  padding: 10px 15px 3px; }
   .buttons_bottom_block #wishlist_button {
     font-weight: 700; }
 

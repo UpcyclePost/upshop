@@ -57,19 +57,47 @@
     cursor: pointer;
 }
 
-div.uploader
-{
+div.uploader {
     width: 33%;
     display: inline-block;
 }
+div.uploader span.action {
+    text-shadow: none;
+    font-size: 14px;
+    font-weight: normal;
+    color: #666;
+	background-image:none;
+	background-color: #f7f7f7;
+  	border: 2px solid;
+    border-color: #666;
+    border-radius: 4px;
+    -webkit-border-radius: 4px;
+    -moz-border-radius: 4px;   
+}
+	div.uploader:hover span.action {
+	    text-shadow: none;
+	    font-size: 14px;
+	    font-weight: normal;
+	    color: #fff;
+		background-image:none;
+		background-color: #666;
+	  	border: 2px solid;
+	    border-color: #666;
+	    border-radius: 4px;
+	    -webkit-border-radius: 4px;
+	    -moz-border-radius: 4px;   
+	}
 
 #add_img:hover
 {
 	text-decoration:underline;
 }
+
+.icon-trash:hover{
+	color:silver;
+}
 </style>
 
-{capture name=path}{l s='Product Update' mod='marketplace'}{/capture}
 <span id="error">{l s='Field Should not be Empty.' mod='marketplace'}</span>
 	{if $is_main_er==1}
 		<div class="alert alert-danger">
@@ -132,6 +160,7 @@ div.uploader
 			<div class="tab-pane active" id="information">
 				<div class="wk_product_form">
 				{hook h='displayMpUpdateProductBodyHeaderOption'}
+					<p><sup style="color:#f00;">*</sup> Required field</p>
 					<div class="required form-group">
 						<label for="product_name"><sup style="color:#f00;">*&nbsp;</sup>{l s='Product Name :' mod='marketplace'}</label>
 						<input type="text" id="product_name" name="product_name" value="{$pro_info['product_name']|escape:'html':'UTF-8'}" class="form-control" />
@@ -164,8 +193,8 @@ div.uploader
 					<div class="form-group">
 						<label for="prod_price"><sup style="color:#f00;">*&nbsp;</sup>{l s='Price :' mod='marketplace'}</label>&nbsp;Numbers and decimal point only (e.g. 1234.56)
 						<div class="input-group">
-							<input type="text" id="product_price" name="product_price" value="{$pro_info['price']|number_format:2:'.':''|escape:'html':'UTF-8'}"  class="form-control"  onblur="javascript:this.value=Number(this.value).toFixed(2)"/>
 							<span class="input-group-addon">{$currency_sign|escape:'html':'UTF-8'}</span>
+							<input type="text" id="product_price" name="product_price" value="{$pro_info['price']|number_format:2:'.':''|escape:'html':'UTF-8'}"  class="form-control"  onblur="javascript:this.value=Number(this.value).toFixed(2)"/>
 						</div>
 					</div>
 
@@ -181,20 +210,15 @@ div.uploader
 						<div>{$categoryTree|escape:'intval'}</div>
 					</div>
 					{hook h="DisplayMpupdateproductfooterhook"}
-                    <div class="form-group">
-                            <label for="upload_image" style="display:block">
+<!--                    <div class="form-group">
+                            <label for="product_image" style="display:block">
                                     {l s='Upload Image : ' mod='marketplace'}
                             </label>
                             <input type="file" id="product_image" name="product_image" value="" class="account_input form-control" size="chars" />
                             <img style="display:none;" id="testImg" src="#" alt="" height="40px" width="40px" />
-                            <p class="img_validate">{l s='Images should be less than 2MB and ideally less than 1000px. Valid image extensions are jpg, jpeg, and png.' mod='marketplace'}</p>
+                            <p class="info_description">{l s='Images should be less than 2MB and ideally less than 1000px. Valid image extensions are jpg, jpeg, and png.' mod='marketplace'}</p>
                     </div>
-					<div class="form-group">
-						<a onclick="showOtherImage(); return false;" class="btn btn-default button button-small">
-								<span>{l s='Add another image' mod='marketplace'}</span>
-							</a>
-						<div id="wk_prod_other_images"></div>
-					</div>				
+-->
 				</div>
 			</div>
 
@@ -250,6 +274,7 @@ div.uploader
 					 {/if}
 					</table>
 			    </div>
+
 				{else}
 					<div id="image_details" style="float:left;margin-top:10px;">
 						<table>
@@ -276,10 +301,17 @@ div.uploader
 					</div>
 				{/if}
 			</div>
+			<div class="form-group" style="margin: 10px 0px 0px 15px">
+				<a onclick="showOtherImage(); return false;" class="button lnk_view btn btn-default">
+						<span>{l s='Add another image' mod='marketplace'}</span>
+					</a>
+				<div id="wk_prod_other_images"></div>
+			</div>				
+
 			{hook h="DisplayMpupdateproducttabhook"}
 			<div class="form-group" style="text-align:center;" id="update_product_submit_div">
 				<button type="submit" id="SubmitCreate" class="btn btn-default button button-medium">
-					<span>{l s='Update' mod='marketplace'}</span>
+					<span>{l s='Save' mod='marketplace'}</span>
 				</button>
                 <span id="loadin_msg" style="display:none;margin-left:15px;margin-top: 12px;font-size: 15px;color: orangered;position: absolute;">{l s='Please wait while we update your product...' mod='marketplace'}</span>				
 			</div>
@@ -326,7 +358,7 @@ div.uploader
 	    var newdiv = document.createElement('div');
 	    newdiv.setAttribute("id", "childDiv" + i);
 	    newdiv.setAttribute("class", "wkChildDivClass");
-	    newdiv.innerHTML = "<input type='file' class=\"btn\" onchange=\"changeEvent(this,"+i+")\" id='images"+i+"' name='images[]' /><img id='showimg"+i+"' style=\"display:none\" src=\"#\" height=\"40px\" width=\"40px\" onload=\"loadEvent("+i+")\"><a style=\"height:27px\" class=\"btn btn-default button button-small\" href=\"javascript:;\" onclick=\"removeEvent('childDiv"+i+"')\"><span style=\"color:#FFF\">Remove</span></a>";		
+	    newdiv.innerHTML = "<input type='file' class=\"btn\" onchange=\"changeEvent(this,"+i+")\" id='images"+i+"' name='images[]' /><img id='showimg"+i+"' style=\"display:none\" src=\"#\" height=\"40px\" width=\"40px\" onload=\"loadEvent("+i+")\"><a style=\"height:27px\" href=\"javascript:;\" onclick=\"removeEvent('childDiv"+i+"')\"><span style=\"color:#666;font-size:24px;padding-top:6px;\"><i class=\"icon-trash\"></i></span></a>";		
 	    var ni = document.getElementById('wk_prod_other_images');
 	    ni.appendChild(newdiv);
 	    i++;

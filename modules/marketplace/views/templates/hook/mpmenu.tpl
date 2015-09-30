@@ -53,15 +53,6 @@ if ( $.mobile ) {
 				</li>
 				-->					
 				{hook h="DisplayMpmenuhookext"}
-                <li style="border-top: solid 2px #0187d0">
-                </li>
-
-                <li>
-                        <span>
-                                <a href="{$seller_profile|escape:'html':'UTF-8'}" title="View Seller Profile">{l s='View Seller Profile' mod='marketplace'}</a>
-                        </span>
-                </li>
-
 				<li {if $logic==2}class="menu_active"{/if}>
 					<span>
 						<a href="{$edit_profile|escape:'html':'UTF-8'}" title="Edit Seller Profile">{l s='Edit Seller Profile' mod='marketplace'}</a>

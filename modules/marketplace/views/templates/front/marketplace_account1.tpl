@@ -11,7 +11,7 @@
     float: left;
     width: 100%;
     border-top: 0px;
-    padding: 15px;
+    padding: 5px;
     background: #fff;
     -webkit-border-radius: 0;
     -moz-border-radius: 0;
@@ -28,6 +28,21 @@
 		  display:none;
 		  }
   }
+select{
+	padding: 3px 5px;
+    height: 30px;
+    -webkit-box-shadow: none;
+    box-shadow: none;
+    border-radius: 4px;
+    border: 1px solid #999;
+    color: #9c9b9b;
+	width:100%;
+}
+select:focus{
+	outline: 0;
+    -webkit-box-shadow: 0 0 8px rgba(103, 174, 233, 0.6);
+    box-shadow: 0 0 8px rgba(103, 174, 233, 0.6);
+} 
 </style>
 {/if}
 
@@ -55,6 +70,7 @@
 	var src_enabled = '{$img_ps_dir|escape:'html':'UTF-8'}admin/enabled.gif';
 	var ajax_urlpath = '{$imageediturl|escape:'intval'}';
 	var id_lang = '{$id_lang|escape:'html':'UTF-8'}';
+	var has_shipping = true;
 </script>
 
 
@@ -78,7 +94,7 @@
 				<div class="box-account box-recent">
 					<div class="box-head">
 						<div class="box-head-left">
-						<h2>{l s='Recent Orders Received' mod='marketplace'}</h2>
+						<h3>{l s='Recent Orders Received' mod='marketplace'}</h3>
 						</div>
 						<div class="box-head-right">
 						<a class="btn btn-default button button-small" href="{$link->getModuleLink('marketplace','marketplaceaccount',['shop'=>{$id_shop|escape:'html':'UTF-8'},'l'=>4])|escape:'html':'UTF-8'}"><span>{l s='View All' mod='marketplace'}</span></a>
@@ -104,7 +120,7 @@
 								{assign var=i value=0}
 								{while $i != $count}
 									<tr class="even">
-										<td><a class="btn btn-default button button-small" href="{$link->getModuleLink('marketplace','marketplaceaccount',['flag'=>1,'shop'=>{$id_shop|escape:'html':'UTF-8'},'l'=>6,id_order=>{$dashboard[$i]['id_order']|escape:'html':'UTF-8'}])|escape:'html':'UTF-8'}"><span>View</span></a></td>
+										<td style="nowrap" nowrap><a class="btn btn-default button button-small" href="{$link->getModuleLink('marketplace','marketplaceaccount',['flag'=>1,'shop'=>{$id_shop|escape:'html':'UTF-8'},'l'=>6,id_order=>{$dashboard[$i]['id_order']|escape:'html':'UTF-8'}])|escape:'html':'UTF-8'}"><span>View</span></a></td>
 										<td>{$dashboard[$i]['ref']|escape:'html':'UTF-8'}</td>
 										<td data-value="{$dashboard[$i]['date_add']|regex_replace:"/[\-\:\ ]/":""}}"><span class="nobr">{$dashboard[$i]['date_add']|date_format:"%D %l:%M %p"|escape:'html':'UTF-8'}</span></td>
 										<!-- <td>{$dashboard[$i]['name']|escape:'html':'UTF-8'}</td> -->
@@ -121,7 +137,7 @@
 				</div>	
 				<div class="box-account box-recent">
 					<div class="box-head">
-						<h2>{l s='Orders Graph' mod='marketplace'}</h2>
+						<h3>{l s='Orders Graph' mod='marketplace'}</h3>
 						<div class="wk_border_line"></div>
 					</div>
 					<div class="box-content">
@@ -214,17 +230,11 @@
     });
      function show_load_msg()
 	 {
-					$('#update_profile').attr('disabled','disabled');
-					$('#loadin_msg').show();				
-	}
+		$('#update_profile').attr('disabled','disabled');
+		$('#loadin_msg').show();				
+     }
 	</script>
-	{capture name=path}
-        <a href="{$account_dashboard|addslashes}">
-                {l s='My Dashboard'}
-        </a>
-        <span class="navigation-pipe">{$navigationPipe}</span>
-        <span class="navigation_page">{l s='Edit Seller Profile' mod='marketplace'}</span>
-	{/capture}
+
 	<div class="dashboard_content login-panel">
 		{if $is_profile_updated == 1}
 			<p class="alert alert-success">{l s='Profile information successfully updated.' mod='marketplace'}</p>
@@ -243,8 +253,8 @@
 				<h1>{l s='Edit Seller Profile' mod='marketplace'}</h1>
 			</div>
 			<div class="wk_right_col">
-			<div class="col-sm-12">
-				<div class="col-sm-6">
+			<div class="col-sm-12 col-xs-12">
+				<div class="col-sm-6 col-xs-12">
 				<div class="profile_content">
 					<div class="profile_content_heading">
 						{if $edit==0}
@@ -334,40 +344,37 @@
                                 {/if}
                                  <fieldset style="">
                                  <div id="bank" class="form-group" >
-                                    <label for="bank" class="control-label required">{l s='Bank Account Number' mod='marketplace'} {if $bank_data.bank_name!=''}({$bank_data.bank_name}){/if}</label>
+                                    <label for="bank" class="control-label required">{l s='Bank Account Number' mod='marketplace'} {if $bank_data.bank_name!=''}({$bank_data.bank_name}){/if}</label>&nbsp;{l s='e.g.' mod='marketplace'} 000123456789
                                     <input class="reg_sel_input form-control"  type="text" name="bank" id="bank" value="{if $bank_data.last4!=''}********{$bank_data.last4}{/if}" {if $stripestatus=='verified'}disabled="disabled"{/if} />
-                                    {l s='e.g.' mod='marketplace'} 000123456789
                                 </div>
                                     
                                 <div id="routing" class="form-group" >
-                                    <label for="routing" class="control-label required">{l s='Routing Number' mod='marketplace'}</label>
+                                    <label for="routing" class="control-label required">{l s='Routing Number' mod='marketplace'}</label>&nbsp;{l s='e.g.' mod='marketplace'} 110000000
                                     <input class="reg_sel_input form-control"  type="text" name="routing" id="routing" value="{$bank_data.routing_number}"  {if $stripestatus=='verified'}disabled="disabled"{/if} />
-                                    {l s='e.g.' mod='marketplace'} 110000000
                                 </div>
                                 
-                                <fieldset style="">
                                 <div id="type" class="form-group" >
                                     <label for="type" class="control-label required">{l s='Entity Type' mod='marketplace'}</label>
-                                    <select name="type" id="type" {if $stripestatus=='verified'}disabled="disabled"{/if}><option value="individual" {if $type=='individual'}selected="selected"{/if}>{l s='Individual' mod='marketplace'}</option><option value="company" {if $type=='company'}selected="selected"{/if}>{l s='Company' mod='marketplace'}</option></select>
+                                    <select name="type" style="width:100%;height:30px;" id="type" {if $stripestatus=='verified'}disabled="disabled"{/if}><option value="individual" {if $type=='individual'}selected="selected"{/if}>{l s='Individual' mod='marketplace'}</option><option value="company" {if $type=='company'}selected="selected"{/if}>{l s='Company' mod='marketplace'}</option></select>
                                 </div>
-                                <div id="fname" class="form-group" >
+                                <div id="fname" class="" >
                                     <label for="fname" class="control-label required">{l s='First Name' mod='marketplace'}</label>
-                                    <input class="form-control"  type="text" name="fname" id="fname" style="width:100px;display: inline;" value="{$fname}" {if $stripestatus=='verified'}disabled="disabled"{/if} />&nbsp;&nbsp;
+                                    <input class="form-control"  type="text" name="fname" id="fname" value="{$fname}" {if $stripestatus=='verified'}disabled="disabled"{/if} />&nbsp;&nbsp;
+                                </div>
+                                <div id="lname" class="form-group" >
                                     <label for="lname" class="control-label required">{l s='Last Name' mod='marketplace'}</label>
-                                    <input class="form-control"  type="text" name="lname" id="lname" style="width:100px;display: inline;" value="{$lname}" {if $stripestatus=='verified'}disabled="disabled"{/if} />
+                                    <input class="form-control"  type="text" name="lname" id="lname" value="{$lname}" {if $stripestatus=='verified'}disabled="disabled"{/if} />
                                 </div>
                                 <div id="ssn" class="form-group" >
                                     <label for="ssn" class="control-label required">{l s='SSN/EIN last 4 digits' mod='marketplace'}</label>
-                                    <input class="form-control"  type="text" name="ssn" id="ssn" style="width:50px;display: inline;" value="{if $type!=''}****{/if}" maxlength="4" {if $stripestatus=='verified'}disabled="disabled"{/if} />
+                                    <input class="form-control"  type="text" name="ssn" id="ssn" value="{if $type!=''}****{/if}" maxlength="4" {if $stripestatus=='verified'}disabled="disabled"{/if} />
                                 </div>
                                 <div id="routing" class="form-group" >
-                                    <label for="routing" class="control-label required">{l s='Date of birth' mod='marketplace'}</label>
+                                    <label for="routing" class="control-label required">{l s='Date of birth' mod='marketplace'}</label>&nbsp;{l s='e.g. 12/31/1988' mod='marketplace'}<p>
                                     <input {if $stripestatus=='verified'}disabled="disabled"{/if} class="form-control"  type="text" name="month" id="month" style="width:30px;display: inline;" value="{$dob.month}"  maxlength="2"/> /
                                     <input {if $stripestatus=='verified'}disabled="disabled"{/if} class="form-control"  type="text" name="day" id="day" style="width:30px;display: inline;" value="{$dob.day}"  maxlength="2"/> /
                                     <input {if $stripestatus=='verified'}disabled="disabled"{/if} class="form-control"  type="text" name="year" id="year" style="width:50px;display: inline;" value="{$dob.year}"  maxlength="4"/>&nbsp;
-                                    {l s='e.g.' mod='marketplace'} 12/31/1988
                                 </div>
-                                </fieldset>
                                 </fieldset>
 								{hook h="DisplayMpshopaddfooterhook"}
 							</div>
@@ -391,26 +398,19 @@
 					</div>
 				</div>
 			</div>
-			<div class="submit-button" style="padding-bottom:15px;">
+			<div class="submit-button" style="padding-bottom:30px;">
 					<button type="submit" id="update_profile" class="btn btn-default button button-medium">
-						<span>{l s='Update' mod='marketplace'}</span>
+						<span>{l s='Save' mod='marketplace'}</span>
 					</button>&nbsp;&nbsp;
 	                <span id="loadin_msg" style="display:none;margin-top: 12px;font-size: 15px;color: orangered;position: absolute;">{l s='Please wait while we validate your banking information...' mod='marketplace'}</span>
 				</div>
 				</fieldset>
 			</div>							
-				</form>
-					{/if}
-				</div>
+			</form>
+			{/if}
+
 			</div>
 	{else if $logic==3}
-        {capture name=path}
-        <a href="{$account_dashboard|addslashes}">
-                {l s='My Dashboard'}
-        </a>
-        <span class="navigation-pipe">{$navigationPipe}</span>
-        <span class="navigation_page">{l s='Product List' mod='marketplace'}</span>
-        {/capture}
 			<div class="dashboard_content login-panel">
 				{if $is_deleted == 1 && $duplicate_conf != 1}
 					<p class="alert alert-success">{l s='Deleted Successfully' mod='marketplace'}</p>
@@ -431,6 +431,7 @@
 				{/if}
 				<div class="wk_right_col">
 					<div class="wk_product_list">
+		                <span id="shipping_msg" style="display:none;margin-left:5px;margin-top: 5px;font-size: 15px;color: orangered;position: absolute;">{l s='Products with an exclamation do not have a shipping profile assigned, please edit the product and assign a shipping profile' mod='marketplace'}</span>
 		                <span id="loadin_msg" style="display:none;margin-left:5px;margin-top: 5px;font-size: 15px;color: orangered;position: absolute;">{l s='Please wait while we create a duplicate...' mod='marketplace'}</span>
 		                <span id="delete_msg" style="display:none;margin-left:5px;margin-top: 5px;font-size: 15px;color: orangered;position: absolute;">{l s='Please wait while we delete the product...' mod='marketplace'}</span>						
 						<div class="left full">
@@ -457,14 +458,14 @@
 							{assign var=i value=1} 
 							{foreach $product_lists as $product}
 								<tr class="even">
-									<td>
+									<td style="nowrap" nowrap>
 										<a id="{$product['id']|escape:'html':'UTF-8'}" class="btn btn-default button button-small edit_img"><span>Edit</span></a>
 									</td>
                                      <td>
                                     <form action="" method="post" id="form_{$product['id']}">
 										 <input type="hidden" name="do_duplicate" value="duplicate" />
 										 <input type="hidden" name="id_product" value="{$product['id']}" />
-                                        <input id="{$product['id']}" class="btn btn-default button button-small duplicate" type="submit" name="duplicate" value="Duplicate" style="background-color:#89c226;padding:3px 8px;"/>
+                                        <input id="{$product['id']}" class="input-small-grey duplicate" type="submit" name="duplicate" value="Duplicate"/>
                                         </form>
 									</td>
 									<td>
@@ -497,6 +498,7 @@
 												<!--{l s='Assigned' mod='marketplace'}-->
 												<i class="fa fa-check-circle fa-2x" style="color:#89c226;"></i>
 											{else}
+												<script>has_shipping = false;</script>
 												<!--{l s='Not Assigned' mod='marketplace'}-->
 												<i class="fa fa-exclamation-circle fa-2x" style="color:#f3515c;" title="A shipping profile must be assigned to this product, click the edit button to assign one."></i>
 											{/if}
@@ -513,8 +515,11 @@
 									<td>
 									{ProductController::getTotalViewed($product['id_product'])}
 									</td>
-									<td>
-										<img id="{$product['id']|escape:'html':'UTF-8'}" class="delete_img" src="{$img_ps_dir|escape:'html':'UTF-8'}admin/delete.gif"/>
+									<td style="text-align:center">
+										<span class="delete_img">
+											<i class="icon-trash "></i>
+										</span>
+										<!--<img id="{$product['id']|escape:'html':'UTF-8'}" class="delete_img" src="{$img_ps_dir|escape:'html':'UTF-8'}admin/delete.gif"/>-->
 										{hook h="PriceDisplay" id_product=$product['id']|escape:'html':'UTF-8'}
 									</td>
 								</tr>
@@ -657,7 +662,7 @@
 			<div class="wk_right_col">
 				<div class="box-account box-recent">
 					<div class="box-head">
-						<h2>{l s='Recent Orders Received' mod='marketplace'}</h2>
+						<h3>{l s='Recent Orders Received' mod='marketplace'}</h3>
 						<div class="wk_border_line"></div>
 					</div>
 					<div class="box-content">
@@ -697,27 +702,6 @@
 				</div>
 				</div>
 				</div>
-				<!--
-				<div class="box-account box-recent">
-					<div class="box-head">
-						<h2>{l s='Customer Feedback' mod='marketplace'}</h2>
-						<div class="wk_border_line"></div>
-					</div>
-					
-					<div class="box-content">
-					{assign var=i value=0}
-					{while $i != $count_msg}
-					<div id="feedback_box">
-							<div id="feedback_by" class="feedback_inner_box"><h4>{l s='FeedBack By' mod='marketplace'}</h4><span>{$message[$i]['firstname']|escape:'html':'UTF-8'}</span></div>
-							<div id="product_name" class="feedback_inner_box"><h4>{l s='Product Name' mod='marketplace'}</h4><span>{$message[$i]['product_name']|escape:'html':'UTF-8'}</span></div>
-							<div id="feedback" class="feedback_inner_box"><h4>{l s='FeedBack' mod='marketplace'}</h4><span>{$message[$i]['message']|escape:'html':'UTF-8'}</span></div>
-							<div id="date_add" class="feedback_inner_box"><h4>{l s='Date Add' mod='marketplace'}</h4><span>{$message[$i]['date_add']|escape:'html':'UTF-8'}</span></div>
-					</div>
-					{assign var=i value=$i+1}
-					{/while}
-					</div>
-				</div>
-				-->
 			</div>
 		</div>
 		</div>
@@ -842,11 +826,11 @@
 				<div class="box-account box-recent">
 					<div class="box-head">
 						<div class="box-head-left">
-							<h2>{l s='Product Details' mod='marketplace'}</h2>
+							<h3>{l s='Product Details' mod='marketplace'}</h3>
 						</div>
 						<div class="box-head-right">
-						<a class="btn btn-default button button-small" href="{$link->getModuleLink('marketplace','marketplaceaccount',['shop'=>{$id_shop|escape:'html':'UTF-8'},'l'=>4])|escape:'html':'UTF-8'}">
-							<span>{l s='Back to orders' mod='marketplace'}</span>
+						<a class="btn lnk_view button button-medium" href="{$link->getModuleLink('marketplace','marketplaceaccount',['shop'=>{$id_shop|escape:'html':'UTF-8'},'l'=>4])|escape:'html':'UTF-8'}">
+							<span><i class="fa fa-chevron-left"></i>{l s='Back to orders' mod='marketplace'}</span>
 						</a>
 						</div>
 						<div class="wk_border_line"></div>
@@ -858,9 +842,9 @@
 
 				<div class="box-account box-recent">
 					<div class="box-head">
-						<h2>{l s='Order Details' mod='marketplace'}</h2>
+						<h3>{l s='Order Details' mod='marketplace'}</h3>
 							Order Reference - {$dashboard[0]['ref']}
-							<a target="_blank" class="btn btn-gray" style="float:right;margin:-15px 0 0 0" href="{$link->getPageLink('pdf-invoice', true)}?id_order={$dashboard[0]['id_order']|intval}&amp;secure_key={$dashboard[0]['secure_key']|escape:'html':'UTF-8'}"><i class="fa fa-file-pdf-o icon-only"></i> {l s='Download invoice as a PDF file.'}</a>
+							<a target="_blank" class="btn lnk_view button" style="float:right;margin:-15px 0 0 0" href="{$link->getPageLink('pdf-invoice', true)}?id_order={$dashboard[0]['id_order']|intval}&amp;secure_key={$dashboard[0]['secure_key']|escape:'html':'UTF-8'}"><span><i class="fa fa-file-pdf-o icon-only"></i> {l s='Download invoice'}</span></a>
 						<div class="wk_border_line"></div>
 					</div>
 					<div class="box-content">
@@ -883,6 +867,8 @@
 {if $logic ==3}
 <script type="text/javascript">
 $(document).ready(function(){
+	if (!has_shipping) $('#shipping_msg').show();
+	
 	$(".edit_img").click(function()
 	{
 		var id=$(this).attr("id");

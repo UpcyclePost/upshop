@@ -7,7 +7,6 @@
 }
 .demo{}
 
-
 #otherimages div{
   margin-bottom: 10px;
 }
@@ -44,13 +43,47 @@
 }
 
 div.uploader {
-
     width: 33%;
     display: inline-block;
 }
+div.uploader span.action {
+    text-shadow: none;
+    font-size: 14px;
+    font-weight: normal;
+    color: #666;
+	background-image:none;
+	background-color: #f7f7f7;
+  	border: 2px solid;
+    border-color: #666;
+    border-radius: 4px;
+    -webkit-border-radius: 4px;
+    -moz-border-radius: 4px;   
+}
+	div.uploader:hover span.action {
+	    text-shadow: none;
+	    font-size: 14px;
+	    font-weight: normal;
+	    color: #fff;
+		background-image:none;
+		background-color: #666;
+	  	border: 2px solid;
+	    border-color: #666;
+	    border-radius: 4px;
+	    -webkit-border-radius: 4px;
+	    -moz-border-radius: 4px;   
+	}
 
 #add_img:hover {
 	text-decoration:underline;
+}
+.input-group-addon {
+    padding: 5px 10px;
+    font-size: 14px;
+    line-height: 1;
+    border-radius: 3px;
+}
+.icon-trash:hover{
+	color:silver;
 }
 </style>
 
@@ -162,8 +195,9 @@ $(document).ready(function() {
 						<div class="form-group">
 							<label for="product_price" class="control-label required">{l s='Price :' mod='marketplace'}</label>&nbsp;Numbers and decimal point only (e.g. 1234.56)
 							<div class="input-group">
-						  		<input type="text" id="product_price" name="product_price" value="{$c_mp_product_price|escape:'html':'UTF-8'}"  class="account_input form-control" placeholder="{l s='Enter product price' mod='marketplace'}" onblur="javascript:this.value=Number(this.value).toFixed(2)"/>
 						  		<span class="input-group-addon">{$currency_sign|escape:'html':'UTF-8'}</span>
+						  		<input type="text" id="product_price" name="product_price" value="{$c_mp_product_price|escape:'html':'UTF-8'}"  class="account_input form-control" placeholder="{l s='Enter product price' mod='marketplace'}" onblur="javascript:this.value=Number(this.value).toFixed(2)"/>
+
 						  	</div>
 						</div>
 
@@ -181,12 +215,12 @@ $(document).ready(function() {
 						<div class="form-group">   
 							<label for="product_image" style="display:block">{l s='Upload Image :' mod='marketplace'}</label>
 							<input type="file" id="product_image" name="product_image" value="" class="account_input form-control" size="chars"  />
-							<img style="display:none;" id="testImg" src="#" alt="" height="40px" width="40px" />
-							<p class="help-block">{l s='Images should be less than 2MB and ideally less than 1000px. Valid image extensions are jpg, jpeg, and png.' mod='marketplace'}</p>
+							<img style="display:none;" id="testImg" src="#" alt="" height="50px" width="50px" />
+							<p class="info_description">{l s='Images should be less than 2MB and ideally less than 1000px. Valid image extensions are jpg, jpeg, and png.' mod='marketplace'}</p>
 						</div>
 
 						<div class="form-group">
-							<a onclick="showOtherImage(); return false;" class="btn btn-default button button-small">
+							<a onclick="showOtherImage(); return false;" class="button lnk_view btn btn-default">
 								<span>{l s='Add another image' mod='marketplace'}</span>
 							</a>
 							<div id="wk_prod_other_images"></div>
@@ -230,14 +264,15 @@ $(document).ready(function() {
 	var char_seo_title_length = '{l s='SEO title should be less than 120 characters.' js=1 mod='marketplace'}';
 	var char_seo_description_length = '{l s='SEO description should be less than 120 characters.' js=1 mod='marketplace'}';
 
-
 	var i = 2;
 	function showOtherImage()
 	{
 	    var newdiv = document.createElement('div');
 	    newdiv.setAttribute("id", "childDiv" + i);
 	    newdiv.setAttribute("class", "wkChildDivClass");
-	    newdiv.innerHTML = "<input class=\"btn\" type='file' onchange=\"changeEvent(this,"+i+")\" id='images"+i+"' name='images[]' /><img id='showimg"+i+"' style=\"display:none\" src=\"#\" height=\"40px\" width=\"40px\" onload=\"loadEvent("+i+")\"><a style=\"height:27px\" class=\"btn btn-default button button-small\" href=\"javascript:;\" onclick=\"removeEvent('childDiv"+i+"')\"><span style=\"color:#FFF\">Remove</span></a>";
+	    newdiv.innerHTML = "<input type='file' class=\"btn\" onchange=\"changeEvent(this,"+i+")\" id='images"+i+"' name='images[]' />";
+		newdiv.innerHTML += "<img id='showimg"+i+"' style=\"display:none\" src=\"#\" height=\"40px\" width=\"40px\" onload=\"loadEvent("+i+")\">";
+		newdiv.innerHTML += "<a style=\"height:27px\" href=\"javascript:;\" onclick=\"removeEvent('childDiv"+i+"')\"><span style=\"color:#666;font-size:24px;padding-top:6px;\"><i class=\"icon-trash\"</i></span></a>";
 	    var ni = document.getElementById('wk_prod_other_images');
 	    ni.appendChild(newdiv);
 	    i++;

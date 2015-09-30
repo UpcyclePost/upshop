@@ -8,17 +8,27 @@ ul.product_list .product-name {
 ul.product_list .availability span {
   display: inline-block;
   color: #fff;
-  font-weight: bold;
-  padding: 3px 8px 4px 8px;
+  padding: 6px 12px;
   margin-bottom: 20px; }
   ul.product_list .availability span.available-now {
-    background: #89c226;
-    border: 1px solid #89c226; 
+    color: #89c226;
+    background: #fff;
+    border: 2px solid #89c226; 
     border-radius: 4px;}
+  ul.product_list .availability span.available-now:before {
+    font-family: fontawesome;
+    content: "\f00c";
+    color: #89c226;}
   ul.product_list .availability span.out-of-stock {
-    background: #ff6666;
-    border: 1px solid #ff6666;
+    color:#ff6666; 
+    background: #fff;
+    border: 2px solid #ff6666;
     border-radius: 4px; }
+  ul.product_list .availability span.out-of-stock:before {
+    font-family: fontawesome;
+    content: "\f00d";
+    color: #ff6666;}
+
   ul.product_list .availability span.available-dif {
     background: #ff6666;
     border: 1px solid #ff6666; }
