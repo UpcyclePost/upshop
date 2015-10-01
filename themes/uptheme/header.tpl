@@ -87,11 +87,11 @@
 
 		<script type="text/javascript" src="http{if Tools::usingSecureMode()}s{/if}://{$smarty.server.SERVER_NAME}/js/libraries/tagmanager/tagmanager.js"></script>
 
-        <script src="http{if Tools::usingSecureMode()}s{/if}://{$smarty.server.SERVER_NAME}/js/libraries/typeahead/bloodhound.min.js"></script>
-        <script src="http{if Tools::usingSecureMode()}s{/if}://{$smarty.server.SERVER_NAME}/js/libraries/typeahead/typeahead.jquery.min.js"></script>
-        <script src="http{if Tools::usingSecureMode()}s{/if}://{$smarty.server.SERVER_NAME}/js/up.js"></script>
-
-		
+        <script type="text/javascript" src="http{if Tools::usingSecureMode()}s{/if}://{$smarty.server.SERVER_NAME}/js/libraries/typeahead/bloodhound.min.js"></script>
+        <script type="text/javascript" src="http{if Tools::usingSecureMode()}s{/if}://{$smarty.server.SERVER_NAME}/js/libraries/typeahead/typeahead.jquery.min.js"></script>
+        <script type="text/javascript" src="http{if Tools::usingSecureMode()}s{/if}://{$smarty.server.SERVER_NAME}/up/config"></script>
+		<script type="text/javascript" src="http{if Tools::usingSecureMode()}s{/if}://{$smarty.server.SERVER_NAME}/js/up.js"></script>
+				
 		{if $page_name=='product'}
 		<script type="text/javascript" src="http{if Tools::usingSecureMode()}s{/if}://{$smarty.server.SERVER_NAME}/js/social/follow.js"></script>			
 		{/if}

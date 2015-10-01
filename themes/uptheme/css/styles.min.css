@@ -392,7 +392,7 @@
     float: left;
     margin: 0;
     padding: 8px 10px;
-    color: #666;
+    color: #0187d0;
 }
 
 .header-container .buttons .btn-user span:hover {
@@ -425,7 +425,7 @@
 .btn-user:hover {
     cursor: pointer;
     color: #fff;
-    background: #666;
+    background: #0187d0;
     border: 2px solid #ddd;    
 }
 
@@ -839,6 +839,7 @@ header .row #header_logo {
   -moz-border-radius: 3px;
   border-radius: 3px;
   color: #333;
+  z-index:99999;
 }
 
 @media (min-width: 992px) and (max-width: 1199px) {
@@ -2433,7 +2434,7 @@ a:focus {
   background: #fff;
 }
 .mainmenu.active .logo {
-  background: url('../img/logo_blue.png');
+  background: url('../img/logo-active.png');
     height: 50px;
     width: 150px;
 }
@@ -2447,7 +2448,7 @@ a:focus {
   position: relative;
 }
 .mainmenu .logo {
-    background: url('../img/logo_white.png');
+    background: url('../img/logo.png');
     height: 50px;
     width: 150px;
     position: absolute;
