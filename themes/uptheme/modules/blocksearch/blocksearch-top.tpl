@@ -28,7 +28,7 @@
 <!-- Block search module TOP -->
 
 <div class="col-xs-8 col-sm-6 col-md-4 col-lg-5 search-container hidden-xs" style="padding:5px 0">
-<form class="search-form form-inline" method="post" action="http://{$smarty.server.SERVER_NAME}/gallery">
+<form class="search-form form-inline" method="post" action="http://{$smarty.server.SERVER_NAME}/gallery" id="universal-search-form">
 <input type="search" name="term" class="form-control search" placeholder="Search the world's largest upcycle hand-crafted community" id="universal-search">
 </form>
 </div>	
