@@ -204,7 +204,7 @@ for(g=0;g<i.length;g++)f(c,i[g]);b._i.push([a,e,d])};b.__SV=1.2;a=e.createElemen
 				    <div class="container">
 				        <div class="row">
 							<div class="col-xs-12 search-container hidden-sm hidden-md hidden-lg" style="padding:5px 0">
-								<form class="search-form form-inline" method="post" action="http://{$smarty.server.SERVER_NAME}/gallery">
+								<form class="search-form form-inline" method="post" action="http://{$smarty.server.SERVER_NAME}/gallery" id="universal-search-form">
 								<input type="search" name="term" class="form-control search" placeholder="Search the world's largest upcyle hand-crafted community" id="universal-search">
 								</form>
 							</div>
@@ -317,7 +317,7 @@ for(g=0;g<i.length;g++)f(c,i[g]);b._i.push([a,e,d])};b.__SV=1.2;a=e.createElemen
                     <div class="container">
                         <div class="row">
 								<div class="col-xs-12 search-container" style="padding:5px 0">
-								<form class="search-form form-inline" method="post" action="http://{$smarty.server.SERVER_NAME}/gallery">
+								<form class="search-form form-inline" method="post" action="http://{$smarty.server.SERVER_NAME}/gallery" id="universal-search-form">
 								<input type="search" name="term" class="form-control search" placeholder="Search the world's largest upcyle hand-crafted community" id="universal-search">
 								</form>
                             </div>
