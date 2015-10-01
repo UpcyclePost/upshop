@@ -297,9 +297,6 @@ for(g=0;g<i.length;g++)f(c,i[g]);b._i.push([a,e,d])};b.__SV=1.2;a=e.createElemen
                                         <a href="http://{$smarty.server.SERVER_NAME}/browse/products/jewelry">Jewelry</a>
                                     </li>
 
-                                    <li>
-                                        <a href="http://{$smarty.server.SERVER_NAME}/browse/products/vintage">Vintage</a>
-                                    </li>
                                 </ul>
                             </div>
 
