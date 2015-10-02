@@ -516,7 +516,7 @@ select:focus{
 									{ProductController::getTotalViewed($product['id_product'])}
 									</td>
 									<td style="text-align:center">
-										<span class="delete_img">
+										<span id="{$product['id']|escape:'html':'UTF-8'}" class="delete_img">
 											<i class="icon-trash "></i>
 										</span>
 										<!--<img id="{$product['id']|escape:'html':'UTF-8'}" class="delete_img" src="{$img_ps_dir|escape:'html':'UTF-8'}admin/delete.gif"/>-->
