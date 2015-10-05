@@ -8436,12 +8436,19 @@ div.star.star_hover:after {
   .btn-pinterest:hover i {
     color: white; }
 
+/*
 header .buttons font.items {
-    background-color: orange;
-    color: white;
+    color: #0187d0;
     padding: 0 7px 0 7px;
     margin-left: 5px;
 }
+header .buttons font.items:hover {
+    color: #fff;
+    padding: 0 7px 0 7px;
+    margin-left: 5px;
+}
+*/
+
 @media(max-width:767px) {
     .hidden-xs {
         display: none !important;

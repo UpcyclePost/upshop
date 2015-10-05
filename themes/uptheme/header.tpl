@@ -250,6 +250,7 @@ for(g=0;g<i.length;g++)f(c,i[g]);b._i.push([a,e,d])};b.__SV=1.2;a=e.createElemen
 				                    <h3>Sell your products</h3>
 				                    <ul class="links">
 				                        <li><a href="http://{$smarty.server.SERVER_NAME}/shop/module/marketplace/sellerrequest">Create your shop</a></li>
+				                        <li><a href="http://{$smarty.server.SERVER_NAME}/browse/shops">View shop gallery</a></li>
 				                    </ul>
 				                </div>
 				            </div>

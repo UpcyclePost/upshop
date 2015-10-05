@@ -1,6 +1,6 @@
 <!-- Block user information module NAV  -->
 
-<div class="header_user_info col-xs-2 col-sm-2 col-md-5 col-lg-4" style="padding:0;">
+<div class="header_user_info col-xs-2 col-sm-2 col-md-5 col-lg-5" style="padding:0;">
 	<button class="hamburger-menu" id="hamburger" {if !$is_logged && $cart_qties==0}style="margin-left:80px;"{/if}>
         <i class="fa fa-bars"></i>
     </button>
@@ -23,7 +23,7 @@
 			{if $is_seller == 1}
 				<div class="btn-group">
 					<button type="button" class="btn btn-user dropdown-toggle" data-toggle="dropdown">
-						<span>Your Shop{if $m_number_orders > 0 } <font class="items">{$m_number_orders}</font>{/if}</span> <i class="fa up-shop-1"></i>
+						<span>Your Shop</span> {if $m_number_orders > 0 }<font class="items">{$m_number_orders}</font>{else}<i class="fa up-shop-1"></i>{/if}
 					</button>
 					<ul class="dropdown-menu dropdown-menu-right" role="menu">
 						<li><a href="{$account_dashboard|addslashes}"><i class="fa fa-fw fa-dashboard"></i> Dashboard</a></li>
@@ -38,9 +38,12 @@
 					</ul>
 				</div>
 			{/if}
+			<!--
+				{$this->cookie|@print_r}
+			-->
 			<div class="btn-group">
 				<button type="button" class="btn btn-user dropdown-toggle" data-toggle="dropdown">
-					<span>You</span> <i class="fa fa-user"></i>
+					<span>{$user_name}</span> <i style="color:#89c226" class="fa fa-user"></i>
 				</button>
 				<ul class="dropdown-menu dropdown-menu-right" role="menu">
 					<li><a href="http{if Tools::usingSecureMode()}s{/if}://{$smarty.server.SERVER_NAME}/shop/order-history"><i class="fa fa-fw fa-tags"></i> Purchases</a></li>
@@ -57,7 +60,7 @@
 			{if !$PS_CATALOG_MODE}
 				{if $cart_qties > 0}
 				<div class="cart pull-right text-center">
-					<a id="cart-link" style="margin: 0; padding: 0" href="http{if Tools::usingSecureMode()}s{/if}://{$smarty.server.SERVER_NAME}/shop/quick-order"><i class="fa fa-fw fa-shopping-cart"></i><br>Cart{if $cart_qties > 0}<span id="header_cart_items" class="items">{$cart_qties}</span>{/if}</a>
+					<a id="cart-link" style="margin: 0; padding: 0" href="http{if Tools::usingSecureMode()}s{/if}://{$smarty.server.SERVER_NAME}/shop/quick-order"><i style="float:left;" class="fa fa-fw fa-shopping-cart"></i><br>Cart{if $cart_qties > 0}<span id="header_cart_items" class="items">{$cart_qties}</span>{/if}</a>
 				</div>
 				{/if}
 			{/if}

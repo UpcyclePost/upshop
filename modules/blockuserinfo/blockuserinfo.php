@@ -87,8 +87,15 @@ class BlockUserInfo extends Module
 			// get the up customer - website field
 			$sql = 'SELECT website from `'._DB_PREFIX_.'customer` c Where c.id_customer = '.$customer_id;
 			$c_website = Db::getInstance()->getValue($sql);
-			
+
 			If (isset($c_website)){
+
+				$sql = 'SELECT user_name from up.user u Where u.ik = '.$c_website;
+				$user_name = Db::getInstance()->getValue($sql);
+				If (isset($user_name)){
+			       	$this->context->smarty->assign("user_name", $user_name);
+				}
+
 				$sql = 'SELECT count(*) FROM up.message m WHERE m.to_user_ik = '.$c_website.' and m.read is null';
 				$m_number_messages = Db::getInstance()->getValue($sql,false);
 		       	$this->context->smarty->assign("m_number_messages", $m_number_messages);

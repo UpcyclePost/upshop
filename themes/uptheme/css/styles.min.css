@@ -377,60 +377,45 @@
 }
 
 .header-container .buttons .btn-user {
+    display: inline-block;
+    padding: 8px 14px;
+    -webkit-border-radius: 4px;
+    -moz-border-radius: 4px;
+    border-radius: 4px;
+    text-decoration: none !important;
+    line-height: 20px;
+    color: #0187d0;
+    background-color: #fff;
     margin-left: 4px;
-    padding: 0;
+}
+.header-container .buttons .btn-user:hover {
+    display: inline-block;
+    padding: 8px 14px;
+    -webkit-border-radius: 4px;
+    -moz-border-radius: 4px;
+    border-radius: 4px;
+    text-decoration: none !important;
+    line-height: 20px;
+    color : #fff;
+    background-color: #0187d0;
+    margin-left: 4px;
 }
 
 .header-container .buttons .btn-user i {
-    float: left;
-    padding: 11px 0;
-    width: 33px;
+    padding: 0 8px 0 10px;
+    width: 14px;
 }
 
 .header-container .buttons .btn-user span {
-    border-right: 1px solid #ddd;
+    border-right: 2px solid;
     float: left;
     margin: 0;
-    padding: 8px 10px;
-    color: #0187d0;
+    padding-right: 10px;
 }
 
-.header-container .buttons .btn-user span:hover {
-    border-right: 1px solid #ddd;
-    float: left;
-    margin: 0;
-    padding: 8px 10px;
-    color: #fff;
-}
-.header-container .buttons .btn-user:hover > span {
-    color: #fff;
-}
-
-.btn-user {
-    display: inline-block;
-    border: 2px solid #ddd;
-    padding: 8px 14px;
-    -webkit-border-radius: 4px;
-    -webkit-background-clip: padding-box;
-    -moz-border-radius: 4px;
-    -moz-background-clip: padding;
-    border-radius: 4px;
-    background-clip: padding-box;
-    text-decoration: none !important;
-    line-height: normal;
-    color: #666;
-    background: #fff;
-}
-
-.btn-user:hover {
-    cursor: pointer;
-    color: #fff;
-    background: #0187d0;
-    border: 2px solid #ddd;    
-}
-
-.btn-user .fa {
-    margin: 0;
+header .items {
+    padding: 0 0 0 7px;
+    margin-left: 5px;
 }
 
 #cart-link:hover {
@@ -596,11 +581,11 @@
 .header-container .buttons .dropdown-menu {
     margin: 2px 0 0;
     padding: 0;
-    -webkit-border-radius: 0 0 4px 4px;
+    -webkit-border-radius: 4px;
     -webkit-background-clip: padding-box;
-    -moz-border-radius: 0 0 4px 4px;
+    -moz-border-radius: 4px;
     -moz-background-clip: padding;
-    border-radius: 0 0 4px 4px;
+    border-radius: 4px;
     background-clip: padding-box;
     border: 0;
     box-shadow: none;
@@ -654,7 +639,6 @@
     border-right: 1px solid #eee;
     padding-left: 10px;
     margin-left: 10px;
-    padding-right: 10px;
     margin-right: 10px;
     display: block;
     font-weight: normal;
@@ -678,7 +662,7 @@
 .header-container .buttons .cart span.items {
     position: relative;
     top: -25px;
-    right: -8px;
+    right: 10px;
     padding: 0 7px 0 7px;
     background-color: #85c125;
     color: white;
