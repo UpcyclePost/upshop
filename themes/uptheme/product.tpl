@@ -112,7 +112,7 @@
 		<!-- left infos-->
 		<div class="post-details-body">
 			<div class="post-details-panel-header">
-				<h1>
+				<h1 itemprop="name">
 				{$product->name|escape:'html':'UTF-8'}
 				</h1>
 			</div>
