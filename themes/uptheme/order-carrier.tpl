@@ -28,7 +28,8 @@
 	<div id="carrier_area">
 	<div class="login-panel">
 	<div class="login-panel-header">
-		<h1 class="">{l s='Shipping'}</h1>
+		<span id="mixpanel_page_name" style="display:none;">{l s='order-shipping'}</span>
+		<h1>{l s='Shipping'}</h1>
 	</div>
 		{include file="$tpl_dir./order-steps.tpl"}
 		{include file="$tpl_dir./errors.tpl"}

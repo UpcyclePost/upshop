@@ -172,9 +172,15 @@ for(g=0;g<i.length;g++)f(c,i[g]);b._i.push([a,e,d])};b.__SV=1.2;a=e.createElemen
 <!-- end Mixpanel init-->
 
 <script type="text/javascript">
+{if $page_name=='order'}
+{literal}
+	mixpanel.track('Viewed Page', {'Page Name': $('#mixpanel_page_name').text()});
+{/literal}
+{else}
 {literal}
 	mixpanel.track('Viewed Page', {'Page Name': page_name});
 {/literal}
+{/if}
 </script>		
 	</head>
 	<body{if isset($page_name)} id="{$page_name|escape:'html':'UTF-8'}"{/if} class="{if isset($page_name)}{$page_name|escape:'html':'UTF-8'}{/if}{if isset($body_classes) && $body_classes|@count} {implode value=$body_classes separator=' '}{/if}{if $hide_left_column} hide-left-column{/if}{if $hide_right_column} hide-right-column{/if}{if isset($content_only) && $content_only} content_only{/if} lang_{$lang_iso}">
