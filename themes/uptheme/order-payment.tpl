@@ -32,6 +32,7 @@
 	{capture name=path}{l s='Your payment method'}{/capture}
 <div class="login-panel">
 	<div class="login-panel-header">
+	<span id="mixpanel_page_name" style="display:none;">{l s='order-payment'}</span>
 	<h1 class="">{l s='Please choose your payment method'}
 		{if !isset($empty) && !$PS_CATALOG_MODE}
 			<span class="heading-counter">

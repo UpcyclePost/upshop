@@ -26,6 +26,7 @@
 <!-- open the shopping cart login panel -->
 <div class="login-panel" id="login-panel-summary">
 	<div class="login-panel-header">
+	<span id="mixpanel_page_name" style="display:none;">{l s='order-shopping-cart'}</span>
 	<h1 id="cart_title" class="">{l s='Shopping cart summary'}
 		{if !isset($empty) && !$PS_CATALOG_MODE}
 				<span id="summary_products_quantity">({$productNumber} {if $productNumber == 1}{l s='product'}{else}{l s='products'}{/if})</span>

@@ -28,6 +28,7 @@
 	{assign var="back_order_page" value="order.php"}
 <div class="login-panel"> 
 	<div class="login-panel-header">
+	<span id="mixpanel_page_name" style="display:none;">{l s='order-addresses'}</span>
 	<h1 class="">{l s='Shipping & Billing Addresses'}</h1>
 	</div>
 	{include file="$tpl_dir./order-steps.tpl"}
