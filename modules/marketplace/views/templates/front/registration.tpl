@@ -90,9 +90,10 @@ select:focus{
 		{else}
 			<p>
 				<img alt="Sell" src="http{if Tools::usingSecureMode()}s{/if}://{$smarty.server.SERVER_NAME}/img/sell_sm.png" style="float:right;"></img>
-				<h3>{l s='Congratulations, Your banking information has been verified.' mod='marketplace'}</h3>
+				<h3>{l s='Well done! Your banking information has now been verified and you can continue to build your shop by creating your first shipping profile.' mod='marketplace'}</h3>
 				<p>&nbsp;</p>
-				<h4 style="line-height:24px">On the next screen you will be asked to create shipping profiles, you will then be able to add products and associate those products with one or more shipping profiles.</h4>
+				<h4 style="line-height:24px">Adding shipping profiles allows you to specify the amount of shipping you want to charge, you can add more than one if you have products of different sizes.</h4>
+				<h4 style="line-height:24px">After you have set up your shipping profiles you will then be able to add your products.</h4>
 				<p>&nbsp;</p>
 				<div style="text-align:center;margin-left:auto;margin-right:auto;">
 				<a class="btn btn-default button button-medium" style="padding:3px 8px 3px 8px;" href="{$link->getModuleLink('mpshipping','addnewshipping')|escape:'html':'UTF-8'}">

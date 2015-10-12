@@ -46,7 +46,10 @@
 @media (max-width: 992px){
     .policies {
        text-align:center;
-       margin: 10px 0 0 0;
+       margin-top: 10px;
+       margin-left: auto;
+       margin-right: auto;
+       width: 100%;
        }
     .policies >a{
        margin-right:20px;
@@ -363,14 +366,34 @@
     padding-top:5px;
 }
 
+@media(max-width:767px) {
+    .header-container .buttons {
+        display: inline-block;
+        float: left;
+        padding-top:5px;
+        }
+}
+
 .header-container .buttons a {
     font-size: 16px;
     font-weight:700;
     padding: 7px 14px;
     margin: 0px 2px;
     height: 37px;
-    color:#fff
+    color:#fff;
 }
+
+@media(max-width:767px) {
+    .header-container .buttons a {
+        font-size: 16px;
+        font-weight:700;
+        padding: 7px 8px;
+        margin: 0px 2px;
+        height: 37px;
+        color:#fff;
+    }
+}
+
 
 .header-container .buttons button {
     height: 37px;
@@ -411,6 +434,15 @@
     float: left;
     margin: 0;
     padding-right: 10px;
+}
+
+@media(max-width:767px) {
+    .header-container .buttons .btn-user span {
+        border-right: none;
+        float: left;
+        margin: 0;
+        padding-right: 0;
+    }
 }
 
 header .items {
@@ -790,7 +822,7 @@ header .row #header_logo {
 {
     padding-top : 5px;
 }
-@media (max-width: 767px) {
+@media (max-width: 991px) {
     .header-container .search-container {
         padding: 12px 2px 8px!important;
         height : 60px;
@@ -2548,7 +2580,7 @@ a:focus {
 }
 @media (min-width: 992px) and (max-width: 1199px) {
   .mainmenu .hamburger-menu {
-    /*margin-left: 50px;*/
+    margin-left: 50px !important;
   }
 }
 @media (min-width: 768px) and (max-width: 991px) {
@@ -2558,8 +2590,8 @@ a:focus {
 }
 @media (max-width: 767px) {
   .mainmenu .hamburger-menu {
-    margin-left: 10px;
-    margin-right: 2%;
+    margin-left: 0px !important;
+    margin-right: 0px !important;
   }
 }
 .mainmenu .hamburger-menu:hover,
