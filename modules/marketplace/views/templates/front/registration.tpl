@@ -127,7 +127,27 @@ select:focus{
 			src="//www.googleadservices.com/pagead/conversion/1034553725/?label=OVX0COfcmWAQ_ZKo7QM&amp;guid=ON&amp;script=0"/>
 			</div>
 			</noscript>
-			<!-- End Google Code for Open a Shop Conversion Page -->			
+			<!-- End Google Code for Open a Shop Conversion Page -->
+			<!-- Facebook Conversion Code for Open store -->
+			{literal}
+			<script>(function() {
+			  var _fbq = window._fbq || (window._fbq = []);
+			  if (!_fbq.loaded) {
+			    var fbds = document.createElement('script');
+			    fbds.async = true;
+			    fbds.src = '//connect.facebook.net/en_US/fbds.js';
+			    var s = document.getElementsByTagName('script')[0];
+			    s.parentNode.insertBefore(fbds, s);
+			    _fbq.loaded = true;
+			  }
+			})();
+			window._fbq = window._fbq || [];
+			window._fbq.push(['track', '6030575472399', {'value':'0.00','currency':'USD'}]);
+			</script>
+			<noscript><img height="1" width="1" alt="" style="display:none" src="https://www.facebook.com/tr?ev=6030575472399&amp;cd[value]=0.00&amp;cd[currency]=USD&amp;noscript=1" /></noscript>
+			{/literal}
+			<!-- End Facebook Conversion Code for Open store -->
+
 		{/if}
 	{/if}
 	</div>
