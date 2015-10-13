@@ -4,7 +4,11 @@
 	<button class="hamburger-menu" id="hamburger" {if !$is_logged && $cart_qties==0}style="margin-left:80px;"{/if}>
         <i class="fa fa-bars"></i>
     </button>
+	{if !$is_logged}
+	<div class="buttons col-xs-9 col-md-9 col-lg-9">
+	{else}
 	<div class="buttons col-xs-9 col-md-9 col-lg-10">
+	{/if}
 		{if !$is_logged}
 			<div class="signup">
 			{if !$PS_CATALOG_MODE}
