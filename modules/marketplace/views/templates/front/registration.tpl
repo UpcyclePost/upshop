@@ -9,7 +9,7 @@
 }
 
 @media (min-width:768px){
-	.col-sm-9 {
+	#center_column.col-sm-9 {
 		width:100%;
 	}
 }
