@@ -26,7 +26,7 @@
 	.stButton{
 		width : 24px !important;
 		height: 24px !important;
-		margin-left: 16px !important;
+		margin-left: 12px !important;
 	}
 	.chicklets{
 		width : 24px !important;
