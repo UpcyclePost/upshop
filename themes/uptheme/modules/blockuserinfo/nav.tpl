@@ -1,6 +1,6 @@
 <!-- Block user information module NAV  -->
 
-<div class="header_user_info col-xs-7 col-sm-9 col-md-5 col-lg-5" style="padding:0;">
+<div class="header_user_info col-xs-9 col-sm-9 col-md-5 col-lg-5" style="padding:0;">
 	<button class="hamburger-menu" id="hamburger" {if !$is_logged && $cart_qties==0}style="margin-left:80px;"{/if}>
         <i class="fa fa-bars"></i>
     </button>
