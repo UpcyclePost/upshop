@@ -680,10 +680,7 @@ header .items {
 }
 
 .header-container .buttons .cart {
-    border-left: 1px solid #eee;
     border-right: 1px solid #eee;
-    padding-left: 10px;
-    margin-left: 10px;
     margin-right: 10px;
     display: block;
     font-weight: normal;
@@ -2467,6 +2464,17 @@ a:focus {
     height: 50px;
     width: 150px;
 }
+@media (max-width: 767px) {
+  .mainmenu.active .logo {
+    background: url('../img/logo_active_sm.png');
+    height: 40px;
+    width: 52px;
+    position: absolute;
+    left: 0%;
+    top: 0px;      
+  }
+}
+
 .mainmenu.active .user-actions li a {
   color: #0187d0;
 }
@@ -2493,6 +2501,10 @@ a:focus {
 
 @media (max-width: 767px) {
   .mainmenu .logo {
+    background: url('../img/logo_sm.png');
+    height: 40px;
+    width: 52px;
+    position: absolute;
     left: 0%;
     top: 0px;      
   }
