@@ -17,7 +17,7 @@ $(document).ready(function() {
 			return false;
 		}
 
-		if(shipping_time == 'Select a value')
+		if(shipping_time == 'Select a value' || shipping_time == '')
 		{
 			e.preventDefault();
 			$('#ship_transit_time').focus();
