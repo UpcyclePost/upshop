@@ -218,54 +218,55 @@ for(g=0;g<i.length;g++)f(c,i[g]);b._i.push([a,e,d])};b.__SV=1.2;a=e.createElemen
 				            <div class="column clearfix">
 				                <h3>Shop Categories</h3>
 				                <ul class="categories">
-				        				<li><a href="http://{$smarty.server.SERVER_NAME}/gallery/art">Art</a></li>
-										<li><a href="http://{$smarty.server.SERVER_NAME}/gallery/automotive">Automotive</a></li>
-										<li><a href="http://{$smarty.server.SERVER_NAME}/gallery/construction">Construction</a></li>
-										<li><a href="http://{$smarty.server.SERVER_NAME}/gallery/crafts">Crafts</a></li>
-										<li><a href="http://{$smarty.server.SERVER_NAME}/gallery/electronics">Electronics</a></li>
-										<li><a href="http://{$smarty.server.SERVER_NAME}/gallery/fashion">Fashion</a></li>
-										<li><a href="http://{$smarty.server.SERVER_NAME}/gallery/furniture">Furniture</a></li>
-										<li><a href="http://{$smarty.server.SERVER_NAME}/gallery/glass">Glass</a></li>
-										<li><a href="http://{$smarty.server.SERVER_NAME}/gallery/hardware">Hardware</a></li>
-										<li><a href="http://{$smarty.server.SERVER_NAME}/gallery/holidays">Holidays</a></li>
-										<li><a href="http://{$smarty.server.SERVER_NAME}/gallery/home">Home</a></li>
-										<li><a href="http://{$smarty.server.SERVER_NAME}/gallery/jewelry">Jewelry</a></li>
-										<li><a href="http://{$smarty.server.SERVER_NAME}/gallery/metal">Metal</a></li>
-										<li><a href="http://{$smarty.server.SERVER_NAME}/gallery/musical">Musical</a></li>
-										<li><a href="http://{$smarty.server.SERVER_NAME}/gallery/office">Office</a></li>
-										<li><a href="http://{$smarty.server.SERVER_NAME}/gallery/outdoors">Outdoors</a></li>
-										<li><a href="http://{$smarty.server.SERVER_NAME}/gallery/paper">Paper</a></li>
-										<li><a href="http://{$smarty.server.SERVER_NAME}/gallery/pets">Pets</a></li>
-										<li><a href="http://{$smarty.server.SERVER_NAME}/gallery/plastic">Plastic</a></li>
-										<li><a href="http://{$smarty.server.SERVER_NAME}/gallery/sporting-goods">Sporting Goods</a></li>
-										<li><a href="http://{$smarty.server.SERVER_NAME}/gallery/toys">Toys</a></li>
-										<li><a href="http://{$smarty.server.SERVER_NAME}/gallery/vintage">Vintage</a></li>
-										<li><a href="http://{$smarty.server.SERVER_NAME}/gallery/wood">Wood</a></li>
-										<li><a href="http://{$smarty.server.SERVER_NAME}/gallery/yard">Yard</a></li>							
+				        				<li><a href="http://{$smarty.server.SERVER_NAME}/gallery/art" title="Art">Art</a></li>
+										<li><a href="http://{$smarty.server.SERVER_NAME}/gallery/automotive" title="Automotive">Automotive</a></li>
+										<li><a href="http://{$smarty.server.SERVER_NAME}/gallery/construction" title="Construction">Construction</a></li>
+										<li><a href="http://{$smarty.server.SERVER_NAME}/gallery/crafts" title="Crafts">Crafts</a></li>
+										<li><a href="http://{$smarty.server.SERVER_NAME}/gallery/electronics" title="Electronics">Electronics</a></li>
+										<li><a href="http://{$smarty.server.SERVER_NAME}/gallery/fashion" title="Fashion">Fashion</a></li>
+										<li><a href="http://{$smarty.server.SERVER_NAME}/gallery/furniture" title="Furniture">Furniture</a></li>
+										<li><a href="http://{$smarty.server.SERVER_NAME}/gallery/glass" title="Glass">Glass</a></li>
+										<li><a href="http://{$smarty.server.SERVER_NAME}/gallery/hardware" title="Hardware">Hardware</a></li>
+										<li><a href="http://{$smarty.server.SERVER_NAME}/gallery/holidays" title="Holidays">Holidays</a></li>
+										<li><a href="http://{$smarty.server.SERVER_NAME}/gallery/home" title="Home">Home</a></li>
+										<li><a href="http://{$smarty.server.SERVER_NAME}/gallery/jewelry" title="Jewelry">Jewelry</a></li>
+										<li><a href="http://{$smarty.server.SERVER_NAME}/gallery/metal" title="Metal">Metal</a></li>
+										<li><a href="http://{$smarty.server.SERVER_NAME}/gallery/musical" title="Musical">Musical</a></li>
+										<li><a href="http://{$smarty.server.SERVER_NAME}/gallery/office" title="Office">Office</a></li>
+										<li><a href="http://{$smarty.server.SERVER_NAME}/gallery/outdoors" title="Outdoors">Outdoors</a></li>
+										<li><a href="http://{$smarty.server.SERVER_NAME}/gallery/paper" title="Paper">Paper</a></li>
+										<li><a href="http://{$smarty.server.SERVER_NAME}/gallery/pets" title="Pets">Pets</a></li>
+										<li><a href="http://{$smarty.server.SERVER_NAME}/gallery/plastic" title="Plastic">Plastic</a></li>
+										<li><a href="http://{$smarty.server.SERVER_NAME}/gallery/sporting-goods" title="Sporting Goods">Sporting Goods</a></li>
+										<li><a href="http://{$smarty.server.SERVER_NAME}/gallery/toys" title="Toys">Toys</a></li>
+										<li><a href="http://{$smarty.server.SERVER_NAME}/gallery/vintage" title="Vintage">Vintage</a></li>
+										<li><a href="http://{$smarty.server.SERVER_NAME}/gallery/wood" title="Wood">Wood</a></li>
+										<li><a href="http://{$smarty.server.SERVER_NAME}/gallery/yard" title="Yard">Yard</a></li>							
 				                </ul>
 				            </div>
 				            <div class="column clearfix">
 				                <div class="left-menu">
 				                    <h3>Share your ideas</h3>
 				                    <ul class="links">
-				                        <li><a href="http://{$smarty.server.SERVER_NAME}/post/idea">Upload your images</a></li>
-				                        <li><a href="http://{$smarty.server.SERVER_NAME}/search/users">View member gallery</a></li>
+				                        <li><a href="http://{$smarty.server.SERVER_NAME}/post/idea" title="Upload your images">Upload your images</a></li>
+				                        <li><a href="http://{$smarty.server.SERVER_NAME}/search/users" title="View member gallery">View member gallery</a></li>
+				                        <li><a href="http://{$smarty.server.SERVER_NAME}/browse/ideas" title="Browse Ideas">Browse Ideas</a></li>
 				                    </ul>
 				                </div>
 				                <div class="right-menu">
 				                    <h3>Sell your products</h3>
 				                    <ul class="links">
-				                        <li><a href="http://{$smarty.server.SERVER_NAME}/shop/module/marketplace/sellerrequest">Create your shop</a></li>
-				                        <li><a href="http://{$smarty.server.SERVER_NAME}/browse/shops">View shop gallery</a></li>
+				                        <li><a href="http://{$smarty.server.SERVER_NAME}/shop/module/marketplace/sellerrequest" title="Create your shop">Create your shop</a></li>
+				                        <li><a href="http://{$smarty.server.SERVER_NAME}/browse/shops" title="View shop gallery">View shop gallery</a></li>
 				                    </ul>
 				                </div>
 				            </div>
 				            <div class="column clearfix">
 				                <h3>Upmod</h3>
 				                <ul class="links">
-				                    <li><a href="http://{$smarty.server.SERVER_NAME}/about">About us</a></li>
-				                    <li><a href="http://{$smarty.server.SERVER_NAME}/blog">Blog</a></li>
-				                    <li><a href="http://{$smarty.server.SERVER_NAME}/contact">Contact us</a></li>
+				                    <li><a href="http://{$smarty.server.SERVER_NAME}/about" title="About us">About us</a></li>
+				                    <li><a href="http://{$smarty.server.SERVER_NAME}/blog" title="Blog">Blog</a></li>
+				                    <li><a href="http://{$smarty.server.SERVER_NAME}/contact" title="Contact us">Contact us</a></li>
 				                </ul>
 				                <div class="social-icons">
 				                    <a href="https://www.facebook.com/upmodinc"><i class="fa fa-facebook-square"></i></a>
