@@ -123,7 +123,7 @@
 					<li class="attr-content" style="float:right;">
 							<span class='st_googleplus' style="float:right;"></span>
 							<span class='st_pinterest' style="float:right;"></span>
-							<span class='st_twitter' style="float:right;"></span>
+							<span class='st_twitter' st_via='Upmodinc' style="float:right;"></span>
 							<span class='st_facebook' style="float:right;"></span>
 					</li>
 				</ol>
