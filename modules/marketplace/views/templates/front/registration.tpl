@@ -110,13 +110,17 @@ select:focus{
 			</script>
 			<!-- End Mixpanel Tracking -->
 			<!-- Google Code for Open a Shop Conversion Page --> 
+			<script type="text/javascript" src="//www.googleadservices.com/pagead/conversion_async.js" charset="utf-8"></script>
 			<script type="text/javascript">
 			/* <![CDATA[ */
-			var google_conversion_id = 1034553725;
-			var google_conversion_language = "en";
-			var google_conversion_format = "3";
-			var google_conversion_color = "ffffff";
-			var google_conversion_label = "OVX0COfcmWAQ_ZKo7QM"; var google_remarketing_only = false;
+			window.google_trackConversion({
+				var google_conversion_id = 1034553725,
+				var google_conversion_language = "en",
+				var google_conversion_format = "3",
+				var google_conversion_color = "ffffff",
+				var google_conversion_label = "OVX0COfcmWAQ_ZKo7QM", 
+				var google_remarketing_only = false
+			});
 			/* ]]> */
 			</script>
 			<script type="text/javascript" src="//www.googleadservices.com/pagead/conversion.js">
