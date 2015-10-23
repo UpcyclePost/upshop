@@ -136,13 +136,19 @@ window._fbq.push(['track', '6027155380399',
 <noscript><img height="1" width="1" alt="" style="display:none" src="https://www.facebook.com/tr?ev=6027155380399&amp;cd[value]={$total_to_pay}&amp;cd[currency]={$currency_iso_code}&amp;noscript=1" /></noscript>
 <!-- End Facebook tracking pixel for order confirmation -->
 <!-- Google Code for Purchase Confirmation Conversion Page --> 
+<script type="text/javascript" src="//www.googleadservices.com/pagead/conversion_async.js" charset="utf-8"></script>
 <script type="text/javascript">
 /* <![CDATA[ */
-var google_conversion_id = 1034553725;
-var google_conversion_language = "en";
-var google_conversion_format = "3";
-var google_conversion_color = "ffffff";
-var google_conversion_label = "eYXfCPiHjmAQ_ZKo7QM"; var google_conversion_value = {$total_to_pay}; var google_conversion_currency = "{$currency_iso_code}"; var google_remarketing_only = false;
+	window.google_trackConversion({
+		google_conversion_id : 1034553725,
+		google_conversion_language : "en",
+		google_conversion_format : "3",
+		google_conversion_color : "ffffff",
+		google_conversion_label : "eYXfCPiHjmAQ_ZKo7QM", 
+		google_conversion_value : {$total_to_pay},
+		google_conversion_currency : "{$currency_iso_code}", 
+		google_remarketing_only : false
+	});
 /* ]]> */
 </script>
 <script type="text/javascript" src="//www.googleadservices.com/pagead/conversion.js">
