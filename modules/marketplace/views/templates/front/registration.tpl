@@ -114,12 +114,12 @@ select:focus{
 			<script type="text/javascript">
 			/* <![CDATA[ */
 			window.google_trackConversion({
-				var google_conversion_id = 1034553725,
-				var google_conversion_language = "en",
-				var google_conversion_format = "3",
-				var google_conversion_color = "ffffff",
-				var google_conversion_label = "OVX0COfcmWAQ_ZKo7QM", 
-				var google_remarketing_only = false
+				google_conversion_id : 1034553725,
+				google_conversion_language : "en",
+				google_conversion_format : "3",
+				google_conversion_color : "ffffff",
+				google_conversion_label : "OVX0COfcmWAQ_ZKo7QM", 
+				google_remarketing_only : false
 			});
 			/* ]]> */
 			</script>
