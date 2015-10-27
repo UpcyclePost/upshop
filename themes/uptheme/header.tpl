@@ -89,7 +89,6 @@
 
         <script type="text/javascript" src="http{if Tools::usingSecureMode()}s{/if}://{$smarty.server.SERVER_NAME}/js/libraries/typeahead/bloodhound.min.js"></script>
         <script type="text/javascript" src="http{if Tools::usingSecureMode()}s{/if}://{$smarty.server.SERVER_NAME}/js/libraries/typeahead/typeahead.jquery.min.js"></script>
-        <script type="text/javascript" src="http{if Tools::usingSecureMode()}s{/if}://{$smarty.server.SERVER_NAME}/up/config"></script>
         <script>
 		    var configURL = 'http{if Tools::usingSecureMode()}s{/if}:\/\/{$smarty.server.SERVER_NAME}\/';
 		    {literal}const UPMOD_CONFIG = {"url":configURL};{/literal}
