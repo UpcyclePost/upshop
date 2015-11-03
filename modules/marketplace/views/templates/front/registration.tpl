@@ -165,7 +165,8 @@ select:focus{
 		<div class="wk_right_col">
 			<div class="col-sm-12">
 				<div class="col-sm-6">
-		<p>We require the following information for you to successfully process transactions on the site, and to receive payment for the purchases made in your shop. Upmod does not store any of your banking information and collects the minimum amount of data required by the payment processing industry.</p>	
+		<!--<p>We require the following information for you to successfully process transactions on the site, and to receive payment for the purchases made in your shop. Upmod does not store any of your banking information and collects the minimum amount of data required by the payment processing industry.</p>-->
+		<h2>We apologize but due to technical difficulties creating a new shop is not possible at the present time.</h2>	
 		<p><sup>*</sup> {l s='Required field' mod='marketplace'}</p>
 		<form action="{$link->getModuleLink('marketplace', 'registrationprocess')|escape:'htmlall':'UTF-8'}" method="post" id="createaccountform" class="std contact-form-box" enctype="multipart/form-data">
 			<fieldset>
@@ -173,48 +174,48 @@ select:focus{
 				<input class="form-control" type="hidden" name="business_email_id" id="business_email_id1" value="{$seller_email}"/>
 				<div class="form-group">	
 					<label for="shop_name1"><sup>*</sup>{l s='Shop Name' mod='marketplace'}</label>	
-					<input class="is_required validate form-control" type="text" id="shop_name1" name="shop_name" placeholder="Enter your shop name" maxlength="255"/>
+					<input disabled class="is_required validate form-control" type="text" id="shop_name1" name="shop_name" placeholder="Enter your shop name" maxlength="255"/>
 				</div>
 				<div class="required form-group">
 					<label for="phone1"><sup>*</sup>{l s='Phone' mod='marketplace'}</label>&nbsp;{l s='10 digits, no separators' mod='marketplace'}
-					<input class="form-control" type="text" name="phone" id="phone1" maxlength="{$phone_digit|escape:'html':'UTF-8'}" placeholder="Enter your phone number"/>
+					<input disabled class="form-control" type="text" name="phone" id="phone1" maxlength="{$phone_digit|escape:'html':'UTF-8'}" placeholder="Enter your phone number"/>
 				</div>		 
                 <div class="form-group">	
 					<label for="address">{l s='Address' mod='marketplace'}</label>
-					<textarea name="address" class = "form-control"  placeholder="Enter your business address"></textarea>
+					<textarea disabled name="address" class = "form-control"  placeholder="Enter your business address"></textarea>
 				</div>
                  <fieldset style="">
                  <div id="bank" class="form-group" >
 					<label for="bank"><sup>*</sup>{l s='Bank Account Number' mod='marketplace'}</label>&nbsp;{l s='e.g.' mod='marketplace'} 000123456789
-					<input class="reg_sel_input form-control"  type="text" name="bank" id="bank" placeholder="Enter your bank account number"/>
+					<input disabled class="reg_sel_input form-control"  type="text" name="bank" id="bank" placeholder="Enter your bank account number"/>
 				</div>
 					
 				<div id="routing" class="form-group" >
 					<label for="routing"><sup>*</sup>{l s='Routing Number' mod='marketplace'}</label>&nbsp;{l s='e.g.' mod='marketplace'} 110000000
-					<input class="reg_sel_input form-control"  type="text" name="routing" id="routing" placeholder="Enter your bank routing number"/>
+					<input disabled class="reg_sel_input form-control"  type="text" name="routing" id="routing" placeholder="Enter your bank routing number"/>
 				</div>
                 <div id="type" class="form-group" >
 					<label for="type"><sup>*</sup>{l s='Entity Type' mod='marketplace'}</label>
-					<select name="type" id="type" style="width:100%;height:30px;"><option value="individual">{l s='Individual' mod='marketplace'}</option><option value="company">{l s='Company' mod='marketplace'}</option></select>
+					<select disabled name="type" id="type" style="width:100%;height:30px;"><option value="individual">{l s='Individual' mod='marketplace'}</option><option value="company">{l s='Company' mod='marketplace'}</option></select>
 				</div>
                 <div id="fname" class="form-group" >
 					<label for="fname"><sup>*</sup>{l s='First Name' mod='marketplace'}</label>
-					<input class="form-control"  type="text" name="fname" id="fname" />
+					<input disabled class="form-control"  type="text" name="fname" id="fname" />
 				</div>
                 <div id="lname" class="form-group" >
                     <label for="lname"><sup>*</sup>{l s='Last Name' mod='marketplace'}</label>
-					<input class="form-control"  type="text" name="lname" id="lname" />
+					<input disabled class="form-control"  type="text" name="lname" id="lname" />
 				</div>
                 <div id="ssn" class="form-group" >
 					<label for="ssn"><sup>*</sup>{l s='SSN/EIN last 4 digits' mod='marketplace'}</label>
-					<input class="form-control"  type="text" name="ssn" id="ssn" maxlength="4"/>
+					<input disabled class="form-control"  type="text" name="ssn" id="ssn" maxlength="4"/>
 				</div>
                 <div id="routing" class="form-group" >
 					<label for="routing"><sup>*</sup>{l s='Date of birth' mod='marketplace'}</label>&nbsp;{l s='e.g.' mod='marketplace'} 12/31/1988 (mm/dd/yyyy)
                     <p>
-					<input class="form-control"  type="text" name="month" id="month" style="width:30px;display: inline;"  maxlength="2"/> /
-					<input class="form-control"  type="text" name="day" id="day" style="width:30px;display: inline;"  maxlength="2"/> /
-                    <input class="form-control"  type="text" name="year" id="year" style="width:50px;display: inline;"  maxlength="4"/>&nbsp;
+					<input disabled class="form-control"  type="text" name="month" id="month" style="width:30px;display: inline;"  maxlength="2"/> /
+					<input disabled class="form-control"  type="text" name="day" id="day" style="width:30px;display: inline;"  maxlength="2"/> /
+                    <input disabled class="form-control"  type="text" name="year" id="year" style="width:50px;display: inline;"  maxlength="4"/>&nbsp;
                     </p>
 				</div>
                 </fieldset>
@@ -242,7 +243,7 @@ select:focus{
 	</div>
 		</div>
 			<div class="form-group" style="text-align:center;margin-bottom:50px">
-				<button type="submit" id="seller_save" class="btn btn-default button button-medium">
+				<button disabled type="submit" id="seller_save" class="btn btn-default button button-medium">
 					<span>{l s='Continue' mod='marketplace'}<i class="icon-chevron-right right"></i></span>
 				</button>&nbsp;&nbsp;
                                     <span id="loadin_msg" style="display:none;margin-top: 12px;font-size: 15px;color: orangered;position: absolute;">{l s='Please wait while we validate your banking information...' mod='marketplace'}</span><br><br>
