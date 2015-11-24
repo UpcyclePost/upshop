@@ -325,6 +325,7 @@
 			{/if}
 			{if ($product->show_price && !isset($restricted_country_mode)) || isset($groups) || $product->reference || (isset($HOOK_PRODUCT_ACTIONS) && $HOOK_PRODUCT_ACTIONS)}
 			<!-- add to cart form-->
+			{if (false)}
 			<form id="buy_block"{if $PS_CATALOG_MODE && !isset($groups) && $product->quantity > 0} class="hidden"{/if} action="{$link->getPageLink('cart')|escape:'html':'UTF-8'}" method="post">
 				<!-- hidden datas -->
 				<p class="hidden">
@@ -492,7 +493,7 @@
 					</div> <!-- end box-cart-bottom -->			
 				</div> <!-- end box-info-product -->
 			</form>
-
+			{/if}
 			<!--
 			<ul class="post-actions col-2 clearfix">
 			<li class="dropdown">
