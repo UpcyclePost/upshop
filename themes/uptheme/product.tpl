@@ -525,7 +525,7 @@
 			</li>
 			</ul>
 			-->
-			{if $m_shippingmethods|count > 0}
+			{if false && $m_shippingmethods|count > 0}
 			<div class="post-sidebar-container">
 				<h5>Shipping Method(s)</h5>
 				{foreach from=$m_shippingmethods item=shipmethod}
