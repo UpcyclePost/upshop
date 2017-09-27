@@ -1,1 +1,0 @@
-{include file="{$modules_dir}marketplace/views/templates/front/shop-store.tpl"} 

@@ -1,8 +1,0 @@
-Hello Admin,
-A new seller request has been created by {seller_name}.
-
-
-Go to your shop by clicking on link below:		
-		{shop_url}
-Thanks
-
